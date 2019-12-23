@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Project level resources -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+    </style>
+
+    <!-- LoginActivity -->
+    <style name="LoginActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <!-- SignupActivity -->
+    <style name="SignupActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <!-- OnboardActivity -->
+    <style name="OnboardActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <!-- ProfileActivity -->
+    <style name="ProfileActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <!-- SplashActivity -->
+    <style name="SplashActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <!-- RequestLoadActivity -->
+    <style name="RequestLoadActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <!-- HomeActivityActivity -->
+    <style name="HomeActivityActivityTheme" parent="Theme.AppCompat.NoActionBar" />
+</resources>

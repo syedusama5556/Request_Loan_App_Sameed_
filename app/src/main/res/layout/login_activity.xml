@@ -1,0 +1,195 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_activity_login_constraint_layout_background_color">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/header_constraint_layout"
+        android:layout_width="@dimen/login_activity_header_constraint_layout_width"
+        android:layout_height="@dimen/login_activity_header_constraint_layout_height"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/welcome_login_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/login_activity_welcome_login_text_view_margin_end"
+            android:layout_marginBottom="@dimen/login_activity_welcome_login_text_view_margin_bottom"
+            android:gravity="start"
+            android:letterSpacing="0.03"
+            android:lineSpacingMultiplier="0.91"
+            android:text="@string/login_activity_welcome_login_text_view_text"
+            android:textColor="#042C5C"
+            android:textSize="@dimen/login_activity_welcome_login_text_view_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="0.94"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="44dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view_constraint_layout"
+        android:layout_width="@dimen/login_activity_view_constraint_layout_width"
+        android:layout_height="@dimen/login_activity_view_constraint_layout_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.367">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/username_constraint_layout"
+            android:layout_width="@dimen/login_activity_username_constraint_layout_width"
+            android:layout_height="@dimen/login_activity_username_constraint_layout_height"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <EditText
+                android:id="@+id/username_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/login_activity_username_edit_text_height"
+                android:layout_marginBottom="@dimen/login_activity_username_edit_text_margin_bottom"
+                android:background="@color/login_activity_username_edit_text_background_color"
+                android:gravity="start|center_vertical"
+                android:hint="@string/login_activity_username_edit_text_hint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/login_activity_username_edit_text_text_color"
+                android:textColorHint="@color/color_hint_text"
+                android:textSize="@dimen/login_activity_username_edit_text_text_size"
+                app:layout_constraintBottom_toTopOf="@+id/line_constraint_layout"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="-10dp" />
+
+            <View
+                android:id="@+id/line_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/login_activity_line_constraint_layout_height"
+                android:layout_marginBottom="-15dp"
+                android:background="@color/login_activity_line_constraint_layout_background_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="28dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/password_copy8_constraint_layout"
+            android:layout_width="@dimen/login_activity_password_copy8_constraint_layout_width"
+            android:layout_height="@dimen/login_activity_password_copy8_constraint_layout_height"
+            android:layout_marginTop="@dimen/login_activity_password_copy8_constraint_layout_margin_top"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="102dp">
+
+            <View
+                android:id="@+id/line_two_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/login_activity_line_two_constraint_layout_height"
+                android:layout_marginBottom="@dimen/login_activity_line_two_constraint_layout_margin_bottom"
+                android:background="@color/login_activity_line_two_constraint_layout_background_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="16dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="326dp"
+            android:layout_height="28dp"
+            android:background="@color/login_activity_password_edit_text_background_color"
+            android:gravity="start|center_vertical"
+            android:hint="@string/login_activity_password_edit_text_hint"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/login_activity_password_edit_text_text_color"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/login_activity_password_edit_text_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_constraint_layout"
+            app:layout_constraintVertical_bias="0.797" />
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="@dimen/login_activity_login_button_width"
+        android:layout_height="@dimen/login_activity_login_button_height"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/login_activity_login_button_ripple"
+        android:gravity="center"
+        android:text="@string/login_activity_login_button_text"
+        android:textAlignment="center"
+        android:textColor="@color/login_activity_login_button_text_color"
+        android:textSize="@dimen/login_activity_login_button_text_size"
+        app:layout_constraintHorizontal_bias="0.518"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_constraint_layout" />
+
+    <Button
+        android:id="@+id/forgot_password_button"
+        android:layout_width="143dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginRight="36dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="@string/login_activity_forgot_password_button_text"
+        android:textColor="@color/login_activity_forgot_password_button_text_color"
+        android:textSize="@dimen/login_activity_forgot_password_button_text_size"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_constraint_layout" />
+
+    <Button
+        android:id="@+id/don_thave_aaccount_sign_up_button"
+        android:layout_width="@dimen/login_activity_don_thave_aaccount_sign_up_button_width"
+        android:layout_height="@dimen/login_activity_don_thave_aaccount_sign_up_button_height"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="@string/login_activity_don_thave_aaccount_sign_up_button_text"
+        android:textColor="@color/login_activity_don_thave_aaccount_sign_up_button_text_color"
+        android:textSize="@dimen/login_activity_don_thave_aaccount_sign_up_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.192" />
+</android.support.constraint.ConstraintLayout>

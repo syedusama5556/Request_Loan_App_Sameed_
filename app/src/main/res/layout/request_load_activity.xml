@@ -1,0 +1,339 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/request_load_activity_constraint_layout_constraint_layout_background_color">
+
+    <TextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/request_load_activity_user_name_text_view_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_user_name_text_view_margin_top"
+        android:gravity="start"
+        android:text="@string/request_load_activity_user_name_text_view_text"
+        android:textColor="@color/request_load_activity_user_name_text_view_text_color"
+        android:textSize="@dimen/request_load_activity_user_name_text_view_text_size"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="75dp" />
+
+    <TextView
+        android:id="@+id/loan_request_code_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/request_load_activity_loan_request_code_text_view_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_loan_request_code_text_view_margin_top"
+        android:gravity="start"
+        android:text="@string/request_load_activity_loan_request_code_text_view_text"
+        android:textColor="@color/request_load_activity_user_name_text_view_text_color"
+        android:textSize="@dimen/request_load_activity_loan_request_code_text_view_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_text_view"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="119dp" />
+
+    <TextView
+        android:id="@+id/text_view_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/request_load_activity_text_view_text_view_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_text_view_text_view_margin_top"
+        android:gravity="start"
+        android:text="@string/request_load_activity_text_view_text_view_text"
+        android:textColor="@color/request_load_activity_text_view_text_view_text_color"
+        android:textSize="@dimen/request_load_activity_text_view_text_view_text_size"
+        app:layout_constraintLeft_toRightOf="@+id/loan_request_code_text_view"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="119dp" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/enteramount_constraint_layout"
+        android:layout_width="@dimen/request_load_activity_enteramount_constraint_layout_width"
+        android:layout_height="@dimen/request_load_activity_enteramount_constraint_layout_height"
+        android:layout_marginStart="@dimen/request_load_activity_enteramount_constraint_layout_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_enteramount_constraint_layout_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_text_view"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="170dp">
+
+        <EditText
+            android:id="@+id/enter_amount_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_enter_amount_edit_text_height"
+            android:background="@color/request_load_activity_enter_amount_edit_text_background_color"
+            android:gravity="start|center_vertical"
+            android:hint="@string/request_load_activity_enter_amount_edit_text_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/request_load_activity_enter_amount_edit_text_text_color"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/request_load_activity_enter_amount_edit_text_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <View
+            android:id="@+id/line1_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_line1_constraint_layout_height"
+            android:background="@color/request_load_activity_line1_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="25dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/enter_purpose_constraint_layout"
+        android:layout_width="@dimen/request_load_activity_enter_purpose_constraint_layout_width"
+        android:layout_height="@dimen/request_load_activity_enter_purpose_constraint_layout_height"
+        android:layout_marginStart="@dimen/request_load_activity_enter_purpose_constraint_layout_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_enter_purpose_constraint_layout_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enteramount_constraint_layout"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="218dp">
+
+        <EditText
+            android:id="@+id/purpose_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_purpose_edit_text_height"
+            android:background="@color/request_load_activity_purpose_edit_text_background_color"
+            android:gravity="start|center_vertical"
+            android:hint="@string/request_load_activity_purpose_edit_text_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/request_load_activity_purpose_edit_text_text_color"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/request_load_activity_purpose_edit_text_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <View
+            android:id="@+id/line1_two_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_line1_two_constraint_layout_height"
+            android:background="@color/request_load_activity_line1_two_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="25dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/enter_collateral_constraint_layout"
+        android:layout_width="@dimen/request_load_activity_enter_collateral_constraint_layout_width"
+        android:layout_height="@dimen/request_load_activity_enter_collateral_constraint_layout_height"
+        android:layout_marginStart="@dimen/request_load_activity_enter_collateral_constraint_layout_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_enter_collateral_constraint_layout_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_purpose_constraint_layout"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="266dp">
+
+        <EditText
+            android:id="@+id/collateral_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_collateral_edit_text_height"
+            android:background="@color/request_load_activity_collateral_edit_text_background_color"
+            android:gravity="start|center_vertical"
+            android:hint="@string/request_load_activity_collateral_edit_text_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/request_load_activity_collateral_edit_text_text_color"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/request_load_activity_collateral_edit_text_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <View
+            android:id="@+id/line1_three_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_line1_three_constraint_layout_height"
+            android:background="@color/request_load_activity_line1_three_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="25dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/enter_market_value_constraint_layout"
+        android:layout_width="@dimen/request_load_activity_enter_market_value_constraint_layout_width"
+        android:layout_height="@dimen/request_load_activity_enter_market_value_constraint_layout_height"
+        android:layout_marginStart="@dimen/request_load_activity_enter_market_value_constraint_layout_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_enter_market_value_constraint_layout_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_collateral_constraint_layout"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="314dp">
+
+        <EditText
+            android:id="@+id/market_value_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_market_value_edit_text_height"
+            android:background="@color/request_load_activity_market_value_edit_text_background_color"
+            android:gravity="start|center_vertical"
+            android:hint="@string/request_load_activity_market_value_edit_text_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/request_load_activity_market_value_edit_text_text_color"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/request_load_activity_market_value_edit_text_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <View
+            android:id="@+id/line1_four_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/request_load_activity_line1_four_constraint_layout_height"
+            android:background="@color/request_load_activity_line1_four_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="25dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/deudateview_constraint_layout"
+        android:layout_width="@dimen/request_load_activity_deudateview_constraint_layout_width"
+        android:layout_height="@dimen/request_load_activity_deudateview_constraint_layout_height"
+        android:layout_marginStart="@dimen/request_load_activity_deudateview_constraint_layout_margin_start"
+        android:layout_marginTop="@dimen/request_load_activity_deudateview_constraint_layout_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_market_value_constraint_layout"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="361dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/duedate_constraint_layout"
+            android:layout_width="@dimen/request_load_activity_duedate_constraint_layout_width"
+            android:layout_height="@dimen/request_load_activity_duedate_constraint_layout_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="1dp">
+
+            <TextView
+                android:id="@+id/due_date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:hint="@string/request_load_activity_due_date_text_view_text"
+                android:textColor="@color/request_load_activity_due_date_text_view_text_color"
+                android:textColorHint="@color/color_hint_text"
+                android:textSize="@dimen/request_load_activity_due_date_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <ImageView
+                android:id="@+id/line1_image_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:src="@drawable/line_1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="25dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/selectdate_button"
+            android:layout_width="@dimen/request_load_activity_selectdate_button_width"
+            android:layout_height="@dimen/request_load_activity_selectdate_button_height"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:src="@drawable/mask_group_2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="177dp"
+            tools:layout_editor_absoluteY="0dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/uploadbtn_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="@dimen/request_load_activity_uploadbtn_button_width"
+        android:layout_height="@dimen/request_load_activity_uploadbtn_button_height"
+        android:layout_marginTop="@dimen/request_load_activity_uploadbtn_button_margin_top"
+        android:background="@drawable/request_load_activity_uploadbtn_button_ripple"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deudateview_constraint_layout"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="435dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/upload_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/request_load_activity_uploadbtn_button_image_padding"
+            android:gravity="start"
+            android:text="@string/request_load_activity_uploadbtn_button_text"
+            android:textColor="@color/request_load_activity_uploadbtn_button_text_color"
+            android:textSize="@dimen/request_load_activity_uploadbtn_button_text_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/postarequest_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/request_load_activity_postarequest_button_height"
+        android:background="@drawable/request_load_activity_postarequest_button_ripple"
+        android:gravity="center"
+        android:text="@string/request_load_activity_postarequest_button_text"
+        android:textColor="@color/request_load_activity_postarequest_button_text_color"
+        android:textSize="@dimen/request_load_activity_postarequest_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="771dp" />
+</android.support.constraint.ConstraintLayout>

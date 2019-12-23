@@ -1,0 +1,265 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboard_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/onboard_activity_onboard_constraint_layout_background_color">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/iphone_xblue_constraint_layout"
+        android:layout_width="@dimen/onboard_activity_iphone_xblue_constraint_layout_width"
+        android:layout_height="@dimen/onboard_activity_iphone_xblue_constraint_layout_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="120dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/body_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/onboard_activity_body_constraint_layout_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <ImageView
+                android:id="@+id/buttons_image_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/onboard_activity_buttons_image_view_margin_top"
+                android:scaleType="centerCrop"
+                android:src="@drawable/buttons"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/front_camera_image_view"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="77dp" />
+
+            <View
+                android:id="@+id/body_shape_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/onboard_activity_body_shape_constraint_layout_height"
+                android:layout_marginStart="@dimen/onboard_activity_body_shape_constraint_layout_margin_start"
+                android:layout_marginEnd="@dimen/onboard_activity_body_shape_constraint_layout_margin_end"
+                android:background="#002975"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="0.98"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <View
+                android:id="@+id/breezel_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/onboard_activity_breezel_constraint_layout_height"
+                android:layout_marginStart="@dimen/onboard_activity_breezel_constraint_layout_margin_start"
+                android:layout_marginEnd="@dimen/onboard_activity_breezel_constraint_layout_margin_end"
+                android:alpha="0.4"
+                android:background="@drawable/onboard_activity_breezel_constraint_layout_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="0.97"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="4dp"
+                tools:layout_editor_absoluteY="1dp" />
+
+            <ImageView
+                android:id="@+id/shadows_image_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/onboard_activity_shadows_image_view_margin_start"
+                android:layout_marginEnd="@dimen/onboard_activity_shadows_image_view_margin_end"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shadows"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="0.94"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+            <ImageView
+                android:id="@+id/front_camera_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/onboard_activity_front_camera_image_view_margin_top"
+                android:layout_marginEnd="@dimen/onboard_activity_front_camera_image_view_margin_end"
+                android:scaleType="center"
+                android:src="@drawable/front_camera"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="168dp"
+                tools:layout_editor_absoluteY="18dp" />
+
+            <ImageView
+                android:id="@+id/speaker_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/onboard_activity_speaker_image_view_margin_top"
+                android:scaleType="center"
+                android:src="@drawable/speaker"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="125dp"
+                tools:layout_editor_absoluteY="21dp" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/network_line_constraint_layout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/onboard_activity_network_line_constraint_layout_height"
+                android:layout_marginStart="@dimen/onboard_activity_network_line_constraint_layout_margin_start"
+                android:layout_marginTop="@dimen/onboard_activity_network_line_constraint_layout_margin_top"
+                android:layout_marginEnd="@dimen/onboard_activity_network_line_constraint_layout_margin_end"
+                app:layout_constraintHorizontal_weight="0.98"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/front_camera_image_view"
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="45dp">
+
+                <ImageView
+                    android:id="@+id/network_line_image_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/network_line"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+                <ImageView
+                    android:id="@+id/network_line_copy_image_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/network_line_copy"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="466dp" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/mask_your_screen_here_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/onboard_activity_mask_your_screen_here_image_view_margin_start"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mask_your_screen_here"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="18dp"
+            tools:layout_editor_absoluteY="17dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bottom_area_constraint_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/onboard_activity_bottom_area_constraint_layout_height"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="562dp">
+
+        <ImageView
+            android:id="@+id/pagination_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/pagination"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="167dp"
+            tools:layout_editor_absoluteY="121dp" />
+
+        <TextView
+            android:id="@+id/in_hac_habitasse_pla_text_view"
+            android:layout_width="@dimen/onboard_activity_in_hac_habitasse_pla_text_view_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/onboard_activity_in_hac_habitasse_pla_text_view_margin_start"
+            android:layout_marginTop="@dimen/onboard_activity_in_hac_habitasse_pla_text_view_margin_top"
+            android:gravity="start"
+            android:letterSpacing="0.01"
+            android:text="@string/onboard_activity_in_hac_habitasse_pla_text_view_text"
+            android:textColor="#042C5C"
+            android:textSize="@dimen/onboard_activity_in_hac_habitasse_pla_text_view_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="74dp"
+            tools:layout_editor_absoluteY="18dp" />
+
+        <TextView
+            android:id="@+id/donec_facilisis_tort_text_view"
+            android:layout_width="@dimen/onboard_activity_donec_facilisis_tort_text_view_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/onboard_activity_donec_facilisis_tort_text_view_margin_top"
+            android:gravity="center"
+            android:letterSpacing="0.01"
+            android:lineSpacingMultiplier="1.11"
+            android:text="@string/onboard_activity_donec_facilisis_tort_text_view_text"
+            android:textColor="#77869E"
+            android:textSize="@dimen/onboard_activity_donec_facilisis_tort_text_view_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/in_hac_habitasse_pla_text_view"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="56dp" />
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="@dimen/onboard_activity_login_button_width"
+        android:layout_height="@dimen/onboard_activity_login_button_height"
+        android:layout_marginStart="@dimen/onboard_activity_login_button_margin_start"
+        android:layout_marginBottom="@dimen/onboard_activity_login_button_margin_bottom"
+        android:background="@drawable/onboard_activity_login_button_ripple"
+        android:gravity="center"
+        android:text="@string/onboard_activity_login_button_text"
+        android:textColor="@color/onboard_activity_login_button_text_color"
+        android:textSize="@dimen/onboard_activity_login_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="725dp" />
+
+    <Button
+        android:id="@+id/sign_up_button"
+        android:layout_width="@dimen/onboard_activity_sign_up_button_width"
+        android:layout_height="@dimen/onboard_activity_sign_up_button_height"
+        android:layout_marginEnd="@dimen/onboard_activity_sign_up_button_margin_end"
+        android:layout_marginBottom="@dimen/onboard_activity_sign_up_button_margin_bottom"
+        android:background="@drawable/onboard_activity_sign_up_button_ripple"
+        android:gravity="center"
+        android:text="@string/onboard_activity_sign_up_button_text"
+        android:textColor="@color/onboard_activity_sign_up_button_text_color"
+        android:textSize="@dimen/onboard_activity_sign_up_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="725dp" />
+</android.support.constraint.ConstraintLayout>

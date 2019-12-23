@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="@dimen/request_load_activity_uploadbtn_button_radius" />
+
+    <solid android:color="@color/request_load_activity_uploadbtn_button_background_color" />
+</shape>

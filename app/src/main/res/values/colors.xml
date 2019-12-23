@@ -1,0 +1,124 @@
+<resources>
+
+    <!-- Project level resources -->
+    <color name="material_bottom_sheet_title">#0000008A</color>
+    <color name="color_primary">#000000</color>
+    <color name="material_bottom_sheet_item">#000000DE</color>
+    <color name="color_primary_dark">#000000</color>
+    <color name="color_hint_text">#D0D1D5</color>
+    <color name="color_click_overlay">#555555</color>
+    <color name="color_accent">#000000</color>
+
+    <!-- Resources for OnboardActivity -->
+    <color name="onboard_activity_onboard_constraint_layout_background_color">#F8F9F9</color>
+    <color name="onboard_activity_sign_up_button_text_color">#77869E</color>
+    <color name="onboard_activity_breezel_constraint_layout_border_color">#FFFFFF</color>
+    <color name="onboard_activity_login_button_text_color">#FFFFFF</color>
+    <color name="onboard_activity_sign_up_button_border_color">#77869E</color>
+
+    <!-- Resources for LoginActivity -->
+    <color name="login_activity_username_edit_text_text_color">#77869E</color>
+    <color name="login_activity_forgot_password_button_text_color">#0047CC</color>
+    <color name="login_activity_password_edit_text_background_color">#00000000</color>
+    <color name="login_activity_password_edit_text_text_color">#77869E</color>
+    <color name="login_activity_login_button_text_color">#FFFFFF</color>
+    <color name="login_activity_login_constraint_layout_background_color">#FFFFFF</color>
+    <color name="login_activity_line_two_constraint_layout_background_color">#838C9B</color>
+    <color name="login_activity_line_constraint_layout_background_color">#838C9B</color>
+    <color name="login_activity_username_edit_text_background_color">#00000000</color>
+    <color name="login_activity_don_thave_aaccount_sign_up_button_text_color">#77869E</color>
+
+    <!-- Resources for ProfileActivity -->
+    <color name="profile_activity_edit_button_text_color">#000000</color>
+    <color name="profile_activity_profile_two_text_view_text_color">#0047CC</color>
+    <color name="profile_activity_notifications_button_text_color">#042C5C</color>
+    <color name="profile_activity_privacy_button_text_color">#042C5C</color>
+    <color name="profile_activity_profile_settings_button_text_color">#042C5C</color>
+    <color name="profile_activity_profile_constraint_layout_background_color">#F8F9F9</color>
+
+    <!-- Resources for SplashActivity -->
+    <color name="splash_activity_splash_constraint_layout_background_color">#0047CC</color>
+
+    <!-- Resources for HomeActivityActivity -->
+    <color name="home_activity_activity_choose_aloan_type_text_view_text_color">#3B6CCA</color>
+    <color name="home_activity_activity_car_loan_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_commercial_constraint_layout_background_color">#A77070
+    </color>
+    <color name="home_activity_activity_instant_loan_for_oth_button_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_other_loan_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_house_loan_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_tax_loan_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_travel_loan_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_instant_loan_for_tra_button_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_instant_loan_for_co_button_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_personal_loan_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_instant_loan_for_anbutton_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_taxloan_constraint_layout_background_color">#545BC7</color>
+    <color name="home_activity_activity_personalloan_constraint_layout_background_color">#3B6DCC
+    </color>
+    <color name="home_activity_activity_commercial_text_view_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_instant_loan_for_antwo_button_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_instant_loan_for_tax_button_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_instant_loan_for_per_button_text_color">#FFFFFF</color>
+    <color name="home_activity_activity_carloan_constraint_layout_background_color">#3D85B9</color>
+    <color name="home_activity_activity_rectangle4_constraint_layout_background_color">#34B1A4
+    </color>
+    <color name="home_activity_activity_houseloan_constraint_layout_background_color">#546F7A
+    </color>
+    <color name="home_activity_activity_otherloan_constraint_layout_background_color">#CCBD72
+    </color>
+    <color name="home_activity_activity_constraint_layout_constraint_layout_background_color">
+        #FFFFFF
+    </color>
+
+    <!-- Resources for RequestLoadActivity -->
+    <color name="request_load_activity_user_name_text_view_text_color">#717171</color>
+    <color name="request_load_activity_line1_two_constraint_layout_background_color">#707070</color>
+    <color name="request_load_activity_collateral_edit_text_text_color">#717171</color>
+    <color name="request_load_activity_uploadbtn_button_background_color">#F5DA3B</color>
+    <color name="request_load_activity_enter_amount_edit_text_text_color">#717171</color>
+    <color name="request_load_activity_line1_three_constraint_layout_background_color">#707070
+    </color>
+    <color name="request_load_activity_selectdate_button_text_color">#000000</color>
+    <color name="request_load_activity_constraint_layout_constraint_layout_background_color">
+        #FFFFFF
+    </color>
+    <color name="request_load_activity_loan_request_code_text_view_text_color">#BDBDBD</color>
+    <color name="request_load_activity_line1_constraint_layout_background_color">#707070</color>
+    <color name="request_load_activity_uploadbtn_button_text_color">#FFFFFF</color>
+    <color name="request_load_activity_market_value_edit_text_text_color">#717171</color>
+    <color name="request_load_activity_enter_amount_edit_text_background_color">#00000000</color>
+    <color name="request_load_activity_purpose_edit_text_text_color">#717171</color>
+    <color name="request_load_activity_collateral_edit_text_background_color">#00000000</color>
+    <color name="request_load_activity_market_value_edit_text_background_color">#00000000</color>
+    <color name="request_load_activity_purpose_edit_text_background_color">#00000000</color>
+    <color name="request_load_activity_line1_four_constraint_layout_background_color">#707070
+    </color>
+    <color name="request_load_activity_due_date_text_view_text_color">#717171</color>
+    <color name="request_load_activity_postarequest_button_background_color">#3C6CE3</color>
+    <color name="request_load_activity_postarequest_button_text_color">#FFFFFF</color>
+    <color name="request_load_activity_text_view_text_view_text_color">#717171</color>
+
+    <!-- Resources for SignupActivity -->
+    <color name="signup_activity_phone_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_last_name_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_email_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_address_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_whatyoupretend_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_address_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_last_name_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_password_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_first_name_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_first_name_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_phone_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_signupbtn_button_text_color">#FFFFFF</color>
+    <color name="signup_activity_signup_constraint_layout_background_color">#FFFFFF</color>
+    <color name="signup_activity_confirm_password_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_email_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_already_amember_login_button_text_color">#77869E</color>
+    <color name="signup_activity_field_of_activity_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_password_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_whatyoupretend_edit_text_background_color">#00000000</color>
+    <color name="signup_activity_field_of_activity_edit_text_text_color">#77869E</color>
+    <color name="signup_activity_confirm_password_edit_text_text_color">#77869E</color>
+</resources>

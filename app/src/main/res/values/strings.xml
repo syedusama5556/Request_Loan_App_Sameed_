@@ -1,0 +1,131 @@
+<resources>
+
+    <!-- Project level resources -->
+    <string name="app_name">LoanAppSameed2</string>
+    <string name="profile_activity_menu_item_title">Item</string>
+
+    <!-- Resources for SplashActivity -->
+    <string name="splash_activity_pear2pear_text_view_hint">Pear2Pear</string>
+    <string name="splash_activity_pear2pear_text_view_text">Pear2Pear</string>
+
+    <!-- Resources for SignupActivity -->
+    <string name="signup_activity_last_name_edit_text_hint">Last Name</string>
+    <string name="signup_activity_first_name_edit_text_hint">First Name</string>
+    <string name="signup_activity_confirm_password_edit_text_hint">Confirm Password</string>
+    <string name="signup_activity_welcome_signup_text_view_hint">Welcome Signup</string>
+    <string name="signup_activity_signupbtn_button_hint">Signup</string>
+    <string name="signup_activity_welcome_signup_text_view_text">Welcome Signup</string>
+    <string name="signup_activity_password_edit_text_hint">Password</string>
+    <string name="signup_activity_signup_text_view_hint">Signup</string>
+    <string name="signup_activity_already_amember_login_button_hint">Already a member? Login</string>
+    <string name="signup_activity_field_of_activity_edit_text_hint">Field Of Activity</string>
+    <string name="signup_activity_phone_edit_text_hint">Phone</string>
+    <string name="signup_activity_signup_text_view_text">Signup</string>
+    <string name="signup_activity_whatyoupretend_edit_text_hint">What You Pretend</string>
+    <string name="signup_activity_signupbtn_button_text">Signup</string>
+    <string name="signup_activity_email_edit_text_hint">Last Name</string>
+    <string name="signup_activity_address_edit_text_hint">Address</string>
+    <string name="signup_activity_already_amember_login_button_text">Already a member? Login</string>
+
+    <!-- Resources for ProfileActivity -->
+    <string name="profile_activity_change_your_notifica_text_view_text">Change your notification settings</string>
+    <string name="profile_activity_home_text_view_text">Home</string>
+    <string name="profile_activity_change_your_password_text_view_text">Change your password</string>
+    <string name="profile_activity_ricardo_joseph_text_view_text">Ricardo Joseph</string>
+    <string name="profile_activity_general_text_view_text">GENERAL</string>
+    <string name="profile_activity_expenses_text_view_text">Expenses</string>
+    <string name="profile_activity_update_and_modify_yo_text_view_text">Update and modify your profile</string>
+    <string name="profile_activity_profile_settings_button_hint">Profile Settings</string>
+    <string name="profile_activity_change_your_notifica_text_view_hint">Change your notification settings</string>
+    <string name="profile_activity_profile_text_view_text">Profile</string>
+    <string name="profile_activity_privacy_button_hint">Privacy</string>
+    <string name="profile_activity_ricardo_joseph_text_view_hint">Ricardo Joseph</string>
+    <string name="profile_activity_general_text_view_hint">GENERAL</string>
+    <string name="profile_activity_notifications_button_text">Notifications</string>
+    <string name="profile_activity_ricardojoseph_gmail_text_view_text">ricardojoseph@gmail.com</string>
+    <string name="profile_activity_wallet_text_view_hint">Wallet</string>
+    <string name="profile_activity_profile_two_text_view_hint">Profile</string>
+    <string name="profile_activity_profile_text_view_hint">Profile</string>
+    <string name="profile_activity_profile_two_text_view_text">Profile</string>
+    <string name="profile_activity_home_text_view_hint">Home</string>
+    <string name="profile_activity_notifications_button_hint">Notifications</string>
+    <string name="profile_activity_profile_settings_button_text">Profile Settings</string>
+    <string name="profile_activity_update_and_modify_yo_text_view_hint">Update and modify your profile</string>
+    <string name="profile_activity_wallet_text_view_text">Wallet</string>
+    <string name="profile_activity_change_your_password_text_view_hint">Change your password</string>
+    <string name="profile_activity_ricardojoseph_gmail_text_view_hint">ricardojoseph@gmail.com</string>
+    <string name="profile_activity_privacy_button_text">Privacy</string>
+    <string name="profile_activity_expenses_text_view_hint">Expenses</string>
+
+    <!-- Resources for LoginActivity -->
+    <string name="login_activity_welcome_login_text_view_text">Welcome Login</string>
+    <string name="login_activity_don_thave_aaccount_sign_up_button_hint">Don’t have a account? Sign up</string>
+    <string name="login_activity_forgot_password_button_text">Forgot password?</string>
+    <string name="login_activity_password_edit_text_hint">Password</string>
+    <string name="login_activity_don_thave_aaccount_sign_up_button_text">Don’t have a account? Sign up</string>
+    <string name="login_activity_login_button_hint">Login</string>
+    <string name="login_activity_login_button_text">Login</string>
+    <string name="login_activity_username_edit_text_hint">Email</string>
+    <string name="login_activity_welcome_login_text_view_hint">Welcome Login</string>
+    <string name="login_activity_forgot_password_button_hint">Forgot password?</string>
+
+    <!-- Resources for OnboardActivity -->
+    <string name="onboard_activity_login_button_hint">Login</string>
+    <string name="onboard_activity_donec_facilisis_tort_text_view_text">Donec facilisis tortor ut augue lacinia, at viverra est semper. </string>
+    <string name="onboard_activity_sign_up_button_hint">Sign Up</string>
+    <string name="onboard_activity_in_hac_habitasse_pla_text_view_hint">In hac habitasse platea dictumst.</string>
+    <string name="onboard_activity_sign_up_button_text">Sign Up</string>
+    <string name="onboard_activity_login_button_text">Login</string>
+    <string name="onboard_activity_donec_facilisis_tort_text_view_hint">Donec facilisis tortor ut augue lacinia, at viverra est semper. </string>
+    <string name="onboard_activity_in_hac_habitasse_pla_text_view_text">In hac habitasse platea dictumst.</string>
+
+    <!-- Resources for HomeActivityActivity -->
+    <string name="home_activity_activity_instant_loan_for_tra_button_text">Instant loan for traveling</string>
+    <string name="home_activity_activity_house_loan_text_view_hint">House Loan</string>
+    <string name="home_activity_activity_other_loan_text_view_text">Other Loan</string>
+    <string name="home_activity_activity_choose_aloan_type_text_view_hint">Choose a Loan type</string>
+    <string name="home_activity_activity_instant_loan_for_co_button_text">Instant loan for \ncommercial Purpose</string>
+    <string name="home_activity_activity_commercial_text_view_hint">Commercial</string>
+    <string name="home_activity_activity_car_loan_text_view_text">Car Loan</string>
+    <string name="home_activity_activity_tax_loan_text_view_text">Tax Loan</string>
+    <string name="home_activity_activity_instant_loan_for_anbutton_hint">Instant loan for a New \nor used car</string>
+    <string name="home_activity_activity_travel_loan_text_view_hint">Travel Loan</string>
+    <string name="home_activity_activity_instant_loan_for_tra_button_hint">Instant loan for traveling</string>
+    <string name="home_activity_activity_travel_loan_text_view_text">Travel Loan</string>
+    <string name="home_activity_activity_instant_loan_for_per_button_text">Instant loan for personal use eg. Starting new \nbusiness or want to invest</string>
+    <string name="home_activity_activity_instant_loan_for_anbutton_text">Instant loan for a New \nor used car</string>
+    <string name="home_activity_activity_instant_loan_for_antwo_button_text">Instant loan for a new\nHouse</string>
+    <string name="home_activity_activity_personal_loan_text_view_hint">Personal Loan</string>
+    <string name="home_activity_activity_choose_aloan_type_text_view_text">Choose a Loan type</string>
+    <string name="home_activity_activity_personal_loan_text_view_text">Personal Loan</string>
+    <string name="home_activity_activity_instant_loan_for_tax_button_hint">Instant loan for Tax</string>
+    <string name="home_activity_activity_instant_loan_for_antwo_button_hint">Instant loan for a new\nHouse</string>
+    <string name="home_activity_activity_car_loan_text_view_hint">Car Loan</string>
+    <string name="home_activity_activity_instant_loan_for_oth_button_text">Instant loan for other\nPurpose</string>
+    <string name="home_activity_activity_instant_loan_for_oth_button_hint">Instant loan for other\nPurpose</string>
+    <string name="home_activity_activity_instant_loan_for_co_button_hint">Instant loan for \ncommercial Purpose</string>
+    <string name="home_activity_activity_house_loan_text_view_text">House Loan</string>
+    <string name="home_activity_activity_instant_loan_for_per_button_hint">Instant loan for personal use eg. Starting new \nbusiness or want to invest</string>
+    <string name="home_activity_activity_instant_loan_for_tax_button_text">Instant loan for Tax</string>
+    <string name="home_activity_activity_other_loan_text_view_hint">Other Loan</string>
+    <string name="home_activity_activity_tax_loan_text_view_hint">Tax Loan</string>
+    <string name="home_activity_activity_commercial_text_view_text">Commercial</string>
+
+    <!-- Resources for RequestLoadActivity -->
+    <string name="request_load_activity_collateral_edit_text_hint">Collateral</string>
+    <string name="request_load_activity_uploadbtn_button_hint">Upload Documents of Collateral</string>
+    <string name="request_load_activity_loan_request_code_text_view_text">Loan Request Code</string>
+    <string name="request_load_activity_purpose_edit_text_hint">Purpose</string>
+    <string name="request_load_activity_due_date_text_view_hint">Due Date</string>
+    <string name="request_load_activity_market_value_edit_text_hint">Market Value</string>
+    <string name="request_load_activity_enter_amount_edit_text_hint">Enter Amount</string>
+    <string name="request_load_activity_user_name_text_view_text">User Name</string>
+    <string name="request_load_activity_text_view_text_view_hint">#2341</string>
+    <string name="request_load_activity_loan_request_code_text_view_hint">Loan Request Code</string>
+    <string name="request_load_activity_postarequest_button_hint">Post A Request</string>
+    <string name="request_load_activity_user_name_text_view_hint">User Name</string>
+    <string name="request_load_activity_uploadbtn_button_text">Upload Documents of Collateral</string>
+    <string name="request_load_activity_due_date_text_view_text">Due Date</string>
+    <string name="request_load_activity_text_view_text_view_text">#2341</string>
+    <string name="request_load_activity_postarequest_button_text">Post A Request</string>
+</resources>

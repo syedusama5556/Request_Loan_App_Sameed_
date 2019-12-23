@@ -1,0 +1,457 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_activity_activity_constraint_layout_constraint_layout_background_color">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view_scroll_view_content"
+        android:layout_width="344dp"
+        android:layout_height="627dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/choose_aloan_type_text_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/home_activity_activity_choose_aloan_type_text_view_margin_end"
+            android:gravity="start"
+            android:text="@string/home_activity_activity_choose_aloan_type_text_view_text"
+            android:textColor="@color/home_activity_activity_choose_aloan_type_text_view_text_color"
+            android:textSize="@dimen/home_activity_activity_choose_aloan_type_text_view_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/personalloan_constraint_layout"
+            app:layout_constraintHorizontal_weight="0.47"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="0.03"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/personalloan_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/home_activity_activity_personalloan_constraint_layout_margin_top"
+            android:background="@color/home_activity_activity_personalloan_constraint_layout_background_color"
+            app:layout_constraintBottom_toTopOf="@+id/carloan_constraint_layout"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choose_aloan_type_text_view"
+            app:layout_constraintVertical_weight="0.16"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="44dp">
+
+            <TextView
+                android:id="@+id/personal_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_personal_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_personal_loan_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_personal_loan_text_view_text"
+                android:textColor="@color/home_activity_activity_personal_loan_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_personal_loan_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="14dp"
+                tools:layout_editor_absoluteY="12dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_per_button"
+                android:layout_width="@dimen/home_activity_activity_instant_loan_for_per_button_width"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_per_button_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_per_button_margin_start"
+                android:layout_marginBottom="@dimen/home_activity_activity_instant_loan_for_per_button_margin_bottom"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_per_button_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_per_button_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_per_button_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteX="14dp"
+                tools:layout_editor_absoluteY="37dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/carloan_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/home_activity_activity_carloan_constraint_layout_margin_top"
+            android:background="@color/home_activity_activity_carloan_constraint_layout_background_color"
+            app:layout_constraintBottom_toTopOf="@+id/travelloan_constraint_layout"
+            app:layout_constraintHorizontal_weight="0.48"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/commercial_constraint_layout"
+            app:layout_constraintTop_toBottomOf="@+id/personalloan_constraint_layout"
+            app:layout_constraintVertical_weight="0.24"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="163dp">
+
+            <TextView
+                android:id="@+id/car_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_car_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_car_loan_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_car_loan_text_view_text"
+                android:textColor="@color/home_activity_activity_car_loan_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_car_loan_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_anbutton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_anbutton_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_anbutton_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_instant_loan_for_anbutton_margin_top"
+                android:layout_marginEnd="@dimen/home_activity_activity_instant_loan_for_anbutton_margin_end"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_anbutton_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_anbutton_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_anbutton_text_size"
+                app:layout_constraintHorizontal_weight="0.91"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/car_loan_text_view"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="43dp" />
+
+            <ImageView
+                android:id="@+id/car_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_car_image_view_margin_start"
+                android:layout_marginBottom="@dimen/home_activity_activity_car_image_view_margin_bottom"
+                android:scaleType="center"
+                android:src="@drawable/car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="99dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/commercial_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/home_activity_activity_commercial_constraint_layout_margin_start"
+            android:layout_marginTop="@dimen/home_activity_activity_commercial_constraint_layout_margin_top"
+            android:background="@color/home_activity_activity_commercial_constraint_layout_background_color"
+            app:layout_constraintBottom_toTopOf="@+id/houseloan_constraint_layout"
+            app:layout_constraintHorizontal_weight="0.48"
+            app:layout_constraintLeft_toRightOf="@+id/carloan_constraint_layout"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personalloan_constraint_layout"
+            app:layout_constraintVertical_weight="0.24"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="163dp">
+
+            <TextView
+                android:id="@+id/commercial_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_commercial_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_commercial_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_commercial_text_view_text"
+                android:textColor="@color/home_activity_activity_commercial_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_commercial_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_co_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_co_button_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_co_button_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_instant_loan_for_co_button_margin_top"
+                android:layout_marginEnd="@dimen/home_activity_activity_instant_loan_for_co_button_margin_end"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_co_button_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_co_button_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_co_button_text_size"
+                app:layout_constraintHorizontal_weight="0.83"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/commercial_text_view"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="43dp" />
+
+            <ImageView
+                android:id="@+id/commercial_buldings_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_commercial_buldings_image_view_margin_start"
+                android:layout_marginBottom="@dimen/home_activity_activity_commercial_buldings_image_view_margin_bottom"
+                android:scaleType="center"
+                android:src="@drawable/commercial_buldings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="94dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/travelloan_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/home_activity_activity_travelloan_constraint_layout_margin_top"
+            app:layout_constraintBottom_toTopOf="@+id/taxloan_constraint_layout"
+            app:layout_constraintHorizontal_weight="0.49"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/houseloan_constraint_layout"
+            app:layout_constraintTop_toBottomOf="@+id/carloan_constraint_layout"
+            app:layout_constraintVertical_weight="0.24"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="327dp">
+
+            <View
+                android:id="@+id/rectangle4_constraint_layout"
+                android:layout_width="192dp"
+                android:layout_height="174dp"
+                android:background="@color/home_activity_activity_rectangle4_constraint_layout_background_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="0.97"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/travel_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_travel_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_travel_loan_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_travel_loan_text_view_text"
+                android:textColor="@color/home_activity_activity_travel_loan_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_travel_loan_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_tra_button"
+                android:layout_width="@dimen/home_activity_activity_instant_loan_for_tra_button_width"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_tra_button_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_tra_button_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_instant_loan_for_tra_button_margin_top"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_tra_button_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_tra_button_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_tra_button_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/travel_loan_text_view"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="43dp" />
+
+            <ImageView
+                android:id="@+id/plane_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_plane_image_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_plane_image_view_margin_top"
+                android:scaleType="center"
+                android:src="@drawable/plane"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instant_loan_for_tra_button"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="82dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/houseloan_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/home_activity_activity_houseloan_constraint_layout_margin_start"
+            android:layout_marginTop="@dimen/home_activity_activity_houseloan_constraint_layout_margin_top"
+            android:background="@color/home_activity_activity_houseloan_constraint_layout_background_color"
+            app:layout_constraintBottom_toTopOf="@+id/otherloan_constraint_layout"
+            app:layout_constraintHorizontal_weight="0.48"
+            app:layout_constraintLeft_toRightOf="@+id/travelloan_constraint_layout"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commercial_constraint_layout"
+            app:layout_constraintVertical_weight="0.24"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="327dp">
+
+            <TextView
+                android:id="@+id/house_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_house_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_house_loan_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_house_loan_text_view_text"
+                android:textColor="@color/home_activity_activity_house_loan_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_house_loan_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_antwo_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_antwo_button_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_antwo_button_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_instant_loan_for_antwo_button_margin_top"
+                android:layout_marginEnd="@dimen/home_activity_activity_instant_loan_for_antwo_button_margin_end"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_antwo_button_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_antwo_button_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_antwo_button_text_size"
+                app:layout_constraintHorizontal_weight="0.87"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/house_loan_text_view"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="43dp" />
+
+            <ImageView
+                android:id="@+id/home1_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_activity_activity_home1_image_view_margin_top"
+                android:scaleType="center"
+                android:src="@drawable/home_1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instant_loan_for_antwo_button"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="84dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/taxloan_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/home_activity_activity_taxloan_constraint_layout_margin_top"
+            android:background="@color/home_activity_activity_taxloan_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="0.48"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/otherloan_constraint_layout"
+            app:layout_constraintTop_toBottomOf="@+id/travelloan_constraint_layout"
+            app:layout_constraintVertical_weight="0.24"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="491dp">
+
+            <TextView
+                android:id="@+id/tax_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_tax_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_tax_loan_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_tax_loan_text_view_text"
+                android:textColor="@color/home_activity_activity_tax_loan_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_tax_loan_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="22dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_tax_button"
+                android:layout_width="@dimen/home_activity_activity_instant_loan_for_tax_button_width"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_tax_button_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_tax_button_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_instant_loan_for_tax_button_margin_top"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_tax_button_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_tax_button_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_tax_button_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tax_loan_text_view"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="48dp" />
+
+            <ImageView
+                android:id="@+id/mask_group1_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_activity_activity_mask_group1_image_view_margin_top"
+                android:scaleType="center"
+                android:src="@drawable/mask_group_1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instant_loan_for_tax_button"
+                tools:layout_editor_absoluteX="52dp"
+                tools:layout_editor_absoluteY="81dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/otherloan_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/home_activity_activity_otherloan_constraint_layout_margin_start"
+            android:layout_marginTop="@dimen/home_activity_activity_otherloan_constraint_layout_margin_top"
+            android:background="@color/home_activity_activity_otherloan_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="0.48"
+            app:layout_constraintLeft_toRightOf="@+id/taxloan_constraint_layout"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/houseloan_constraint_layout"
+            app:layout_constraintVertical_weight="0.24"
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="491dp">
+
+            <TextView
+                android:id="@+id/other_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/home_activity_activity_other_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_other_loan_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_other_loan_text_view_text"
+                android:textColor="@color/home_activity_activity_other_loan_text_view_text_color"
+                android:textSize="@dimen/home_activity_activity_other_loan_text_view_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="22dp" />
+
+            <Button
+                android:id="@+id/instant_loan_for_oth_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/home_activity_activity_instant_loan_for_oth_button_height"
+                android:layout_marginStart="@dimen/home_activity_activity_instant_loan_for_oth_button_margin_start"
+                android:layout_marginTop="@dimen/home_activity_activity_instant_loan_for_oth_button_margin_top"
+                android:layout_marginEnd="@dimen/home_activity_activity_instant_loan_for_oth_button_margin_end"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="start"
+                android:text="@string/home_activity_activity_instant_loan_for_oth_button_text"
+                android:textColor="@color/home_activity_activity_instant_loan_for_oth_button_text_color"
+                android:textSize="@dimen/home_activity_activity_instant_loan_for_oth_button_text_size"
+                app:layout_constraintHorizontal_weight="0.83"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/other_loan_text_view"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="48dp" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
