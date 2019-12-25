@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_layout_constraint_layout"
@@ -52,7 +52,7 @@
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="119dp" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enteramount_constraint_layout"
         android:layout_width="@dimen/request_load_activity_enteramount_constraint_layout_width"
         android:layout_height="@dimen/request_load_activity_enteramount_constraint_layout_height"
@@ -94,9 +94,9 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="25dp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enter_purpose_constraint_layout"
         android:layout_width="@dimen/request_load_activity_enter_purpose_constraint_layout_width"
         android:layout_height="@dimen/request_load_activity_enter_purpose_constraint_layout_height"
@@ -138,9 +138,9 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="25dp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enter_collateral_constraint_layout"
         android:layout_width="@dimen/request_load_activity_enter_collateral_constraint_layout_width"
         android:layout_height="@dimen/request_load_activity_enter_collateral_constraint_layout_height"
@@ -182,9 +182,9 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="25dp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enter_market_value_constraint_layout"
         android:layout_width="@dimen/request_load_activity_enter_market_value_constraint_layout_width"
         android:layout_height="@dimen/request_load_activity_enter_market_value_constraint_layout_height"
@@ -226,9 +226,9 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="25dp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/deudateview_constraint_layout"
         android:layout_width="@dimen/request_load_activity_deudateview_constraint_layout_width"
         android:layout_height="@dimen/request_load_activity_deudateview_constraint_layout_height"
@@ -239,7 +239,7 @@
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="361dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/duedate_constraint_layout"
             android:layout_width="@dimen/request_load_activity_duedate_constraint_layout_width"
             android:layout_height="@dimen/request_load_activity_duedate_constraint_layout_height"
@@ -275,7 +275,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="25dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
             android:id="@+id/selectdate_button"
@@ -289,7 +289,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="177dp"
             tools:layout_editor_absoluteY="0dp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/uploadbtn_button"
@@ -336,4 +336,4 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="771dp" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

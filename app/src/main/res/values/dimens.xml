@@ -111,7 +111,7 @@
     <dimen name="profile_activity_fill49_image_view_margin_start">10dp</dimen>
     <dimen name="profile_activity_privacy_constraint_layout_margin_top">15dp</dimen>
     <dimen name="profile_activity_notifications_button_margin_top">8dp</dimen>
-    <dimen name="profile_activity_tabbar_constraint_layout_height">61dp</dimen>
+    <dimen name="profile_activity_tabbar_constraint_layout_height">55dp</dimen>
     <dimen name="profile_activity_wallet_constraint_layout_width">53dp</dimen>
     <dimen name="profile_activity_home_text_view_margin_start">7dp</dimen>
     <dimen name="profile_activity_fill94_image_view_margin_end">12dp</dimen>

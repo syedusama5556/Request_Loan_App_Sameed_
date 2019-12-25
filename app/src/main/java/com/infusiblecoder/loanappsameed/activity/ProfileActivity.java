@@ -6,12 +6,14 @@ package com.infusiblecoder.loanappsameed.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
 
 
@@ -28,10 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button privacyButton;
     private TextView changeYourNotificaTextView;
     private Button notificationsButton;
-    private TextView homeTextView;
-    private TextView walletTextView;
-    private TextView expensesTextView;
-    private TextView profileTwoTextView;
+
 
     public static Intent newIntent(Context context) {
 
@@ -95,18 +94,41 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         // Configure Home component
-        homeTextView = this.findViewById(R.id.home_text_view);
 
-        // Configure Wallet component
-        walletTextView = this.findViewById(R.id.wallet_text_view);
+    }
+public void loadAllData(){
 
-        // Configure Expenses component
-        expensesTextView = this.findViewById(R.id.expenses_text_view);
 
-        // Configure Profile component
-        profileTwoTextView = this.findViewById(R.id.profile_two_text_view);
+
+    SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+    String user_id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+
+    String fname = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "no value");
+    String lname = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "no value");
+    String email = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "no value");
+
+    String img_url = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], "no value");
+
+
+
+    if (!user_id.equals("") && !user_id.equals("no value")) {
+
+
+
+
+
+
+
+
+    } else {
+
+        Comman.showErrorToast(ProfileActivity.this, "Error");
     }
 
+
+
+}
     public void onEditPressed() {
 
     }

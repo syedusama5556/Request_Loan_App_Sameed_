@@ -15,8 +15,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -169,10 +169,12 @@ public class SignupActivity extends AppCompatActivity {
         String fname = firstNameEditText.getText().toString();
         String lname = lastNameEditText.getText().toString();
         String email = emailEditText.getText().toString();
+
         String address = addressEditText.getText().toString();
         String whatyoupretend = whatyoupretendEditText.getText().toString();
         String fieldofactivity = firstNameEditText.getText().toString();
         String phone = phoneEditText.getText().toString();
+
         String password = passwordEditText.getText().toString();
         String status = "true";
         String confirmpassword = confirmPasswordEditText.getText().toString();

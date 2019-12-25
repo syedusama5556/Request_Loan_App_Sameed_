@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_layout_constraint_layout"
@@ -7,7 +7,7 @@
     android:background="@color/home_activity_activity_constraint_layout_constraint_layout_background_color">
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view_scroll_view_content"
         android:layout_width="344dp"
         android:layout_height="627dp"
@@ -34,7 +34,7 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/personalloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -79,9 +79,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 tools:layout_editor_absoluteX="14dp"
                 tools:layout_editor_absoluteY="37dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/carloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -142,9 +142,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 tools:layout_editor_absoluteX="27dp"
                 tools:layout_editor_absoluteY="99dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/commercial_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -206,9 +206,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 tools:layout_editor_absoluteX="47dp"
                 tools:layout_editor_absoluteY="94dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/travelloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -276,9 +276,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/instant_loan_for_tra_button"
                 tools:layout_editor_absoluteX="47dp"
                 tools:layout_editor_absoluteY="82dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/houseloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -340,9 +340,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/instant_loan_for_antwo_button"
                 tools:layout_editor_absoluteX="57dp"
                 tools:layout_editor_absoluteY="84dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/taxloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -400,9 +400,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/instant_loan_for_tax_button"
                 tools:layout_editor_absoluteX="52dp"
                 tools:layout_editor_absoluteY="81dp" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/otherloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -451,7 +451,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/other_loan_text_view"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="48dp" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

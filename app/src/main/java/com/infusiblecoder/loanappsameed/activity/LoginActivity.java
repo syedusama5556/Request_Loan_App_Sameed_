@@ -10,16 +10,16 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.view.animation.PathInterpolatorCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.animation.PathInterpolatorCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -29,7 +29,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
@@ -39,8 +38,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -175,27 +172,41 @@ public class LoginActivity extends AppCompatActivity {
                             UserTableData userTableData = gson.fromJson(jsonObject.toString(), UserTableData.class);
 
 
-                            ArrayList<UserTableData> userTableData1 = new ArrayList<>();
-
-                            Type type = new TypeToken<ArrayList<UserTableData>>(){}.getType();
-                            userTableData1 = gson.fromJson(response, type);
-
-                            System.out.println("qwerty data is "+userTableData1.get(0).email);
-                            System.out.println("qwerty data is "+userTableData1.get(0).address);
-
-//                            SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
-//                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], userId_forIntent);
+//                            ArrayList<UserTableData> userTableData1 = new ArrayList<>();
 //
-//                            editor.apply();
+//                            Type type = new TypeToken<ArrayList<UserTableData>>(){}.getType();
+//                            userTableData1 = gson.fromJson(response, type);
 //
+//                            System.out.println("qwerty data is "+userTableData1.get(0).email);
+//                            System.out.println("qwerty data is "+userTableData1.get(0).address);
+
+//                            "user_id","firstname", "lastname", "address", "whatyoupretend",
+//                                    "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
+
+
+
+                            SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0],userTableData.user_id );
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], userTableData.firstname);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], userTableData.lastname);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3], userTableData.address);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], userTableData.whatyoupretend);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], userTableData.fieldofactivity);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], userTableData.phone);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], userTableData.email);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[8], userTableData.password);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[9], userTableData.status);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], Comman.START_URL+userTableData.user_img_url);
+
+                            editor.apply();
+
                             Intent intent = new Intent(getApplicationContext(), HomeActivityActivity.class);
-//
                             startActivity(intent);
+                            finish();
                         }
                     } catch (JSONException e) {
+                        Comman.showErrorToast(LoginActivity.this, "error is "+e.getMessage());
 
-                        System.out.println("myerror is "+e.getMessage());
-                        e.printStackTrace();
                     }
 
 
@@ -204,7 +215,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-                    Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    Comman.showErrorToast(LoginActivity.this, "error is "+error);
+
+
                 }
             }) {
                 @Override
