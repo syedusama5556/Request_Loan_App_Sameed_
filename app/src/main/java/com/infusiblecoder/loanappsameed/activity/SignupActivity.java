@@ -4,10 +4,20 @@
 
 package com.infusiblecoder.loanappsameed.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.infusiblecoder.loanappsameed.Helpers.BitmapConversion;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.R;
@@ -34,11 +45,13 @@ import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
 
+    private static final int PICK_FROM_CAMERA = 1000;
+    private static final int PICK_FROM_GALLARY = 1001;
     CatLoadingView catLoadingView;
     private Button alreadyAmemberLoginButton;
     private Button signupbtnButton;
-    private ImageView backImageView;
-    private TextView welcomeSignupTextView;
+    private ImageView backImageView,image_view_profile;
+    private TextView welcomeSignupTextView,select_img_txt;
     private EditText firstNameEditText;
     private EditText lastNameEditText;
     private EditText addressEditText;
@@ -48,6 +61,19 @@ public class SignupActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText confirmPasswordEditText;
+    private Bitmap user_img_url ;
+
+
+
+    // The request code used in ActivityCompat.requestPermissions()
+// and returned in the Activity's onRequestPermissionsResult()
+    int PERMISSION_ALL = 1;
+    String[] PERMISSIONS = {
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
+
 
     public static Intent newIntent(Context context) {
 
@@ -63,10 +89,29 @@ public class SignupActivity extends AppCompatActivity {
 
         catLoadingView = new CatLoadingView();
         this.init();
+
+        if (!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+
+    }
+
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void init() {
 
+        image_view_profile = findViewById(R.id.image_view_profile);
+        select_img_txt = findViewById(R.id.select_img_txt);
 
         backImageView = findViewById(R.id.back_image_view);
         welcomeSignupTextView = findViewById(R.id.welcome_signup_text_view);
@@ -93,6 +138,21 @@ public class SignupActivity extends AppCompatActivity {
             onSignUpBtnPressed();
         });
 
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
+
+        select_img_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                get_gallery_image();
+            }
+        });
+
 
     }
 
@@ -117,17 +177,44 @@ public class SignupActivity extends AppCompatActivity {
         String status = "true";
         String confirmpassword = confirmPasswordEditText.getText().toString();
 
-        if (!password.equals(confirmpassword)) {
-            FancyToast.makeText(SignupActivity.this, "Password Not Matching", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
-            return;
-        }
+
+
+
 
         if (!fname.equals("") && !lname.equals("") && !address.equals("") && !email.equals("") && !whatyoupretend.equals("") && !phone.equals("") && !status.equals("") && !fieldofactivity.equals("")) {
 
 
+
+            if (user_img_url == null ) {
+                FancyToast.makeText(SignupActivity.this, "Select Image FirstS", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+                return;
+            }
+
+            if (!email.contains("@")) {
+                FancyToast.makeText(SignupActivity.this, "Incorrect Email", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+                return;
+            }
+
+            if (!password.equals(confirmpassword)) {
+                FancyToast.makeText(SignupActivity.this, "Password Not Matching", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+                return;
+            }
+
+            if (password.length() < 6) {
+                FancyToast.makeText(SignupActivity.this, "Password should be 6 characters or more", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+                return;
+            }
+
+
+
             catLoadingView.setText("Please Wait ..");
             catLoadingView.show(getSupportFragmentManager(), "");
+
 
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.REGISTER_URL, new Response.Listener<String>() {
@@ -173,6 +260,13 @@ public class SignupActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
 
+             //       user_img_url = tvUrl.getText().toString();
+
+                   String image = BitmapConversion.getStringImage(BitmapConversion.getbitmapfromimageview(image_view_profile));
+
+
+                    System.out.println("img is "+image);
+
 
                     Map<String, String> params = new HashMap<String, String>();
 
@@ -185,6 +279,7 @@ public class SignupActivity extends AppCompatActivity {
                     params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
                     params.put(Comman.TABLE_USERS_ATTRIBUTES[7], password);
                     params.put(Comman.TABLE_USERS_ATTRIBUTES[8], status);
+                    params.put(Comman.TABLE_USERS_ATTRIBUTES[9], image);
 
 
                     return params;
@@ -202,6 +297,78 @@ public class SignupActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+
+
+    public void get_gallery_image() {
+        Intent sdintent = new Intent(Intent.ACTION_PICK);
+        sdintent.setType("image/*");
+        startActivityForResult(sdintent, PICK_FROM_GALLARY);
+    }
+
+
+    //open camera
+    public void openCameraAndGetImage() {
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, PICK_FROM_CAMERA);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case PICK_FROM_CAMERA: {
+                if (resultCode == Activity.RESULT_OK) {
+                    Bitmap bitmapImage = (Bitmap) data.getExtras().get("data");
+
+
+                }
+                break;
+
+
+            }
+            case PICK_FROM_GALLARY: {
+                if (requestCode == PICK_FROM_GALLARY) {
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(selectedImage,
+                            filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String filePath = cursor.getString(columnIndex);
+
+
+                    user_img_url = BitmapFactory.decodeFile(filePath);
+
+
+                    image_view_profile.setImageBitmap(user_img_url);
+
+
+
+                    cursor.close();
+                    break;
+                }
+            }
+
+
+        }
+    }
+
+
+
+
+
+
 
     private void startLoginActivity() {
 

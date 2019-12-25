@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/signup_activity_signup_constraint_layout_background_color">
 
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/header_constraint_layout"
-        android:layout_width="@dimen/signup_activity_header_constraint_layout_width"
-        android:layout_height="@dimen/signup_activity_header_constraint_layout_height"
+        android:layout_width="184dp"
+        android:layout_height="89dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,8 +32,47 @@
             android:id="@+id/welcome_signup_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:gravity="start"
+            android:letterSpacing="0.03"
+            android:lineSpacingMultiplier="1.21"
+            android:text="Welcome to Signup"
+            android:textColor="#042C5C"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_weight="1.18"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/img_header_constraint"
+        android:layout_width="144dp"
+        android:layout_height="84dp"
+        android:layout_marginLeft="216dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_view_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginEnd="44dp"
+            android:gravity="center"
+            android:scaleType="center"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/select_img_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
             android:letterSpacing="0.03"
             android:lineSpacingMultiplier="1.21"
             android:text="@string/signup_activity_welcome_signup_text_view_text"
@@ -369,8 +409,8 @@
                 android:layout_height="@dimen/signup_activity_email_edit_text_height"
                 android:background="@color/signup_activity_email_edit_text_background_color"
                 android:gravity="start|center_vertical"
-                android:hint="@string/signup_activity_email_edit_text_hint"
-                android:inputType="text"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColor="@color/signup_activity_email_edit_text_text_color"
                 android:textColorHint="@color/color_hint_text"

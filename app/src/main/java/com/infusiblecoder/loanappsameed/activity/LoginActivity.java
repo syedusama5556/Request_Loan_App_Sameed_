@@ -10,7 +10,6 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.animation.PathInterpolatorCompat;
@@ -18,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,14 +26,21 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
+import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
 import com.infusiblecoder.loanappsameed.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button forgotPasswordButton;
     private Button donThaveAaccountSignUpButton;
+    ImageView backimg;
 
     private ConstraintLayout usernameConstraintLayout;
 
@@ -70,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         usernameConstraintLayout = this.findViewById(R.id.username_constraint_layout);
+        backimg = this.findViewById(R.id.back_image_view);
 
 
         passwordCopy8ConstraintLayout = this.findViewById(R.id.password_copy8_constraint_layout);
@@ -97,14 +106,22 @@ public class LoginActivity extends AppCompatActivity {
         donThaveAaccountSignUpButton.setOnClickListener((view) -> {
             this.onDonTHaveAAccountSignUpPressed();
         });
+
+
+        backimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     public void onLoginPressed() {
 
 
-        String pass = password_edit_text.getText().toString();
-
         String email = emailEdittext.getText().toString();
+        String pass = password_edit_text.getText().toString();
 
 
         if (!pass.equals("") && !email.equals("")) {
@@ -117,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     try {
                         JSONArray jsonArray = new JSONArray(response);
+
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String code = jsonObject.getString("code");
                         if (code.equals("login_failed")) {
@@ -126,19 +144,57 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         } else {
-                            Comman.showSucdessToast(LoginActivity.this, "Login Successful!!");
+
+                            Comman.showSucdessToast(LoginActivity.this, "Login Successful!!"+jsonObject.getString("address"));
 
 
-                            SharedPreferences.Editor editor = getSharedPreferences("saveid", MODE_PRIVATE).edit();
-                            //     editor.putString("userid", userId_forIntent);
-                            editor.putString("type", "normal");
-                            editor.apply();
+//                            $firstname = "firstname";
+//                            $lastname = "lastname";
+//                            $address = "address";
+//                            $whatyoupretend = "whatyoupretend";
+//                            $fieldofactivity = "fieldofactivity";
+//
+//                            $phone = "phone";
+//                            $email = "email5600";
+//                            $password = "password";
+//                            $status = "status";
+//                            $img_in_base64 = "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkz";
+//
 
+
+//                            UserTableData userTableData = new UserTableData(jsonObject.getString("user_id"), jsonObject.getString("firstname")
+//                                    , jsonObject.getString("lastname"), jsonObject.getString("address"),
+//                                    jsonObject.getString("whatyoupretend"), jsonObject.getString("fieldofactivity"), jsonObject.getString("phone")
+//                                    , jsonObject.getString("email"), jsonObject.getString("password"), jsonObject.getString("status"),
+//                                    jsonObject.getString("user_img_url"));
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(response);
+                            Gson gson = new Gson();
+                            UserTableData userTableData = gson.fromJson(jsonObject.toString(), UserTableData.class);
+
+
+                            ArrayList<UserTableData> userTableData1 = new ArrayList<>();
+
+                            Type type = new TypeToken<ArrayList<UserTableData>>(){}.getType();
+                            userTableData1 = gson.fromJson(response, type);
+
+                            System.out.println("qwerty data is "+userTableData1.get(0).email);
+                            System.out.println("qwerty data is "+userTableData1.get(0).address);
+
+//                            SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+//                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], userId_forIntent);
+//
+//                            editor.apply();
+//
                             Intent intent = new Intent(getApplicationContext(), HomeActivityActivity.class);
-
+//
                             startActivity(intent);
                         }
                     } catch (JSONException e) {
+
+                        System.out.println("myerror is "+e.getMessage());
                         e.printStackTrace();
                     }
 
@@ -155,8 +211,8 @@ public class LoginActivity extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
 
                     Map<String, String> params = new HashMap<String, String>();
-                    //  params.put("username", username);
-                    //   params.put("password", password);
+                    params.put("email", emailEdittext.getText().toString());
+                    params.put("password", password_edit_text.getText().toString());
                     return params;
                 }
             };

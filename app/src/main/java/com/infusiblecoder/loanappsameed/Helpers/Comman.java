@@ -6,28 +6,34 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class Comman {
 
-    public static String START_URL = " http://192.168.10.11/android/loanapp";
+    public static String START_URL = " http://192.168.0.103/android/loanapp";
 
 
     public static String DB_URL = START_URL + "/db.php";
 
     public static String REGISTER_URL = START_URL + "/register.php";
 
+
+
+
     public static String LOGIN_URL = START_URL + "/login.php";
 
-//        firstname = "firstname";
-//        lastname = "lastname";
-//        address = "address";
-//        whatyoupretend = "whatyoupretend";
-//        fieldofactivity = "fieldofactivity";
-//
-//        phone = "phone";
-//        email = "email";
-//        password = "password";
-//        status = "status";
+    public static String TABLE_USERS_ATTRIBUTES[] = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
 
 
-    public static String TABLE_USERS_ATTRIBUTES[] = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status"};
+
+
+
+
+
+    public static String SHAREDPREF_USERDATA = "saveuserinfo";
+    public static String SHAREDPREF_USERDATA_ATTRIBUTES[] = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
+
+
+
+
+
+
 
 
     public static void showErrorToast(Context context, String txt) {
