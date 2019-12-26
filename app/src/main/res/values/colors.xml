@@ -34,7 +34,7 @@
     <color name="profile_activity_notifications_button_text_color">#042C5C</color>
     <color name="profile_activity_privacy_button_text_color">#042C5C</color>
     <color name="profile_activity_profile_settings_button_text_color">#042C5C</color>
-    <color name="profile_activity_profile_constraint_layout_background_color">#F8F9F9</color>
+    <color name="profile_activity_profile_constraint_layout_background_color">#F5F5F5</color>
 
     <!-- Resources for SplashActivity -->
     <color name="splash_activity_splash_constraint_layout_background_color">#0047CC</color>

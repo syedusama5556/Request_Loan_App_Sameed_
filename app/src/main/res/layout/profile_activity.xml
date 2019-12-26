@@ -46,6 +46,7 @@
             app:layout_constraintVertical_weight="0.71" />
 
         <ImageView
+
             android:id="@+id/background_image_view"
             android:layout_width="330dp"
             android:layout_height="250dp"
@@ -60,8 +61,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profile_two_constraint_layout"
-        android:layout_width="331dp"
-        android:layout_height="238dp"
+        android:layout_width="330dp"
+        android:layout_height="240dp"
         android:layout_marginTop="@dimen/profile_activity_profile_two_constraint_layout_margin_top"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -86,6 +87,9 @@
             tools:layout_editor_absoluteX="106dp"
             tools:layout_editor_absoluteY="130dp" />
 
+
+
+
         <ImageView
             android:id="@+id/ricardo_image_view"
             android:layout_width="0dp"
@@ -94,13 +98,22 @@
             android:layout_marginTop="@dimen/profile_activity_ricardo_image_view_margin_top"
             android:layout_marginEnd="@dimen/profile_activity_ricardo_image_view_margin_end"
             android:scaleType="center"
-            android:src="@drawable/ricardo"
             app:layout_constraintHorizontal_weight="0.27"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="33dp" />
+            tools:layout_editor_absoluteY="33dp"
+            android:src="@drawable/ricardo"/>
+<!--            app:civ_border_color="#3f51b5"-->
+<!--            app:civ_border_width="4dp"-->
+<!--            app:civ_shadow="true"-->
+<!--            app:civ_shadow_radius="10"-->
+<!--            app:civ_shadow_color="#3f51b5"-->
+
+
+
+
 
         <TextView
             android:id="@+id/ricardojoseph_gmail_text_view"
@@ -159,15 +172,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/general_constraint_layout"
-        android:layout_width="@dimen/profile_activity_general_constraint_layout_width"
-        android:layout_height="250dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="@dimen/profile_activity_general_constraint_layout_margin_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_two_constraint_layout"
-        app:layout_constraintVertical_bias="0.111"
         app:layout_constraintVertical_weight="0.29">
 
         <TextView
@@ -190,11 +201,13 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:id="@+id/profile_settings_constraint_layout"
             android:layout_width="@dimen/profile_activity_profile_settings_constraint_layout_width"
             android:layout_height="60dp"
             android:layout_marginTop="@dimen/profile_activity_profile_settings_constraint_layout_margin_top"
             android:background="#FFFFFF"
+            android:clickable="true"
             app:layout_constraintBottom_toTopOf="@+id/privacy_constraint_layout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -259,12 +272,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:id="@+id/privacy_constraint_layout"
             android:layout_width="@dimen/profile_activity_privacy_constraint_layout_width"
             android:layout_height="60dp"
             android:layout_marginTop="@dimen/profile_activity_privacy_constraint_layout_margin_top"
             android:background="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/notification_constraint_layout"
+            android:clickable="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_settings_constraint_layout"
@@ -327,72 +341,7 @@
                 tools:layout_editor_absoluteY="21dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/notification_constraint_layout"
-            android:layout_width="@dimen/profile_activity_notification_constraint_layout_width"
-            android:layout_height="60dp"
-            android:layout_marginTop="@dimen/profile_activity_notification_constraint_layout_margin_top"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/privacy_constraint_layout"
-            app:layout_constraintVertical_weight="0.23"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="183dp">
 
-            <TextView
-                android:id="@+id/change_your_notifica_text_view"
-                android:layout_width="@dimen/profile_activity_change_your_notifica_text_view_width"
-                android:layout_height="@dimen/profile_activity_change_your_notifica_text_view_height"
-                android:layout_marginLeft="64dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="start"
-                android:letterSpacing="0.01"
-                android:text="@string/profile_activity_change_your_notifica_text_view_text"
-                android:textColor="#77869E"
-                android:textSize="@dimen/profile_activity_change_your_notifica_text_view_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent" />
-
-            <Button
-                android:id="@+id/notifications_button"
-                android:layout_width="130dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="start"
-                android:text="@string/profile_activity_notifications_button_text"
-                android:textColor="@color/profile_activity_notifications_button_text_color"
-                android:textSize="@dimen/profile_activity_notifications_button_text_size"
-                app:layout_constraintLeft_toRightOf="@+id/notification_image_view"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/notification_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/profile_activity_notification_image_view_margin_start"
-                android:scaleType="center"
-                android:src="@drawable/notification"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp" />
-
-            <ImageView
-                android:id="@+id/right_three_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="14dp"
-                android:scaleType="center"
-                android:src="@drawable/right"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

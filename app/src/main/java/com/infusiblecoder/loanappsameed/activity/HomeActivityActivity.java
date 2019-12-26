@@ -9,13 +9,17 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.animation.PathInterpolatorCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.crowdfire.cfalertdialog.CFAlertDialog;
+import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
 
 
@@ -209,5 +213,48 @@ public class HomeActivityActivity extends AppCompatActivity {
         AnimatorSet animatorSet8 = new AnimatorSet();
         animatorSet8.playTogether(animatorSet1, animatorSet2, animatorSet3, animatorSet4, animatorSet5, animatorSet6, animatorSet7);
         animatorSet8.start();
+    }
+
+    public void logout_Task(View view) {
+
+
+showLogoutDialog();
+
+    }
+
+    void showLogoutDialog(){
+        // Create Alert using Builder
+        CFAlertDialog.Builder builder = new CFAlertDialog.Builder(this)
+                .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                .setTitle("Log out")
+                .setMessage("Are You Sure You Want To Logout?")
+                .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                    Comman.showSucdessToast(HomeActivityActivity.this, "Logged Out");
+                    dialog.dismiss();
+
+                    SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0],"" );
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[8], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[9], "");
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], "");
+
+                    editor.apply();
+
+                    startActivity(new Intent(HomeActivityActivity.this,LoginActivity.class));
+                    finish();
+                }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                    dialog.dismiss();
+
+                });
+
+// Show the alert
+        builder.show();
     }
 }

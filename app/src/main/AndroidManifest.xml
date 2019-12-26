@@ -16,7 +16,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label=""
-            android:theme="@style/HomeActivityActivityTheme">
+            android:theme="@style/LoginActivityTheme">
 
 
         </activity>
@@ -24,7 +24,7 @@
         <activity
             android:name=".activity.SignupActivity"
             android:label=""
-            android:theme="@style/HomeActivityActivityTheme" >
+            android:theme="@style/SignupActivityTheme" >
 
         </activity>
 
@@ -39,31 +39,31 @@
         <activity
             android:name=".activity.RequestLoadActivity"
             android:label=""
-            android:theme="@style/HomeActivityActivityTheme">
+            android:theme="@style/RequestLoadActivityTheme">
 
         </activity>
         <activity
             android:name=".activity.OnboardActivity"
             android:label=""
-            android:theme="@style/HomeActivityActivityTheme" />
+            android:theme="@style/OnboardActivityTheme" />
 
         <activity
             android:name=".activity.ProfileActivity"
             android:label=""
-            android:theme="@style/HomeActivityActivityTheme" >
+            android:theme="@style/ProfileActivityTheme" >
+
+        </activity>
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label=""
+            android:theme="@style/SplashActivityTheme">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.SplashActivity"
-            android:label=""
-            android:theme="@style/HomeActivityActivityTheme">
-
         </activity>
     </application>
 </manifest>

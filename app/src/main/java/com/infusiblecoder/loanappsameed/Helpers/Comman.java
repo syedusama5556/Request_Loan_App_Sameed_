@@ -23,6 +23,7 @@ public class Comman {
 
     public static String LOGIN_URL = START_URL + "login.php";
     public static String PROFILE_PAGE_URL = START_URL + "getdataforsingleuser.php";
+    public static String CHANGE_PASSWORD_URL = START_URL + "changepassword.php";
 
     public static String TABLE_USERS_ATTRIBUTES[] = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
 

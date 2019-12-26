@@ -67,10 +67,10 @@
     <dimen name="profile_activity_fill95_image_view_margin_top">3dp</dimen>
     <dimen name="profile_activity_update_and_modify_yo_text_view_text_size">13sp</dimen>
     <dimen name="profile_activity_notifications_button_width">100dp</dimen>
-    <dimen name="profile_activity_edit_button_margin_top">51dp</dimen>
+    <dimen name="profile_activity_edit_button_margin_top">40dp</dimen>
     <dimen name="profile_activity_privacy_button_width">56dp</dimen>
     <dimen name="profile_activity_fill97_image_view_margin_end">16dp</dimen>
-    <dimen name="profile_activity_ricardo_image_view_margin_start">125dp</dimen>
+    <dimen name="profile_activity_ricardo_image_view_margin_start">120dp</dimen>
     <dimen name="profile_activity_expenses_text_view_margin_start">4dp</dimen>
     <dimen name="profile_activity_notifications_button_height">22dp</dimen>
     <dimen name="profile_activity_profile_three_constraint_layout_margin_end">24dp</dimen>
@@ -79,8 +79,8 @@
     <dimen name="profile_activity_general_constraint_layout_margin_top">39dp</dimen>
     <dimen name="profile_activity_fill58_image_view_margin_top">2dp</dimen>
     <dimen name="profile_activity_wallet_constraint_layout_margin_bottom">9dp</dimen>
-    <dimen name="profile_activity_profile_text_view_margin_top">51dp</dimen>
-    <dimen name="profile_activity_ricardo_image_view_margin_end">116dp</dimen>
+    <dimen name="profile_activity_profile_text_view_margin_top">40dp</dimen>
+    <dimen name="profile_activity_ricardo_image_view_margin_end">121dp</dimen>
     <dimen name="profile_activity_privacy_button_text_size">16sp</dimen>
     <dimen name="profile_activity_general_text_view_margin_end">262dp</dimen>
     <dimen name="profile_activity_img_constraint_layout_margin_start">14dp</dimen>
@@ -128,7 +128,7 @@
     <dimen name="profile_activity_notifications_button_margin_start">17dp</dimen>
     <dimen name="profile_activity_right_image_view_margin_end">14dp</dimen>
     <dimen name="profile_activity_fill99_image_view_margin_start">16dp</dimen>
-    <dimen name="profile_activity_ricardo_joseph_text_view_margin_end">103dp</dimen>
+    <dimen name="profile_activity_ricardo_joseph_text_view_margin_end">104dp</dimen>
     <dimen name="profile_activity_profile_three_constraint_layout_width">48dp</dimen>
     <dimen name="profile_activity_fill58_image_view_margin_start">16dp</dimen>
     <dimen name="profile_activity_home_text_view_margin_bottom">0dp</dimen>
@@ -150,10 +150,10 @@
     <dimen name="profile_activity_edit_button_margin_start">209dp</dimen>
     <dimen name="profile_activity_fill102_image_view_margin_end">4dp</dimen>
     <dimen name="profile_activity_change_your_notifica_text_view_text_size">13sp</dimen>
-    <dimen name="profile_activity_ricardojoseph_gmail_text_view_margin_end">89dp</dimen>
+    <dimen name="profile_activity_ricardojoseph_gmail_text_view_margin_end">88dp</dimen>
     <dimen name="profile_activity_profile_two_constraint_layout_margin_top">33dp</dimen>
     <dimen name="profile_activity_edit_button_height">35dp</dimen>
-    <dimen name="profile_activity_ricardo_joseph_text_view_margin_start">106dp</dimen>
+    <dimen name="profile_activity_ricardo_joseph_text_view_margin_start">105dp</dimen>
     <dimen name="profile_activity_home_text_view_margin_end">7dp</dimen>
     <dimen name="profile_activity_notification_image_view_margin_start">8dp</dimen>
     <dimen name="profile_activity_fill99_image_view_margin_top">0dp</dimen>
@@ -182,7 +182,7 @@
     <dimen name="profile_activity_fill96_image_view_margin_top">10dp</dimen>
     <dimen name="profile_activity_profile_text_view_margin_start">22dp</dimen>
     <dimen name="profile_activity_update_and_modify_yo_text_view_width">213dp</dimen>
-    <dimen name="profile_activity_ricardojoseph_gmail_text_view_margin_start">87dp</dimen>
+    <dimen name="profile_activity_ricardojoseph_gmail_text_view_margin_start">88dp</dimen>
     <dimen name="profile_activity_expenses_constraint_layout_margin_start">43dp</dimen>
 
     <!-- Resources for HomeActivityActivity -->
@@ -359,7 +359,7 @@
     <dimen name="signup_activity_rectangle9_copy_nine_constraint_layout_margin_bottom">6dp</dimen>
     <dimen name="signup_activity_login_constraint_layout_height">48dp</dimen>
     <dimen name="signup_activity_group_constraint_layout_width">315dp</dimen>
-    <dimen name="signup_activity_back_image_view_margin_top">-27dp</dimen>
+    <dimen name="signup_activity_back_image_view_margin_top">-25dp</dimen>
     <dimen name="signup_activity_signupbtn_button_text_size">16sp</dimen>
     <dimen name="signup_activity_signupbtn_button_margin_start">24dp</dimen>
     <dimen name="signup_activity_rectangle9_copy_two_constraint_layout_margin_bottom">6dp</dimen>

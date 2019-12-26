@@ -5,6 +5,10 @@
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.Manifest;
+import android.animation.AnimatorSet;
+import android.animation.Keyframe;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +21,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.animation.PathInterpolatorCompat;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,6 +96,7 @@ public class SignupActivity extends AppCompatActivity {
         catLoadingView = new CatLoadingView();
         this.init();
 
+        startAnimationOne();
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
@@ -301,9 +308,21 @@ public class SignupActivity extends AppCompatActivity {
     }
 
 
+    public void startAnimationOne() {
 
+        ObjectAnimator animator1 = ObjectAnimator.ofPropertyValuesHolder(signupbtnButton, PropertyValuesHolder.ofKeyframe(View.SCALE_X, Keyframe.ofFloat(0f, 0.3f), Keyframe.ofFloat(0.2f, 1.1f), Keyframe.ofFloat(0.4f, 0.9f), Keyframe.ofFloat(0.6f, 1.03f), Keyframe.ofFloat(0.8f, 0.97f), Keyframe.ofFloat(1f, 1f)), PropertyValuesHolder.ofKeyframe(View.SCALE_Y, Keyframe.ofFloat(0f, 0.3f), Keyframe.ofFloat(0.2f, 1.1f), Keyframe.ofFloat(0.4f, 0.9f), Keyframe.ofFloat(0.6f, 1.03f), Keyframe.ofFloat(0.8f, 0.97f), Keyframe.ofFloat(1f, 1f)));
+        animator1.setDuration(2000);
+        animator1.setInterpolator(PathInterpolatorCompat.create(0.22f, 0.61f, 0.36f, 1f));
 
+        ObjectAnimator animator2 = ObjectAnimator.ofPropertyValuesHolder(signupbtnButton, PropertyValuesHolder.ofKeyframe(View.ALPHA, Keyframe.ofFloat(0f, 0f), Keyframe.ofFloat(0.8f, 1f), Keyframe.ofFloat(1f, 1f)));
+        animator2.setDuration(2000);
+        animator2.setInterpolator(PathInterpolatorCompat.create(0.22f, 0.61f, 0.36f, 1f));
 
+        AnimatorSet animatorSet1 = new AnimatorSet();
+        animatorSet1.playTogether(animator1, animator2);
+        animatorSet1.setTarget(signupbtnButton);
+
+    }
 
 
 

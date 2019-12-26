@@ -78,7 +78,7 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
                 String name = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
-                if (!name.equals("no value")){
+                if (!name.equals("no value") && !name.equals("")){
 
                     startActivity(new Intent(getApplicationContext(), HomeActivityActivity.class));
                     finish();
