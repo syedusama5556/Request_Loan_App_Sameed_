@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp">
+
+
+
+
+<!--    //        "firstname";-->
+<!--    //       "lastname";-->
+<!--    //        "address";-->
+<!--    //        "whatyoupretend";-->
+<!--    //        "fieldofactivity";-->
+<!--    //        "phone";-->
+<!--    //        "email";-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtPassword"
+            android:hint="Old Password"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="textPassword"
+
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtFirstname"
+            android:hint="Firstname"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="text"
+
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtLastname"
+            android:hint="Lastname"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="text"
+
+            />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtAddress"
+            android:hint="Address"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="text"
+
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtWhatyoupretend"
+            android:hint="What You Pretend"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="text"
+
+            />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtFieldofactivity"
+            android:hint="Field Of Activity"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="text"
+
+            />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtPhone"
+            android:hint="Phone"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="phone"
+
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtEmail"
+            android:hint="Email"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="textEmailAddress"
+
+            />
+        <Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/btn_dialog_update_profile"
+            style="@android:style/Widget.Holo.Button.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

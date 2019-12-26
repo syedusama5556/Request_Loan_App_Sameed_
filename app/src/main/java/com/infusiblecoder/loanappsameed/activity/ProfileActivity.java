@@ -151,9 +151,189 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void onProfileSettingsPressed() {
+    public void onProfileSettingsPressed()
+    {
+
+//        $firstname_db = "firstname";
+//        $lastname_db = "lastname";
+//        $address_db = "address";
+//        $whatyoupretend_db = "whatyoupretend";
+//        $fieldofactivity_db = "fieldofactivity";
+//        $phone_db = "phone";
+//        $email_db = "email";
+
+        showDialogUpdateProfile();
 
     }
+
+    private void showDialogUpdateProfile() {
+
+
+
+
+        Dialog dialog = new Dialog(ProfileActivity.this);
+
+        dialog.setContentView(R.layout.layout_update_profile);
+
+        EditText edtPassword;
+        EditText edtFirstname;
+        EditText edtLastname;
+        EditText edtAddress;
+        EditText edtWhatyoupretend;
+        EditText edtFieldofactivity;
+        EditText edtPhone;
+        EditText edtEmail;
+        Button btnDialogUpdateProfile;
+
+
+        edtPassword = (EditText) dialog.findViewById(R.id.edtPassword);
+        edtFirstname = (EditText) dialog.findViewById(R.id.edtFirstname);
+        edtLastname = (EditText) dialog.findViewById(R.id.edtLastname);
+        edtAddress = (EditText) dialog.findViewById(R.id.edtAddress);
+        edtWhatyoupretend = (EditText) dialog.findViewById(R.id.edtWhatyoupretend);
+        edtFieldofactivity = (EditText) dialog.findViewById(R.id.edtFieldofactivity);
+        edtPhone = (EditText) dialog.findViewById(R.id.edtPhone);
+        edtEmail = (EditText) dialog.findViewById(R.id.edtEmail);
+        btnDialogUpdateProfile = (Button) dialog.findViewById(R.id.btn_dialog_update_profile);
+
+        SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+
+
+        edtFirstname.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "no value"));//"No name defined" is the default value.
+        edtLastname.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "no value"));//"No name defined" is the default value.
+        edtAddress.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3], "no value"));//"No name defined" is the default value.
+        edtWhatyoupretend.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], "no value"));//"No name defined" is the default value.
+        edtFieldofactivity.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], "no value"));//"No name defined" is the default value.
+        edtPhone.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], "no value"));//"No name defined" is the default value.
+        edtEmail.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "no value"));//"No name defined" is the default value.
+
+
+
+        btnDialogUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (!TextUtils.isEmpty(edtEmail.getText().toString()) && !TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())){
+
+
+
+
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_PROFILE_URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+
+                                try {
+                                    JSONArray jsonArray = new JSONArray(response);
+
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                    String code = jsonObject.getString("code");
+                                    if (code.equals("failed")) {
+
+
+                                        Comman.showErrorToast(ProfileActivity.this, "Failed " + jsonObject.getString("message"));
+
+
+                                    } else if(code.equals("success")) {
+
+                                        Comman.showSucdessToast(ProfileActivity.this, ""+jsonObject.getString("message"));
+
+
+
+                                        SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+
+                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1],edtFirstname.getText().toString());
+                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], edtLastname.getText().toString());
+                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3],edtAddress.getText().toString());
+                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], edtWhatyoupretend.getText().toString());
+                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], edtFieldofactivity.getText().toString());
+                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], edtPhone.getText().toString());
+
+
+                                        editor.apply();
+
+
+
+                                        dialog.dismiss();
+
+                                    }
+                                } catch (JSONException e) {
+                                    Comman.showErrorToast(ProfileActivity.this, "error is "+e.getMessage());
+
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                Comman.showErrorToast(ProfileActivity.this, "error is "+error);
+
+
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+
+
+                                SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                                String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+                                if (id.equals("no value")){
+
+                                    Comman.showErrorToast(ProfileActivity.this, "error ");
+
+
+                                }
+
+
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("user_id", id);
+                                params.put(Comman.TABLE_USERS_ATTRIBUTES[0], edtFirstname.getText().toString());
+                                params.put(Comman.TABLE_USERS_ATTRIBUTES[1], edtLastname.getText().toString());
+                                params.put(Comman.TABLE_USERS_ATTRIBUTES[2], edtAddress.getText().toString());
+                                params.put(Comman.TABLE_USERS_ATTRIBUTES[3], edtWhatyoupretend.getText().toString());
+                                params.put(Comman.TABLE_USERS_ATTRIBUTES[4], edtFieldofactivity.getText().toString());
+                                params.put(Comman.TABLE_USERS_ATTRIBUTES[5], edtPhone.getText().toString());
+
+
+                                return params;
+                            }
+                        };
+                        VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
+
+
+
+
+
+
+
+
+
+                }else {
+                    Comman.showErrorToast(ProfileActivity.this,"Enter Missing Fields");
+                }
+
+            }
+        });
+
+
+        dialog.show();
+
+
+
+
+
+
+
+
+
+
+        }
 
     public void onPrivacyPressed() {
 
