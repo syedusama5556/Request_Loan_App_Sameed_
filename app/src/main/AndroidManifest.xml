@@ -37,10 +37,15 @@
 
         </activity>
         <activity
-            android:name=".activity.RequestLoadActivity"
+            android:name=".activity.RequestLoanActivity"
             android:label=""
             android:theme="@style/RequestLoadActivityTheme">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
 
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.OnboardActivity"
@@ -53,17 +58,18 @@
             android:theme="@style/ProfileActivityTheme" >
 
         </activity>
+        <activity
+            android:name=".activity.LenderReviewPageActivity"
+            android:theme="@style/LenderReviewPageActivityTheme" />
+        <activity
+            android:name=".activity.BorrowerRejectPageActivity"
+            android:theme="@style/BorrowerRejectPageActivityTheme" />
 
         <activity
             android:name=".activity.SplashActivity"
             android:label=""
             android:theme="@style/SplashActivityTheme">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
 
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
     </application>
 </manifest>

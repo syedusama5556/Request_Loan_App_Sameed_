@@ -1,0 +1,264 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/constraint_layout_constraint_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/borrower_reject_page_activity_constraint_layout_constraint_layout_background_color">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/view_constraint_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0">
+
+		<ImageView
+			android:id="@+id/rectangle160_constraint_layout"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"
+			android:background="@color/borrower_reject_page_activity_rectangle160_constraint_layout_background_color"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<TextView
+			android:id="@+id/loan_request_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_loan_request_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_loan_request_text_view_text"
+			android:textColor="@color/borrower_reject_page_activity_loan_request_text_view_text_color"
+			android:textSize="@dimen/borrower_reject_page_activity_loan_request_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:layout_editor_absoluteX="110dp"
+			tools:layout_editor_absoluteY="59dp" />
+
+		<TextView
+			android:id="@+id/no_loan_available_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_no_loan_available_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_no_loan_available_text_view_text"
+			android:textColor="@color/borrower_reject_page_activity_no_loan_available_text_view_text_color"
+			android:textSize="@dimen/borrower_reject_page_activity_no_loan_available_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/loan_request_text_view"
+			tools:layout_editor_absoluteX="93dp"
+			tools:layout_editor_absoluteY="82dp" />
+
+		<ImageView
+			android:id="@+id/rectangle161_constraint_layout"
+			android:layout_width="match_parent"
+			android:layout_height="250dp"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_rectangle161_constraint_layout_margin_top"
+			android:background="#FAFAFA"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/rectangle160_constraint_layout" />
+
+		<TextView
+			android:id="@+id/collateral_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/borrower_reject_page_activity_collateral_text_view_margin_start"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_collateral_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_collateral_text_view_text"
+			android:textColor="#4B4B4B"
+			android:textSize="@dimen/borrower_reject_page_activity_collateral_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/company_private_text_view"
+			tools:layout_editor_absoluteX="30dp"
+			tools:layout_editor_absoluteY="278dp" />
+
+		<TextView
+			android:id="@+id/ratio_loan_asset_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/borrower_reject_page_activity_ratio_loan_asset_text_view_margin_start"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_ratio_loan_asset_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_ratio_loan_asset_text_view_text"
+			android:textColor="#4B4B4B"
+			android:textSize="@dimen/borrower_reject_page_activity_ratio_loan_asset_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/text_view_two_text_view"
+			tools:layout_editor_absoluteX="30dp"
+			tools:layout_editor_absoluteY="328dp" />
+
+		<TextView
+			android:id="@+id/borrower_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/borrower_reject_page_activity_borrower_text_view_margin_start"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_borrower_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_borrower_text_view_text"
+			android:textColor="#4B4B4B"
+			android:textSize="@dimen/borrower_reject_page_activity_borrower_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/rectangle160_constraint_layout"
+			tools:layout_editor_absoluteX="30dp"
+			tools:layout_editor_absoluteY="224dp" />
+
+		<TextView
+			android:id="@+id/market_value_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_market_value_text_view_margin_top"
+			android:layout_marginEnd="@dimen/borrower_reject_page_activity_market_value_text_view_margin_end"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_market_value_text_view_text"
+			android:textColor="#4B4B4B"
+			android:textSize="@dimen/borrower_reject_page_activity_market_value_text_view_text_size"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/company_private_text_view"
+			tools:layout_editor_absoluteX="154dp"
+			tools:layout_editor_absoluteY="278dp" />
+
+		<TextView
+			android:id="@+id/automobile_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/borrower_reject_page_activity_automobile_text_view_margin_start"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_automobile_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_automobile_text_view_text"
+			android:textColor="#BCBCBC"
+			android:textSize="@dimen/borrower_reject_page_activity_automobile_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/collateral_text_view"
+			tools:layout_editor_absoluteX="30dp"
+			tools:layout_editor_absoluteY="303dp" />
+
+		<TextView
+			android:id="@+id/text_view_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/borrower_reject_page_activity_text_view_text_view_margin_start"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_text_view_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_text_view_text_view_text"
+			android:textColor="#BCBCBC"
+			android:textSize="@dimen/borrower_reject_page_activity_text_view_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/ratio_loan_asset_text_view"
+			tools:layout_editor_absoluteX="30dp"
+			tools:layout_editor_absoluteY="353dp" />
+
+		<TextView
+			android:id="@+id/company_private_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/borrower_reject_page_activity_company_private_text_view_margin_start"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_company_private_text_view_margin_top"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_company_private_text_view_text"
+			android:textColor="#BCBCBC"
+			android:textSize="@dimen/borrower_reject_page_activity_company_private_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/borrower_text_view"
+			tools:layout_editor_absoluteX="30dp"
+			tools:layout_editor_absoluteY="249dp" />
+
+		<TextView
+			android:id="@+id/text_view_two_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_text_view_two_text_view_margin_top"
+			android:layout_marginEnd="@dimen/borrower_reject_page_activity_text_view_two_text_view_margin_end"
+			android:gravity="start"
+			android:text="@string/borrower_reject_page_activity_text_view_two_text_view_text"
+			android:textColor="#BCBCBC"
+			android:textSize="@dimen/borrower_reject_page_activity_text_view_two_text_view_text_size"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/market_value_text_view"
+			tools:layout_editor_absoluteX="154dp"
+			tools:layout_editor_absoluteY="303dp" />
+
+		<Button
+			android:id="@+id/repost_button"
+			android:layout_width="@dimen/borrower_reject_page_activity_repost_button_width"
+			android:layout_height="@dimen/borrower_reject_page_activity_repost_button_height"
+			android:layout_marginLeft="28dp"
+			android:layout_marginTop="40dp"
+			android:background="?attr/selectableItemBackground"
+			android:gravity="center"
+			android:text="@string/borrower_reject_page_activity_repost_button_text"
+			android:textColor="@color/borrower_reject_page_activity_repost_button_text_color"
+			android:textSize="@dimen/borrower_reject_page_activity_repost_button_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/rectangle161_constraint_layout" />
+
+		<Button
+			android:id="@+id/counter_button"
+			android:layout_width="@dimen/borrower_reject_page_activity_counter_button_width"
+			android:layout_height="@dimen/borrower_reject_page_activity_counter_button_height"
+			android:layout_marginTop="40dp"
+			android:layout_marginRight="28dp"
+			android:background="@drawable/borrower_reject_page_activity_counter_button_ripple"
+			android:gravity="center"
+			android:text="@string/borrower_reject_page_activity_counter_button_text"
+			android:textColor="@color/borrower_reject_page_activity_counter_button_text_color"
+			android:textSize="@dimen/borrower_reject_page_activity_counter_button_text_size"
+			app:layout_constraintRight_toLeftOf="@+id/cancel_button"
+			app:layout_constraintTop_toBottomOf="@+id/rectangle161_constraint_layout" />
+
+		<Button
+			android:id="@+id/cancel_button"
+			android:layout_width="@dimen/borrower_reject_page_activity_cancel_button_width"
+			android:layout_height="@dimen/borrower_reject_page_activity_cancel_button_height"
+			android:layout_marginTop="40dp"
+			android:layout_marginRight="36dp"
+			android:background="@drawable/borrower_reject_page_activity_cancel_button_ripple"
+			android:gravity="center"
+			android:text="@string/borrower_reject_page_activity_cancel_button_text"
+			android:textColor="@color/borrower_reject_page_activity_cancel_button_text_color"
+			android:textSize="@dimen/borrower_reject_page_activity_cancel_button_text_size"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/rectangle161_constraint_layout" />
+
+		<TextView
+			android:id="@+id/requested_amount_for_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_requested_amount_for_text_view_margin_top"
+			android:gravity="center"
+			android:text="@string/borrower_reject_page_activity_requested_amount_for_text_view_text"
+			android:textColor="@color/borrower_reject_page_activity_requested_amount_for_text_view_text_color"
+			android:textSize="@dimen/borrower_reject_page_activity_requested_amount_for_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/no_loan_available_text_view"
+			tools:layout_editor_absoluteX="100dp"
+			tools:layout_editor_absoluteY="122dp" />
+
+		<TextView
+			android:id="@+id/usd_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/borrower_reject_page_activity_usd_text_view_margin_top"
+			android:gravity="center"
+			android:textColor="#ffffff"
+			android:textSize="@dimen/borrower_reject_page_activity_usd_text_view_text_size"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/no_loan_available_text_view"
+			tools:layout_editor_absoluteX="70dp"
+			tools:layout_editor_absoluteY="134dp"
+			tools:text="@string/borrower_reject_page_activity_usd_text_view_text" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

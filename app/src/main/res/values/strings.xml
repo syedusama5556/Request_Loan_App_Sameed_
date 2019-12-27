@@ -8,6 +8,87 @@
     <string name="splash_activity_pear2pear_text_view_hint">Pear2Pear</string>
     <string name="splash_activity_pear2pear_text_view_text">Pear2Pear</string>
 
+
+
+    <!-- Resources for BorrowerRejectPageActivity -->
+    <string name="borrower_reject_page_activity_automobile_text_view_hint">Automobile</string>
+    <string name="borrower_reject_page_activity_text_view_two_text_view_text">$ 35,000</string>
+    <string name="borrower_reject_page_activity_cancel_button_text">Cancel</string>
+    <string name="borrower_reject_page_activity_text_view_text_view_text">200%</string>
+    <string name="borrower_reject_page_activity_ratio_loan_asset_text_view_text">Ratio Loan / Asset</string>
+    <string name="borrower_reject_page_activity_cancel_button_hint">Cancel</string>
+    <string name="borrower_reject_page_activity_counter_button_text">Counter</string>
+    <string name="borrower_reject_page_activity_collateral_text_view_text">Collateral</string>
+    <string name="borrower_reject_page_activity_no_loan_available_text_view_hint">No loan available ( Rejected )</string>
+    <string name="borrower_reject_page_activity_usd_text_view_text">$30,000,00 USD</string>
+    <string name="borrower_reject_page_activity_usd_text_view_hint">$30,000,00 USD</string>
+    <string name="borrower_reject_page_activity_loan_request_text_view_hint">Loan Request </string>
+    <string name="borrower_reject_page_activity_company_private_text_view_text">Company / Private</string>
+    <string name="borrower_reject_page_activity_repost_button_hint">Repost</string>
+    <string name="borrower_reject_page_activity_loan_request_text_view_text">Loan Request </string>
+    <string name="borrower_reject_page_activity_counter_button_hint">Counter</string>
+    <string name="borrower_reject_page_activity_borrower_text_view_text">Borrower </string>
+    <string name="borrower_reject_page_activity_company_private_text_view_hint">Company / Private</string>
+    <string name="borrower_reject_page_activity_no_loan_available_text_view_text">No loan available ( Rejected )</string>
+    <string name="borrower_reject_page_activity_requested_amount_for_text_view_hint">Requested amount for loan</string>
+    <string name="borrower_reject_page_activity_automobile_text_view_text">Automobile</string>
+    <string name="borrower_reject_page_activity_text_view_text_view_hint">200%</string>
+    <string name="borrower_reject_page_activity_requested_amount_for_text_view_text">Requested amount for loan</string>
+    <string name="borrower_reject_page_activity_repost_button_text">Repost</string>
+    <string name="borrower_reject_page_activity_ratio_loan_asset_text_view_hint">Ratio Loan / Asset</string>
+    <string name="borrower_reject_page_activity_market_value_text_view_text">Market Value</string>
+    <string name="borrower_reject_page_activity_borrower_text_view_hint">Borrower </string>
+    <string name="borrower_reject_page_activity_collateral_text_view_hint">Collateral</string>
+    <string name="borrower_reject_page_activity_market_value_text_view_hint">Market Value</string>
+    <string name="borrower_reject_page_activity_text_view_two_text_view_hint">$ 35,000</string>
+
+    <!-- Resources for LenderReviewPageActivity -->
+    <string name="lender_review_page_activity_ratio_loan_asset_text_view_text">Ratio Loan / Asset</string>
+    <string name="lender_review_page_activity_loan_amount_text_view_text">Loan Amount</string>
+    <string name="lender_review_page_activity_automobile_text_view_hint">Automobile</string>
+    <string name="lender_review_page_activity_due_date_text_view_text">Due Date</string>
+    <string name="lender_review_page_activity_dec302019_text_view_text">Dec 30, 2019</string>
+    <string name="lender_review_page_activity_commercial_use_text_view_text">Commercial Use</string>
+    <string name="lender_review_page_activity_text_view_three_text_view_text">$ 35,000</string>
+    <string name="lender_review_page_activity_due_date_text_view_hint">Due Date</string>
+    <string name="lender_review_page_activity_text_view_text_view_text">200%</string>
+    <string name="lender_review_page_activity_text_view_three_text_view_hint">$ 35,000</string>
+    <string name="lender_review_page_activity_borrowing_rate_text_view_hint">Borrowing Rate</string>
+    <string name="lender_review_page_activity_text_view_two_text_view_text">10%</string>
+    <string name="lender_review_page_activity_commercial_use_text_view_hint">Commercial Use</string>
+    <string name="lender_review_page_activity_purpose_of_loan_text_view_hint">Purpose of Loan</string>
+    <string name="lender_review_page_activity_market_value_text_view_hint">Market Value</string>
+    <string name="lender_review_page_activity_borrowing_rate_text_view_text">Borrowing Rate</string>
+    <string name="lender_review_page_activity_text_view_two_text_view_hint">10%</string>
+    <string name="lender_review_page_activity_borrower_text_view_text">Borrower </string>
+    <string name="lender_review_page_activity_verification_status_text_view_hint">Verification Status : </string>
+    <string name="lender_review_page_activity_review_text_view_hint">Review</string>
+    <string name="lender_review_page_activity_company_private_text_view_text">Company / Private</string>
+    <string name="lender_review_page_activity_text_view_text_view_hint">200%</string>
+    <string name="lender_review_page_activity_reject_text_view_hint">Reject</string>
+    <string name="lender_review_page_activity_accept_text_view_hint">Accept</string>
+    <string name="lender_review_page_activity_review_request_text_view_text">Review Request</string>
+    <string name="lender_review_page_activity_review_request_text_view_hint">Review Request</string>
+    <string name="lender_review_page_activity_reject_button_text">x</string>
+    <string name="lender_review_page_activity_market_value_text_view_text">Market Value</string>
+    <string name="lender_review_page_activity_ratio_loan_asset_text_view_hint">Ratio Loan / Asset</string>
+    <string name="lender_review_page_activity_verification_status_text_view_text">Verification Status : </string>
+    <string name="lender_review_page_activity_usd_text_view_hint">$30,000 USD</string>
+    <string name="lender_review_page_activity_loan_amount_text_view_hint">Loan Amount</string>
+    <string name="lender_review_page_activity_purpose_of_loan_text_view_text">Purpose of Loan</string>
+    <string name="lender_review_page_activity_accept_text_view_text">Accept</string>
+    <string name="lender_review_page_activity_company_private_text_view_hint">Company / Private</string>
+    <string name="lender_review_page_activity_reject_text_view_text">Reject</string>
+    <string name="lender_review_page_activity_usd_text_view_text">$30,000 USD</string>
+    <string name="lender_review_page_activity_review_text_view_text">Review</string>
+    <string name="lender_review_page_activity_borrower_text_view_hint">Borrower </string>
+    <string name="lender_review_page_activity_collateral_text_view_text">Collateral</string>
+    <string name="lender_review_page_activity_automobile_text_view_text">Automobile</string>
+    <string name="lender_review_page_activity_dec302019_text_view_hint">Dec 30, 2019</string>
+    <string name="lender_review_page_activity_collateral_text_view_hint">Collateral</string>
+    <string name="lender_review_page_activity_reject_button_hint">x</string>
+
+
     <!-- Resources for SignupActivity -->
     <string name="signup_activity_last_name_edit_text_hint">Last Name</string>
     <string name="signup_activity_first_name_edit_text_hint">First Name</string>
@@ -111,7 +192,7 @@
     <string name="home_activity_activity_tax_loan_text_view_hint">Tax Loan</string>
     <string name="home_activity_activity_commercial_text_view_text">Commercial</string>
 
-    <!-- Resources for RequestLoadActivity -->
+    <!-- Resources for RequestLoanActivity -->
     <string name="request_load_activity_collateral_edit_text_hint">Collateral</string>
     <string name="request_load_activity_uploadbtn_button_hint">Upload Documents of Collateral</string>
     <string name="request_load_activity_loan_request_code_text_view_text">Loan Request Code</string>
