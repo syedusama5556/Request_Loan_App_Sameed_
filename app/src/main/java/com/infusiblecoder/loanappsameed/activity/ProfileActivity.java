@@ -193,7 +193,7 @@ public class ProfileActivity extends AppCompatActivity {
         edtWhatyoupretend = (EditText) dialog.findViewById(R.id.edtWhatyoupretend);
         edtFieldofactivity = (EditText) dialog.findViewById(R.id.edtFieldofactivity);
         edtPhone = (EditText) dialog.findViewById(R.id.edtPhone);
-        edtEmail = (EditText) dialog.findViewById(R.id.edtEmail);
+
         btnDialogUpdateProfile = (Button) dialog.findViewById(R.id.btn_dialog_update_profile);
 
         SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
@@ -205,8 +205,6 @@ public class ProfileActivity extends AppCompatActivity {
         edtWhatyoupretend.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], "no value"));//"No name defined" is the default value.
         edtFieldofactivity.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], "no value"));//"No name defined" is the default value.
         edtPhone.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], "no value"));//"No name defined" is the default value.
-        edtEmail.setText(prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "no value"));//"No name defined" is the default value.
-
 
 
         btnDialogUpdateProfile.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +212,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (!TextUtils.isEmpty(edtEmail.getText().toString()) && !TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())){
+                if ( !TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())){
 
 
 
@@ -229,13 +227,16 @@ public class ProfileActivity extends AppCompatActivity {
 
                                     JSONObject jsonObject = jsonArray.getJSONObject(0);
                                     String code = jsonObject.getString("code");
+
+                                    System.out.println("mysre +"+jsonObject);
+
                                     if (code.equals("failed")) {
 
 
                                         Comman.showErrorToast(ProfileActivity.this, "Failed " + jsonObject.getString("message"));
 
 
-                                    } else if(code.equals("success")) {
+                                    } else{
 
                                         Comman.showSucdessToast(ProfileActivity.this, ""+jsonObject.getString("message"));
 
@@ -258,6 +259,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         dialog.dismiss();
 
                                     }
+
                                 } catch (JSONException e) {
                                     Comman.showErrorToast(ProfileActivity.this, "error is "+e.getMessage());
 
@@ -278,8 +280,6 @@ public class ProfileActivity extends AppCompatActivity {
                             protected Map<String, String> getParams() throws AuthFailureError {
 
 
-
-
                                 SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
                                 String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
@@ -287,12 +287,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                                     Comman.showErrorToast(ProfileActivity.this, "error ");
 
-
                                 }
 
 
                                 Map<String, String> params = new HashMap<String, String>();
                                 params.put("user_id", id);
+
                                 params.put(Comman.TABLE_USERS_ATTRIBUTES[0], edtFirstname.getText().toString());
                                 params.put(Comman.TABLE_USERS_ATTRIBUTES[1], edtLastname.getText().toString());
                                 params.put(Comman.TABLE_USERS_ATTRIBUTES[2], edtAddress.getText().toString());
@@ -300,17 +300,16 @@ public class ProfileActivity extends AppCompatActivity {
                                 params.put(Comman.TABLE_USERS_ATTRIBUTES[4], edtFieldofactivity.getText().toString());
                                 params.put(Comman.TABLE_USERS_ATTRIBUTES[5], edtPhone.getText().toString());
 
+                                params.put("oldpass", edtPassword.getText().toString());
+
+
 
                                 return params;
+
                             }
                         };
-                        VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
 
-
-
-
-
-
+                    VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
 
 
 

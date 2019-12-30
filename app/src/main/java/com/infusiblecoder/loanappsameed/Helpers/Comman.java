@@ -12,11 +12,15 @@ import java.util.ArrayList;
 public class Comman {
 
     public static String START_URL = "http://peer.infusiblecoder.com/android/loanapp/";
+   // public static String START_URL = "http://192.168.0.100/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
 
     public static String REGISTER_URL = START_URL + "register.php";
+
+    public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL +"uploadmultipledoc.php";
+
 
 
 

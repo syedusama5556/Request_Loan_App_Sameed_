@@ -40,12 +40,15 @@
             android:name=".activity.RequestLoanActivity"
             android:label=""
             android:theme="@style/RequestLoadActivityTheme">
+
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+
+
         </activity>
         <activity
             android:name=".activity.OnboardActivity"
@@ -56,6 +59,7 @@
             android:name=".activity.ProfileActivity"
             android:label=""
             android:theme="@style/ProfileActivityTheme" >
+
 
         </activity>
         <activity

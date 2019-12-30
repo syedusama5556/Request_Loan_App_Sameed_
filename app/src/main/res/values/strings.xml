@@ -205,7 +205,7 @@
     <string name="request_load_activity_loan_request_code_text_view_hint">Loan Request Code</string>
     <string name="request_load_activity_postarequest_button_hint">Post A Request</string>
     <string name="request_load_activity_user_name_text_view_hint">User Name</string>
-    <string name="request_load_activity_uploadbtn_button_text">Upload Documents of Collateral</string>
+    <string name="request_load_activity_uploadbtn_button_text">Select Documents of Collateral</string>
     <string name="request_load_activity_due_date_text_view_text">Due Date</string>
     <string name="request_load_activity_text_view_text_view_text">#2341</string>
     <string name="request_load_activity_postarequest_button_text">Post A Request</string>

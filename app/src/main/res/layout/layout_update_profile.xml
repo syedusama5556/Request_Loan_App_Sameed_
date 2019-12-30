@@ -110,17 +110,6 @@
 
             />
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtEmail"
-            android:hint="Email"
-            android:text=""
-            android:textSize="20sp"
-            android:inputType="textEmailAddress"
-
-            />
         <Button
             android:layout_marginTop="10dp"
             android:id="@+id/btn_dialog_update_profile"
