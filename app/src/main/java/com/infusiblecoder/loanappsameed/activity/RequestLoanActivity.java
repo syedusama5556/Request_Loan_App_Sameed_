@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VolleyMultipartRequest;
 import com.infusiblecoder.loanappsameed.ModelClasses.DataPart;
 import com.infusiblecoder.loanappsameed.R;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,8 +92,9 @@ public class RequestLoanActivity extends AppCompatActivity {
     private EditText edtOwnerID;
     private EditText edtInsurance;
 
-    String[] displayName = {};
-    Uri pdffile[] = {};
+    ArrayList<String> displayName = new ArrayList<>();
+    ArrayList<Uri> pdffile = new ArrayList<>();
+    private CatLoadingView catLoadingView;
 
     public static Intent newIntent(Context context) {
 
@@ -109,6 +112,7 @@ public class RequestLoanActivity extends AppCompatActivity {
 
     private void init() {
 
+        catLoadingView = new CatLoadingView();
 
         constraintLayoutConstraintLayout = (ConstraintLayout) findViewById(R.id.constraint_layout_constraint_layout);
         userNameTextView = (TextView) findViewById(R.id.user_name_text_view);
@@ -149,6 +153,29 @@ public class RequestLoanActivity extends AppCompatActivity {
         postarequestButton.setOnClickListener((view) -> {
             this.onPostARequestPressed();
         });
+
+
+        String code = String.valueOf(System.currentTimeMillis());
+
+        textViewTextView.setText(code);
+
+
+        SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+        String name1 = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "no value");//"No name defined" is the default value.
+        String name2 = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "no value");//"No name defined" is the default value.
+
+        if (!name1.equals("no value") && !name1.equals("") && !name2.equals("no value") && !name2.equals("")){
+
+
+
+            userNameTextView.setText(name1+" "+name2);
+
+        } else {
+
+           Comman.showErrorToast(RequestLoanActivity.this,"Error getting user name");
+
+        }
+
     }
 
     public void onSelectDatePressed() {
@@ -167,164 +194,166 @@ public class RequestLoanActivity extends AppCompatActivity {
 
     public void onPostARequestPressed() {
 
-
+        uploadPDF(displayName, pdffile);
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if (data != null) {
-        if (resultCode == RESULT_OK) {
+        if (data != null) {
+            if (resultCode == RESULT_OK) {
 
-            if (requestCode == 1) {
+                if (requestCode == 1) {
 
 
-                // Get the Uri of the selected file
-                Uri uri = data.getData();
-                String uriString = uri.toString();
-                File myFile = new File(uriString);
-                String path = myFile.getAbsolutePath();
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    String uriString = uri.toString();
+                    File myFile = new File(uriString);
+                    String path = myFile.getAbsolutePath();
 
-                System.out.println("mydatais 1 "+path);
-                if (uriString.startsWith("content://")) {
-                    Cursor cursor = null;
-                    try {
-                        cursor = this.getContentResolver().query(uri, null, null, null, null);
-                        if (cursor != null && cursor.moveToFirst()) {
-                            System.out.println("mydatais 1 "+cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                            displayName[0] = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                            edtVehicleID.setText(""+cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                    System.out.println("mydatais 1 " + path);
+                    if (uriString.startsWith("content://")) {
+                        Cursor cursor = null;
+                        try {
+                            cursor = this.getContentResolver().query(uri, null, null, null, null);
+                            if (cursor != null && cursor.moveToFirst()) {
+                                System.out.println("mydatais 1 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                displayName.add(0, "" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
-                            pdffile[0] = uri;
+                                edtVehicleID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+
+                                pdffile.add(0, uri);
+                            }
+                        } catch (Exception e) {
+
+                            System.out.println("" + e.getMessage());
+                        } finally {
+                            cursor.close();
                         }
-                    }catch (Exception e){
-
-                        System.out.println(""+e.getMessage());
+                    } else if (uriString.startsWith("file://")) {
+                        displayName.add(0, myFile.getName());
+                        edtVehicleID.setText("" + myFile.getName());
                     }
 
-
-                    finally {
-                        cursor.close();
-                    }
-                } else if (uriString.startsWith("file://")) {
-                    displayName[0] = myFile.getName();
-                    edtVehicleID.setText(""+displayName[0]);
                 }
 
-            }
-
-            if (requestCode == 2) {
+                if (requestCode == 2) {
 
 
-                // Get the Uri of the selected file
-                Uri uri = data.getData();
-                String uriString = uri.toString();
-                File myFile = new File(uriString);
-                String path = myFile.getAbsolutePath();
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    String uriString = uri.toString();
+                    File myFile = new File(uriString);
+                    String path = myFile.getAbsolutePath();
 
-                System.out.println("mydatais 2 "+path);
-                if (uriString.startsWith("content://")) {
-                    Cursor cursor = null;
-                    try {
-                        cursor = this.getContentResolver().query(uri, null, null, null, null);
-                        if (cursor != null && cursor.moveToFirst()) {
-                            System.out.println("mydatais 2 "+cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                            displayName[1] = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                            edtOwnerID.setText(""+displayName[1]);
-                            pdffile[1] = uri;
+                    System.out.println("mydatais 2 " + path);
+                    if (uriString.startsWith("content://")) {
+                        Cursor cursor = null;
+                        try {
+                            cursor = this.getContentResolver().query(uri, null, null, null, null);
+                            if (cursor != null && cursor.moveToFirst()) {
+                                System.out.println("mydatais 2 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                displayName.add(1, cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                pdffile.add(1, uri);
+                            }
+                        } catch (Exception e) {
+
+                            System.out.println("" + e.getMessage());
+                        } finally {
+                            cursor.close();
                         }
-                    }catch (Exception e){
-
-                        System.out.println(""+e.getMessage());
+                    } else if (uriString.startsWith("file://")) {
+                        displayName.add(1, myFile.getName());
+                        edtOwnerID.setText("" + myFile.getName());
                     }
 
-
-                    finally {
-                        cursor.close();
-                    }
-                } else if (uriString.startsWith("file://")) {
-                    displayName[1] = myFile.getName();
-                    edtOwnerID.setText(""+displayName[1]);
                 }
 
-            }
-
-            if (requestCode == 3) {
+                if (requestCode == 3) {
 
 
-                // Get the Uri of the selected file
-                Uri uri = data.getData();
-                String uriString = uri.toString();
-                File myFile = new File(uriString);
-                String path = myFile.getAbsolutePath();
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    String uriString = uri.toString();
+                    File myFile = new File(uriString);
+                    String path = myFile.getAbsolutePath();
 
-                System.out.println("mydatais 3 "+path);
-                if (uriString.startsWith("content://")) {
-                    Cursor cursor = null;
-                    try {
-                        cursor = this.getContentResolver().query(uri, null, null, null, null);
-                        if (cursor != null && cursor.moveToFirst()) {
-                            System.out.println("mydatais 3 "+cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                            displayName[2] = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                            edtInsurance.setText(""+displayName[2]);
-                            pdffile[2] = uri;
+                    System.out.println("mydatais 3 " + path);
+
+                    if (uriString.startsWith("content://")) {
+                        Cursor cursor = null;
+                        try {
+                            cursor = this.getContentResolver().query(uri, null, null, null, null);
+                            if (cursor != null && cursor.moveToFirst()) {
+                                System.out.println("mydatais 3 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                displayName.add(2, cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                edtInsurance.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+
+                                pdffile.add(2, uri);
+                            }
+                        } catch (Exception e) {
+
+                            System.out.println("err2 " + e.getMessage());
+                        } finally {
+                            cursor.close();
                         }
-                    }catch (Exception e){
-
-                        System.out.println(""+e.getMessage());
+                    } else if (uriString.startsWith("file://")) {
+                        displayName.add(2, myFile.getName());
+                        edtInsurance.setText("" + myFile.getName());
                     }
 
-
-                    finally {
-                        cursor.close();
-                    }
-                } else if (uriString.startsWith("file://")) {
-                    displayName[2] = myFile.getName();
-                    edtInsurance.setText(""+displayName[2]);
                 }
 
+
             }
-
-
         }
-    }
         super.onActivityResult(requestCode, resultCode, data);
 
     }
 
-    private void uploadPDF(String pdfname[], Uri pdffile[]) {
+    private void uploadPDF(ArrayList<String> pdfname, ArrayList<Uri> pdffile) {
 
-        InputStream iStream = null;
-        InputStream iStream1 = null;
-        InputStream iStream2 = null;
-        try {
+        if (pdfname != null && pdfname.size() == 3) {
+            if (!TextUtils.isEmpty(marketValueEditText.getText()) && !TextUtils.isEmpty(purposeEditText.getText()) && !TextUtils.isEmpty(enterAmountEditText.getText()) && !TextUtils.isEmpty(dueDateTextView.getText()) && !TextUtils.isEmpty(collateralEditText.getText()) && !TextUtils.isEmpty(userNameTextView.getText()) && !TextUtils.isEmpty(loanRequestCodeTextView.getText())) {
 
-            iStream = getContentResolver().openInputStream(pdffile[0]);
-            final byte[] inputData = BitmapConversion.getBytes(iStream);
+                InputStream iStream = null;
+                InputStream iStream1 = null;
+                InputStream iStream2 = null;
+                try {
 
-            iStream1 = getContentResolver().openInputStream(pdffile[1]);
-            final byte[] inputData1 = BitmapConversion.getBytes(iStream1);
+                    iStream = getContentResolver().openInputStream(pdffile.get(0));
+                    final byte[] inputData = BitmapConversion.getBytes(iStream);
 
-            iStream2 = getContentResolver().openInputStream(pdffile[2]);
-            final byte[] inputData2 = BitmapConversion.getBytes(iStream2);
+                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
+                    final byte[] inputData1 = BitmapConversion.getBytes(iStream1);
 
-            VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPLOAD_MULTIPLE_DOC_WITH_DATA_URL,
-                    new Response.Listener<NetworkResponse>() {
-                        @Override
-                        public void onResponse(NetworkResponse response) {
-                            Log.d("ressssssoo", new String(response.data));
-                            rQueue.getCache().clear();
-                            try {
-                                JSONObject jsonObject = new JSONObject(new String(response.data));
-                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
+                    final byte[] inputData2 = BitmapConversion.getBytes(iStream2);
 
-                                jsonObject.toString().replace("\\\\", "");
 
-                                if (jsonObject.getString("status").equals("true")) {
-                                    Log.d("come::: >>>  ", "yessssss");
-                                    arraylist = new ArrayList<HashMap<String, String>>();
-                                    JSONArray dataArray = jsonObject.getJSONArray("data");
+                    catLoadingView.setText("Please Wait ..");
+                    catLoadingView.show(getSupportFragmentManager(), "");
 
+                    VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPLOAD_MULTIPLE_DOC_WITH_DATA_URL,
+                            new Response.Listener<NetworkResponse>() {
+                                @Override
+                                public void onResponse(NetworkResponse response) {
+                                    Log.d("ressssssoo", new String(response.data));
+
+                                    rQueue.getCache().clear();
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(new String(response.data));
+                                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                        jsonObject.toString().replace("\\\\", "");
+
+                                        if (jsonObject.getString("status").equals("true")) {
+                                            Log.d("come::: >>>  ", "yessssss");
+                                            arraylist = new ArrayList<HashMap<String, String>>();
+                                            JSONArray dataArray = jsonObject.getJSONArray("data");
+                                            catLoadingView.dismiss();
 
 //                                    for (int i = 0; i < dataArray.length(); i++) {
 //                                        JSONObject dataobj = dataArray.getJSONObject(i);
@@ -333,60 +362,100 @@ public class RequestLoanActivity extends AppCompatActivity {
 //                                    }
 
 
+                                        }
+                                    } catch (JSONException e) {
+                                        Comman.showErrorToast(RequestLoanActivity.this, "error is " + e.getMessage());
+                                        catLoadingView.dismiss();
+                                    }
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Comman.showErrorToast(RequestLoanActivity.this, "error is2 " + error.getMessage());
+                                    catLoadingView.dismiss();
+                                }
+                            }) {
+
+                        /*
+                         * If you want to add more parameters with the image
+                         * you can do it here
+                         * here we have only one parameter with the image
+                         * which is tags
+                         * */
                         @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                            SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                            String email = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "no value");//"No name defined" is the default value.
+
+                            if (!email.equals("no value") && !email.equals("") ){
+
+
+
+
+                            } else {
+
+                                Comman.showErrorToast(RequestLoanActivity.this,"Error getting email");
+
+                            }
+
+
+                            Map<String, String> params = new HashMap<>();
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[0], textViewTextView.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[1], userNameTextView.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[2], enterAmountEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[3], purposeEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], collateralEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], marketValueEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], dueDateTextView.getText().toString());
+
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
+//                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], pdfname.get(0));
+//                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[9], pdfname.get(0));
+
+
+                            return params;
                         }
-                    }) {
 
-                /*
-                 * If you want to add more parameters with the image
-                 * you can do it here
-                 * here we have only one parameter with the image
-                 * which is tags
-                 * */
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    // params.put("tags", "ccccc");  add string parameters
-                    return params;
+                        /*
+                         *pass files using below method
+                         * */
+                        @Override
+                        protected Map<String, DataPart> getByteData() {
+                            Map<String, DataPart> params = new HashMap<>();
+
+                            params.put("filename", new DataPart(pdfname.get(0), inputData));
+                            params.put("filename1", new DataPart(pdfname.get(1), inputData1));
+                            params.put("filename2", new DataPart(pdfname.get(2), inputData2));
+                            return params;
+                        }
+                    };
+
+
+                    volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            0,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    rQueue = Volley.newRequestQueue(RequestLoanActivity.this);
+                    rQueue.add(volleyMultipartRequest);
+
+
+                } catch (Exception e) {
+                    Comman.showErrorToast(RequestLoanActivity.this, "error is3 " + e.getMessage());
+                    catLoadingView.dismiss();
                 }
 
-                /*
-                 *pass files using below method
-                 * */
-                @Override
-                protected Map<String, DataPart> getByteData() {
-                    Map<String, DataPart> params = new HashMap<>();
 
-                    params.put("filename", new DataPart(pdfname[0], inputData));
-                    params.put("filename1", new DataPart(pdfname[1], inputData1));
-                    params.put("filename2", new DataPart(pdfname[2], inputData2));
-                    return params;
-                }
-            };
+            } else {
 
+                Comman.showErrorToast(RequestLoanActivity.this, "Enter Missing Fields");
+            }
+        } else {
+            Comman.showErrorToast(RequestLoanActivity.this, "Select all 3 Files First");
 
-            volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
-                    0,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            rQueue = Volley.newRequestQueue(RequestLoanActivity.this);
-            rQueue.add(volleyMultipartRequest);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-
     }
 
 
@@ -461,7 +530,8 @@ public class RequestLoanActivity extends AppCompatActivity {
 
                 if (!TextUtils.isEmpty(edtInsurance.getText().toString()) && !TextUtils.isEmpty(edtVehicleID.getText().toString()) && !TextUtils.isEmpty(edtOwnerID.getText().toString())) {
 
-                    uploadPDF(displayName,pdffile);
+                    dialog.dismiss();
+
 
                 } else {
                     Comman.showErrorToast(RequestLoanActivity.this, "Enter Missing Fields");

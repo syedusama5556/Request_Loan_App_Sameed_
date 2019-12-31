@@ -195,7 +195,7 @@
     <!-- Resources for RequestLoanActivity -->
     <string name="request_load_activity_collateral_edit_text_hint">Collateral</string>
     <string name="request_load_activity_uploadbtn_button_hint">Upload Documents of Collateral</string>
-    <string name="request_load_activity_loan_request_code_text_view_text">Loan Request Code</string>
+    <string name="request_load_activity_loan_request_code_text_view_text">Loan Request Code:: </string>
     <string name="request_load_activity_purpose_edit_text_hint">Purpose</string>
     <string name="request_load_activity_due_date_text_view_hint">Due Date</string>
     <string name="request_load_activity_market_value_edit_text_hint">Market Value</string>
