@@ -69,17 +69,6 @@ public class LoanRequestList extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
-//                        String id = " ", user_id = "",phone="", title = "", description = "", timebefore = "", date = "", time = "", pendingIntentId = "", calanderid2 = "";
-//
-//                        id = jsonObject.getString("id");
-//                        user_id = jsonObject.getString("user_id");
-//                        title = jsonObject.getString("title");
-//                        description = jsonObject.getString("description");
-//                        timebefore = jsonObject.getString("timebefore");
-//                        pendingIntentId = jsonObject.getString("pendingintentid");
-//                        calanderid2 = jsonObject.getString("calanderid");
-//                        phone=jsonObject.getString("phone");
-
 
                         Gson gson = new Gson();
                         RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);

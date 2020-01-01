@@ -45,9 +45,9 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
         Glide.with(context).load(Comman.START_URL+requestLoanModelArrayList.get(position).user_img_url_request).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
 
-        holder.recUsername.setText(requestLoanModelArrayList.get(position).user_full_name);
+        holder.recUsername.setText("Name: "+requestLoanModelArrayList.get(position).user_full_name);
 
-        holder.recLoanAmount.setText(requestLoanModelArrayList.get(position).loan_amount);
+        holder.recLoanAmount.setText("Loan Amount: $"+requestLoanModelArrayList.get(position).loan_amount);
 
 
         switch (requestLoanModelArrayList.get(position).loan_type){

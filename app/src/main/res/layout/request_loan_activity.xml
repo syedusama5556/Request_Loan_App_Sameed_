@@ -216,7 +216,7 @@
             android:background="@color/request_load_activity_market_value_edit_text_background_color"
             android:gravity="start|center_vertical"
             android:hint="@string/request_load_activity_market_value_edit_text_hint"
-            android:inputType="text"
+            android:inputType="phone"
             android:maxLines="1"
             android:textColor="@color/request_load_activity_market_value_edit_text_text_color"
             android:textColorHint="@color/color_hint_text"
