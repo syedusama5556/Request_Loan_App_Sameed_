@@ -12,14 +12,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.animation.PathInterpolatorCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.animation.PathInterpolatorCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -44,13 +45,12 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    ImageView backimg;
     private TextView welcomeLoginTextView;
     private EditText emailEdittext, password_edit_text;
     private Button loginButton;
     private Button forgotPasswordButton;
     private Button donThaveAaccountSignUpButton;
-    ImageView backimg;
-
     private ConstraintLayout usernameConstraintLayout;
 
     private ConstraintLayout passwordCopy8ConstraintLayout;
@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
 
-                            Comman.showSucdessToast(LoginActivity.this, "Login Successful!!"+jsonObject.getString("address"));
+                            Comman.showSucdessToast(LoginActivity.this, "Login Successful!!" + jsonObject.getString("address"));
 
 
 //                            $firstname = "firstname";
@@ -184,9 +184,8 @@ public class LoginActivity extends AppCompatActivity {
 //                                    "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
 
 
-
                             SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
-                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0],userTableData.user_id );
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], userTableData.user_id);
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], userTableData.firstname);
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], userTableData.lastname);
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3], userTableData.address);
@@ -196,16 +195,18 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], userTableData.email);
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[8], userTableData.password);
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[9], userTableData.status);
-                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], Comman.START_URL+userTableData.user_img_url);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], Comman.START_URL + userTableData.user_img_url);
+                            editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[11], userTableData.user_img_url);
+
 
                             editor.apply();
 
-                            Intent intent = new Intent(getApplicationContext(), HomeActivityActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), HomeActivityDrawar.class);
                             startActivity(intent);
                             finish();
                         }
                     } catch (JSONException e) {
-                        Comman.showErrorToast(LoginActivity.this, "error is "+e.getMessage());
+                        Comman.showErrorToast(LoginActivity.this, "error is " + e.getMessage());
 
                     }
 
@@ -215,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-                    Comman.showErrorToast(LoginActivity.this, "error is "+error);
+                    Comman.showErrorToast(LoginActivity.this, "error is " + error);
 
 
                 }

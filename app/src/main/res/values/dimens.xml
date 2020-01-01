@@ -467,14 +467,14 @@
     <dimen name="onboard_activity_mask_your_screen_here_image_view_margin_start">18dp</dimen>
 
 
-
     <!-- Resources for BorrowerRejectPageActivity -->
     <dimen name="borrower_reject_page_activity_text_view_two_text_view_margin_end">128dp</dimen>
     <dimen name="borrower_reject_page_activity_view_constraint_layout_height">492dp</dimen>
     <dimen name="borrower_reject_page_activity_loan_request_text_view_margin_top">45dp</dimen>
     <dimen name="borrower_reject_page_activity_text_view_two_text_view_margin_top">6dp</dimen>
     <dimen name="borrower_reject_page_activity_view_constraint_layout_width">345dp</dimen>
-    <dimen name="borrower_reject_page_activity_requested_amount_for_text_view_text_size">12sp</dimen>
+    <dimen name="borrower_reject_page_activity_requested_amount_for_text_view_text_size">12sp
+    </dimen>
     <dimen name="borrower_reject_page_activity_ratio_loan_asset_text_view_margin_start">30dp</dimen>
     <dimen name="borrower_reject_page_activity_collateral_text_view_margin_top">10dp</dimen>
     <dimen name="borrower_reject_page_activity_no_loan_available_text_view_margin_top">5dp</dimen>
@@ -504,7 +504,8 @@
     <dimen name="borrower_reject_page_activity_rectangle161_constraint_layout_radius">6dp</dimen>
     <dimen name="borrower_reject_page_activity_borrower_text_view_margin_top">38dp</dimen>
     <dimen name="borrower_reject_page_activity_counter_button_margin_top">52dp</dimen>
-    <dimen name="borrower_reject_page_activity_requested_amount_for_text_view_margin_top">20dp</dimen>
+    <dimen name="borrower_reject_page_activity_requested_amount_for_text_view_margin_top">20dp
+    </dimen>
     <dimen name="borrower_reject_page_activity_usd_text_view_margin_top">38dp</dimen>
     <dimen name="borrower_reject_page_activity_repost_button_margin_top">52dp</dimen>
     <dimen name="borrower_reject_page_activity_loan_request_text_view_text_size">18sp</dimen>
@@ -513,7 +514,8 @@
     <dimen name="borrower_reject_page_activity_collateral_text_view_text_size">16sp</dimen>
     <dimen name="borrower_reject_page_activity_cancel_button_margin_top">52dp</dimen>
     <dimen name="borrower_reject_page_activity_repost_button_text_size">16sp</dimen>
-    <dimen name="borrower_reject_page_activity_rectangle161_constraint_layout_margin_top">11dp</dimen>
+    <dimen name="borrower_reject_page_activity_rectangle161_constraint_layout_margin_top">11dp
+    </dimen>
     <dimen name="borrower_reject_page_activity_counter_button_margin_end">12dp</dimen>
     <dimen name="borrower_reject_page_activity_automobile_text_view_text_size">16sp</dimen>
     <dimen name="borrower_reject_page_activity_company_private_text_view_margin_start">30dp</dimen>
@@ -658,4 +660,10 @@
 
     <!-- Resources for SplashActivity -->
     <dimen name="splash_activity_pear2pear_text_view_text_size">48sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">5dp</dimen>
+    <dimen name="nav_header_height">165dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

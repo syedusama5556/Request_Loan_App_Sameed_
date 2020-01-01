@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,14 +25,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
-import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
 import com.infusiblecoder.loanappsameed.R;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +39,7 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    ImageView ricardo_image_view;
     private TextView ricardoJosephTextView;
     private TextView ricardojosephGmailTextView;
     private ImageButton editButton;
@@ -56,8 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
     private Button privacyButton;
     private TextView changeYourNotificaTextView;
     private Button notificationsButton;
-    ImageView ricardo_image_view;
-
 
     public static Intent newIntent(Context context) {
 
@@ -151,8 +144,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void onProfileSettingsPressed()
-    {
+    public void onProfileSettingsPressed() {
 
 //        $firstname_db = "firstname";
 //        $lastname_db = "lastname";
@@ -167,8 +159,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showDialogUpdateProfile() {
-
-
 
 
         Dialog dialog = new Dialog(ProfileActivity.this);
@@ -186,15 +176,15 @@ public class ProfileActivity extends AppCompatActivity {
         Button btnDialogUpdateProfile;
 
 
-        edtPassword = (EditText) dialog.findViewById(R.id.edtPassword);
-        edtFirstname = (EditText) dialog.findViewById(R.id.edtFirstname);
-        edtLastname = (EditText) dialog.findViewById(R.id.edtLastname);
-        edtAddress = (EditText) dialog.findViewById(R.id.edtAddress);
-        edtWhatyoupretend = (EditText) dialog.findViewById(R.id.edtWhatyoupretend);
-        edtFieldofactivity = (EditText) dialog.findViewById(R.id.edtFieldofactivity);
-        edtPhone = (EditText) dialog.findViewById(R.id.edtPhone);
+        edtPassword = dialog.findViewById(R.id.edtPassword);
+        edtFirstname = dialog.findViewById(R.id.edtFirstname);
+        edtLastname = dialog.findViewById(R.id.edtLastname);
+        edtAddress = dialog.findViewById(R.id.edtAddress);
+        edtWhatyoupretend = dialog.findViewById(R.id.edtWhatyoupretend);
+        edtFieldofactivity = dialog.findViewById(R.id.edtFieldofactivity);
+        edtPhone = dialog.findViewById(R.id.edtPhone);
 
-        btnDialogUpdateProfile = (Button) dialog.findViewById(R.id.btn_dialog_update_profile);
+        btnDialogUpdateProfile = dialog.findViewById(R.id.btn_dialog_update_profile);
 
         SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
 
@@ -212,109 +202,103 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if ( !TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())){
+                if (!TextUtils.isEmpty(edtPhone.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())) {
 
 
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_PROFILE_URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
 
 
-                        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_PROFILE_URL, new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+
+                                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                String code = jsonObject.getString("code");
+
+                                System.out.println("mysre +" + jsonObject);
+
+                                if (code.equals("failed")) {
 
 
-                                try {
-                                    JSONArray jsonArray = new JSONArray(response);
-
-                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                    String code = jsonObject.getString("code");
-
-                                    System.out.println("mysre +"+jsonObject);
-
-                                    if (code.equals("failed")) {
+                                    Comman.showErrorToast(ProfileActivity.this, "Failed " + jsonObject.getString("message"));
 
 
-                                        Comman.showErrorToast(ProfileActivity.this, "Failed " + jsonObject.getString("message"));
+                                } else {
+
+                                    Comman.showSucdessToast(ProfileActivity.this, "" + jsonObject.getString("message"));
 
 
-                                    } else{
+                                    SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
 
-                                        Comman.showSucdessToast(ProfileActivity.this, ""+jsonObject.getString("message"));
-
-
-
-                                        SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
-
-                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1],edtFirstname.getText().toString());
-                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], edtLastname.getText().toString());
-                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3],edtAddress.getText().toString());
-                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], edtWhatyoupretend.getText().toString());
-                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], edtFieldofactivity.getText().toString());
-                                        editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], edtPhone.getText().toString());
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], edtFirstname.getText().toString());
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], edtLastname.getText().toString());
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3], edtAddress.getText().toString());
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[4], edtWhatyoupretend.getText().toString());
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[5], edtFieldofactivity.getText().toString());
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[6], edtPhone.getText().toString());
 
 
-                                        editor.apply();
+                                    editor.apply();
 
 
-
-                                        dialog.dismiss();
-
-                                    }
-
-                                } catch (JSONException e) {
-                                    Comman.showErrorToast(ProfileActivity.this, "error is "+e.getMessage());
+                                    dialog.dismiss();
 
                                 }
 
+                            } catch (JSONException e) {
+                                Comman.showErrorToast(ProfileActivity.this, "error is " + e.getMessage());
 
                             }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                                Comman.showErrorToast(ProfileActivity.this, "error is "+error);
 
 
-                            }
-                        }) {
-                            @Override
-                            protected Map<String, String> getParams() throws AuthFailureError {
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Comman.showErrorToast(ProfileActivity.this, "error is " + error);
 
 
-                                SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
-                                String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
-
-                                if (id.equals("no value")){
-
-                                    Comman.showErrorToast(ProfileActivity.this, "error ");
-
-                                }
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
 
 
-                                Map<String, String> params = new HashMap<String, String>();
-                                params.put("user_id", id);
+                            SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                            String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
-                                params.put(Comman.TABLE_USERS_ATTRIBUTES[0], edtFirstname.getText().toString());
-                                params.put(Comman.TABLE_USERS_ATTRIBUTES[1], edtLastname.getText().toString());
-                                params.put(Comman.TABLE_USERS_ATTRIBUTES[2], edtAddress.getText().toString());
-                                params.put(Comman.TABLE_USERS_ATTRIBUTES[3], edtWhatyoupretend.getText().toString());
-                                params.put(Comman.TABLE_USERS_ATTRIBUTES[4], edtFieldofactivity.getText().toString());
-                                params.put(Comman.TABLE_USERS_ATTRIBUTES[5], edtPhone.getText().toString());
+                            if (id.equals("no value")) {
 
-                                params.put("oldpass", edtPassword.getText().toString());
-
-
-
-                                return params;
+                                Comman.showErrorToast(ProfileActivity.this, "error ");
 
                             }
-                        };
+
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("user_id", id);
+
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[0], edtFirstname.getText().toString());
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[1], edtLastname.getText().toString());
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[2], edtAddress.getText().toString());
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[3], edtWhatyoupretend.getText().toString());
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[4], edtFieldofactivity.getText().toString());
+                            params.put(Comman.TABLE_USERS_ATTRIBUTES[5], edtPhone.getText().toString());
+
+                            params.put("oldpass", edtPassword.getText().toString());
+
+
+                            return params;
+
+                        }
+                    };
 
                     VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
 
 
-
-                }else {
-                    Comman.showErrorToast(ProfileActivity.this,"Enter Missing Fields");
+                } else {
+                    Comman.showErrorToast(ProfileActivity.this, "Enter Missing Fields");
                 }
 
             }
@@ -324,51 +308,35 @@ public class ProfileActivity extends AppCompatActivity {
         dialog.show();
 
 
-
-
-
-
-
-
-
-
-        }
+    }
 
     public void onPrivacyPressed() {
 
 
-
-showDialogPassword();
+        showDialogPassword();
 
 
     }
 
-    public void showDialogPassword()
-    {
+    public void showDialogPassword() {
 
         Dialog dialog = new Dialog(ProfileActivity.this);
 
         dialog.setContentView(R.layout.layout_change_password);
 
-        EditText edtPassword = (EditText) dialog.findViewById(R.id.edtPassword);
-        EditText edtNewPassword = (EditText) dialog.findViewById(R.id.edtNewPassword);
-        EditText edtNewConfirmPassword = (EditText) dialog.findViewById(R.id.edtNewConfirmPassword);
-        Button btnDialogPassChange = (Button) dialog.findViewById(R.id.btn_dialog_pass_change);
+        EditText edtPassword = dialog.findViewById(R.id.edtPassword);
+        EditText edtNewPassword = dialog.findViewById(R.id.edtNewPassword);
+        EditText edtNewConfirmPassword = dialog.findViewById(R.id.edtNewConfirmPassword);
+        Button btnDialogPassChange = dialog.findViewById(R.id.btn_dialog_pass_change);
 
         btnDialogPassChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                if (!TextUtils.isEmpty(edtNewConfirmPassword.getText().toString()) && !TextUtils.isEmpty(edtNewPassword.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())){
+                if (!TextUtils.isEmpty(edtNewConfirmPassword.getText().toString()) && !TextUtils.isEmpty(edtNewPassword.getText().toString()) && !TextUtils.isEmpty(edtPassword.getText().toString())) {
 
-                    if (edtNewConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())){
-
-
-
-
-
-
+                    if (edtNewConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())) {
 
 
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.CHANGE_PASSWORD_URL, new Response.Listener<String>() {
@@ -389,13 +357,13 @@ showDialogPassword();
 
                                     } else {
 
-                                        Comman.showSucdessToast(ProfileActivity.this, ""+jsonObject.getString("message"));
+                                        Comman.showSucdessToast(ProfileActivity.this, "" + jsonObject.getString("message"));
 
                                         dialog.dismiss();
 
                                     }
                                 } catch (JSONException e) {
-                                    Comman.showErrorToast(ProfileActivity.this, "error is "+e.getMessage());
+                                    Comman.showErrorToast(ProfileActivity.this, "error is " + e.getMessage());
 
                                 }
 
@@ -405,7 +373,7 @@ showDialogPassword();
                             @Override
                             public void onErrorResponse(VolleyError error) {
 
-                                Comman.showErrorToast(ProfileActivity.this, "error is "+error);
+                                Comman.showErrorToast(ProfileActivity.this, "error is " + error);
 
 
                             }
@@ -414,12 +382,10 @@ showDialogPassword();
                             protected Map<String, String> getParams() throws AuthFailureError {
 
 
-
-
                                 SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
                                 String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
-                                if (id.equals("no value")){
+                                if (id.equals("no value")) {
 
                                     Comman.showErrorToast(ProfileActivity.this, "error ");
 
@@ -437,18 +403,13 @@ showDialogPassword();
                         VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
 
 
-
-
-                        
-
-
-                    }else {
-                        Comman.showErrorToast(ProfileActivity.this,"Password not matching");
+                    } else {
+                        Comman.showErrorToast(ProfileActivity.this, "Password not matching");
                     }
 
 
-                }else {
-                    Comman.showErrorToast(ProfileActivity.this,"Enter Missing Fields");
+                } else {
+                    Comman.showErrorToast(ProfileActivity.this, "Enter Missing Fields");
                 }
 
             }

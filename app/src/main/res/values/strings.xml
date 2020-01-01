@@ -9,7 +9,6 @@
     <string name="splash_activity_pear2pear_text_view_text">Pear2Pear</string>
 
 
-
     <!-- Resources for BorrowerRejectPageActivity -->
     <string name="borrower_reject_page_activity_automobile_text_view_hint">Automobile</string>
     <string name="borrower_reject_page_activity_text_view_two_text_view_text">$ 35,000</string>
@@ -200,7 +199,7 @@
     <string name="request_load_activity_due_date_text_view_hint">Due Date</string>
     <string name="request_load_activity_market_value_edit_text_hint">Market Value</string>
     <string name="request_load_activity_enter_amount_edit_text_hint">Enter Amount</string>
-    <string name="request_load_activity_user_name_text_view_text">User Name</string>
+    <string name="request_load_activity_user_name_text_view_text">Loan Type</string>
     <string name="request_load_activity_text_view_text_view_hint">#2341</string>
     <string name="request_load_activity_loan_request_code_text_view_hint">Loan Request Code</string>
     <string name="request_load_activity_postarequest_button_hint">Post A Request</string>
@@ -209,4 +208,19 @@
     <string name="request_load_activity_due_date_text_view_text">Due Date</string>
     <string name="request_load_activity_text_view_text_view_text">#2341</string>
     <string name="request_load_activity_postarequest_button_text">Post A Request</string>
+    <string name="title_activity_test">test</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="loan_request_list">Loan Request List</string>
 </resources>

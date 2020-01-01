@@ -1,30 +1,35 @@
-/**
- * Created by Usama.
- */
-
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.animation.PathInterpolatorCompat;
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.animation.PathInterpolatorCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.ui.AppBarConfiguration;
+
+import com.bumptech.glide.Glide;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
+import com.google.android.material.navigation.NavigationView;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
+import com.mikhaellopez.circularimageview.CircularImageView;
+
+public class HomeActivityDrawar extends AppCompatActivity {
 
 
-public class HomeActivityActivity extends AppCompatActivity {
-
+    ImageView choose_aloan_type_text_view;
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
     private ConstraintLayout carloanConstraintLayout;
@@ -39,20 +44,94 @@ public class HomeActivityActivity extends AppCompatActivity {
     private Button instantLoanForTaxButton;
     private ConstraintLayout otherloanConstraintLayout;
     private Button instantLoanForOthButton;
-
-    public static Intent newIntent(Context context) {
-
-        // Fill the created intent with the data you want to be passed to this Activity when it's opened.
-        return new Intent(context, HomeActivityActivity.class);
-    }
+    private AppBarConfiguration mAppBarConfiguration;
+    private TextView username;
+    private TextView userEmail;
+    private CircularImageView userprofilePicture;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.home_activity_activity);
+        setContentView(R.layout.home_activity_drawar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        choose_aloan_type_text_view = findViewById(R.id.choose_aloan_type_text_view);
+
+        choose_aloan_type_text_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(navigationView);
+            }
+        });
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+
+
+                }
+
+
+                return false;
+            }
+        });
+
+
+        username = navigationView.getHeaderView(0).findViewById(R.id.user_name_text_view_test);
+        userEmail = navigationView.getHeaderView(0).findViewById(R.id.email_test);
+        userprofilePicture = navigationView.getHeaderView(0).findViewById(R.id.imageView_test);
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                .setDrawerLayout(drawer)
+                .build();
+
+
         this.init();
+
+        loadAllData();
+
     }
+
+
+    public void loadAllData() {
+
+
+        SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+        String user_id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+
+        String fname = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "no value");
+        String lname = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "no value");
+
+        String fullname = fname + " " + lname;
+        String email = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "no value");
+
+        String img_url = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], "no value");
+
+
+        if (!user_id.equals("") && !user_id.equals("no value")) {
+
+            userEmail.setText(email);
+            username.setText(fullname);
+
+            Glide.with(HomeActivityDrawar.this).load(img_url).placeholder(R.mipmap.ic_launcher).into(userprofilePicture);
+
+
+        } else {
+
+            Comman.showErrorToast(HomeActivityDrawar.this, "Error");
+        }
+
+
+    }
+
 
     private void init() {
 
@@ -125,31 +204,52 @@ public class HomeActivityActivity extends AppCompatActivity {
     }
 
     public void onInstantLoanForPerPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "personal loan");
+        startActivity(intent);
+        finish();
     }
 
     public void onInstantLoanForANPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "car loan");
+        startActivity(intent);
+        finish();
     }
 
     public void onInstantLoanForCoPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "commercial loan");
+        startActivity(intent);
+        finish();
     }
 
     public void onInstantLoanForTraPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "travel loan");
+        startActivity(intent);
+        finish();
     }
 
     public void onInstantLoanForANTwoPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "house loan");
+        startActivity(intent);
+        finish();
     }
 
     public void onInstantLoanForTaxPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "tax loan");
+        startActivity(intent);
+        finish();
     }
 
     public void onInstantLoanForOthPressed() {
-
+        Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
+        intent.putExtra("loan_type", "other loan");
+        startActivity(intent);
+        finish();
     }
 
     public void startAnimationOne() {
@@ -218,22 +318,22 @@ public class HomeActivityActivity extends AppCompatActivity {
     public void logout_Task(View view) {
 
 
-showLogoutDialog();
+        showLogoutDialog();
 
     }
 
-    void showLogoutDialog(){
+    void showLogoutDialog() {
         // Create Alert using Builder
         CFAlertDialog.Builder builder = new CFAlertDialog.Builder(this)
                 .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
                 .setTitle("Log out")
                 .setMessage("Are You Sure You Want To Logout?")
                 .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
-                    Comman.showSucdessToast(HomeActivityActivity.this, "Logged Out");
+                    Comman.showSucdessToast(HomeActivityDrawar.this, "Logged Out");
                     dialog.dismiss();
 
                     SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
-                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0],"" );
+                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "");
                     editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "");
                     editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "");
                     editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[3], "");
@@ -247,7 +347,7 @@ showLogoutDialog();
 
                     editor.apply();
 
-                    startActivity(new Intent(HomeActivityActivity.this,LoginActivity.class));
+                    startActivity(new Intent(HomeActivityDrawar.this, LoginActivity.class));
                     finish();
                 }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
                     dialog.dismiss();
@@ -257,4 +357,5 @@ showLogoutDialog();
 // Show the alert
         builder.show();
     }
+
 }

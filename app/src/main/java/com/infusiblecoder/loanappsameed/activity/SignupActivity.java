@@ -19,15 +19,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.animation.PathInterpolatorCompat;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.animation.PathInterpolatorCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -54,10 +54,17 @@ public class SignupActivity extends AppCompatActivity {
     private static final int PICK_FROM_CAMERA = 1000;
     private static final int PICK_FROM_GALLARY = 1001;
     CatLoadingView catLoadingView;
+    // The request code used in ActivityCompat.requestPermissions()
+// and returned in the Activity's onRequestPermissionsResult()
+    int PERMISSION_ALL = 1;
+    String[] PERMISSIONS = {
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
     private Button alreadyAmemberLoginButton;
     private Button signupbtnButton;
-    private ImageView backImageView,image_view_profile;
-    private TextView welcomeSignupTextView,select_img_txt;
+    private ImageView backImageView, image_view_profile;
+    private TextView welcomeSignupTextView, select_img_txt;
     private EditText firstNameEditText;
     private EditText lastNameEditText;
     private EditText addressEditText;
@@ -67,24 +74,23 @@ public class SignupActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText confirmPasswordEditText;
-    private Bitmap user_img_url ;
-
-
-
-    // The request code used in ActivityCompat.requestPermissions()
-// and returned in the Activity's onRequestPermissionsResult()
-    int PERMISSION_ALL = 1;
-    String[] PERMISSIONS = {
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-    };
-
-
+    private Bitmap user_img_url;
 
     public static Intent newIntent(Context context) {
 
         // Fill the created intent with the data you want to be passed to this Activity when it's opened.
         return new Intent(context, SignupActivity.class);
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
@@ -101,18 +107,6 @@ public class SignupActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
 
-    }
-
-
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     private void init() {
@@ -148,7 +142,7 @@ public class SignupActivity extends AppCompatActivity {
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                 finish();
             }
         });
@@ -187,15 +181,10 @@ public class SignupActivity extends AppCompatActivity {
         String confirmpassword = confirmPasswordEditText.getText().toString();
 
 
-
-
-
-
         if (!fname.equals("") && !lname.equals("") && !address.equals("") && !email.equals("") && !whatyoupretend.equals("") && !phone.equals("") && !status.equals("") && !fieldofactivity.equals("")) {
 
 
-
-            if (user_img_url == null ) {
+            if (user_img_url == null) {
                 FancyToast.makeText(SignupActivity.this, "Select Image FirstS", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                 return;
@@ -220,10 +209,8 @@ public class SignupActivity extends AppCompatActivity {
             }
 
 
-
             catLoadingView.setText("Please Wait ..");
             catLoadingView.show(getSupportFragmentManager(), "");
-
 
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.REGISTER_URL, new Response.Listener<String>() {
@@ -269,12 +256,12 @@ public class SignupActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
 
-             //       user_img_url = tvUrl.getText().toString();
+                    //       user_img_url = tvUrl.getText().toString();
 
-                   String image = BitmapConversion.getStringImage(BitmapConversion.getbitmapfromimageview(image_view_profile));
+                    String image = BitmapConversion.getStringImage(BitmapConversion.getbitmapfromimageview(image_view_profile));
 
 
-                    System.out.println("img is "+image);
+                    System.out.println("img is " + image);
 
 
                     Map<String, String> params = new HashMap<String, String>();
@@ -323,7 +310,6 @@ public class SignupActivity extends AppCompatActivity {
         animatorSet1.setTarget(signupbtnButton);
 
     }
-
 
 
     public void get_gallery_image() {
@@ -375,7 +361,6 @@ public class SignupActivity extends AppCompatActivity {
                     image_view_profile.setImageBitmap(user_img_url);
 
 
-
                     cursor.close();
                     break;
                 }
@@ -384,11 +369,6 @@ public class SignupActivity extends AppCompatActivity {
 
         }
     }
-
-
-
-
-
 
 
     private void startLoginActivity() {

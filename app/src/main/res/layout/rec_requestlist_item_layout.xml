@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="8dp"
+    android:id="@+id/rec_card_btn"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:padding="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/rec_img_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_insert_file_black_24dp"
+            app:civ_border="true"
+            app:civ_border_width="1dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_toRightOf="@id/rec_img_profile"
+            android:orientation="vertical"
+
+
+            >
+
+            <TextView
+                android:id="@+id/rec_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textColor="@color/login_activity_forgot_password_button_text_color" />
+
+            <TextView
+                android:id="@+id/rec_loan_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loan Amount"
+                android:textColor="@color/login_activity_forgot_password_button_text_color" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rec_btn_showmore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click To View More Info"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/login_activity_forgot_password_button_text_color" />
+
+
+        <ImageView
+            android:id="@+id/rec_img_loan_type"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_black_24dp"
+            android:layout_marginEnd="8dp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

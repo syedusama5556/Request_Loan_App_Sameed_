@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.infusiblecoder.loanappsameed">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,34 +12,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity
-            android:name=".activity.LoginActivity"
-            android:label=""
-            android:theme="@style/LoginActivityTheme">
-
-
-        </activity>
-
-        <activity
-            android:name=".activity.SignupActivity"
-            android:label=""
-            android:theme="@style/SignupActivityTheme" >
-
-        </activity>
-
-        <activity
-            android:name=".activity.HomeActivityActivity"
-            android:label=""
-            android:theme="@style/HomeActivityActivityTheme">
-
-
-
-        </activity>
-        <activity
-            android:name=".activity.RequestLoanActivity"
-            android:label=""
-            android:theme="@style/RequestLoadActivityTheme">
+        <activity android:name=".activity.LoanRequestList"
+            android:theme="@style/BorrowerRejectPageActivityTheme">
 
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,32 +22,48 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
 
+        </activity>
+        <activity
+            android:name=".activity.HomeActivityDrawar"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label=""
+            android:theme="@style/LoginActivityTheme" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:label=""
+            android:theme="@style/SignupActivityTheme" />
+        <activity
+            android:name=".activity.RequestLoanActivity"
+            android:label=""
+            android:theme="@style/RequestLoadActivityTheme" />
         <activity
             android:name=".activity.OnboardActivity"
             android:label=""
             android:theme="@style/OnboardActivityTheme" />
-
         <activity
             android:name=".activity.ProfileActivity"
             android:label=""
-            android:theme="@style/ProfileActivityTheme" >
-
-
-        </activity>
+            android:theme="@style/ProfileActivityTheme" />
         <activity
             android:name=".activity.LenderReviewPageActivity"
             android:theme="@style/LenderReviewPageActivityTheme" />
         <activity
             android:name=".activity.BorrowerRejectPageActivity"
             android:theme="@style/BorrowerRejectPageActivityTheme" />
-
         <activity
             android:name=".activity.SplashActivity"
             android:label=""
-            android:theme="@style/SplashActivityTheme">
+            android:theme="@style/SplashActivityTheme" >
+
 
         </activity>
+
+
     </application>
+
 </manifest>

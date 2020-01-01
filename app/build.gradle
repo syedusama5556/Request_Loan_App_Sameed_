@@ -10,7 +10,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.HomeActivityDrawar.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
 
@@ -46,12 +46,13 @@ dependencies {
     implementation 'com.romandanylyk:pageindicatorview:1.0.0'
 
     // Unit tests dependencies
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'androidx.navigation:navigation-ui:2.1.0'
+
     testImplementation 'junit:junit:4.12'
 
-    // Integration tests dependencies
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+\
     //volly
     implementation 'com.android.volley:volley:1.1.1'
 

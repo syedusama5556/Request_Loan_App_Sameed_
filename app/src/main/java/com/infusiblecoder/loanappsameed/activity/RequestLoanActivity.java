@@ -58,11 +58,10 @@ import java.util.Map;
 
 public class RequestLoanActivity extends AppCompatActivity {
 
+    static TextView dueDateTextView;
     ImageButton selectdateButton;
     LinearLayout uploadbtnButton;
     Button postarequestButton;
-
-
     ConstraintLayout constraintLayoutConstraintLayout;
     TextView userNameTextView;
     TextView loanRequestCodeTextView;
@@ -81,20 +80,20 @@ public class RequestLoanActivity extends AppCompatActivity {
     View line1FourConstraintLayout;
     ConstraintLayout deudateviewConstraintLayout;
     ConstraintLayout duedateConstraintLayout;
-    static TextView dueDateTextView;
     View line1ImageView;
 
+    TextView loan_type_txt;
 
     RequestQueue rQueue;
     ArrayList<HashMap<String, String>> arraylist;
     String url = "https://www.google.com";
+    ArrayList<String> displayName = new ArrayList<>();
+    ArrayList<Uri> pdffile = new ArrayList<>();
     private EditText edtVehicleID;
     private EditText edtOwnerID;
     private EditText edtInsurance;
-
-    ArrayList<String> displayName = new ArrayList<>();
-    ArrayList<Uri> pdffile = new ArrayList<>();
     private CatLoadingView catLoadingView;
+    private String loantypeIntent = "car";
 
     public static Intent newIntent(Context context) {
 
@@ -114,26 +113,36 @@ public class RequestLoanActivity extends AppCompatActivity {
 
         catLoadingView = new CatLoadingView();
 
-        constraintLayoutConstraintLayout = (ConstraintLayout) findViewById(R.id.constraint_layout_constraint_layout);
-        userNameTextView = (TextView) findViewById(R.id.user_name_text_view);
-        loanRequestCodeTextView = (TextView) findViewById(R.id.loan_request_code_text_view);
-        textViewTextView = (TextView) findViewById(R.id.text_view_text_view);
-        enteramountConstraintLayout = (ConstraintLayout) findViewById(R.id.enteramount_constraint_layout);
-        enterAmountEditText = (EditText) findViewById(R.id.enter_amount_edit_text);
-        line1ConstraintLayout = (View) findViewById(R.id.line1_constraint_layout);
-        enterPurposeConstraintLayout = (ConstraintLayout) findViewById(R.id.enter_purpose_constraint_layout);
-        purposeEditText = (EditText) findViewById(R.id.purpose_edit_text);
-        line1TwoConstraintLayout = (View) findViewById(R.id.line1_two_constraint_layout);
-        enterCollateralConstraintLayout = (ConstraintLayout) findViewById(R.id.enter_collateral_constraint_layout);
-        collateralEditText = (EditText) findViewById(R.id.collateral_edit_text);
-        line1ThreeConstraintLayout = (View) findViewById(R.id.line1_three_constraint_layout);
-        enterMarketValueConstraintLayout = (ConstraintLayout) findViewById(R.id.enter_market_value_constraint_layout);
-        marketValueEditText = (EditText) findViewById(R.id.market_value_edit_text);
-        line1FourConstraintLayout = (View) findViewById(R.id.line1_four_constraint_layout);
-        deudateviewConstraintLayout = (ConstraintLayout) findViewById(R.id.deudateview_constraint_layout);
-        duedateConstraintLayout = (ConstraintLayout) findViewById(R.id.duedate_constraint_layout);
-        dueDateTextView = (TextView) findViewById(R.id.due_date_text_view);
-        line1ImageView = (View) findViewById(R.id.line1_image_view);
+
+
+        loan_type_txt = findViewById(R.id.loan_type_txt);
+
+        if (getIntent() != null) {
+
+            loantypeIntent = getIntent().getStringExtra("loan_type");
+            loan_type_txt.setText(loantypeIntent);
+        }
+
+        constraintLayoutConstraintLayout = findViewById(R.id.constraint_layout_constraint_layout);
+        userNameTextView = findViewById(R.id.user_name_text_view);
+        loanRequestCodeTextView = findViewById(R.id.loan_request_code_text_view);
+        textViewTextView = findViewById(R.id.text_view_text_view);
+        enteramountConstraintLayout = findViewById(R.id.enteramount_constraint_layout);
+        enterAmountEditText = findViewById(R.id.enter_amount_edit_text);
+        line1ConstraintLayout = findViewById(R.id.line1_constraint_layout);
+        enterPurposeConstraintLayout = findViewById(R.id.enter_purpose_constraint_layout);
+        purposeEditText = findViewById(R.id.purpose_edit_text);
+        line1TwoConstraintLayout = findViewById(R.id.line1_two_constraint_layout);
+        enterCollateralConstraintLayout = findViewById(R.id.enter_collateral_constraint_layout);
+        collateralEditText = findViewById(R.id.collateral_edit_text);
+        line1ThreeConstraintLayout = findViewById(R.id.line1_three_constraint_layout);
+        enterMarketValueConstraintLayout = findViewById(R.id.enter_market_value_constraint_layout);
+        marketValueEditText = findViewById(R.id.market_value_edit_text);
+        line1FourConstraintLayout = findViewById(R.id.line1_four_constraint_layout);
+        deudateviewConstraintLayout = findViewById(R.id.deudateview_constraint_layout);
+        duedateConstraintLayout = findViewById(R.id.duedate_constraint_layout);
+        dueDateTextView = findViewById(R.id.due_date_text_view);
+        line1ImageView = findViewById(R.id.line1_image_view);
 
 
         // Configure SelectDate component
@@ -164,15 +173,14 @@ public class RequestLoanActivity extends AppCompatActivity {
         String name1 = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "no value");//"No name defined" is the default value.
         String name2 = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "no value");//"No name defined" is the default value.
 
-        if (!name1.equals("no value") && !name1.equals("") && !name2.equals("no value") && !name2.equals("")){
+        if (!name1.equals("no value") && !name1.equals("") && !name2.equals("no value") && !name2.equals("")) {
 
 
-
-            userNameTextView.setText(name1+" "+name2);
+            userNameTextView.setText(name1 + " " + name2);
 
         } else {
 
-           Comman.showErrorToast(RequestLoanActivity.this,"Error getting user name");
+            Comman.showErrorToast(RequestLoanActivity.this, "Error getting user name");
 
         }
 
@@ -197,6 +205,12 @@ public class RequestLoanActivity extends AppCompatActivity {
         uploadPDF(displayName, pdffile);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(),HomeActivityDrawar.class));
+        finish();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -345,7 +359,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                                     rQueue.getCache().clear();
                                     try {
                                         JSONObject jsonObject = new JSONObject(new String(response.data));
-                                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                      Comman.showDefaultToast(RequestLoanActivity.this, jsonObject.getString("message"));
 
                                         jsonObject.toString().replace("\\\\", "");
 
@@ -362,6 +376,9 @@ public class RequestLoanActivity extends AppCompatActivity {
 //                                    }
 
 
+                                        } else {
+                                            catLoadingView.dismiss();
+
                                         }
                                     } catch (JSONException e) {
                                         Comman.showErrorToast(RequestLoanActivity.this, "error is " + e.getMessage());
@@ -372,7 +389,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Comman.showErrorToast(RequestLoanActivity.this, "error is2 " + error.getMessage());
+                                    Comman.showErrorToast(RequestLoanActivity.this, "error is 2 " + error.getMessage());
                                     catLoadingView.dismiss();
                                 }
                             }) {
@@ -389,15 +406,16 @@ public class RequestLoanActivity extends AppCompatActivity {
 
                             SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
                             String email = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[7], "no value");//"No name defined" is the default value.
+                            String userid = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
-                            if (!email.equals("no value") && !email.equals("") ){
+                            String userimgurl = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[11], "no value");//"No name defined" is the default value.
 
-
+                            if (!email.equals("no value") && !email.equals("") && !userid.equals("no value") && !userid.equals("") && !userimgurl.equals("no value") && !userimgurl.equals("")) {
 
 
                             } else {
 
-                                Comman.showErrorToast(RequestLoanActivity.this,"Error getting email");
+                                Comman.showErrorToast(RequestLoanActivity.this, "Error getting email");
 
                             }
 
@@ -405,13 +423,16 @@ public class RequestLoanActivity extends AppCompatActivity {
                             Map<String, String> params = new HashMap<>();
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[0], textViewTextView.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[1], userNameTextView.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[2], enterAmountEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[3], purposeEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], collateralEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], marketValueEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], dueDateTextView.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[2], userimgurl);
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[3], enterAmountEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], purposeEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], dueDateTextView.getText().toString());
 
                             params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[7], loantypeIntent);
+                            params.put("user_id", userid);
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], pdfname.get(0));
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[9], pdfname.get(0));
 
@@ -475,16 +496,16 @@ public class RequestLoanActivity extends AppCompatActivity {
         Button btn_dialog_update_profile;
 
 
-        edtVehicleID = (EditText) dialog.findViewById(R.id.edtVehicleID);
-        edtOwnerID = (EditText) dialog.findViewById(R.id.edtOwnerID);
-        edtInsurance = (EditText) dialog.findViewById(R.id.edtInsurance);
+        edtVehicleID = dialog.findViewById(R.id.edtVehicleID);
+        edtOwnerID = dialog.findViewById(R.id.edtOwnerID);
+        edtInsurance = dialog.findViewById(R.id.edtInsurance);
 
-        attach_Vehicle_ID = (ImageView) dialog.findViewById(R.id.attach_Vehicle_ID);
-        attach_Owner_ID = (ImageView) dialog.findViewById(R.id.attach_Owner_ID);
-        attach_Insurance = (ImageView) dialog.findViewById(R.id.attach_Insurance);
+        attach_Vehicle_ID = dialog.findViewById(R.id.attach_Vehicle_ID);
+        attach_Owner_ID = dialog.findViewById(R.id.attach_Owner_ID);
+        attach_Insurance = dialog.findViewById(R.id.attach_Insurance);
 
 
-        btn_dialog_update_profile = (Button) dialog.findViewById(R.id.btn_dialog_update_profile);
+        btn_dialog_update_profile = dialog.findViewById(R.id.btn_dialog_update_profile);
 
 
         attach_Vehicle_ID.setOnClickListener(new View.OnClickListener() {

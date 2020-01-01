@@ -13,11 +13,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.core.view.animation.PathInterpolatorCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.animation.PathInterpolatorCompat;
 
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
@@ -78,9 +79,9 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
                 String name = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
-                if (!name.equals("no value") && !name.equals("")){
+                if (!name.equals("no value") && !name.equals("")) {
 
-                    startActivity(new Intent(getApplicationContext(), HomeActivityActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
                     finish();
 
                 } else {
@@ -89,8 +90,6 @@ public class SplashActivity extends AppCompatActivity {
                     finish();
 
                 }
-
-
 
 
             }

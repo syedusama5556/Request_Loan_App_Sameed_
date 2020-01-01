@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Comman {
 
     //public static String START_URL = "http://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.0.101/android/loanapp/";
+    public static String START_URL = "http://192.168.0.108/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
@@ -29,14 +29,14 @@ public class Comman {
     public static String UPDATE_PROFILE_URL = START_URL + "updateprofile.php";
 
     public static String TABLE_USERS_ATTRIBUTES[] = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
-    public static String TABLE_LOAN_REQUEST_ATTRIBUTES[] = {"loan_request_code", "user_full_name", "loan_amount", "loan_purpose", "loan_collateral", "loan_market_value", "loan_due_date", "loan_doc_vehicle_id_url", "loan_doc_owner_id_url","loan_doc_insurance_url"};
+    public static String TABLE_LOAN_REQUEST_ATTRIBUTES[] = {"loan_request_code", "user_full_name","user_img_url_request", "loan_amount", "loan_purpose", "loan_collateral", "loan_market_value","loan_type", "loan_due_date", "loan_doc_vehicle_id_url", "loan_doc_owner_id_url","loan_doc_insurance_url"};
 
 
 
 
 
     public static String SHAREDPREF_USERDATA = "saveuserinfo";
-    public static String SHAREDPREF_USERDATA_ATTRIBUTES[] = {"user_id","firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
+    public static String SHAREDPREF_USERDATA_ATTRIBUTES[] = {"user_id","firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url","user_img_url_without_start"};
 
 
 
