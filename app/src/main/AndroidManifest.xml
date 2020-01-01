@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.LoanRequestList"
-            android:theme="@style/BorrowerRejectPageActivityTheme">
+            android:theme="@style/loanrequest">
 
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

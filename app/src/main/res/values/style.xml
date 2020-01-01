@@ -7,6 +7,9 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+
+    <style name="loanrequest" parent="Theme.AppCompat.Light.NoActionBar" />
+
     <!-- LoginActivity -->
     <style name="LoginActivityTheme" parent="Theme.AppCompat.NoActionBar" />
 

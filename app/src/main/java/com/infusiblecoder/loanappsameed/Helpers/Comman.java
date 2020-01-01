@@ -1,9 +1,11 @@
 package com.infusiblecoder.loanappsameed.Helpers;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.google.gson.reflect.TypeToken;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
+import com.infusiblecoder.loanappsameed.activity.RequestLoanActivity;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.lang.reflect.Type;
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 public class Comman {
 
     //public static String START_URL = "http://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.0.108/android/loanapp/";
+    public static String START_URL = "http://192.168.10.5/android/loanapp/";
+
 
 
     public static String DB_URL = START_URL + "db.php";
@@ -20,6 +23,7 @@ public class Comman {
     public static String REGISTER_URL = START_URL + "register.php";
 
     public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL +"uploadmultipledoc.php";
+    public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL +"getalldatarequesttable.php";
 
 
 
@@ -50,6 +54,7 @@ public class Comman {
 //                            System.out.println("qwerty data is "+userTableData1.get(0).address);
 
 
+    public static String LOAN_TYPES[] = {"personal loan", "car loan","commercial loan", "travel loan", "house loan", "tax loan", "other loan"};
 
 
 

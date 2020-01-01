@@ -49,7 +49,42 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
         holder.recLoanAmount.setText(requestLoanModelArrayList.get(position).loan_amount);
 
-        holder.recImgLoanType.setImageResource(R.drawable.car);
+
+        switch (requestLoanModelArrayList.get(position).loan_type){
+
+            case "personal loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.ic_person_rec);
+                break;
+            }
+            case "car loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.ic_car_rec);
+                break;
+            }
+            case "commercial loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.commercial_buldings);
+                break;
+            }
+            case "travel loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.plane);
+                break;
+            }
+            case "house loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.home_1);
+                break;
+            }
+            case "tax loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.mask_group_1);
+                break;
+            }
+            case "other loan":{
+                holder.recImgLoanType.setImageResource(R.drawable.ic_help_other_rec);
+                break;
+            }
+            default:{
+                holder.recImgLoanType.setImageResource(R.drawable.ic_help_other_rec);
+                break;
+            }
+        }
 
         holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +100,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
     @Override
     public int getItemCount() {
-        return 6;
+        return requestLoanModelArrayList.size();
     }
 
     class MyRequestViewHolder extends RecyclerView.ViewHolder {

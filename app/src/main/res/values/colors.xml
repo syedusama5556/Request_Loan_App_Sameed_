@@ -2,12 +2,13 @@
 
     <!-- Project level resources -->
     <color name="material_bottom_sheet_title">#0000008A</color>
-    <color name="color_primary">#000000</color>
+    <color name="color_primary">#3B6CCA</color>
     <color name="material_bottom_sheet_item">#000000DE</color>
-    <color name="color_primary_dark">#000000</color>
+    <color name="color_primary_dark">#0047CC</color>
     <color name="color_hint_text">#D0D1D5</color>
     <color name="color_click_overlay">#555555</color>
-    <color name="color_accent">#000000</color>
+    <color name="color_accent">#F32A23</color>
+    <color name="color_white">#FFFFFF</color>
 
 
     <!-- Resources for BorrowerRejectPageActivity -->
