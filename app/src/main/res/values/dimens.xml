@@ -561,7 +561,7 @@
     <dimen name="lender_review_page_activity_dec302019_text_view_margin_end">167dp</dimen>
     <dimen name="lender_review_page_activity_text_view_text_view_text_size">16sp</dimen>
     <dimen name="lender_review_page_activity_ratio_loan_asset_text_view_text_size">16sp</dimen>
-    <dimen name="lender_review_page_activity_market_value_text_view_text_size">16sp</dimen>
+    <dimen name="lender_review_page_activity_market_value_text_view_text_size">18sp</dimen>
     <dimen name="lender_review_page_activity_reject_text_view_text_size">12sp</dimen>
     <dimen name="lender_review_page_activity_review_button_radius">23dp</dimen>
     <dimen name="lender_review_page_activity_review_button_height">47dp</dimen>
