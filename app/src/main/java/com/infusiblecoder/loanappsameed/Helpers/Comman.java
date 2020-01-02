@@ -1,30 +1,21 @@
 package com.infusiblecoder.loanappsameed.Helpers;
 
 import android.content.Context;
-import android.content.Intent;
 
-import com.google.gson.reflect.TypeToken;
-import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
-import com.infusiblecoder.loanappsameed.activity.RequestLoanActivity;
 import com.shashank.sony.fancytoastlib.FancyToast;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 public class Comman {
 
     //public static String START_URL = "http://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.10.5/android/loanapp/";
-
+    public static String START_URL = "http://192.168.0.100/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
 
     public static String REGISTER_URL = START_URL + "register.php";
 
-    public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL +"uploadmultipledoc.php";
-    public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL +"getalldatarequesttable.php";
-
+    public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL + "uploadmultipledoc.php";
+    public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL + "getalldatarequesttable.php";
 
 
     public static String LOGIN_URL = START_URL + "login.php";
@@ -32,17 +23,12 @@ public class Comman {
     public static String CHANGE_PASSWORD_URL = START_URL + "changepassword.php";
     public static String UPDATE_PROFILE_URL = START_URL + "updateprofile.php";
 
-    public static String TABLE_USERS_ATTRIBUTES[] = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
-    public static String TABLE_LOAN_REQUEST_ATTRIBUTES[] = {"loan_request_code", "user_full_name","user_img_url_request", "loan_amount", "loan_purpose", "loan_collateral", "loan_market_value","loan_type", "loan_due_date", "loan_doc_vehicle_id_url", "loan_doc_owner_id_url","loan_doc_insurance_url"};
-
-
-
+    public static String[] TABLE_USERS_ATTRIBUTES = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status", "user_img_url"};
+    public static String[] TABLE_LOAN_REQUEST_ATTRIBUTES = {"loan_request_code", "user_full_name", "user_img_url_request", "loan_amount", "loan_purpose", "loan_collateral", "loan_market_value", "loan_type", "loan_due_date", "loan_doc_vehicle_id_url", "loan_doc_owner_id_url", "loan_doc_insurance_url", "loan_status"};
 
 
     public static String SHAREDPREF_USERDATA = "saveuserinfo";
-    public static String SHAREDPREF_USERDATA_ATTRIBUTES[] = {"user_id","firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status","user_img_url","user_img_url_without_start"};
-
-
+    public static String[] SHAREDPREF_USERDATA_ATTRIBUTES = {"user_id", "firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status", "user_img_url", "user_img_url_without_start"};
 
 
 //    ArrayList<UserTableData> userTableData1 = new ArrayList<>();
@@ -54,8 +40,9 @@ public class Comman {
 //                            System.out.println("qwerty data is "+userTableData1.get(0).address);
 
 
-    public static String LOAN_TYPES[] = {"personal loan", "car loan","commercial loan", "travel loan", "house loan", "tax loan", "other loan"};
+    public static String[] LOAN_TYPES = {"personal loan", "car loan", "commercial loan", "travel loan", "house loan", "tax loan", "other loan"};
 
+    public static String[] LOAN_Status = {"pending", "in review", "rejected", "approved"};
 
 
     public static void showErrorToast(Context context, String txt) {

@@ -22,6 +22,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.bumptech.glide.Glide;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.material.navigation.NavigationView;
+import com.infusiblecoder.loanappsameed.BuildConfig;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -72,6 +73,48 @@ public class HomeActivityDrawar extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
 
+                    case R.id.nav_profile: {
+
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        finish();
+                        break;
+                    }
+                    case R.id.nav_loan_request_list: {
+
+                        startActivity(new Intent(getApplicationContext(), LoanRequestList.class));
+                        finish();
+                        break;
+                    }
+                    case R.id.nav_loan_request_history: {
+
+
+                        break;
+                    }
+
+
+                    case R.id.nav_share: {
+
+                        try {
+                            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                            shareIntent.setType("text/plain");
+                            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                            String shareMessage = "\nLet me recommend you this application\n\n";
+                            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                            startActivity(Intent.createChooser(shareIntent, "choose one"));
+                        } catch (Exception e) {
+                            //e.toString();
+                        }
+
+                        break;
+                    }
+                    case R.id.nav_send: {
+
+
+                        break;
+                    }
+
+
                 }
 
 
@@ -87,8 +130,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_profile, R.id.nav_loan_request_list, R.id.nav_loan_request_history,
+                R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
 

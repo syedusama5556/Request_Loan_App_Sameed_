@@ -5,21 +5,18 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_pin_black_24dp"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_loan_request_history"
             android:icon="@drawable/ic_beenhere_black_24dp"
-            android:title="Request Loan" />
+            android:title="Request History" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_loan_request_list"
             android:icon="@drawable/ic_list_black_24dp"
             android:title="Loan Request List" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="tools" />
+
     </group>
 
     <item android:title="Communicate">
@@ -27,11 +24,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="share" />
+                android:title="Share" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="send" />
+                android:title="Send Feedback" />
         </menu>
     </item>
 

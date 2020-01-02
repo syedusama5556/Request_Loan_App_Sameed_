@@ -23,7 +23,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -112,7 +111,6 @@ public class RequestLoanActivity extends AppCompatActivity {
     private void init() {
 
         catLoadingView = new CatLoadingView();
-
 
 
         loan_type_txt = findViewById(R.id.loan_type_txt);
@@ -208,7 +206,7 @@ public class RequestLoanActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(),HomeActivityDrawar.class));
+        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
         finish();
     }
 
@@ -359,7 +357,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                                     rQueue.getCache().clear();
                                     try {
                                         JSONObject jsonObject = new JSONObject(new String(response.data));
-                                      Comman.showDefaultToast(RequestLoanActivity.this, jsonObject.getString("message"));
+                                        Comman.showDefaultToast(RequestLoanActivity.this, jsonObject.getString("message"));
 
                                         jsonObject.toString().replace("\\\\", "");
 
@@ -429,6 +427,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], dueDateTextView.getText().toString());
+                            params.put("loan_status", Comman.LOAN_Status[0]);
 
                             params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[7], loantypeIntent);

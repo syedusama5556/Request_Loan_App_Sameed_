@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.R;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView ricardo_image_view;
+    CircularImageView ricardo_image_view;
     private TextView ricardoJosephTextView;
     private TextView ricardojosephGmailTextView;
     private ImageButton editButton;
@@ -106,6 +106,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         loadAllData();
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+        finish();
     }
 
     public void loadAllData() {

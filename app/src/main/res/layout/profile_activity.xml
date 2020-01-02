@@ -83,36 +83,37 @@
             app:layout_constraintHorizontal_weight="0.37"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ricardo_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/ricardo_image_view_layout"
             tools:layout_editor_absoluteX="106dp"
             tools:layout_editor_absoluteY="130dp" />
 
 
-
-
-        <ImageView
-            android:id="@+id/ricardo_image_view"
+        <LinearLayout
+            android:id="@+id/ricardo_image_view_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/profile_activity_ricardo_image_view_margin_start"
             android:layout_marginTop="@dimen/profile_activity_ricardo_image_view_margin_top"
             android:layout_marginEnd="@dimen/profile_activity_ricardo_image_view_margin_end"
+            android:orientation="vertical"
             android:scaleType="center"
             app:layout_constraintHorizontal_weight="0.27"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="33dp"
-            android:src="@drawable/ricardo"/>
-<!--            app:civ_border_color="#3f51b5"-->
-<!--            app:civ_border_width="4dp"-->
-<!--            app:civ_shadow="true"-->
-<!--            app:civ_shadow_radius="10"-->
-<!--            app:civ_shadow_color="#3f51b5"-->
+            tools:layout_editor_absoluteY="33dp">
 
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/ricardo_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ricardo"
+                app:civ_border_color="#3f51b5"
+                app:civ_border_width="2dp"
+               />
 
-
+        </LinearLayout>
 
 
         <TextView

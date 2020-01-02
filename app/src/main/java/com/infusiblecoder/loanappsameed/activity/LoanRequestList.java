@@ -69,7 +69,6 @@ public class LoanRequestList extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
-
                         Gson gson = new Gson();
                         RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
 
