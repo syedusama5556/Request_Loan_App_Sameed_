@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -72,6 +73,7 @@ public class LoanRequestList extends AppCompatActivity {
                         Gson gson = new Gson();
                         RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
 
+
                         requestLoanModelArrayList.add(userTableData);
                         requestListShowAdapter.notifyDataSetChanged();
 
@@ -88,7 +90,7 @@ public class LoanRequestList extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                Comman.showErrorToast(getApplicationContext(), "Error check your internet connection");
             }
         }) {
             @Override
@@ -100,6 +102,11 @@ public class LoanRequestList extends AppCompatActivity {
                 return params;
             }
         };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
 
 

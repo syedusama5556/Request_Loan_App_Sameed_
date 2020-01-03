@@ -5,27 +5,48 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.MenuItemCompat;
 import androidx.core.view.animation.PathInterpolatorCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.infusiblecoder.loanappsameed.BuildConfig;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
+import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
+import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivityDrawar extends AppCompatActivity {
 
@@ -49,6 +70,9 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private TextView username;
     private TextView userEmail;
     private CircularImageView userprofilePicture;
+    private TextView notifications;
+
+    int rowsCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +151,14 @@ public class HomeActivityDrawar extends AppCompatActivity {
         userEmail = navigationView.getHeaderView(0).findViewById(R.id.email_test);
         userprofilePicture = navigationView.getHeaderView(0).findViewById(R.id.imageView_test);
 
+
+
+
+//These lines should be added in the OnCreate() of your main activity
+        notifications=(TextView) MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.nav_notifications_list));
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -141,6 +173,99 @@ public class HomeActivityDrawar extends AppCompatActivity {
         loadAllData();
 
     }
+
+    private void initializeCountDrawer() {
+        //Gravity property aligns the text
+        notifications.setGravity(Gravity.CENTER_VERTICAL);
+        notifications.setTypeface(null, Typeface.BOLD);
+        notifications.setTextColor(getResources().getColor(R.color.color_accent));
+
+
+        notifications.setText(""+rowsCount);
+
+    }
+
+
+    public void getRowsCountRequests() {
+
+        SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+        String userid = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+
+        System.out.println("work herre 1");
+
+        if (!userid.equals("") && !userid.equals("no value")) {
+
+            System.out.println("work herre 2");
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_UNSEEN_REQUESTS_TABLE_DATA_URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    System.out.println("work herre 3");
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(0);
+                        String code = jsonObject.getString("code");
+
+                        System.out.println("work herre 7"+code);
+                        if (code.equals("failed")) {
+                            System.out.println("work herre 4");
+
+                            Comman.showErrorToast(HomeActivityDrawar.this, "Failed to get notifications error is " + jsonObject.getString("message"));
+
+
+                        } else {
+                            System.out.println("work herre 5");
+                          //  Toast.makeText(HomeActivityDrawar.this, "res is "+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                            rowsCount = Integer.parseInt(jsonObject.getString("message"));
+
+                            initializeCountDrawer();
+
+                        }
+                    } catch (JSONException e) {
+
+                        System.out.println("work herre 6"+e.getMessage());
+
+                        Comman.showErrorToast(HomeActivityDrawar.this, "Error is " + e.getMessage());
+
+                    }
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Comman.showErrorToast(HomeActivityDrawar.this, "error is " + error);
+
+
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    System.out.println("work herre 8");
+
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", userid);
+
+                    return params;
+                }
+            };
+            VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
+
+
+        } else {
+            System.out.println("work herre 9");
+
+            Comman.showErrorToast(HomeActivityDrawar.this, "Enter Missing Fields");
+        }
+
+
+    }
+
+
 
 
     public void loadAllData() {
@@ -172,6 +297,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
             Comman.showErrorToast(HomeActivityDrawar.this, "Error");
         }
 
+        getRowsCountRequests();
 
     }
 
