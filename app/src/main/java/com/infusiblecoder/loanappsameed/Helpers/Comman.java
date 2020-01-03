@@ -17,6 +17,8 @@ public class Comman {
     public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL + "uploadmultipledoc.php";
     public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL + "getalldatarequesttable.php";
     public static String GET_ALL_UNSEEN_REQUESTS_TABLE_DATA_URL = START_URL + "getallunseeenuserrequests.php";
+    public static String GET_ALL_NOTIFICATIONS_REQUESTS_TABLE_URL = START_URL + "getallallnotificationsfromrequeststable.php";
+
 
     public static String SEND_REQUEST_URL = START_URL + "sendrequesttoperson.php";
 

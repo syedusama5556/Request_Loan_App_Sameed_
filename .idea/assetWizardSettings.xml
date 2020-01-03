@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_notifications_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\pc\Downloads\shop.svg" />
+                            <entry key="outputName" value="ic_message_closed_envelope" />
+                            <entry key="sourceFile" value="C:\Users\pc\Downloads\message-closed-envelope.svg" />
                           </map>
                         </option>
                       </PersistentState>

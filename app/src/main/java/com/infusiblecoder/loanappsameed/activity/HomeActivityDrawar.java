@@ -115,6 +115,12 @@ public class HomeActivityDrawar extends AppCompatActivity {
                         break;
                     }
 
+                    case R.id.nav_notifications_list: {
+
+                        startActivity(new Intent(getApplicationContext(), NotificationsListUserRequests.class));
+                        finish();
+                        break;
+                    }
 
                     case R.id.nav_share: {
 
