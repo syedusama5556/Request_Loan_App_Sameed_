@@ -59,7 +59,9 @@ public class SignupActivity extends AppCompatActivity {
     int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            android.Manifest.permission.CALL_PHONE,
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
     private Button alreadyAmemberLoginButton;
     private Button signupbtnButton;
@@ -336,6 +338,8 @@ public class SignupActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     Bitmap bitmapImage = (Bitmap) data.getExtras().get("data");
 
+                    user_img_url = bitmapImage;
+                    image_view_profile.setImageBitmap(user_img_url);
 
                 }
                 break;

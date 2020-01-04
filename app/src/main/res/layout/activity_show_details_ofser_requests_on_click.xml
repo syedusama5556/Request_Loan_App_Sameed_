@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.ShowDetailsOfserRequestsOnClick">
 
 
@@ -18,30 +19,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="@string/lender_review_page_activity_loan_amount_text_view_text"
+        android:layout_marginTop="10dp"
+        android:text="Request Sender Information"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/lender_review_page_activity_loan_amount_text_view_text_size" />
 
-    <TextView
-        android:id="@+id/usd_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/user_img_view_onclick"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/lender_review_page_activity_usd_text_view_text_size"
-        tools:text="@string/lender_review_page_activity_usd_text_view_text" />
+        android:layout_marginTop="55dp"
+        app:civ_border_width="1dp"
+        android:src="@drawable/ic_launcher_background"
+        />
 
 
     <TextView
-        android:id="@+id/review_request_text_view"
-        android:layout_width="118dp"
-        android:layout_height="19dp"
+        android:id="@+id/review_request_request_sender_user_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="140dp"
-        android:text="@string/lender_review_page_activity_review_request_text_view_text"
+        android:text="request_sender_user_name"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/lender_review_page_activity_review_request_text_view_text_size" />
 
@@ -87,107 +89,22 @@
         android:orientation="vertical"
         android:padding="5dp">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
             android:layout_marginTop="@dimen/lender_review_page_activity_borrower_text_view_margin_top"
             android:gravity="start"
-            android:text="@string/lender_review_page_activity_borrower_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
-
-        <TextView
-            android:id="@+id/borrower_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_borrower_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_purpose_of_loan_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
-
-        <TextView
-            android:id="@+id/purpose_of_loan_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_purpose_of_loan_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_collateral_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
-
-        <TextView
-            android:id="@+id/collateral_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_collateral_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
-
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_market_value_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
-
-        <TextView
-            android:id="@+id/market_value_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_market_value_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
             android:text="Loan Request ID"
             android:textColor="#4B4B4B"
             android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
         <TextView
-            android:id="@+id/loan_request_id_text_view"
+            android:id="@+id/loan_request_code_onclick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
             android:gravity="start"
             android:text="Loan Request ID"
             android:textColor="#BCBCBC"
@@ -201,20 +118,69 @@
             android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
             android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
             android:gravity="start"
-            android:text="@string/lender_review_page_activity_due_date_text_view_text"
+            android:text="Phone"
             android:textColor="#4B4B4B"
             android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
         <TextView
-            android:id="@+id/due_date_text_view"
+            android:id="@+id/phone_onclick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
             android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
             android:gravity="start"
-            android:text="@string/lender_review_page_activity_due_date_text_view_text"
+            android:text="432234"
             android:textColor="#BCBCBC"
             android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+            android:gravity="start"
+            android:text="Email"
+            android:textColor="#4B4B4B"
+            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+
+        <TextView
+            android:id="@+id/email_onclick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+            android:gravity="start"
+            android:text="recipient@example.com"
+            android:textColor="#BCBCBC"
+            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
+            android:gravity="start"
+            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+
+            android:text="Request Time Stamp"
+            android:textColor="#4B4B4B"
+            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+
+        <TextView
+            android:id="@+id/timestamp_onclick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+
+            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
+            android:gravity="start"
+            android:text="Request Time Stamp"
+            android:textColor="#BCBCBC"
+            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
 
     </LinearLayout>
 
@@ -235,19 +201,19 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/btn_sendrequest"
+                android:id="@+id/btn_call_user"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/lender_review_page_activity_accept_button_ripple"
                 android:padding="10dp"
-                android:src="@drawable/path_4" />
+                android:src="@drawable/ic_phone_black_green_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Send Request" />
+                android:text="Call" />
         </LinearLayout>
 
         <LinearLayout
@@ -257,13 +223,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/btn_cancel"
+                android:id="@+id/btn_send_mail_user"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/lender_review_page_activity_reject_button_ripple"
                 android:padding="10dp"
-                android:src="@drawable/ic_clear_black_6565"
+                android:src="@drawable/ic_mail_black_red_24dp"
 
                 />
 
@@ -272,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Cancel Request" />
+                android:text="Send Email" />
         </LinearLayout>
     </LinearLayout>
 

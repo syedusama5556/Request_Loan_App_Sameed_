@@ -3,8 +3,10 @@ package com.infusiblecoder.loanappsameed.activity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.core.view.animation.PathInterpolatorCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -68,10 +71,34 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private CircularImageView userprofilePicture;
     private TextView notifications;
 
+
+
+    int PERMISSION_ALL = 1;
+    String[] PERMISSIONS = {
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CALL_PHONE,
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_drawar);
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -147,6 +174,10 @@ public class HomeActivityDrawar extends AppCompatActivity {
         });
 
 
+        if (!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+
         username = navigationView.getHeaderView(0).findViewById(R.id.user_name_text_view_test);
         userEmail = navigationView.getHeaderView(0).findViewById(R.id.email_test);
         userprofilePicture = navigationView.getHeaderView(0).findViewById(R.id.imageView_test);
@@ -207,9 +238,9 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
                         System.out.println("work herre 7" + code);
                         if (code.equals("failed")) {
-                            System.out.println("work herre 4" +"Failed to get notifications error is " + jsonObject.getString("message"));
+                            System.out.println("work herre 4" + "Failed to get notifications error is " + jsonObject.getString("message"));
 
-                           // Comman.showErrorToast(HomeActivityDrawar.this, "Failed to get notifications error is " + jsonObject.getString("message"));
+                            // Comman.showErrorToast(HomeActivityDrawar.this, "Failed to get notifications error is " + jsonObject.getString("message"));
 
 
                         } else {

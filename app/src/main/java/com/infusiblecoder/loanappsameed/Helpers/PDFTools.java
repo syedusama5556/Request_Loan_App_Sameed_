@@ -38,7 +38,7 @@ public class PDFTools {
         this.downloadUrl = downloadUrl;
 
 
-        downloadFileName = downloadUrl.substring(downloadUrl.lastIndexOf('/'), downloadUrl.length());//Create file name by picking download file name from URL
+        downloadFileName = downloadUrl.substring(downloadUrl.lastIndexOf('/'));//Create file name by picking download file name from URL
         Log.e(TAG, downloadFileName);
 
         //Start Downloading Task
@@ -193,11 +193,8 @@ public class PDFTools {
     public class CheckForSDCard {
         //Check If SD Card is present or not method
         public boolean isSDCardPresent() {
-            if (Environment.getExternalStorageState().equals(
-                    Environment.MEDIA_MOUNTED)) {
-                return true;
-            }
-            return false;
+            return Environment.getExternalStorageState().equals(
+                    Environment.MEDIA_MOUNTED);
         }
     }
 

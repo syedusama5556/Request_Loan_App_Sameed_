@@ -1,5 +1,6 @@
 package com.infusiblecoder.loanappsameed.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -44,9 +45,9 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE,
-            android.Manifest.permission.READ_PHONE_STATE
-
+            android.Manifest.permission.CALL_PHONE,
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
     TextView borrower_text_view, loanAmountTextView, purposeOfLoanTextView, collateralTextView, marketValueTextView, loanRequestIdTextView, dueDateTextView;
     private ImageView btnSendrequest;
@@ -85,22 +86,22 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
         catLoadingView = new CatLoadingView();
 
-        btnSendrequest = (ImageView) findViewById(R.id.btn_sendrequest);
-        btnCancel = (ImageView) findViewById(R.id.btn_cancel);
+        btnSendrequest = findViewById(R.id.btn_sendrequest);
+        btnCancel = findViewById(R.id.btn_cancel);
 
-        borrower_text_view = (TextView) findViewById(R.id.borrower_text_view);
-        loanAmountTextView = (TextView) findViewById(R.id.usd_text_view);
-        purposeOfLoanTextView = (TextView) findViewById(R.id.purpose_of_loan_text_view);
-        collateralTextView = (TextView) findViewById(R.id.collateral_text_view);
-        marketValueTextView = (TextView) findViewById(R.id.market_value_text_view);
-        loanRequestIdTextView = (TextView) findViewById(R.id.loan_request_id_text_view);
-        dueDateTextView = (TextView) findViewById(R.id.due_date_text_view);
+        borrower_text_view = findViewById(R.id.borrower_text_view);
+        loanAmountTextView = findViewById(R.id.usd_text_view);
+        purposeOfLoanTextView = findViewById(R.id.purpose_of_loan_text_view);
+        collateralTextView = findViewById(R.id.collateral_text_view);
+        marketValueTextView = findViewById(R.id.market_value_text_view);
+        loanRequestIdTextView = findViewById(R.id.loan_request_id_text_view);
+        dueDateTextView = findViewById(R.id.due_date_text_view);
 
-        verificationStatusImageView = (ImageView) findViewById(R.id.path_image_view);
+        verificationStatusImageView = findViewById(R.id.path_image_view);
 
-        btnSeevehicalDoc = (LinearLayout) findViewById(R.id.btn_seevehical_doc);
-        btnSeeownerIdDoc = (LinearLayout) findViewById(R.id.btn_seeowner_id_doc);
-        btnSeeinsuranceDoc = (LinearLayout) findViewById(R.id.btn_seeinsurance_doc);
+        btnSeevehicalDoc = findViewById(R.id.btn_seevehical_doc);
+        btnSeeownerIdDoc = findViewById(R.id.btn_seeowner_id_doc);
+        btnSeeinsuranceDoc = findViewById(R.id.btn_seeinsurance_doc);
 
         borrower_text_view.setText(requestLoanModeldata.user_full_name);
         loanAmountTextView.setText("$" + requestLoanModeldata.loan_amount + " USD");

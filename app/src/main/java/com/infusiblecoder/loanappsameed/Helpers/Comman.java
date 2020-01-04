@@ -16,12 +16,11 @@ public class Comman {
 
     public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL + "uploadmultipledoc.php";
 
+
     public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL + "getalldatarequesttable.php";
     public static String GET_ALL_UNSEEN_REQUESTS_TABLE_DATA_URL = START_URL + "getallunseeenuserrequests.php";
     public static String GET_ALL_NOTIFICATIONS_REQUESTS_TABLE_URL = START_URL + "getallallnotificationsfromrequeststable.php";
     public static String GET_ALL_DATA_FROM_MULTIPLE_TABLE_REQUESTS_TABLE_URL = START_URL + "getdatafrommultipletableforonclickrequest.php";
-
-
 
 
     public static String SEND_REQUEST_URL = START_URL + "sendrequesttoperson.php";
@@ -29,7 +28,9 @@ public class Comman {
     public static String LOGIN_URL = START_URL + "login.php";
     public static String PROFILE_PAGE_URL = START_URL + "getdataforsingleuser.php";
     public static String CHANGE_PASSWORD_URL = START_URL + "changepassword.php";
+
     public static String UPDATE_PROFILE_URL = START_URL + "updateprofile.php";
+    public static String UPDATE_updatenotificationseentotrue_URL = START_URL + "updatenotificationseentotrue.php";
 
 
     public static String[] TABLE_USERS_ATTRIBUTES = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status", "user_img_url"};

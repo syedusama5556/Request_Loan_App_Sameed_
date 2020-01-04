@@ -2,6 +2,8 @@ package com.infusiblecoder.loanappsameed.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,28 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.infusiblecoder.loanappsameed.Helpers.Comman;
+import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserRequestModel;
 import com.infusiblecoder.loanappsameed.R;
+import com.infusiblecoder.loanappsameed.activity.ProfileActivity;
 import com.infusiblecoder.loanappsameed.activity.ShowDetailsOfRequestSelected;
+import com.infusiblecoder.loanappsameed.activity.ShowDetailsOfserRequestsOnClick;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class NotificationsRequestListAdapter extends RecyclerView.Adapter<NotificationsRequestListAdapter.MyRequestViewHolder> {
@@ -57,10 +76,98 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
-                UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
-                i.putExtra("mynotificationsdata", userRequestModel);
-                context.startActivity(i);
+
+
+                if (!TextUtils.isEmpty(userRequestModelArrayList.get(position).request_reciver_user_id) ) {
+
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationseentotrue_URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+
+                                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                String code = jsonObject.getString("code");
+
+                                System.out.println("mysre +" + jsonObject);
+
+                                if (code.equals("failed")) {
+
+
+                                  //  Comman.showErrorToast(context, "Failed " + jsonObject.getString("message"));
+
+
+
+                                    Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                    UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                    i.putExtra("mynotificationsdata", userRequestModel);
+                                    context.startActivity(i);
+
+                                } else {
+
+
+
+
+                                   // Comman.showSucdessToast(context, "" + jsonObject.getString("message"));
+
+
+                                    Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                    UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                    i.putExtra("mynotificationsdata", userRequestModel);
+                                    context.startActivity(i);
+
+
+
+
+                                }
+
+                            } catch (JSONException e) {
+                                Comman.showErrorToast(context, "error is " + e.getMessage());
+
+                            }
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Comman.showErrorToast(context, "error is " + error);
+
+
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                            String id = userRequestModelArrayList.get(position).request_id;//"No name defined" is the default value.
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("request_id", id);
+
+                            return params;
+
+                        }
+                    };
+
+                    VollySingltonClass.getmInstance(context).addToRequsetque(stringRequest);
+
+
+                } else {
+                    Comman.showErrorToast(context, "Enter Missing Fields");
+                }
+
+
+
+
+
+
+
+
 
 
             }
@@ -88,12 +195,12 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
         public MyRequestViewHolder(@NonNull View view) {
             super(view);
 
-            recCardBtn = (CardView) view.findViewById(R.id.rec_card_btn);
-            rec_img_message = (ImageView) view.findViewById(R.id.rec_img_message);
-            recSenderUsername = (TextView) view.findViewById(R.id.rec_sender_username);
-            recLoanRequestCode = (TextView) view.findViewById(R.id.rec_loan_request_code);
-            recTimestampNotificationRequests = (TextView) view.findViewById(R.id.rec_timestamp_notification_requests);
-            recBtnShowmoreNotificationRequests = (TextView) view.findViewById(R.id.rec_btn_showmore_notification_requests);
+            recCardBtn = view.findViewById(R.id.rec_card_btn);
+            rec_img_message = view.findViewById(R.id.rec_img_message);
+            recSenderUsername = view.findViewById(R.id.rec_sender_username);
+            recLoanRequestCode = view.findViewById(R.id.rec_loan_request_code);
+            recTimestampNotificationRequests = view.findViewById(R.id.rec_timestamp_notification_requests);
+            recBtnShowmoreNotificationRequests = view.findViewById(R.id.rec_btn_showmore_notification_requests);
 
         }
     }
