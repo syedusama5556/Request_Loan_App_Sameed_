@@ -132,7 +132,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
                     }
                     case R.id.nav_loan_request_history: {
 
-
+                        startActivity(new Intent(getApplicationContext(), LoanRequestHistory.class));
+                        finish();
                         break;
                     }
 

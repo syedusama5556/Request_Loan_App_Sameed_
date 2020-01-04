@@ -15,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:theme="@style/loanrequest"
-            android:name=".activity.ShowDetailsOfserRequestsOnClick"></activity>
+            android:name=".activity.LoanRequestHistory"
+            android:theme="@style/loanrequesthistory"></activity>
+        <activity
+            android:name=".activity.ShowDetailsOfserRequestsOnClick"
+            android:theme="@style/loanrequest" />
         <activity
             android:name=".activity.NotificationsListUserRequests"
             android:theme="@style/loanrequest" />
