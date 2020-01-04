@@ -13,9 +13,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.ShowDetailsOfserRequestsOnClick"></activity>
         <activity
-            android:theme="@style/loanrequest"
-            android:name=".activity.NotificationsListUserRequests"></activity>
+            android:name=".activity.NotificationsListUserRequests"
+            android:theme="@style/loanrequest" />
 
         <provider
             android:name=".Helpers.GenericFileProvider"

@@ -12,22 +12,31 @@
 
 
     <!-- Resources for BorrowerRejectPageActivity -->
-    <color name="borrower_reject_page_activity_requested_amount_for_text_view_text_color">#FFFFFF</color>
+    <color name="borrower_reject_page_activity_requested_amount_for_text_view_text_color">#FFFFFF
+    </color>
     <color name="borrower_reject_page_activity_usd_text_view_text_color">#3C70DA</color>
     <color name="borrower_reject_page_activity_cancel_button_text_color">#F32A23</color>
     <color name="borrower_reject_page_activity_loan_request_text_view_text_color">#FFFFFF</color>
     <color name="borrower_reject_page_activity_repost_button_text_color">#2AC773</color>
     <color name="borrower_reject_page_activity_counter_button_text_color">#3C70DA</color>
-    <color name="borrower_reject_page_activity_no_loan_available_text_view_text_color">#FFFFFF</color>
-    <color name="borrower_reject_page_activity_rectangle160_constraint_layout_background_color">#D50000</color>
+    <color name="borrower_reject_page_activity_no_loan_available_text_view_text_color">#FFFFFF
+    </color>
+    <color name="borrower_reject_page_activity_rectangle160_constraint_layout_background_color">
+        #D50000
+    </color>
     <color name="borrower_reject_page_activity_counter_button_background_color">#B1CAFF</color>
-    <color name="borrower_reject_page_activity_constraint_layout_constraint_layout_background_color">#FFFFFF</color>
+    <color name="borrower_reject_page_activity_constraint_layout_constraint_layout_background_color">
+        #FFFFFF
+    </color>
 
     <!-- Resources for LenderReviewPageActivity -->
-    <color name="lender_review_page_activity_constraint_layout_constraint_layout_background_color">#FFFFFF</color>
+    <color name="lender_review_page_activity_constraint_layout_constraint_layout_background_color">
+        #FFFFFF
+    </color>
     <color name="lender_review_page_activity_reject_button_text_color">#FD1515</color>
     <color name="lender_review_page_activity_accept_button_text_color">#000000</color>
-    <color name="lender_review_page_activity_ellipse14_constraint_layout_border_color">#4BC684</color>
+    <color name="lender_review_page_activity_ellipse14_constraint_layout_border_color">#4BC684
+    </color>
     <color name="lender_review_page_activity_reject_button_background_color">#66FF3731</color>
     <color name="lender_review_page_activity_reject_text_view_text_color">#696969</color>
     <color name="lender_review_page_activity_accept_button_background_color">#6608C86A</color>

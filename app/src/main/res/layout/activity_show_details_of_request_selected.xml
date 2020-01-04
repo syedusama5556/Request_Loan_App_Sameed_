@@ -92,8 +92,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
             android:layout_marginTop="5dp"
+            android:orientation="vertical"
             android:padding="5dp">
 
             <ImageView
@@ -117,8 +117,8 @@
             android:id="@+id/btn_seeowner_id_doc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -145,8 +145,8 @@
             android:id="@+id/btn_seeinsurance_doc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             android:padding="5dp">
 

@@ -32,8 +32,8 @@
     <style name="HomeActivityActivityTheme" parent="Theme.AppCompat.NoActionBar" />
 
     <!-- BorrowerRejectPageActivity -->
-    <style name="BorrowerRejectPageActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+    <style name="BorrowerRejectPageActivityTheme" parent="Theme.AppCompat.NoActionBar" />
 
     <!-- LenderReviewPageActivity -->
-    <style name="LenderReviewPageActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+    <style name="LenderReviewPageActivityTheme" parent="Theme.AppCompat.NoActionBar" />
 </resources>

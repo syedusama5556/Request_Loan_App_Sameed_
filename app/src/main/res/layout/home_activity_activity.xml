@@ -33,17 +33,17 @@
             app:layout_constraintVertical_weight="0.03" />
 
         <ImageView
-            android:onClick="logout_Task"
-            android:clickable="true"
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="logout_Task"
             android:src="@drawable/ic_logout_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.993"
             app:layout_constraintStart_toEndOf="@+id/choose_aloan_type_text_view"
-            app:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/personalloan_constraint_layout"

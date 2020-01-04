@@ -2,19 +2,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="290dp"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="10dp">
 
 
-
-
-<!--    //        "firstname";-->
-<!--    //       "lastname";-->
-<!--    //        "address";-->
-<!--    //        "whatyoupretend";-->
-<!--    //        "fieldofactivity";-->
-<!--    //        "phone";-->
-<!--    //        "email";-->
+    <!--    //        "firstname";-->
+    <!--    //       "lastname";-->
+    <!--    //        "address";-->
+    <!--    //        "whatyoupretend";-->
+    <!--    //        "fieldofactivity";-->
+    <!--    //        "phone";-->
+    <!--    //        "email";-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,98 +21,98 @@
 
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="Old Password"
-            android:text=""
-            android:textSize="20sp"
             android:inputType="textPassword"
+            android:text=""
+            android:textSize="20sp"
 
             />
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edtFirstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="Firstname"
+            android:inputType="text"
             android:text=""
             android:textSize="20sp"
-            android:inputType="text"
 
             />
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edtLastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="Lastname"
+            android:inputType="text"
             android:text=""
             android:textSize="20sp"
-            android:inputType="text"
 
             />
 
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="Address"
+            android:inputType="text"
             android:text=""
             android:textSize="20sp"
-            android:inputType="text"
 
             />
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edtWhatyoupretend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="What You Pretend"
+            android:inputType="text"
             android:text=""
             android:textSize="20sp"
-            android:inputType="text"
 
             />
 
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edtFieldofactivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="Field Of Activity"
+            android:inputType="text"
             android:text=""
             android:textSize="20sp"
-            android:inputType="text"
 
             />
 
 
         <EditText
-            android:layout_marginTop="10dp"
+            android:id="@+id/edtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edtPhone"
+            android:layout_marginTop="10dp"
             android:hint="Phone"
+            android:inputType="phone"
             android:text=""
             android:textSize="20sp"
-            android:inputType="phone"
 
             />
 
         <Button
-            android:layout_marginTop="10dp"
             android:id="@+id/btn_dialog_update_profile"
             style="@android:style/Widget.Holo.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Submit" />
 
     </LinearLayout>

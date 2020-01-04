@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,13 +30,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.infusiblecoder.loanappsameed.BuildConfig;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
-import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -52,6 +47,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
 
     ImageView choose_aloan_type_text_view;
+    int rowsCount = 0;
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
     private ConstraintLayout carloanConstraintLayout;
@@ -71,8 +67,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private TextView userEmail;
     private CircularImageView userprofilePicture;
     private TextView notifications;
-
-    int rowsCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,11 +152,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
         userprofilePicture = navigationView.getHeaderView(0).findViewById(R.id.imageView_test);
 
 
-
-
 //These lines should be added in the OnCreate() of your main activity
-        notifications=(TextView) MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.nav_notifications_list));
-
+        notifications = (TextView) MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.nav_notifications_list));
 
 
         // Passing each menu ID as a set of Ids because each
@@ -187,7 +178,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
         notifications.setTextColor(getResources().getColor(R.color.color_accent));
 
 
-        notifications.setText(""+rowsCount);
+        notifications.setText("" + rowsCount);
 
     }
 
@@ -214,16 +205,16 @@ public class HomeActivityDrawar extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String code = jsonObject.getString("code");
 
-                        System.out.println("work herre 7"+code);
+                        System.out.println("work herre 7" + code);
                         if (code.equals("failed")) {
-                            System.out.println("work herre 4");
+                            System.out.println("work herre 4" +"Failed to get notifications error is " + jsonObject.getString("message"));
 
-                            Comman.showErrorToast(HomeActivityDrawar.this, "Failed to get notifications error is " + jsonObject.getString("message"));
+                           // Comman.showErrorToast(HomeActivityDrawar.this, "Failed to get notifications error is " + jsonObject.getString("message"));
 
 
                         } else {
                             System.out.println("work herre 5");
-                          //  Toast.makeText(HomeActivityDrawar.this, "res is "+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            //  Toast.makeText(HomeActivityDrawar.this, "res is "+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
                             rowsCount = Integer.parseInt(jsonObject.getString("message"));
 
@@ -232,7 +223,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
                         }
                     } catch (JSONException e) {
 
-                        System.out.println("work herre 6"+e.getMessage());
+                        System.out.println("work herre 6" + e.getMessage());
 
                         Comman.showErrorToast(HomeActivityDrawar.this, "Error is " + e.getMessage());
 
@@ -270,8 +261,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
 
     }
-
-
 
 
     public void loadAllData() {

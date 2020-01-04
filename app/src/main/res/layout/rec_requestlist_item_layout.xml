@@ -10,8 +10,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/rec_card_btn"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="110dp">
+        android:layout_height="110dp"
+        android:layout_marginTop="10dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"

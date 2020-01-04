@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoanRequestList">
 
     <TextView
+        android:id="@+id/te_txt"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:id="@+id/te_txt"
-        android:textColor="@color/login_activity_forgot_password_button_text_color"
-        android:text="@string/loan_request_list"
         android:gravity="center_horizontal"
-        />
+        android:text="@string/loan_request_list"
+        android:textColor="@color/login_activity_forgot_password_button_text_color" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_view_request_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/te_txt"
-        android:id="@+id/rec_view_request_list"
-        android:padding="5dp"
-        />
+        android:padding="5dp" />
 </RelativeLayout>

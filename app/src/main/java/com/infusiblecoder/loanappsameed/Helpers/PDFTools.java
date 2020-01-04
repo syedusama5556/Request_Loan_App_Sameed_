@@ -1,19 +1,12 @@
 package com.infusiblecoder.loanappsameed.Helpers;
 
-import android.annotation.TargetApi;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
@@ -28,12 +21,9 @@ import com.infusiblecoder.loanappsameed.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.ExecutionException;
 
 public class PDFTools {
     private static final String TAG = "Download Task";
@@ -74,7 +64,7 @@ public class PDFTools {
             try {
                 if (outputFile != null) {
                     progressDialog.dismiss();
-                    ContextThemeWrapper ctw = new ContextThemeWrapper( context, R.style.AppTheme);
+                    ContextThemeWrapper ctw = new ContextThemeWrapper(context, R.style.AppTheme);
                     final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctw);
                     alertDialogBuilder.setTitle("Document  ");
                     alertDialogBuilder.setMessage("Document Downloaded Successfully ");
@@ -85,7 +75,7 @@ public class PDFTools {
                         }
                     });
 
-                    alertDialogBuilder.setNegativeButton("Open report",new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setNegativeButton("Open report", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             File pdfFile = new File(Environment.getExternalStorageDirectory() + "/LoanAppSammedTemp/" + downloadFileName);  // -> filename = maven.pdf
 
@@ -94,11 +84,11 @@ public class PDFTools {
                             Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
                             pdfIntent.setDataAndType(path, "application/pdf");
                             pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            pdfIntent.addFlags( Intent.FLAG_GRANT_WRITE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION );
+                            pdfIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-                            try{
+                            try {
                                 context.startActivity(pdfIntent);
-                            }catch(ActivityNotFoundException e){
+                            } catch (ActivityNotFoundException e) {
                                 Toast.makeText(context, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
                             }
                         }
