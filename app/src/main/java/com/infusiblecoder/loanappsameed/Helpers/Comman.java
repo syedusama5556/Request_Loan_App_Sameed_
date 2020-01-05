@@ -21,6 +21,9 @@ public class Comman {
     public static String GET_ALL_UNSEEN_REQUESTS_TABLE_DATA_URL = START_URL + "getallunseeenuserrequests.php";
     public static String GET_ALL_NOTIFICATIONS_REQUESTS_TABLE_URL = START_URL + "getallallnotificationsfromrequeststable.php";
     public static String GET_ALL_DATA_FROM_MULTIPLE_TABLE_REQUESTS_TABLE_URL = START_URL + "getdatafrommultipletableforonclickrequest.php";
+    public static String GET_ALL_Sented_REQUEST_TABLE_DATA_URL = START_URL + "getallsentedrequestshistory.php";
+    public static String GET_ALL_Recived_REQUESTS_TABLE_URL = START_URL + "getallallnotificationsfromrequeststable.php";
+
 
 
     public static String SEND_REQUEST_URL = START_URL + "sendrequesttoperson.php";
