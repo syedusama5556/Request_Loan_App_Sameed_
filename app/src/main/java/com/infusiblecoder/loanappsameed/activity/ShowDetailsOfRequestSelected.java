@@ -1,6 +1,5 @@
 package com.infusiblecoder.loanappsameed.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -57,6 +56,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     private LinearLayout btnSeeinsuranceDoc;
     private CatLoadingView catLoadingView;
 
+
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
@@ -85,6 +85,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         }
 
         catLoadingView = new CatLoadingView();
+
 
         btnSendrequest = findViewById(R.id.btn_sendrequest);
         btnCancel = findViewById(R.id.btn_cancel);
@@ -155,6 +156,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
             }
         });
+
 
     }
 

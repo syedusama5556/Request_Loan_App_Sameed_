@@ -2,7 +2,7 @@ package com.infusiblecoder.loanappsameed.ModelClasses;
 
 public class GetAllMultipleTableDataOnClickRequestMODEL {
 
-    public  String request_id,
+    public String request_id,
             loan_request_code,
             request_sender_user_name,
             request_reciver_user_name,

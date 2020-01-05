@@ -44,7 +44,7 @@ public class NotificationsListUserRequests extends AppCompatActivity {
 
         userRequestModelArrayList = new ArrayList<>();
 
-        notificationsRequestListAdapter = new NotificationsRequestListAdapter(NotificationsListUserRequests.this, userRequestModelArrayList);
+        notificationsRequestListAdapter = new NotificationsRequestListAdapter(NotificationsListUserRequests.this, userRequestModelArrayList, "true");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(NotificationsListUserRequests.this));
         recyclerView.setAdapter(notificationsRequestListAdapter);

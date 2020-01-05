@@ -1,14 +1,15 @@
 package com.infusiblecoder.loanappsameed.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.infusiblecoder.loanappsameed.R;
@@ -26,29 +27,30 @@ public class LoanRequestHistory extends AppCompatActivity {
         setContentView(R.layout.activity_loan_request_history);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new LoanRequestHistory.SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
-
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
 
-
-
-
+        finish();
+    }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -59,7 +61,7 @@ public class LoanRequestHistory extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;
-            switch (position){
+            switch (position) {
                 case 0: {
                     fragment = new SentedLoanRequests();
                     break;
@@ -68,7 +70,7 @@ public class LoanRequestHistory extends AppCompatActivity {
                     fragment = new RecivedLoanRequests();
                     break;
                 }
-                default:{
+                default: {
                     Toast.makeText(LoanRequestHistory.this, "Stop!", Toast.LENGTH_SHORT).show();
                 }
 

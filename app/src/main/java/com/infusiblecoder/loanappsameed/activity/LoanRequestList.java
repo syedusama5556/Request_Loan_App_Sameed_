@@ -68,13 +68,18 @@ public class LoanRequestList extends AppCompatActivity {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                        if (jsonObject.getString("code").equals("data_success")) {
 
-                        Gson gson = new Gson();
-                        RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
+                            Gson gson = new Gson();
+                            RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
 
 
-                        requestLoanModelArrayList.add(userTableData);
-                        requestListShowAdapter.notifyDataSetChanged();
+                            requestLoanModelArrayList.add(userTableData);
+                            requestListShowAdapter.notifyDataSetChanged();
+                        } else {
+
+                            Comman.showErrorToast(LoanRequestList.this, "No Data Found");
+                        }
 
                     }
 

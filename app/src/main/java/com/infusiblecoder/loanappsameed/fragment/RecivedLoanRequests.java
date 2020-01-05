@@ -3,14 +3,13 @@ package com.infusiblecoder.loanappsameed.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -48,14 +47,14 @@ public class RecivedLoanRequests extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_recived_loan_requests, container, false);
+        View view = inflater.inflate(R.layout.fragment_recived_loan_requests, container, false);
 
 
         recyclerView = view.findViewById(R.id.rec_view_request_list1);
 
         userRequestModelArrayList = new ArrayList<>();
 
-        notificationsRequestListAdapter = new NotificationsRequestListAdapter(getActivity(), userRequestModelArrayList);
+        notificationsRequestListAdapter = new NotificationsRequestListAdapter(getActivity(), userRequestModelArrayList, "recived");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(notificationsRequestListAdapter);
@@ -63,10 +62,8 @@ public class RecivedLoanRequests extends Fragment {
 
         getAllData();
 
-       return  view;
+        return view;
     }
-
-
 
 
     private void getAllData() {
@@ -85,15 +82,19 @@ public class RecivedLoanRequests extends Fragment {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                        if (jsonObject.getString("code").equals("data_success")) {
 
-                        Gson gson = new Gson();
-                        UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
+                            Gson gson = new Gson();
+                            UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
 
-                        System.out.println("mydata is " + userTableData.request_time_stamp);
+                            System.out.println("mydata is " + userTableData.request_time_stamp);
 
-                        userRequestModelArrayList.add(userTableData);
-                        notificationsRequestListAdapter.notifyDataSetChanged();
+                            userRequestModelArrayList.add(userTableData);
+                            notificationsRequestListAdapter.notifyDataSetChanged();
+                        } else {
 
+                            Comman.showErrorToast(getActivity(), "No Data Found For Recived Requested");
+                        }
                     }
 
 
@@ -134,7 +135,6 @@ public class RecivedLoanRequests extends Fragment {
         // requestListShowAdapter.notifyDataSetChanged();
 
     }
-
 
 
 }

@@ -51,6 +51,13 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
     ImageView choose_aloan_type_text_view;
     int rowsCount = 0;
+    int PERMISSION_ALL = 1;
+    String[] PERMISSIONS = {
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CALL_PHONE,
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+    };
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
     private ConstraintLayout carloanConstraintLayout;
@@ -70,17 +77,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private TextView userEmail;
     private CircularImageView userprofilePicture;
     private TextView notifications;
-
-
-
-    int PERMISSION_ALL = 1;
-    String[] PERMISSIONS = {
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            android.Manifest.permission.CALL_PHONE,
-            android.Manifest.permission.READ_PHONE_STATE,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-    };
-
 
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {

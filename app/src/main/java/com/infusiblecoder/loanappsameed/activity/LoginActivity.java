@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
 
-                            Comman.showSucdessToast(LoginActivity.this, "Login Successful!!" + jsonObject.getString("address"));
+                            Comman.showSucdessToast(LoginActivity.this, "Login Successful\n Welcome " + jsonObject.getString("address"));
 
 
 //                            $firstname = "firstname";

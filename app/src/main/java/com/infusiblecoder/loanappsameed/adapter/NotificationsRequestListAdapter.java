@@ -2,7 +2,6 @@ package com.infusiblecoder.loanappsameed.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +22,6 @@ import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserRequestModel;
 import com.infusiblecoder.loanappsameed.R;
-import com.infusiblecoder.loanappsameed.activity.ProfileActivity;
-import com.infusiblecoder.loanappsameed.activity.ShowDetailsOfRequestSelected;
 import com.infusiblecoder.loanappsameed.activity.ShowDetailsOfserRequestsOnClick;
 
 import org.json.JSONArray;
@@ -35,18 +32,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.content.Context.MODE_PRIVATE;
-
 
 public class NotificationsRequestListAdapter extends RecyclerView.Adapter<NotificationsRequestListAdapter.MyRequestViewHolder> {
 
 
     Context context;
     ArrayList<UserRequestModel> userRequestModelArrayList;
+    String isNotification;
 
-    public NotificationsRequestListAdapter(Context context, ArrayList<UserRequestModel> userRequestModelArrayList) {
+    public NotificationsRequestListAdapter(Context context, ArrayList<UserRequestModel> userRequestModelArrayList, String isNotification) {
         this.context = context;
         this.userRequestModelArrayList = userRequestModelArrayList;
+        this.isNotification = isNotification;
     }
 
     @NonNull
@@ -66,112 +63,297 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
         holder.recTimestampNotificationRequests.setText("" + userRequestModelArrayList.get(position).request_time_stamp);
 
 
-        if (userRequestModelArrayList.get(position).request_is_seen.equals("false")) {
-            holder.rec_img_message.setImageResource(R.drawable.ic_message_closed_envelope);
-        } else if (userRequestModelArrayList.get(position).request_is_seen.equals("true")) {
-            holder.rec_img_message.setImageResource(R.drawable.ic_messageopen);
-        }
+        if (isNotification.equals("true")) {
 
-        holder.recBtnShowmoreNotificationRequests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (userRequestModelArrayList.get(position).request_is_seen.equals("false")) {
+                holder.rec_img_message.setImageResource(R.drawable.ic_message_closed_envelope);
+            } else if (userRequestModelArrayList.get(position).request_is_seen.equals("true")) {
+                holder.rec_img_message.setImageResource(R.drawable.ic_messageopen);
+            }
 
-
-
-                if (!TextUtils.isEmpty(userRequestModelArrayList.get(position).request_reciver_user_id) ) {
+            holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationseentotrue_URL, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
+                    if (!TextUtils.isEmpty(userRequestModelArrayList.get(position).request_reciver_user_id)) {
 
 
-                            try {
-                                JSONArray jsonArray = new JSONArray(response);
-
-                                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                String code = jsonObject.getString("code");
-
-                                System.out.println("mysre +" + jsonObject);
-
-                                if (code.equals("failed")) {
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationseentotrue_URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
 
-                                  //  Comman.showErrorToast(context, "Failed " + jsonObject.getString("message"));
+                                try {
+                                    JSONArray jsonArray = new JSONArray(response);
+
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                    String code = jsonObject.getString("code");
+
+                                    System.out.println("mysre +" + jsonObject);
+
+                                    if (code.equals("failed")) {
 
 
-
-                                    Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
-                                    UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
-                                    i.putExtra("mynotificationsdata", userRequestModel);
-                                    context.startActivity(i);
-
-                                } else {
+                                        //  Comman.showErrorToast(context, "Failed " + jsonObject.getString("message"));
 
 
+                                        Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                        UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                        i.putExtra("mynotificationsdata", userRequestModel);
+                                        i.putExtra("issented", "false");
+                                        context.startActivity(i);
+
+                                    } else {
 
 
-                                   // Comman.showSucdessToast(context, "" + jsonObject.getString("message"));
+                                        // Comman.showSucdessToast(context, "" + jsonObject.getString("message"));
 
 
-                                    Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
-                                    UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
-                                    i.putExtra("mynotificationsdata", userRequestModel);
-                                    context.startActivity(i);
+                                        Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                        UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                        i.putExtra("mynotificationsdata", userRequestModel);
+                                        i.putExtra("issented", "false");
+                                        context.startActivity(i);
 
 
+                                    }
 
+                                } catch (JSONException e) {
+                                    Comman.showErrorToast(context, "error is " + e.getMessage());
 
                                 }
 
-                            } catch (JSONException e) {
-                                Comman.showErrorToast(context, "error is " + e.getMessage());
 
                             }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                Comman.showErrorToast(context, "error is " + error);
 
 
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                            Comman.showErrorToast(context, "error is " + error);
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
 
 
-                        }
-                    }) {
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
+                                String id = userRequestModelArrayList.get(position).request_id;//"No name defined" is the default value.
+
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("request_id", id);
+
+                                return params;
+
+                            }
+                        };
+
+                        VollySingltonClass.getmInstance(context).addToRequsetque(stringRequest);
 
 
-                            String id = userRequestModelArrayList.get(position).request_id;//"No name defined" is the default value.
-
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("request_id", id);
-
-                            return params;
-
-                        }
-                    };
-
-                    VollySingltonClass.getmInstance(context).addToRequsetque(stringRequest);
+                    } else {
+                        Comman.showErrorToast(context, "Enter Missing Fields");
+                    }
 
 
-                } else {
-                    Comman.showErrorToast(context, "Enter Missing Fields");
                 }
+            });
+
+        } else if (isNotification.equals("sent")) {
+
+            holder.recSenderUsername.setText("Name: " + userRequestModelArrayList.get(position).request_reciver_user_name);
 
 
+            holder.rec_img_message.setImageResource(R.drawable.ic_reply_black_24dp);
 
 
+            holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
+                    if (!TextUtils.isEmpty(userRequestModelArrayList.get(position).request_reciver_user_id)) {
 
 
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationseentotrue_URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
 
+                                try {
+                                    JSONArray jsonArray = new JSONArray(response);
+
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                    String code = jsonObject.getString("code");
+
+                                    System.out.println("mysre +" + jsonObject);
+
+                                    if (code.equals("failed")) {
+
+
+                                        //  Comman.showErrorToast(context, "Failed " + jsonObject.getString("message"));
+
+
+                                        Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                        UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                        i.putExtra("mynotificationsdata", userRequestModel);
+                                        i.putExtra("issented", "true");
+                                        context.startActivity(i);
+
+                                    } else {
+
+
+                                        // Comman.showSucdessToast(context, "" + jsonObject.getString("message"));
+
+
+                                        Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                        UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                        i.putExtra("mynotificationsdata", userRequestModel);
+                                        i.putExtra("issented", "true");
+                                        context.startActivity(i);
+
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    Comman.showErrorToast(context, "error is " + e.getMessage());
+
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                Comman.showErrorToast(context, "error is " + error);
+
+
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                                String id = userRequestModelArrayList.get(position).request_id;//"No name defined" is the default value.
+
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("request_id", id);
+
+                                return params;
+
+                            }
+                        };
+
+                        VollySingltonClass.getmInstance(context).addToRequsetque(stringRequest);
+
+
+                    } else {
+                        Comman.showErrorToast(context, "Enter Missing Fields");
+                    }
+
+
+                }
+            });
+
+        } else if (isNotification.equals("recived")) {
+            if (userRequestModelArrayList.get(position).request_is_seen.equals("false")) {
+                holder.rec_img_message.setImageResource(R.drawable.ic_message_closed_envelope);
+            } else if (userRequestModelArrayList.get(position).request_is_seen.equals("true")) {
+                holder.rec_img_message.setImageResource(R.drawable.ic_messageopen);
             }
-        });
+
+            holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    if (!TextUtils.isEmpty(userRequestModelArrayList.get(position).request_reciver_user_id)) {
+
+
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationseentotrue_URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+
+                                try {
+                                    JSONArray jsonArray = new JSONArray(response);
+
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                    String code = jsonObject.getString("code");
+
+                                    System.out.println("mysre +" + jsonObject);
+
+                                    if (code.equals("failed")) {
+
+
+                                        //  Comman.showErrorToast(context, "Failed " + jsonObject.getString("message"));
+
+
+                                        Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                        UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                        i.putExtra("mynotificationsdata", userRequestModel);
+                                        i.putExtra("issented", "false");
+                                        context.startActivity(i);
+
+                                    } else {
+
+
+                                        // Comman.showSucdessToast(context, "" + jsonObject.getString("message"));
+
+
+                                        Intent i = new Intent(context, ShowDetailsOfserRequestsOnClick.class);
+                                        UserRequestModel userRequestModel = userRequestModelArrayList.get(position);
+                                        i.putExtra("mynotificationsdata", userRequestModel);
+                                        i.putExtra("issented", "false");
+                                        context.startActivity(i);
+
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    Comman.showErrorToast(context, "error is " + e.getMessage());
+
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                Comman.showErrorToast(context, "error is " + error);
+
+
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                                String id = userRequestModelArrayList.get(position).request_id;//"No name defined" is the default value.
+
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("request_id", id);
+
+                                return params;
+
+                            }
+                        };
+
+                        VollySingltonClass.getmInstance(context).addToRequsetque(stringRequest);
+
+
+                    } else {
+                        Comman.showErrorToast(context, "Enter Missing Fields");
+                    }
+
+
+                }
+            });
+
+        }
 
 
     }

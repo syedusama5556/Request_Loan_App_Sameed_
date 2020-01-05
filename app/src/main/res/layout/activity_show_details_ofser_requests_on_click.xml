@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Request Sender Information"
+        android:text="Request Information"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/lender_review_page_activity_loan_amount_text_view_text_size" />
 
@@ -186,6 +186,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linallbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -241,6 +242,43 @@
                 android:text="Send Email" />
         </LinearLayout>
     </LinearLayout>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linlayout_Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btn_delete_request"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/lender_review_page_activity_reject_button_ripple"
+                android:padding="10dp"
+                android:src="@drawable/ic_clear_black_6565"
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Delete Request" />
+        </LinearLayout>
+
+
 
 
 </RelativeLayout>

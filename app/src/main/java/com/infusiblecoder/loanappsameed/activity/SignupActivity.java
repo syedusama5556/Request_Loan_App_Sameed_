@@ -4,7 +4,6 @@
 
 package com.infusiblecoder.loanappsameed.activity;
 
-import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;

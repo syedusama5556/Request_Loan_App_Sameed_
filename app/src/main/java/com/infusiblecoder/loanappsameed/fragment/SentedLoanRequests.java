@@ -3,14 +3,13 @@ package com.infusiblecoder.loanappsameed.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -23,7 +22,6 @@ import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserRequestModel;
 import com.infusiblecoder.loanappsameed.R;
-import com.infusiblecoder.loanappsameed.activity.NotificationsListUserRequests;
 import com.infusiblecoder.loanappsameed.adapter.NotificationsRequestListAdapter;
 
 import org.json.JSONArray;
@@ -35,9 +33,6 @@ import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SentedLoanRequests extends Fragment {
 
     ArrayList<UserRequestModel> userRequestModelArrayList;
@@ -48,14 +43,14 @@ public class SentedLoanRequests extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_sented_loan_requests, container, false);
+        View view = inflater.inflate(R.layout.fragment_sented_loan_requests, container, false);
 
 
         recyclerView = view.findViewById(R.id.rec_view_request_list1);
 
         userRequestModelArrayList = new ArrayList<>();
 
-        notificationsRequestListAdapter = new NotificationsRequestListAdapter(getActivity(), userRequestModelArrayList);
+        notificationsRequestListAdapter = new NotificationsRequestListAdapter(getActivity(), userRequestModelArrayList, "sent");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(notificationsRequestListAdapter);
@@ -63,9 +58,8 @@ public class SentedLoanRequests extends Fragment {
 
         getAllData();
 
-    return  view;
+        return view;
     }
-
 
 
     private void getAllData() {
@@ -84,14 +78,22 @@ public class SentedLoanRequests extends Fragment {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                        if (jsonObject.getString("code").equals("data_success")) {
 
-                        Gson gson = new Gson();
-                        UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
+                            Gson gson = new Gson();
+                            UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
 
-                        System.out.println("mydata is " + userTableData.request_time_stamp);
+                            System.out.println("mydata is " + userTableData.request_time_stamp);
 
-                        userRequestModelArrayList.add(userTableData);
-                        notificationsRequestListAdapter.notifyDataSetChanged();
+                            userRequestModelArrayList.add(userTableData);
+                            notificationsRequestListAdapter.notifyDataSetChanged();
+
+
+                        } else {
+
+                            Comman.showErrorToast(getActivity(), "No Data Found For Sented Requests");
+                        }
+
 
                     }
 
