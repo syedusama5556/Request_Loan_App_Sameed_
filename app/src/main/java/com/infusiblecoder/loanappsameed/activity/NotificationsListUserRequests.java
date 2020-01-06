@@ -3,6 +3,8 @@ package com.infusiblecoder.loanappsameed.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,12 +37,15 @@ public class NotificationsListUserRequests extends AppCompatActivity {
     private RecyclerView recyclerView;
     private NotificationsRequestListAdapter notificationsRequestListAdapter;
 
+    LinearLayout no_item_layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications_list_user_requests);
 
         recyclerView = findViewById(R.id.rec_view_request_list1);
+        no_item_layout = findViewById(R.id.no_item_layout);
 
         userRequestModelArrayList = new ArrayList<>();
 
@@ -70,6 +75,7 @@ public class NotificationsListUserRequests extends AppCompatActivity {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                        if (jsonObject.getString("code").equals("data_success")) {
 
                         Gson gson = new Gson();
                         UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
@@ -79,10 +85,21 @@ public class NotificationsListUserRequests extends AppCompatActivity {
                         userRequestModelArrayList.add(userTableData);
                         notificationsRequestListAdapter.notifyDataSetChanged();
 
+
+                            no_item_layout.setVisibility(View.GONE);
+
+                    } else {
+
+                        Comman.showErrorToast(NotificationsListUserRequests.this, "No Data Found For Notifications");
+                            no_item_layout.setVisibility(View.VISIBLE);
+
+                    }
+
                     }
 
 
                 } catch (Exception e) {
+                    no_item_layout.setVisibility(View.VISIBLE);
                     System.out.println("i ah error " + e.getMessage());
                 }
 
@@ -91,7 +108,7 @@ public class NotificationsListUserRequests extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                no_item_layout.setVisibility(View.VISIBLE);
                 Comman.showErrorToast(getApplicationContext(), "Error check your internet connection");
             }
         }) {

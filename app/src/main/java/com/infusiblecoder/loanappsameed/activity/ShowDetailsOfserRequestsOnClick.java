@@ -157,7 +157,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                     CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ShowDetailsOfserRequestsOnClick.this)
                             .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
                             .setTitle("Delete Request")
-                            .setMessage("Are You Sure You Want To Delete This Request?")
+                            .setMessage("Are You Sure You Want To Delete This Request, After This The Request Will No Longer Be Visible To The Sent User?")
                             .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
 
 
@@ -259,7 +259,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
     public void getAllDataFormMultipleTable() {
 
         if (issented.equals("true")) {
-            senderuser_id = userRequestModel.request_sender_user_id;
+            senderuser_id = userRequestModel.request_reciver_user_id;
         }else {
 
             senderuser_id = userRequestModel.request_sender_user_id;
@@ -294,7 +294,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                             GetAllMultipleTableDataOnClickRequestMODEL getAllMultipleTableDataOnClickRequestMODEL = gson.fromJson(jsonObject.toString(), GetAllMultipleTableDataOnClickRequestMODEL.class);
 
 
-                            System.out.println("mydatais " + getAllMultipleTableDataOnClickRequestMODEL.request_time_stamp);
+                            System.out.println("mydatais " + getAllMultipleTableDataOnClickRequestMODEL.email);
 
                             Glide.with(ShowDetailsOfserRequestsOnClick.this).load(Comman.START_URL + getAllMultipleTableDataOnClickRequestMODEL.user_img_url).placeholder(R.mipmap.ic_launcher).into(userImgViewOnclick);
 

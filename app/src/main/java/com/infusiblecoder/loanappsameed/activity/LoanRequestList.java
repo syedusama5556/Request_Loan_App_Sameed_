@@ -1,7 +1,10 @@
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,12 +37,14 @@ public class LoanRequestList extends AppCompatActivity {
     RecyclerView recyclerView;
 
     ArrayList<RequestLoanModel> requestLoanModelArrayList;
+    private LinearLayout no_item_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan_request_list);
         recyclerView = findViewById(R.id.rec_view_request_list);
+        no_item_layout = findViewById(R.id.no_item_layout);
 
         requestLoanModelArrayList = new ArrayList<RequestLoanModel>();
 
@@ -68,7 +73,7 @@ public class LoanRequestList extends AppCompatActivity {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        if (jsonObject.getString("code").equals("data_success")) {
+                        if (jsonObject.getString("code").equals("success")) {
 
                             Gson gson = new Gson();
                             RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
@@ -76,7 +81,11 @@ public class LoanRequestList extends AppCompatActivity {
 
                             requestLoanModelArrayList.add(userTableData);
                             requestListShowAdapter.notifyDataSetChanged();
+
+                            no_item_layout.setVisibility(View.GONE);
+
                         } else {
+                            no_item_layout.setVisibility(View.VISIBLE);
 
                             Comman.showErrorToast(LoanRequestList.this, "No Data Found");
                         }
@@ -85,6 +94,7 @@ public class LoanRequestList extends AppCompatActivity {
 
 
                 } catch (Exception e) {
+                    no_item_layout.setVisibility(View.VISIBLE);
                     System.out.println("i ah error " + e.getMessage());
                 }
 
@@ -93,15 +103,29 @@ public class LoanRequestList extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                no_item_layout.setVisibility(View.VISIBLE);
                 Comman.showErrorToast(getApplicationContext(), "Error check your internet connection");
             }
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
-                Map<String, String> params = new HashMap<String, String>();
 
+                SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+                if (!id.equals("no value") && !id.equals("")) {
+
+
+                } else {
+
+
+                    Comman.showErrorToast(LoanRequestList.this, "error is getting id");
+
+                }
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", id);
 
                 return params;
             }

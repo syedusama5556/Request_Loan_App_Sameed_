@@ -1,6 +1,7 @@
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -154,6 +155,9 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                startActivity(new Intent(ShowDetailsOfRequestSelected.this,LoanRequestList.class));
+                finish();
+
             }
         });
 
@@ -211,6 +215,8 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                             catLoadingView.dismiss();
                             FancyToast.makeText(ShowDetailsOfRequestSelected.this, "" + jsonObject.getString("message"), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
+                            startActivity(new Intent(ShowDetailsOfRequestSelected.this,LoanRequestList.class));
+                            finish();
 
                         } else if (code.equals("failed")) {
                             catLoadingView.dismiss();

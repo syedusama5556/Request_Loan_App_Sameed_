@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +39,7 @@ public class SentedLoanRequests extends Fragment {
     ArrayList<UserRequestModel> userRequestModelArrayList;
     private RecyclerView recyclerView;
     private NotificationsRequestListAdapter notificationsRequestListAdapter;
+    private LinearLayout no_item_layout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +47,7 @@ public class SentedLoanRequests extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sented_loan_requests, container, false);
 
-
+        no_item_layout = view.findViewById(R.id.no_item_layout);
         recyclerView = view.findViewById(R.id.rec_view_request_list1);
 
         userRequestModelArrayList = new ArrayList<>();
@@ -88,9 +90,9 @@ public class SentedLoanRequests extends Fragment {
                             userRequestModelArrayList.add(userTableData);
                             notificationsRequestListAdapter.notifyDataSetChanged();
 
-
+                            no_item_layout.setVisibility(View.GONE);
                         } else {
-
+                            no_item_layout.setVisibility(View.VISIBLE);
                             Comman.showErrorToast(getActivity(), "No Data Found For Sented Requests");
                         }
 
@@ -99,6 +101,7 @@ public class SentedLoanRequests extends Fragment {
 
 
                 } catch (Exception e) {
+                    no_item_layout.setVisibility(View.VISIBLE);
                     System.out.println("i ah error " + e.getMessage());
                 }
 
@@ -107,7 +110,7 @@ public class SentedLoanRequests extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                no_item_layout.setVisibility(View.VISIBLE);
                 Comman.showErrorToast(getActivity(), "Error check your internet connection");
             }
         }) {
