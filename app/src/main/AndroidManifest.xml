@@ -14,9 +14,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.SubmitAReviewForLoanInReview"></activity>
         <activity
             android:name=".activity.LoanRequestHistory"
-            android:theme="@style/loanrequesthistory"></activity>
+            android:theme="@style/loanrequesthistory" />
         <activity
             android:name=".activity.ShowDetailsOfserRequestsOnClick"
             android:theme="@style/loanrequest" />

@@ -19,6 +19,7 @@ import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.R;
 import com.infusiblecoder.loanappsameed.activity.ShowDetailsOfRequestSelected;
+import com.infusiblecoder.loanappsameed.activity.SubmitAReviewForLoanInReview;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
@@ -134,7 +135,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
             holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
+                    Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
                     RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                     i.putExtra("myrequestdata", requestLoanModel);
                     context.startActivity(i);
