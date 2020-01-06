@@ -21,6 +21,7 @@ public class Comman {
 
 
     public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL + "getalldatarequesttable.php";
+    public static String GET_ALL_REQUEST_TABLE_Single_User_DATA_URL = START_URL + "getalldatarequesttablesingleuser.php";
     public static String GET_ALL_UNSEEN_REQUESTS_TABLE_DATA_URL = START_URL + "getallunseeenuserrequests.php";
     public static String GET_ALL_NOTIFICATIONS_REQUESTS_TABLE_URL = START_URL + "getallallnotificationsfromrequeststable.php";
     public static String GET_ALL_DATA_FROM_MULTIPLE_TABLE_REQUESTS_TABLE_URL = START_URL + "getdatafrommultipletableforonclickrequest.php";
@@ -58,7 +59,7 @@ public class Comman {
 
     public static String[] LOAN_TYPES = {"personal loan", "car loan", "commercial loan", "travel loan", "house loan", "tax loan", "other loan"};
 
-    public static String[] LOAN_Status = {"pending", "in review", "rejected", "approved"};
+    public static String[] LOAN_Status = {"pending", "review", "rejected", "approved","completed"};
 
 
     public static void showErrorToast(Context context, String txt) {

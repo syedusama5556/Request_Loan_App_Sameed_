@@ -155,8 +155,8 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ShowDetailsOfRequestSelected.this,LoanRequestList.class));
-                finish();
+                ShowDetailsOfRequestSelected.super.onBackPressed();
+
 
             }
         });

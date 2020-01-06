@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
+import com.infusiblecoder.loanappsameed.fragment.MyAppliedLoans;
 import com.infusiblecoder.loanappsameed.fragment.RecivedLoanRequests;
 import com.infusiblecoder.loanappsameed.fragment.SentedLoanRequests;
 
@@ -70,8 +72,12 @@ public class LoanRequestHistory extends AppCompatActivity {
                     fragment = new RecivedLoanRequests();
                     break;
                 }
+                case 2: {
+                    fragment = new MyAppliedLoans();
+                    break;
+                }
                 default: {
-                    Toast.makeText(LoanRequestHistory.this, "Stop!", Toast.LENGTH_SHORT).show();
+                   Comman.showErrorToast(LoanRequestHistory.this, "Stop!");
                 }
 
             }
@@ -81,7 +87,7 @@ public class LoanRequestHistory extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
         }
     }
 }

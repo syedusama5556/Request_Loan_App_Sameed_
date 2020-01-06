@@ -2,10 +2,12 @@ package com.infusiblecoder.loanappsameed.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,10 +29,12 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
     Context context;
     ArrayList<RequestLoanModel> requestLoanModelArrayList;
+    String ismyappliedloan;
 
-    public RequestListShowAdapter(Context context, ArrayList<RequestLoanModel> requestLoanModelArrayList) {
+    public RequestListShowAdapter(Context context, ArrayList<RequestLoanModel> requestLoanModelArrayList, String ismyappliedloan) {
         this.context = context;
         this.requestLoanModelArrayList = requestLoanModelArrayList;
+        this.ismyappliedloan = ismyappliedloan;
     }
 
     @NonNull
@@ -86,20 +90,80 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
             }
         }
 
-
-        holder.recBtnShowmore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
-                RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
-                i.putExtra("myrequestdata", requestLoanModel);
-                context.startActivity(i);
+        if (ismyappliedloan.equals("true")) {
+            holder.rec_status.setText("Status: " + requestLoanModelArrayList.get(position).loan_status);
 
 
+
+
+
+            switch (requestLoanModelArrayList.get(position).loan_status) {
+
+
+                case "pending": {
+                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.request_load_activity_uploadbtn_button_background_color));
+                    break;
+                }
+                case "review": {
+                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.request_load_activity_uploadbtn_button_background_color));
+                    break;
+                }
+                case "rejected": {
+                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.lender_review_page_activity_reject_button_text_color));
+                    break;
+                }
+                case "approved": {
+                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.borrower_reject_page_activity_repost_button_text_color));
+                    break;
+                }
+                case "completed": {
+                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.borrower_reject_page_activity_repost_button_text_color));
+                    break;
+                }
+
+
+                default: {
+
+                    break;
+                }
             }
-        });
 
+
+
+
+            holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
+                    RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                    i.putExtra("myrequestdata", requestLoanModel);
+                    context.startActivity(i);
+                }
+            });
+
+
+
+
+
+        } else {
+            holder.rec_status.setText("Status: " + requestLoanModelArrayList.get(position).loan_status);
+
+            if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[3])) {
+                holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.borrower_reject_page_activity_repost_button_text_color));
+            }
+
+            holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
+                    RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                    i.putExtra("myrequestdata", requestLoanModel);
+                    context.startActivity(i);
+                }
+            });
+
+
+        }
 
     }
 
@@ -114,12 +178,16 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
         TextView recUsername;
         TextView recLoanAmount;
         TextView recBtnShowmore;
+        TextView rec_status;
         ImageView recImgLoanType;
+        RelativeLayout rec_relative_color_layout;
 
 
         public MyRequestViewHolder(@NonNull View view) {
             super(view);
 
+            rec_relative_color_layout = view.findViewById(R.id.rec_relative_color_layout);
+            rec_status = view.findViewById(R.id.rec_status);
             recCardBtn = view.findViewById(R.id.rec_card_btn);
             recImgProfile = view.findViewById(R.id.rec_img_profile);
             recUsername = view.findViewById(R.id.rec_username);
