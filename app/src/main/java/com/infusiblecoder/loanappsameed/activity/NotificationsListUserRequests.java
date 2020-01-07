@@ -34,10 +34,9 @@ public class NotificationsListUserRequests extends AppCompatActivity {
 
 
     ArrayList<UserRequestModel> userRequestModelArrayList;
+    LinearLayout no_item_layout;
     private RecyclerView recyclerView;
     private NotificationsRequestListAdapter notificationsRequestListAdapter;
-
-    LinearLayout no_item_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,23 +76,23 @@ public class NotificationsListUserRequests extends AppCompatActivity {
 
                         if (jsonObject.getString("code").equals("data_success")) {
 
-                        Gson gson = new Gson();
-                        UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
+                            Gson gson = new Gson();
+                            UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
 
-                        System.out.println("mydata is " + userTableData.request_time_stamp);
+                            System.out.println("mydata is " + userTableData.request_time_stamp);
 
-                        userRequestModelArrayList.add(userTableData);
-                        notificationsRequestListAdapter.notifyDataSetChanged();
+                            userRequestModelArrayList.add(userTableData);
+                            notificationsRequestListAdapter.notifyDataSetChanged();
 
 
                             no_item_layout.setVisibility(View.GONE);
 
-                    } else {
+                        } else {
 
-                        Comman.showErrorToast(NotificationsListUserRequests.this, "No Data Found For Notifications");
+                            Comman.showErrorToast(NotificationsListUserRequests.this, "No Data Found For Notifications");
                             no_item_layout.setVisibility(View.VISIBLE);
 
-                    }
+                        }
 
                     }
 

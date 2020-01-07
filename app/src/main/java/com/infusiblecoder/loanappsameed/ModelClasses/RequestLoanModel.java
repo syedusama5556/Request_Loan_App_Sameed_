@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class RequestLoanModel implements Serializable {
 
 
-    public String loan_id, user_id, loan_request_code, user_full_name, user_img_url_request, loan_amount, loan_purpose, loan_collateral, loan_market_value, loan_type, loan_due_date, loan_doc_vehicle_id_url, loan_doc_owner_id_url, loan_doc_insurance_url,loan_status;
+    public String loan_id, user_id, loan_request_code, user_full_name, user_img_url_request, loan_amount, loan_purpose, loan_collateral, loan_market_value, loan_type, loan_due_date, loan_doc_vehicle_id_url, loan_doc_owner_id_url, loan_doc_insurance_url, loan_status;
 
 
     public RequestLoanModel(String loan_id, String user_id, String loan_request_code, String user_full_name, String user_img_url_request, String loan_amount, String loan_purpose, String loan_collateral, String loan_market_value, String loan_type, String loan_due_date, String loan_doc_vehicle_id_url, String loan_doc_owner_id_url, String loan_doc_insurance_url, String loan_status) {

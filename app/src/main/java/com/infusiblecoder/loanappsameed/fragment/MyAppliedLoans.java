@@ -3,15 +3,14 @@ package com.infusiblecoder.loanappsameed.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -24,7 +23,6 @@ import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.R;
-import com.infusiblecoder.loanappsameed.activity.LoanRequestList;
 import com.infusiblecoder.loanappsameed.adapter.RequestListShowAdapter;
 
 import org.json.JSONArray;
@@ -49,13 +47,13 @@ public class MyAppliedLoans extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-     View view =  inflater.inflate(R.layout.fragment_my_applied_loans, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_applied_loans, container, false);
         recyclerView = view.findViewById(R.id.rec_view_request_list);
         no_item_layout = view.findViewById(R.id.no_item_layout);
 
         requestLoanModelArrayList = new ArrayList<RequestLoanModel>();
 
-        requestListShowAdapter = new RequestListShowAdapter(getActivity(), requestLoanModelArrayList,"true");
+        requestListShowAdapter = new RequestListShowAdapter(getActivity(), requestLoanModelArrayList, "true");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(requestListShowAdapter);

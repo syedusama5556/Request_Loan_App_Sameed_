@@ -48,7 +48,7 @@ public class LoanRequestList extends AppCompatActivity {
 
         requestLoanModelArrayList = new ArrayList<RequestLoanModel>();
 
-        requestListShowAdapter = new RequestListShowAdapter(LoanRequestList.this, requestLoanModelArrayList,"false");
+        requestListShowAdapter = new RequestListShowAdapter(LoanRequestList.this, requestLoanModelArrayList, "false");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(LoanRequestList.this));
         recyclerView.setAdapter(requestListShowAdapter);

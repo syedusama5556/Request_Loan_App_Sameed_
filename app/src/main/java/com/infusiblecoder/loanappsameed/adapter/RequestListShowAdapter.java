@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.R;
@@ -95,9 +96,6 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
             holder.rec_status.setText("Status: " + requestLoanModelArrayList.get(position).loan_status);
 
 
-
-
-
             switch (requestLoanModelArrayList.get(position).loan_status) {
 
 
@@ -106,7 +104,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                     break;
                 }
                 case "review": {
-                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.request_load_activity_uploadbtn_button_background_color));
+                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.orange_color));
                     break;
                 }
                 case "rejected": {
@@ -118,7 +116,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                     break;
                 }
                 case "completed": {
-                    holder.rec_relative_color_layout.setBackgroundColor(context.getResources().getColor(R.color.borrower_reject_page_activity_repost_button_text_color));
+                    holder.rec_relative_color_layout.setBackgroundColor(Color.parseColor("#599153"));
                     break;
                 }
 
@@ -130,20 +128,64 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
             }
 
 
-
-
             holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
-                    RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
-                    i.putExtra("myrequestdata", requestLoanModel);
-                    context.startActivity(i);
+
+                    if (!requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])  && requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[1]) ) {
+
+                        Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
+                        RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                        i.putExtra("myrequestdata", requestLoanModel);
+                        context.startActivity(i);
+                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]) ){
+
+
+                        CFAlertDialog.Builder builder = new CFAlertDialog.Builder(context)
+                                .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                                .setTitle("Loan Rejected")
+                                .setMessage("Your Loan Has Been Rejected Kindly Contact The admin, click yes to contact the admin?")
+                                .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+
+                                    Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                    emailIntent.setType("text/plain");
+                                    emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Comman.Admin_Email});
+                                    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Loan Rejection");
+                                    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
+
+
+                                    emailIntent.setType("message/rfc822");
+
+                                    try {
+                                        context.startActivity(Intent.createChooser(emailIntent,
+                                                "Send email using..."));
+                                    } catch (android.content.ActivityNotFoundException ex) {
+                                        Comman.showErrorToast(context,
+                                                "No email clients installed.");
+                                    }
+
+
+                                    dialog.dismiss();
+
+
+                                }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                    dialog.dismiss();
+
+                                });
+
+// Show the alert
+                        builder.show();
+
+
+                    }else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])){
+
+                        Comman.showDefaultToast(context, "Please wait Until Your Request Is Processed");
+                    }else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[4])){
+                        Comman.showDefaultToast(context, "Your Selected Request Is Completed");
+                    }
+
                 }
             });
-
-
-
 
 
         } else {

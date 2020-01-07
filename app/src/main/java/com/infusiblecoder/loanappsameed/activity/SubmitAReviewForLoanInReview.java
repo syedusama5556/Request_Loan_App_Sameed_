@@ -164,6 +164,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
         // Configure SelectDate component
         selectdateButton = this.findViewById(R.id.selectdate_button);
+
         selectdateButton.setOnClickListener((view) -> {
             this.onSelectDatePressed();
         });
@@ -185,7 +186,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
     public void onSelectDatePressed() {
 
-        DialogFragment newFragment = new RequestLoanActivity.DatePickerFragment();
+        DialogFragment newFragment = new SubmitAReviewForLoanInReview.DatePickerFragmentsubmit();
         newFragment.show(getSupportFragmentManager(), "datePicker");
 
     }
@@ -347,7 +348,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                     catLoadingView.setText("Please Wait ..");
                     catLoadingView.show(getSupportFragmentManager(), "");
 
-                    VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPLOAD_MULTIPLE_DOC_WITH_DATA_URL,
+                    VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPDATE_inreview_requests_loanrequest_table_URL,
                             new Response.Listener<NetworkResponse>() {
                                 @Override
                                 public void onResponse(NetworkResponse response) {
@@ -357,25 +358,20 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                                     try {
                                         JSONObject jsonObject = new JSONObject(new String(response.data));
                                         Comman.showDefaultToast(SubmitAReviewForLoanInReview.this, jsonObject.getString("message"));
+                                        catLoadingView.dismiss();
 
                                         jsonObject.toString().replace("\\\\", "");
 
-                                        if (jsonObject.getString("status").equals("true")) {
-                                            Log.d("come::: >>>  ", "yessssss");
-                                            arraylist = new ArrayList<HashMap<String, String>>();
-                                            JSONArray dataArray = jsonObject.getJSONArray("data");
-                                            catLoadingView.dismiss();
+                                        if (jsonObject.getString("status").equals("false")) {
 
-//                                    for (int i = 0; i < dataArray.length(); i++) {
-//                                        JSONObject dataobj = dataArray.getJSONObject(i);
-//                                        url = dataobj.optString("pathToFile");
-//                                        tv.setText(url);
-//                                    }
+                                            Comman.showErrorToast(SubmitAReviewForLoanInReview.this, jsonObject.getString("message"));
 
 
                                         } else {
-                                            catLoadingView.dismiss();
 
+                                            startActivity(new Intent(SubmitAReviewForLoanInReview.this, HomeActivityDrawar.class));
+                                            Comman.showDefaultToast(SubmitAReviewForLoanInReview.this, jsonObject.getString("message"));
+                                            finish();
                                         }
                                     } catch (JSONException e) {
                                         Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "error is " + e.getMessage());
@@ -565,7 +561,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
     }
 
 
-    public static class DatePickerFragment extends DialogFragment
+    public static class DatePickerFragmentsubmit extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override

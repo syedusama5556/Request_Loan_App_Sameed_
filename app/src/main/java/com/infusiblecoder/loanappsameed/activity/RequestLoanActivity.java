@@ -43,7 +43,6 @@ import com.infusiblecoder.loanappsameed.ModelClasses.DataPart;
 import com.infusiblecoder.loanappsameed.R;
 import com.roger.catloadinglibrary.CatLoadingView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -356,27 +355,22 @@ public class RequestLoanActivity extends AppCompatActivity {
 
                                     rQueue.getCache().clear();
                                     try {
+                                        catLoadingView.dismiss();
+
                                         JSONObject jsonObject = new JSONObject(new String(response.data));
-                                        Comman.showDefaultToast(RequestLoanActivity.this, jsonObject.getString("message"));
 
                                         jsonObject.toString().replace("\\\\", "");
 
-                                        if (jsonObject.getString("status").equals("true")) {
-                                            Log.d("come::: >>>  ", "yessssss");
-                                            arraylist = new ArrayList<HashMap<String, String>>();
-                                            JSONArray dataArray = jsonObject.getJSONArray("data");
-                                            catLoadingView.dismiss();
+                                        if (jsonObject.getString("status").equals("false")) {
 
-//                                    for (int i = 0; i < dataArray.length(); i++) {
-//                                        JSONObject dataobj = dataArray.getJSONObject(i);
-//                                        url = dataobj.optString("pathToFile");
-//                                        tv.setText(url);
-//                                    }
+                                            Comman.showErrorToast(RequestLoanActivity.this, jsonObject.getString("message"));
 
 
                                         } else {
-                                            catLoadingView.dismiss();
 
+                                            startActivity(new Intent(RequestLoanActivity.this, HomeActivityDrawar.class));
+                                            Comman.showDefaultToast(RequestLoanActivity.this, jsonObject.getString("message"));
+                                            finish();
                                         }
                                     } catch (JSONException e) {
                                         Comman.showErrorToast(RequestLoanActivity.this, "error is " + e.getMessage());
@@ -581,6 +575,7 @@ public class RequestLoanActivity extends AppCompatActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
+
 
             dueDateTextView.setText(day + "-" + (month + 1) + "-" + year);
 

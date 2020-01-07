@@ -159,6 +159,23 @@ public class HomeActivityDrawar extends AppCompatActivity {
                     case R.id.nav_send: {
 
 
+                        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Comman.Admin_Email});
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "FeedBack");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
+
+
+                        emailIntent.setType("message/rfc822");
+
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Comman.showErrorToast(HomeActivityDrawar.this, "No email clients installed.");
+                        }
+
+
                         break;
                     }
 

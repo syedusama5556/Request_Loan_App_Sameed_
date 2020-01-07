@@ -260,7 +260,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
         if (issented.equals("true")) {
             senderuser_id = userRequestModel.request_reciver_user_id;
-        }else {
+        } else {
 
             senderuser_id = userRequestModel.request_sender_user_id;
 
@@ -277,7 +277,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
 
-                    System.out.println("myjson is"+response);
+                    System.out.println("myjson is" + response);
 
                     try {
 
@@ -285,7 +285,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                         JSONArray jsonArray = new JSONArray(response);
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-                        System.out.println("myjson is"+response);
+                        System.out.println("myjson is" + response);
                         String code = jsonObject.getString("code");
                         if (code.equals("success")) {
 
@@ -325,7 +325,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                     } catch (JSONException e) {
                         catLoadingView.dismiss();
 
-                        System.out.println("myjson erroris is"+e.getMessage());
+                        System.out.println("myjson erroris is" + e.getMessage());
                         FancyToast.makeText(ShowDetailsOfserRequestsOnClick.this, "" + e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
 
@@ -348,7 +348,6 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
 
 
-
                     Map<String, String> params = new HashMap<String, String>();
 
                     params.put("user_id", senderuser_id);
@@ -359,13 +358,13 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                         params.put("issented", "true1");
 
 
-                    }else {
+                    } else {
                         params.put("issented", "false1");
 
 
                     }
 
-                    System.out.println("dtaais" +issented + senderuser_id);
+                    System.out.println("dtaais" + issented + senderuser_id);
 
                     return params;
                 }

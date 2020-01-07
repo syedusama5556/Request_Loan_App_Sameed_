@@ -7,10 +7,11 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 public class Comman {
 
     //public static String START_URL = "http://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.0.100/android/loanapp/";
+    public static String START_URL = "http://192.168.10.2/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
+    public static String Admin_Email = "admin@peer2peer.com";
 
     public static String REGISTER_URL = START_URL + "register.php";
 
@@ -37,6 +38,7 @@ public class Comman {
 
     public static String UPDATE_PROFILE_URL = START_URL + "updateprofile.php";
     public static String UPDATE_updatenotificationseentotrue_URL = START_URL + "updatenotificationseentotrue.php";
+    public static String UPDATE_inreview_requests_loanrequest_table_URL = START_URL + "updateinreviewrequestsloanrequesttable.php";
 
 
     public static String[] TABLE_USERS_ATTRIBUTES = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status", "user_img_url"};
@@ -59,7 +61,7 @@ public class Comman {
 
     public static String[] LOAN_TYPES = {"personal loan", "car loan", "commercial loan", "travel loan", "house loan", "tax loan", "other loan"};
 
-    public static String[] LOAN_Status = {"pending", "review", "rejected", "approved","completed"};
+    public static String[] LOAN_Status = {"pending", "review", "rejected", "approved", "completed"};
 
 
     public static void showErrorToast(Context context, String txt) {

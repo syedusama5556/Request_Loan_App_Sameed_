@@ -215,7 +215,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                             catLoadingView.dismiss();
                             FancyToast.makeText(ShowDetailsOfRequestSelected.this, "" + jsonObject.getString("message"), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
-                            startActivity(new Intent(ShowDetailsOfRequestSelected.this,LoanRequestList.class));
+                            startActivity(new Intent(ShowDetailsOfRequestSelected.this, LoanRequestList.class));
                             finish();
 
                         } else if (code.equals("failed")) {
