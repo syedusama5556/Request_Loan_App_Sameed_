@@ -227,7 +227,7 @@
     <dimen name="home_activity_activity_commercial_buldings_image_view_margin_start">47dp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_antwo_button_height">33dp</dimen>
     <dimen name="home_activity_activity_tax_loan_text_view_margin_start">8dp</dimen>
-    <dimen name="home_activity_activity_instant_loan_for_per_button_height">34dp</dimen>
+    <dimen name="home_activity_activity_instant_loan_for_per_button_height">40dp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_tax_button_margin_start">8dp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_tra_button_height">33dp</dimen>
     <dimen name="home_activity_activity_otherloan_constraint_layout_radius">15dp</dimen>
@@ -235,7 +235,7 @@
     <dimen name="home_activity_activity_instant_loan_for_anbutton_margin_end">6dp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_anbutton_text_size">14sp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_oth_button_text_size">14sp</dimen>
-    <dimen name="home_activity_activity_instant_loan_for_tax_button_height">17dp</dimen>
+    <dimen name="home_activity_activity_instant_loan_for_tax_button_height">20dp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_oth_button_margin_top">6dp</dimen>
     <dimen name="home_activity_activity_instant_loan_for_anbutton_margin_top">6dp</dimen>
     <dimen name="home_activity_activity_car_image_view_margin_bottom">20dp</dimen>

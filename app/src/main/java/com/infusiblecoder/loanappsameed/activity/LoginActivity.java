@@ -206,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }
                     } catch (JSONException e) {
-                        Comman.showErrorToast(LoginActivity.this, "error is " + e.getMessage());
+                        Comman.showErrorToast(LoginActivity.this, "error is  json" + e.getMessage());
 
                     }
 
