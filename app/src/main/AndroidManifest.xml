@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:theme="@style/loanrequesthistory"
-            android:name=".activity.SubmitAReviewForLoanInReview"></activity>
+            android:name=".activity.SubmitAReviewForLoanInReview" />
         <activity
             android:name=".activity.LoanRequestHistory"
             android:theme="@style/loanrequesthistory" />
