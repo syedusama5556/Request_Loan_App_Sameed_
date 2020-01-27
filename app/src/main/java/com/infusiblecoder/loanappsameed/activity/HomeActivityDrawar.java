@@ -349,112 +349,96 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
         // Configure Instant loan for per component
         instantLoanForPerButton = this.findViewById(R.id.instant_loan_for_per_button);
-        instantLoanForPerButton.setOnClickListener((view) -> {
-            this.onInstantLoanForPerPressed();
-        });
 
         // Configure carLoan component
         carloanConstraintLayout = this.findViewById(R.id.carloan_constraint_layout);
 
         // Configure Instant loan for a N component
         instantLoanForAnbutton = this.findViewById(R.id.instant_loan_for_anbutton);
-        instantLoanForAnbutton.setOnClickListener((view) -> {
-            this.onInstantLoanForANPressed();
-        });
+
 
         // Configure Commercial component
         commercialConstraintLayout = this.findViewById(R.id.commercial_constraint_layout);
 
         // Configure Instant loan for  co component
         instantLoanForCoButton = this.findViewById(R.id.instant_loan_for_co_button);
-        instantLoanForCoButton.setOnClickListener((view) -> {
-            this.onInstantLoanForCoPressed();
-        });
+
 
         // Configure TravelLoan component
         travelloanConstraintLayout = this.findViewById(R.id.travelloan_constraint_layout);
 
         // Configure Instant loan for tra component
         instantLoanForTraButton = this.findViewById(R.id.instant_loan_for_tra_button);
-        instantLoanForTraButton.setOnClickListener((view) -> {
-            this.onInstantLoanForTraPressed();
-        });
+
 
         // Configure HouseLoan component
         houseloanConstraintLayout = this.findViewById(R.id.houseloan_constraint_layout);
 
         // Configure Instant loan for a n component
         instantLoanForAntwoButton = this.findViewById(R.id.instant_loan_for_antwo_button);
-        instantLoanForAntwoButton.setOnClickListener((view) -> {
-            this.onInstantLoanForANTwoPressed();
-        });
 
         // Configure TaxLoan component
         taxloanConstraintLayout = this.findViewById(R.id.taxloan_constraint_layout);
 
         // Configure Instant loan for Tax component
         instantLoanForTaxButton = this.findViewById(R.id.instant_loan_for_tax_button);
-        instantLoanForTaxButton.setOnClickListener((view) -> {
-            this.onInstantLoanForTaxPressed();
-        });
+
 
         // Configure OtherLoan component
         otherloanConstraintLayout = this.findViewById(R.id.otherloan_constraint_layout);
 
         // Configure Instant loan for oth component
         instantLoanForOthButton = this.findViewById(R.id.instant_loan_for_oth_button);
-        instantLoanForOthButton.setOnClickListener((view) -> {
-            this.onInstantLoanForOthPressed();
-        });
+
 
 
         startAnimationOne();
 
     }
 
-    public void onInstantLoanForPerPressed() {
+    public void onInstantLoanForPerPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "personal loan");
         startActivity(intent);
         finish();
     }
 
-    public void onInstantLoanForANPressed() {
+    public void onInstantLoanForANPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "car loan");
         startActivity(intent);
         finish();
     }
 
-    public void onInstantLoanForCoPressed() {
+    public void onInstantLoanForCoPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "commercial loan");
         startActivity(intent);
         finish();
     }
 
-    public void onInstantLoanForTraPressed() {
+    public void onInstantLoanForTraPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "travel loan");
         startActivity(intent);
         finish();
     }
 
-    public void onInstantLoanForANTwoPressed() {
+    public void onInstantLoanForANTwoPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "house loan");
         startActivity(intent);
         finish();
     }
 
-    public void onInstantLoanForTaxPressed() {
+    public void onInstantLoanForTaxPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "tax loan");
         startActivity(intent);
         finish();
     }
 
-    public void onInstantLoanForOthPressed() {
+    public void onInstantLoanForOthPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RequestLoanActivity.class);
         intent.putExtra("loan_type", "other loan");
         startActivity(intent);

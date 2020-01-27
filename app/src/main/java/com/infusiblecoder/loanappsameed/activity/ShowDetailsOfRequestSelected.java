@@ -115,6 +115,22 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         dueDateTextView.setText(requestLoanModeldata.loan_due_date);
 
 
+
+        if (requestLoanModeldata.loan_type.equals(Comman.LOAN_TYPES[1])){
+
+            btnSeevehicalDoc.setVisibility(View.VISIBLE);
+            btnSeeownerIdDoc.setVisibility(View.VISIBLE);
+
+            btnSeeinsuranceDoc.setVisibility(View.VISIBLE);
+
+        }else {
+
+            btnSeevehicalDoc.setVisibility(View.INVISIBLE);
+            btnSeeownerIdDoc.setVisibility(View.VISIBLE);
+
+            btnSeeinsuranceDoc.setVisibility(View.INVISIBLE);
+        }
+
         btnSeevehicalDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

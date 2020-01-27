@@ -136,6 +136,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
+        android:visibility="invisible"
         android:id="@+id/edit_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/profile_activity_edit_button_height"
@@ -183,7 +184,7 @@
 
         <TextView
             android:id="@+id/general_text_view"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="15dp"
             android:layout_marginEnd="@dimen/profile_activity_general_text_view_margin_end"
             android:gravity="start"
@@ -208,6 +209,7 @@
             android:layout_marginTop="@dimen/profile_activity_profile_settings_constraint_layout_margin_top"
             android:background="#FFFFFF"
             android:clickable="true"
+            android:onClick="onProfileSettingsPressed"
             app:layout_constraintBottom_toTopOf="@+id/privacy_constraint_layout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -232,8 +234,8 @@
 
             <Button
                 android:id="@+id/profile_settings_button"
-                android:layout_width="70dp"
-                android:layout_height="22dp"
+                android:layout_width="150dp"
+                android:layout_height="21dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:background="?attr/selectableItemBackground"
@@ -272,7 +274,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
+android:onClick="onPrivacyPressed"
             android:id="@+id/privacy_constraint_layout"
             android:layout_width="@dimen/profile_activity_privacy_constraint_layout_width"
             android:layout_height="60dp"

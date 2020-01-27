@@ -142,7 +142,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
 
-                            Comman.showSucdessToast(LoginActivity.this, "Login Successful\n Welcome " + jsonObject.getString("address"));
 
 
 //                            $firstname = "firstname";
@@ -183,6 +182,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            "user_id","firstname", "lastname", "address", "whatyoupretend",
 //                                    "fieldofactivity", "phone", "email", "password", "status","user_img_url"};
 
+                            Comman.showSucdessToast(LoginActivity.this, "Login Successful\n Welcome " + userTableData.firstname);
 
                             SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
                             editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], userTableData.user_id);

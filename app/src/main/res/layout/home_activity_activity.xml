@@ -48,6 +48,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/personalloan_constraint_layout"
             android:layout_width="0dp"
+            android:onClick="onInstantLoanForPerPressed"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/home_activity_activity_personalloan_constraint_layout_margin_top"
             android:background="@color/home_activity_activity_personalloan_constraint_layout_background_color"
@@ -61,6 +62,7 @@
             tools:layout_editor_absoluteY="44dp">
 
             <TextView
+                android:onClick="onInstantLoanForPerPressed"
                 android:id="@+id/personal_loan_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,6 +78,7 @@
                 tools:layout_editor_absoluteY="12dp" />
 
             <Button
+                android:onClick="onInstantLoanForPerPressed"
                 android:id="@+id/instant_loan_for_per_button"
                 android:layout_width="287dp"
                 android:layout_height="54dp"
@@ -92,6 +95,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/carloan_constraint_layout"
+            android:onClick="onInstantLoanForANPressed"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/home_activity_activity_carloan_constraint_layout_margin_top"
@@ -106,6 +110,8 @@
             tools:layout_editor_absoluteY="163dp">
 
             <TextView
+                android:onClick="onInstantLoanForANPressed"
+
                 android:id="@+id/car_loan_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,6 +127,8 @@
                 tools:layout_editor_absoluteY="17dp" />
 
             <Button
+                android:onClick="onInstantLoanForANPressed"
+
                 android:id="@+id/instant_loan_for_anbutton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/home_activity_activity_instant_loan_for_anbutton_height"
@@ -140,6 +148,8 @@
                 tools:layout_editor_absoluteY="43dp" />
 
             <ImageView
+                android:onClick="onInstantLoanForANPressed"
+
                 android:id="@+id/car_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,6 +166,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/commercial_constraint_layout"
             android:layout_width="0dp"
+            android:onClick="onInstantLoanForCoPressed"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/home_activity_activity_commercial_constraint_layout_margin_start"
             android:layout_marginTop="@dimen/home_activity_activity_commercial_constraint_layout_margin_top"
@@ -170,6 +181,8 @@
             tools:layout_editor_absoluteY="163dp">
 
             <TextView
+                android:onClick="onInstantLoanForCoPressed"
+
                 android:id="@+id/commercial_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -185,6 +198,8 @@
                 tools:layout_editor_absoluteY="17dp" />
 
             <Button
+                android:onClick="onInstantLoanForCoPressed"
+
                 android:id="@+id/instant_loan_for_co_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/home_activity_activity_instant_loan_for_co_button_height"
@@ -204,6 +219,8 @@
                 tools:layout_editor_absoluteY="43dp" />
 
             <ImageView
+                android:onClick="onInstantLoanForCoPressed"
+
                 android:id="@+id/commercial_buldings_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -220,6 +237,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/travelloan_constraint_layout"
             android:layout_width="0dp"
+            android:onClick="onInstantLoanForTraPressed"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/home_activity_activity_travelloan_constraint_layout_margin_top"
             app:layout_constraintBottom_toTopOf="@+id/taxloan_constraint_layout"
@@ -243,6 +261,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:onClick="onInstantLoanForTraPressed"
                 android:id="@+id/travel_loan_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -258,6 +277,7 @@
                 tools:layout_editor_absoluteY="17dp" />
 
             <Button
+                android:onClick="onInstantLoanForTraPressed"
                 android:id="@+id/instant_loan_for_tra_button"
                 android:layout_width="@dimen/home_activity_activity_instant_loan_for_tra_button_width"
                 android:layout_height="@dimen/home_activity_activity_instant_loan_for_tra_button_height"
@@ -274,6 +294,8 @@
                 tools:layout_editor_absoluteY="43dp" />
 
             <ImageView
+                android:onClick="onInstantLoanForTraPressed"
+
                 android:id="@+id/plane_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -290,6 +312,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/houseloan_constraint_layout"
             android:layout_width="0dp"
+            android:onClick="onInstantLoanForANTwoPressed"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/home_activity_activity_houseloan_constraint_layout_margin_start"
             android:layout_marginTop="@dimen/home_activity_activity_houseloan_constraint_layout_margin_top"
@@ -304,6 +327,8 @@
             tools:layout_editor_absoluteY="327dp">
 
             <TextView
+                android:onClick="onInstantLoanForANTwoPressed"
+
                 android:id="@+id/house_loan_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -319,6 +344,8 @@
                 tools:layout_editor_absoluteY="17dp" />
 
             <Button
+                android:onClick="onInstantLoanForANTwoPressed"
+
                 android:id="@+id/instant_loan_for_antwo_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/home_activity_activity_instant_loan_for_antwo_button_height"
@@ -338,6 +365,8 @@
                 tools:layout_editor_absoluteY="43dp" />
 
             <ImageView
+                android:onClick="onInstantLoanForANTwoPressed"
+
                 android:id="@+id/home1_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -355,6 +384,7 @@
             android:id="@+id/taxloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="onInstantLoanForTaxPressed"
             android:layout_marginTop="@dimen/home_activity_activity_taxloan_constraint_layout_margin_top"
             android:background="@color/home_activity_activity_taxloan_constraint_layout_background_color"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -367,6 +397,8 @@
             tools:layout_editor_absoluteY="491dp">
 
             <TextView
+                android:onClick="onInstantLoanForTaxPressed"
+
                 android:id="@+id/tax_loan_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -382,6 +414,8 @@
                 tools:layout_editor_absoluteY="22dp" />
 
             <Button
+                android:onClick="onInstantLoanForTaxPressed"
+
                 android:id="@+id/instant_loan_for_tax_button"
                 android:layout_width="122dp"
                 android:layout_height="35dp"
@@ -396,6 +430,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/tax_loan_text_view" />
 
             <ImageView
+                android:onClick="onInstantLoanForTaxPressed"
+
                 android:id="@+id/mask_group1_image_view"
                 android:layout_width="53dp"
                 android:layout_height="51dp"
@@ -412,6 +448,7 @@
             android:id="@+id/otherloan_constraint_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="onInstantLoanForOthPressed"
             android:layout_marginStart="@dimen/home_activity_activity_otherloan_constraint_layout_margin_start"
             android:layout_marginTop="@dimen/home_activity_activity_otherloan_constraint_layout_margin_top"
             android:background="@color/home_activity_activity_otherloan_constraint_layout_background_color"
@@ -425,6 +462,8 @@
             tools:layout_editor_absoluteY="491dp">
 
             <TextView
+                android:onClick="onInstantLoanForOthPressed"
+
                 android:id="@+id/other_loan_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -440,6 +479,8 @@
                 tools:layout_editor_absoluteY="22dp" />
 
             <Button
+                android:onClick="onInstantLoanForOthPressed"
+
                 android:id="@+id/instant_loan_for_oth_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/home_activity_activity_instant_loan_for_oth_button_height"

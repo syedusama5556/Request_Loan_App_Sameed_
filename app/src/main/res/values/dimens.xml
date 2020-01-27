@@ -82,7 +82,7 @@
     <dimen name="profile_activity_profile_text_view_margin_top">40dp</dimen>
     <dimen name="profile_activity_ricardo_image_view_margin_end">121dp</dimen>
     <dimen name="profile_activity_privacy_button_text_size">16sp</dimen>
-    <dimen name="profile_activity_general_text_view_margin_end">262dp</dimen>
+    <dimen name="profile_activity_general_text_view_margin_end">255dp</dimen>
     <dimen name="profile_activity_img_constraint_layout_margin_start">14dp</dimen>
     <dimen name="profile_activity_profile_settings_constraint_layout_margin_top">22dp</dimen>
     <dimen name="profile_activity_img_constraint_layout_margin_end">13dp</dimen>
@@ -301,7 +301,7 @@
     <dimen name="request_load_activity_selectdate_button_text_size">12sp</dimen>
     <dimen name="request_load_activity_enter_market_value_constraint_layout_height">27dp</dimen>
     <dimen name="request_load_activity_line1_four_constraint_layout_height">1dp</dimen>
-    <dimen name="request_load_activity_deudateview_constraint_layout_height">31dp</dimen>
+    <dimen name="request_load_activity_deudateview_constraint_layout_height">30dp</dimen>
     <dimen name="request_load_activity_uploadbtn_button_radius">8dp</dimen>
     <dimen name="request_load_activity_deudateview_constraint_layout_margin_top">20dp</dimen>
     <dimen name="request_load_activity_enter_collateral_constraint_layout_margin_top">21dp</dimen>

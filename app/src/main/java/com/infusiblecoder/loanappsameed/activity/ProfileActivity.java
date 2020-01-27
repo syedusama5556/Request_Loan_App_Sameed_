@@ -89,20 +89,21 @@ public class ProfileActivity extends AppCompatActivity {
         // Configure Update and modify yo component
         updateAndModifyYoTextView = this.findViewById(R.id.update_and_modify_yo_text_view);
 
-        // Configure Profile Settings component
         profileSettingsButton = this.findViewById(R.id.profile_settings_button);
-        profileSettingsButton.setOnClickListener((view) -> {
-            this.onProfileSettingsPressed();
-        });
+
 
         // Configure Change your password component
         changeYourPasswordTextView = this.findViewById(R.id.change_your_password_text_view);
 
         // Configure Privacy component
         privacyButton = this.findViewById(R.id.privacy_button);
-        privacyButton.setOnClickListener((view) -> {
-            this.onPrivacyPressed();
-        });
+
+
+
+        // Configure Change your password component
+        changeYourPasswordTextView = this.findViewById(R.id.change_your_password_text_view);
+
+
 
         loadAllData();
 
@@ -151,7 +152,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void onProfileSettingsPressed() {
+    public void onProfileSettingsPressed(View view) {
 
 //        $firstname_db = "firstname";
 //        $lastname_db = "lastname";
@@ -317,7 +318,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void onPrivacyPressed() {
+    public void onPrivacyPressed(View view) {
 
 
         showDialogPassword();

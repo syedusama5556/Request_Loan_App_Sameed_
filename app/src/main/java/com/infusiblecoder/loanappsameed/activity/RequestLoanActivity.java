@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,8 +50,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,7 +84,7 @@ public class RequestLoanActivity extends AppCompatActivity {
     ConstraintLayout deudateviewConstraintLayout;
     ConstraintLayout duedateConstraintLayout;
     View line1ImageView;
-
+    RadioGroup daysradiogroup;
     TextView loan_type_txt;
 
     RequestQueue rQueue;
@@ -110,7 +115,7 @@ public class RequestLoanActivity extends AppCompatActivity {
     private void init() {
 
         catLoadingView = new CatLoadingView();
-
+        daysradiogroup = findViewById(R.id.days_radio_button_view);
 
         loan_type_txt = findViewById(R.id.loan_type_txt);
 
@@ -141,12 +146,6 @@ public class RequestLoanActivity extends AppCompatActivity {
         dueDateTextView = findViewById(R.id.due_date_text_view);
         line1ImageView = findViewById(R.id.line1_image_view);
 
-
-        // Configure SelectDate component
-        selectdateButton = this.findViewById(R.id.selectdate_button);
-        selectdateButton.setOnClickListener((view) -> {
-            this.onSelectDatePressed();
-        });
 
         // Configure UploadBtn component
         uploadbtnButton = this.findViewById(R.id.uploadbtn_button);
@@ -232,7 +231,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                                 System.out.println("mydatais 1 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
                                 displayName.add(0, "" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
-                                edtVehicleID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
                                 pdffile.add(0, uri);
                             }
@@ -244,7 +243,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                         }
                     } else if (uriString.startsWith("file://")) {
                         displayName.add(0, myFile.getName());
-                        edtVehicleID.setText("" + myFile.getName());
+                        edtOwnerID.setText("" + myFile.getName());
                     }
 
                 }
@@ -266,7 +265,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                             if (cursor != null && cursor.moveToFirst()) {
                                 System.out.println("mydatais 2 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
                                 displayName.add(1, cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                                edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                edtVehicleID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
                                 pdffile.add(1, uri);
                             }
                         } catch (Exception e) {
@@ -277,7 +276,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                         }
                     } else if (uriString.startsWith("file://")) {
                         displayName.add(1, myFile.getName());
-                        edtOwnerID.setText("" + myFile.getName());
+                        edtVehicleID.setText("" + myFile.getName());
                     }
 
                 }
@@ -326,26 +325,15 @@ public class RequestLoanActivity extends AppCompatActivity {
 
     private void uploadPDF(ArrayList<String> pdfname, ArrayList<Uri> pdffile) {
 
-        if (pdfname != null && pdfname.size() == 3) {
-            if (!TextUtils.isEmpty(marketValueEditText.getText()) && !TextUtils.isEmpty(purposeEditText.getText()) && !TextUtils.isEmpty(enterAmountEditText.getText()) && !TextUtils.isEmpty(dueDateTextView.getText()) && !TextUtils.isEmpty(collateralEditText.getText()) && !TextUtils.isEmpty(userNameTextView.getText()) && !TextUtils.isEmpty(loanRequestCodeTextView.getText())) {
+        if (pdfname != null && pdfname.size() >= 1) {
+            if (!TextUtils.isEmpty(marketValueEditText.getText()) && !TextUtils.isEmpty(purposeEditText.getText()) && !TextUtils.isEmpty(enterAmountEditText.getText()) && !TextUtils.isEmpty(collateralEditText.getText()) && !TextUtils.isEmpty(userNameTextView.getText()) && !TextUtils.isEmpty(loanRequestCodeTextView.getText())) {
 
-                InputStream iStream = null;
-                InputStream iStream1 = null;
-                InputStream iStream2 = null;
+
+                catLoadingView.setText("Please Wait ..");
+                catLoadingView.show(getSupportFragmentManager(), "");
+
                 try {
 
-                    iStream = getContentResolver().openInputStream(pdffile.get(0));
-                    final byte[] inputData = BitmapConversion.getBytes(iStream);
-
-                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
-                    final byte[] inputData1 = BitmapConversion.getBytes(iStream1);
-
-                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
-                    final byte[] inputData2 = BitmapConversion.getBytes(iStream2);
-
-
-                    catLoadingView.setText("Please Wait ..");
-                    catLoadingView.show(getSupportFragmentManager(), "");
 
                     VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPLOAD_MULTIPLE_DOC_WITH_DATA_URL,
                             new Response.Listener<NetworkResponse>() {
@@ -420,7 +408,51 @@ public class RequestLoanActivity extends AppCompatActivity {
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], purposeEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], dueDateTextView.getText().toString());
+
+
+                            int radioButtonID = daysradiogroup.getCheckedRadioButtonId();
+                            View radioButton = daysradiogroup.findViewById(radioButtonID);
+                            int idx = daysradiogroup.indexOfChild(radioButton);
+                            RadioButton r = (RadioButton) daysradiogroup.getChildAt(idx);
+                            String selectedtext = r.getText().toString();
+                            selectedtext = selectedtext.replaceAll("\\D+", "");
+                            int days = Integer.parseInt(selectedtext);
+                            long daysmilisec = 1296000000L;
+                            switch (days) {
+
+                                case 15: {
+                                    daysmilisec = 1296000000L + System.currentTimeMillis();
+
+                                    break;
+                                }
+                                case 30: {
+                                    daysmilisec = 2592000000L + System.currentTimeMillis();
+                                    break;
+                                }
+                                case 60: {
+                                    daysmilisec = 5184000000L + System.currentTimeMillis();
+                                    break;
+                                }
+                                case 90: {
+                                    daysmilisec = 7776000000L + System.currentTimeMillis();
+                                    break;
+                                }
+                                default: {
+                                    daysmilisec = 1296000000L + System.currentTimeMillis();
+
+                                    break;
+                                }
+                            }
+
+                            Date date = new Date(daysmilisec);
+
+
+                            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], formatter.format(date));
+
+
                             params.put("loan_status", Comman.LOAN_Status[0]);
 
                             params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
@@ -439,10 +471,63 @@ public class RequestLoanActivity extends AppCompatActivity {
                         @Override
                         protected Map<String, DataPart> getByteData() {
                             Map<String, DataPart> params = new HashMap<>();
+                            InputStream iStream = null;
+                            InputStream iStream1 = null;
+                            InputStream iStream2 = null;
 
-                            params.put("filename", new DataPart(pdfname.get(0), inputData));
-                            params.put("filename1", new DataPart(pdfname.get(1), inputData1));
-                            params.put("filename2", new DataPart(pdfname.get(2), inputData2));
+
+                            byte[] inputData = null, inputData1 = null, inputData2 = null;
+
+
+                            if (loan_type_txt.getText().toString().equals(Comman.LOAN_TYPES[1])) {
+                                try {
+                                    iStream = getContentResolver().openInputStream(pdffile.get(0));
+                                    inputData = BitmapConversion.getBytes(iStream);
+
+
+                                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
+                                    inputData1 = BitmapConversion.getBytes(iStream1);
+
+                                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
+                                    inputData2 = BitmapConversion.getBytes(iStream2);
+
+
+                                    params.put("filename", new DataPart(pdfname.get(0), inputData));
+
+
+                                    params.put("filename1", new DataPart(pdfname.get(1), inputData1));
+
+
+                                    params.put("filename2", new DataPart(pdfname.get(2), inputData2));
+
+
+                                } catch (Exception e) {
+
+                                }
+                            } else {
+                                try {
+
+
+                                    iStream = getContentResolver().openInputStream(pdffile.get(0));
+                                    inputData = BitmapConversion.getBytes(iStream);
+
+
+
+
+                                    params.put("filename", new DataPart(pdfname.get(0), inputData));
+
+
+                                    params.put("filename1", new DataPart(pdfname.get(0), inputData));
+
+
+                                    params.put("filename2", new DataPart(pdfname.get(0), inputData));
+
+                                } catch (Exception e) {
+
+                                }
+                            }
+
+
                             return params;
                         }
                     };
@@ -457,6 +542,7 @@ public class RequestLoanActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
+                    System.out.println("error is3 " + e.getMessage());
                     Comman.showErrorToast(RequestLoanActivity.this, "error is3 " + e.getMessage());
                     catLoadingView.dismiss();
                 }
@@ -505,11 +591,11 @@ public class RequestLoanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
-                startActivityForResult(intent, 1);
-
+                startActivityForResult(intent, 2);
             }
         });
 
@@ -520,7 +606,8 @@ public class RequestLoanActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, 1);
+
 
             }
         });
@@ -540,17 +627,29 @@ public class RequestLoanActivity extends AppCompatActivity {
         btn_dialog_update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (loan_type_txt.getText().toString().equals(Comman.LOAN_TYPES[1])) {
+
+                    if (!TextUtils.isEmpty(edtInsurance.getText().toString()) && !TextUtils.isEmpty(edtVehicleID.getText().toString()) && !TextUtils.isEmpty(edtOwnerID.getText().toString())) {
+
+                        dialog.dismiss();
 
 
-                if (!TextUtils.isEmpty(edtInsurance.getText().toString()) && !TextUtils.isEmpty(edtVehicleID.getText().toString()) && !TextUtils.isEmpty(edtOwnerID.getText().toString())) {
-
-                    dialog.dismiss();
+                    } else {
+                        Comman.showErrorToast(RequestLoanActivity.this, "Enter Missing Fields");
+                    }
 
 
                 } else {
-                    Comman.showErrorToast(RequestLoanActivity.this, "Enter Missing Fields");
-                }
+                    if (!TextUtils.isEmpty(edtOwnerID.getText().toString())) {
 
+                        dialog.dismiss();
+
+
+                    } else {
+                        Comman.showErrorToast(RequestLoanActivity.this, "Enter Missing Fields");
+                    }
+
+                }
             }
         });
 
