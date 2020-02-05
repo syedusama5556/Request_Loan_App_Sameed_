@@ -254,7 +254,6 @@
         tools:layout_editor_absoluteY="361dp">
 
 
-
         <RadioGroup
             android:id="@+id/days_radio_button_view"
             android:layout_width="match_parent"
@@ -269,11 +268,11 @@
             <RadioButton
                 android:id="@+id/radio0"
                 android:layout_width="80dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_flat_selector"
                 android:button="@android:color/transparent"
                 android:checked="true"
+                android:gravity="center"
 
                 android:paddingTop="2dp"
 
@@ -283,24 +282,25 @@
 
             <RadioButton
                 android:id="@+id/radio1"
-                android:gravity="center"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_flat_selector"
                 android:button="@android:color/transparent"
+                android:gravity="center"
 
                 android:paddingTop="2dp"
 
                 android:paddingBottom="2dp"
                 android:text="30 days"
                 android:textColor="@color/radio_flat_text_selector" />
+
             <RadioButton
                 android:id="@+id/radio2"
-                android:gravity="center"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_flat_selector"
                 android:button="@android:color/transparent"
+                android:gravity="center"
 
                 android:paddingTop="2dp"
 
@@ -310,11 +310,11 @@
 
             <RadioButton
                 android:id="@+id/radio3"
-                android:gravity="center"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_flat_selector"
                 android:button="@android:color/transparent"
+                android:gravity="center"
 
                 android:paddingTop="2dp"
 
@@ -353,6 +353,22 @@
             android:textColor="@color/request_load_activity_uploadbtn_button_text_color"
             android:textSize="@dimen/request_load_activity_uploadbtn_button_text_size" />
     </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/listview_loan_request"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/color_hint_text"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/postarequest_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadbtn_button"
+        app:layout_constraintVertical_bias="0.23" />
 
 
     <Button

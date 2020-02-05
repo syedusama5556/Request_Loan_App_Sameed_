@@ -1,13 +1,17 @@
 package com.infusiblecoder.loanappsameed.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.PDFTools;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
@@ -31,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,6 +47,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     RequestLoanModel requestLoanModeldata;
 
     ImageView verificationStatusImageView;
+    ListView doclist;
 
     int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {
@@ -52,9 +59,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     TextView borrower_text_view, loanAmountTextView, purposeOfLoanTextView, collateralTextView, marketValueTextView, loanRequestIdTextView, dueDateTextView;
     private ImageView btnSendrequest;
     private ImageView btnCancel;
-    private LinearLayout btnSeevehicalDoc;
-    private LinearLayout btnSeeownerIdDoc;
-    private LinearLayout btnSeeinsuranceDoc;
+
     private CatLoadingView catLoadingView;
 
 
@@ -87,7 +92,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
         catLoadingView = new CatLoadingView();
 
-
+        doclist = findViewById(R.id.doclist);
         btnSendrequest = findViewById(R.id.btn_sendrequest);
         btnCancel = findViewById(R.id.btn_cancel);
 
@@ -101,9 +106,6 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
         verificationStatusImageView = findViewById(R.id.path_image_view);
 
-        btnSeevehicalDoc = findViewById(R.id.btn_seevehical_doc);
-        btnSeeownerIdDoc = findViewById(R.id.btn_seeowner_id_doc);
-        btnSeeinsuranceDoc = findViewById(R.id.btn_seeinsurance_doc);
 
         borrower_text_view.setText(requestLoanModeldata.user_full_name);
         loanAmountTextView.setText("$" + requestLoanModeldata.loan_amount + " USD");
@@ -115,47 +117,65 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         dueDateTextView.setText(requestLoanModeldata.loan_due_date);
 
 
+        String[] words = requestLoanModeldata.loan_doc_urls.split(",@,");
 
-        if (requestLoanModeldata.loan_type.equals(Comman.LOAN_TYPES[1])){
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        for (int i = 0; i < words.length; i++) {
 
-            btnSeevehicalDoc.setVisibility(View.VISIBLE);
-            btnSeeownerIdDoc.setVisibility(View.VISIBLE);
 
-            btnSeeinsuranceDoc.setVisibility(View.VISIBLE);
+            int getnum = (words[i].indexOf("_") + 1);
+            int length = words.length;
 
-        }else {
+            System.out.println("datais " + getnum + " gg " + length);
 
-            btnSeevehicalDoc.setVisibility(View.INVISIBLE);
-            btnSeeownerIdDoc.setVisibility(View.VISIBLE);
+            String n = words[i].substring(getnum);
+            stringArrayList.add(n);
 
-            btnSeeinsuranceDoc.setVisibility(View.INVISIBLE);
         }
 
-        btnSeevehicalDoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                showDoc(requestLoanModeldata.loan_doc_vehicle_id_url);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ShowDetailsOfRequestSelected.this, android.R.layout.simple_list_item_1, stringArrayList);
+        doclist.setAdapter(arrayAdapter);
+
+
+        doclist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+
+                String value = (String) adapter.getItemAtPosition(position);
+
+
+                if (value.endsWith(".pdf")) {
+                    showDoc(words[position]);
+                } else if (value.endsWith(".jpg") || value.endsWith(".png") || value.endsWith(".jpeg")) {
+
+
+                    Dialog settingsDialog = new Dialog(ShowDetailsOfRequestSelected.this);
+                    settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_fullimg_layout
+                            , null));
+
+                    ImageView imageView = settingsDialog.findViewById(R.id.img_dialog_full);
+
+
+                    String url1 = Comman.START_URL + words[position];
+
+                    Glide.with(ShowDetailsOfRequestSelected.this).load(url1).placeholder(R.mipmap.ic_launcher).into(imageView);
+
+                    settingsDialog.show();
+
+
+                } else {
+
+                    Comman.showErrorToast(ShowDetailsOfRequestSelected.this, "Error loading");
+                }
+
+
+                //   System.out.println("myitemposis " + position + "dd "+value);
+
 
             }
         });
-        btnSeeownerIdDoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showDoc(requestLoanModeldata.loan_doc_owner_id_url);
-
-            }
-        });
-        btnSeeinsuranceDoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showDoc(requestLoanModeldata.loan_doc_insurance_url);
-
-            }
-        });
-
 
         btnSendrequest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +199,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
 
     }
+
 
     public void onbtnSendrequestPressed() {
 

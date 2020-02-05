@@ -6,8 +6,8 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class Comman {
 
-   public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
-    //public static String START_URL = "http://192.168.10.3/android/loanapp/";
+    public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
+    // public static String START_URL = "http://192.168.10.4/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
@@ -16,6 +16,7 @@ public class Comman {
     public static String REGISTER_URL = START_URL + "register.php";
 
     public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL = START_URL + "uploadmultipledoc.php";
+    public static String UPLOAD_MULTIPLE_DOC_WITH_DATA_URL2nd = START_URL + "uploadmultipledoc2.php";
 
 
     public static String DELETE_SENT_REQUESTS_URL = START_URL + "deletesentrequest.php";
@@ -42,7 +43,7 @@ public class Comman {
 
 
     public static String[] TABLE_USERS_ATTRIBUTES = {"firstname", "lastname", "address", "whatyoupretend", "fieldofactivity", "phone", "email", "password", "status", "user_img_url"};
-    public static String[] TABLE_LOAN_REQUEST_ATTRIBUTES = {"loan_request_code", "user_full_name", "user_img_url_request", "loan_amount", "loan_purpose", "loan_collateral", "loan_market_value", "loan_type", "loan_due_date", "loan_doc_vehicle_id_url", "loan_doc_owner_id_url", "loan_doc_insurance_url", "loan_status"};
+    public static String[] TABLE_LOAN_REQUEST_ATTRIBUTES = {"loan_request_code", "user_full_name", "user_img_url_request", "loan_amount", "loan_purpose", "loan_collateral", "loan_market_value", "loan_type", "loan_due_date", "loan_doc_urls", "loan_status"};
     public static String[] TABLE_Requests_ATTRIBUTES = {"loan_request_code", "request_sender_user_name", "request_reciver_user_name", "request_sender_user_id", "request_reciver_user_id", "request_time_stamp", "request_is_seen"};
 
 

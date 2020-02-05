@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class RequestLoanModel implements Serializable {
 
 
-    public String loan_id, user_id, loan_request_code, user_full_name, user_img_url_request, loan_amount, loan_purpose, loan_collateral, loan_market_value, loan_type, loan_due_date, loan_doc_vehicle_id_url, loan_doc_owner_id_url, loan_doc_insurance_url, loan_status;
+    public String loan_id, user_id, loan_request_code, user_full_name, user_img_url_request, loan_amount, loan_purpose, loan_collateral, loan_market_value, loan_type, loan_due_date, loan_doc_urls, loan_status;
 
 
-    public RequestLoanModel(String loan_id, String user_id, String loan_request_code, String user_full_name, String user_img_url_request, String loan_amount, String loan_purpose, String loan_collateral, String loan_market_value, String loan_type, String loan_due_date, String loan_doc_vehicle_id_url, String loan_doc_owner_id_url, String loan_doc_insurance_url, String loan_status) {
+    public RequestLoanModel(String loan_id, String user_id, String loan_request_code, String user_full_name, String user_img_url_request, String loan_amount, String loan_purpose, String loan_collateral, String loan_market_value, String loan_type, String loan_due_date, String loan_doc_urls, String loan_status) {
         this.loan_id = loan_id;
         this.user_id = user_id;
         this.loan_request_code = loan_request_code;
@@ -20,9 +20,7 @@ public class RequestLoanModel implements Serializable {
         this.loan_market_value = loan_market_value;
         this.loan_type = loan_type;
         this.loan_due_date = loan_due_date;
-        this.loan_doc_vehicle_id_url = loan_doc_vehicle_id_url;
-        this.loan_doc_owner_id_url = loan_doc_owner_id_url;
-        this.loan_doc_insurance_url = loan_doc_insurance_url;
+        this.loan_doc_urls = loan_doc_urls;
         this.loan_status = loan_status;
     }
 }

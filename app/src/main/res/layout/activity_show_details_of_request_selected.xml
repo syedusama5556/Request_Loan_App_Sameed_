@@ -79,95 +79,26 @@
 
     <LinearLayout
         android:id="@+id/linlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="250dp"
         android:layout_below="@id/tempbg"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/btn_seevehical_doc"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:text="Files List"
+            android:textColor="#4B4B4B"
+            android:layout_marginBottom="5dp" />
 
-            <ImageView
-
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/lender_review_page_activity_accept_button_ripple"
-                android:padding="10dp"
-                android:src="@drawable/ic_car_rec" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Vehicle Doc" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/btn_seeowner_id_doc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <ImageView
-
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/lender_review_page_activity_accept_button_ripple"
-                android:padding="10dp"
-                android:src="@drawable/ic_health_insurance"
-
-                />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Owner Doc" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_seeinsurance_doc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <ImageView
-
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/lender_review_page_activity_accept_button_ripple"
-                android:padding="10dp"
-                android:src="@drawable/ic_shop"
-
-                />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Insurance Doc" />
-        </LinearLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/doclist" />
 
     </LinearLayout>
 

@@ -1,7 +1,3 @@
-/**
- * Created by Usama.
- */
-
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.app.DatePickerDialog;
@@ -16,12 +12,15 @@ import android.provider.OpenableColumns;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -97,6 +96,8 @@ public class RequestLoanActivity extends AppCompatActivity {
     private EditText edtInsurance;
     private CatLoadingView catLoadingView;
     private String loantypeIntent = "car";
+    private ListView listview_request;
+    ArrayAdapter<String> listview_request_adapter;
 
     public static Intent newIntent(Context context) {
 
@@ -116,6 +117,36 @@ public class RequestLoanActivity extends AppCompatActivity {
 
         catLoadingView = new CatLoadingView();
         daysradiogroup = findViewById(R.id.days_radio_button_view);
+        listview_request = findViewById(R.id.listview_loan_request);
+
+        listview_request_adapter = new ArrayAdapter<>(RequestLoanActivity.this, R.layout.listview_item_black, displayName);
+
+        listview_request.setAdapter(listview_request_adapter);
+
+        listview_request.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+
+                String value = (String) adapter.getItemAtPosition(position);
+
+
+                Object item = ((ArrayAdapter) listview_request.getAdapter()).getItem(position);
+                ((ArrayAdapter) listview_request.getAdapter()).remove(item);
+
+                System.out.println("myitemposis " + position);
+                try {
+                    if (displayName.size() > 0 && pdffile.size() > 0) {
+
+                        displayName.remove(position);
+                        pdffile.remove(position);
+                    }
+                    listview_request_adapter.notifyDataSetChanged();
+                    System.out.println("myitemposis2 " + position);
+                } catch (Exception e) {
+                    System.out.println("Error removing data " + e.getMessage() + displayName.size());
+                }
+            }
+        });
 
         loan_type_txt = findViewById(R.id.loan_type_txt);
 
@@ -192,7 +223,15 @@ public class RequestLoanActivity extends AppCompatActivity {
     public void onUploadBtnPressed() {
 
 
-        showDialogSelectFiles();
+        //   showDialogSelectFiles();
+
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        // intent.setType("application/pdf");
+        intent.setType("*/*");
+
+        startActivityForResult(intent, 1);
 
     }
 
@@ -229,21 +268,30 @@ public class RequestLoanActivity extends AppCompatActivity {
                             cursor = this.getContentResolver().query(uri, null, null, null, null);
                             if (cursor != null && cursor.moveToFirst()) {
                                 System.out.println("mydatais 1 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                                displayName.add(0, "" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                displayName.add("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
-                                edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                //    edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
-                                pdffile.add(0, uri);
+                                pdffile.add(uri);
+
+                                System.out.println("errorname" + displayName.get(0));
+
+                                listview_request_adapter.notifyDataSetChanged();
                             }
                         } catch (Exception e) {
 
-                            System.out.println("" + e.getMessage());
+                            System.out.println("error" + e.getMessage());
                         } finally {
                             cursor.close();
                         }
                     } else if (uriString.startsWith("file://")) {
-                        displayName.add(0, myFile.getName());
-                        edtOwnerID.setText("" + myFile.getName());
+
+                        displayName.add(myFile.getName());
+                        //   edtOwnerID.setText("" + myFile.getName());
+                        System.out.println("errorname1" + displayName.get(0));
+
+                        listview_request_adapter.notifyDataSetChanged();
+
                     }
 
                 }
@@ -335,11 +383,14 @@ public class RequestLoanActivity extends AppCompatActivity {
                 try {
 
 
-                    VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPLOAD_MULTIPLE_DOC_WITH_DATA_URL,
+                    VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPLOAD_MULTIPLE_DOC_WITH_DATA_URL2nd,
                             new Response.Listener<NetworkResponse>() {
                                 @Override
                                 public void onResponse(NetworkResponse response) {
                                     Log.d("ressssssoo", new String(response.data));
+
+                                    System.out.println("done data is error " + response);
+
 
                                     rQueue.getCache().clear();
                                     try {
@@ -369,9 +420,13 @@ public class RequestLoanActivity extends AppCompatActivity {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Comman.showErrorToast(RequestLoanActivity.this, "error is 2 " + error.getMessage());
+                                    Comman.showErrorToast(RequestLoanActivity.this, "error is 2 " + error);
+
+                                    System.out.println("done data is error " + "error is 6 " + error.getMessage());
+                                    error.printStackTrace();
                                     catLoadingView.dismiss();
                                 }
+
                             }) {
 
                         /*
@@ -416,6 +471,8 @@ public class RequestLoanActivity extends AppCompatActivity {
                             RadioButton r = (RadioButton) daysradiogroup.getChildAt(idx);
                             String selectedtext = r.getText().toString();
                             selectedtext = selectedtext.replaceAll("\\D+", "");
+
+
                             int days = Integer.parseInt(selectedtext);
                             long daysmilisec = 1296000000L;
                             switch (days) {
@@ -458,6 +515,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                             params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[7], loantypeIntent);
                             params.put("user_id", userid);
+                            params.put("countoffiles", pdffile.size() + "");
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], pdfname.get(0));
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[9], pdfname.get(0));
 
@@ -472,60 +530,58 @@ public class RequestLoanActivity extends AppCompatActivity {
                         protected Map<String, DataPart> getByteData() {
                             Map<String, DataPart> params = new HashMap<>();
                             InputStream iStream = null;
-                            InputStream iStream1 = null;
-                            InputStream iStream2 = null;
+                            //InputStream iStream1 = null;
+                            //InputStream iStream2 = null;
 
 
-                            byte[] inputData = null, inputData1 = null, inputData2 = null;
+                            byte[] inputData = null;
 
 
-                            if (loan_type_txt.getText().toString().equals(Comman.LOAN_TYPES[1])) {
-                                try {
-                                    iStream = getContentResolver().openInputStream(pdffile.get(0));
+//                            if (loan_type_txt.getText().toString().equals(Comman.LOAN_TYPES[1])) {
+//                                try {
+//                                    iStream = getContentResolver().openInputStream(pdffile.get(0));
+//                                    inputData = BitmapConversion.getBytes(iStream);
+//
+////
+////                                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
+////                                    inputData1 = BitmapConversion.getBytes(iStream1);
+////
+////                                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
+////                                    inputData2 = BitmapConversion.getBytes(iStream2);
+//
+//
+//                                    params.put("filename0", new DataPart(pdfname.get(0), inputData));
+//
+//
+////                                    params.put("filename1", new DataPart(pdfname.get(1), inputData1));
+////
+////
+////                                    params.put("filename2", new DataPart(pdfname.get(2), inputData2));
+//
+//
+//                                } catch (Exception e) {
+//
+//                                }
+//                            } else {
+
+
+                            try {
+                                for (int i = 0; i < pdffile.size(); i++) {
+
+                                    iStream = getContentResolver().openInputStream(pdffile.get(i));
                                     inputData = BitmapConversion.getBytes(iStream);
 
 
-                                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
-                                    inputData1 = BitmapConversion.getBytes(iStream1);
-
-                                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
-                                    inputData2 = BitmapConversion.getBytes(iStream2);
-
-
-                                    params.put("filename", new DataPart(pdfname.get(0), inputData));
-
-
-                                    params.put("filename1", new DataPart(pdfname.get(1), inputData1));
-
-
-                                    params.put("filename2", new DataPart(pdfname.get(2), inputData2));
-
-
-                                } catch (Exception e) {
+                                    params.put("filename" + i, new DataPart(pdfname.get(i), inputData));
+                                    System.out.println("done data is " + " filename" + i);
 
                                 }
-                            } else {
-                                try {
+
+                            } catch (Exception e) {
 
 
-                                    iStream = getContentResolver().openInputStream(pdffile.get(0));
-                                    inputData = BitmapConversion.getBytes(iStream);
-
-
-
-
-                                    params.put("filename", new DataPart(pdfname.get(0), inputData));
-
-
-                                    params.put("filename1", new DataPart(pdfname.get(0), inputData));
-
-
-                                    params.put("filename2", new DataPart(pdfname.get(0), inputData));
-
-                                } catch (Exception e) {
-
-                                }
                             }
+//                            }
 
 
                             return params;
@@ -553,7 +609,7 @@ public class RequestLoanActivity extends AppCompatActivity {
                 Comman.showErrorToast(RequestLoanActivity.this, "Enter Missing Fields");
             }
         } else {
-            Comman.showErrorToast(RequestLoanActivity.this, "Select all 3 Files First");
+            Comman.showErrorToast(RequestLoanActivity.this, "Select all Files First");
 
         }
     }
