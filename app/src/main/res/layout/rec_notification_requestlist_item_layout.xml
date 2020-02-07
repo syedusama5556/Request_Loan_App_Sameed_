@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:elevation="5dp"
         android:id="@+id/rec_card_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,50 +19,61 @@
             android:background="@color/color_primary"
             android:padding="3dp">
 
-            <ImageView
-                android:id="@+id/rec_img_message"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerVertical="true"
-                android:padding="5dp"
-                android:src="@drawable/ic_message_closed_envelope" />
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="10dp"
-                android:layout_toRightOf="@id/rec_img_message"
-                android:orientation="vertical"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                >
+                <ImageView
+                    android:id="@+id/rec_img_message"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
 
-                <TextView
-                    android:id="@+id/rec_sender_username"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_message_closed_envelope" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Name"
-                    android:textColor="@color/color_white"
-                    android:textSize="16sp" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@id/rec_img_message"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/rec_sender_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Name"
+                        android:textColor="@color/color_white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/rec_loan_request_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loan code"
+                        android:textColor="@color/color_white"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/rec_loan_request_code"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/rec_timestamp_notification_requests"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Loan code"
-                    android:textColor="@color/color_white"
-                    android:textStyle="bold" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:text="dtae and time"
+                    android:textColor="@color/color_white" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/rec_timestamp_notification_requests"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="dtae and time"
-                android:textColor="@color/color_white" />
 
             <TextView
                 android:id="@+id/rec_btn_showmore_notification_requests"

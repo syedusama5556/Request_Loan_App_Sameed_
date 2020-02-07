@@ -26,7 +26,7 @@
         android:id="@+id/loan_type_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="268dp"
+        android:layout_marginLeft="210dp"
         android:layout_marginTop="80dp"
         android:gravity="start"
         android:text="@string/request_load_activity_user_name_text_view_text"
