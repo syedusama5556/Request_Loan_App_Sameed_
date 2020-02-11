@@ -1,6 +1,5 @@
 package com.infusiblecoder.loanappsameed.activity;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -26,8 +23,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -52,7 +47,6 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,28 +54,19 @@ import java.util.Map;
 
 public class RequestLoanActivity extends AppCompatActivity {
 
-    static TextView dueDateTextView;
-    ImageButton selectdateButton;
     LinearLayout uploadbtnButton;
     Button postarequestButton;
-    ConstraintLayout constraintLayoutConstraintLayout;
     TextView userNameTextView;
     TextView loanRequestCodeTextView;
     TextView textViewTextView;
-    ConstraintLayout enteramountConstraintLayout;
     EditText enterAmountEditText;
     View line1ConstraintLayout;
-    ConstraintLayout enterPurposeConstraintLayout;
     EditText purposeEditText;
     View line1TwoConstraintLayout;
-    ConstraintLayout enterCollateralConstraintLayout;
     EditText collateralEditText;
     View line1ThreeConstraintLayout;
-    ConstraintLayout enterMarketValueConstraintLayout;
     EditText marketValueEditText;
     View line1FourConstraintLayout;
-    ConstraintLayout deudateviewConstraintLayout;
-    ConstraintLayout duedateConstraintLayout;
     View line1ImageView;
     RadioGroup daysradiogroup;
     TextView loan_type_txt;
@@ -98,6 +83,8 @@ public class RequestLoanActivity extends AppCompatActivity {
     private String loantypeIntent = "car";
     private ListView listview_request;
     ArrayAdapter<String> listview_request_adapter;
+    private EditText marketLoanratioEditText;
+    private TextView marketBorrowingrateText;
 
     public static Intent newIntent(Context context) {
 
@@ -156,26 +143,24 @@ public class RequestLoanActivity extends AppCompatActivity {
             loan_type_txt.setText(loantypeIntent);
         }
 
-        constraintLayoutConstraintLayout = findViewById(R.id.constraint_layout_constraint_layout);
         userNameTextView = findViewById(R.id.user_name_text_view);
         loanRequestCodeTextView = findViewById(R.id.loan_request_code_text_view);
         textViewTextView = findViewById(R.id.text_view_text_view);
-        enteramountConstraintLayout = findViewById(R.id.enteramount_constraint_layout);
         enterAmountEditText = findViewById(R.id.enter_amount_edit_text);
         line1ConstraintLayout = findViewById(R.id.line1_constraint_layout);
-        enterPurposeConstraintLayout = findViewById(R.id.enter_purpose_constraint_layout);
         purposeEditText = findViewById(R.id.purpose_edit_text);
         line1TwoConstraintLayout = findViewById(R.id.line1_two_constraint_layout);
-        enterCollateralConstraintLayout = findViewById(R.id.enter_collateral_constraint_layout);
         collateralEditText = findViewById(R.id.collateral_edit_text);
         line1ThreeConstraintLayout = findViewById(R.id.line1_three_constraint_layout);
-        enterMarketValueConstraintLayout = findViewById(R.id.enter_market_value_constraint_layout);
         marketValueEditText = findViewById(R.id.market_value_edit_text);
         line1FourConstraintLayout = findViewById(R.id.line1_four_constraint_layout);
-        deudateviewConstraintLayout = findViewById(R.id.deudateview_constraint_layout);
-        duedateConstraintLayout = findViewById(R.id.duedate_constraint_layout);
-        dueDateTextView = findViewById(R.id.due_date_text_view);
+
         line1ImageView = findViewById(R.id.line1_image_view);
+
+
+        marketLoanratioEditText = (EditText) findViewById(R.id.market_loanratio_edit_text);
+
+        marketBorrowingrateText = (TextView) findViewById(R.id.marketBorrowingrate_text);
 
 
         // Configure UploadBtn component
@@ -215,8 +200,8 @@ public class RequestLoanActivity extends AppCompatActivity {
 
     public void onSelectDatePressed() {
 
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+//        DialogFragment newFragment = new DatePickerFragment();
+//        newFragment.show(getSupportFragmentManager(), "datePicker");
 
     }
 
@@ -463,6 +448,9 @@ public class RequestLoanActivity extends AppCompatActivity {
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], purposeEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
+
+                            params.put("loan_borrowing_rate", marketValueEditText.getText().toString());
+                            params.put("loan_loan_ratio", marketValueEditText.getText().toString());
 
 
                             int radioButtonID = daysradiogroup.getCheckedRadioButtonId();
@@ -715,26 +703,26 @@ public class RequestLoanActivity extends AppCompatActivity {
     }
 
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-            dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-            return dialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-
-
-            dueDateTextView.setText(day + "-" + (month + 1) + "-" + year);
-
-
-        }
-    }
+//    public static class DatePickerFragment extends DialogFragment
+//            implements DatePickerDialog.OnDateSetListener {
+//
+//        @Override
+//        public Dialog onCreateDialog(Bundle savedInstanceState) {
+//            final Calendar c = Calendar.getInstance();
+//            int year = c.get(Calendar.YEAR);
+//            int month = c.get(Calendar.MONTH);
+//            int day = c.get(Calendar.DAY_OF_MONTH);
+//            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+//            dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+//            return dialog;
+//        }
+//
+//        public void onDateSet(DatePicker view, int year, int month, int day) {
+//
+//
+//            dueDateTextView.setText(day + "-" + (month + 1) + "-" + year);
+//
+//
+//        }
+//    }
 }

@@ -292,12 +292,12 @@
     <dimen name="request_load_activity_line1_three_constraint_layout_height">1dp</dimen>
     <dimen name="request_load_activity_market_value_edit_text_height">25dp</dimen>
     <dimen name="request_load_activity_enter_market_value_constraint_layout_width">307dp</dimen>
-    <dimen name="request_load_activity_uploadbtn_button_margin_top">43dp</dimen>
+    <dimen name="request_load_activity_uploadbtn_button_margin_top">30dp</dimen>
     <dimen name="request_load_activity_purpose_edit_text_text_size">14sp</dimen>
-    <dimen name="request_load_activity_enteramount_constraint_layout_margin_top">33dp</dimen>
+    <dimen name="request_load_activity_enteramount_constraint_layout_margin_top">20dp</dimen>
     <dimen name="request_load_activity_purpose_edit_text_height">25dp</dimen>
     <dimen name="request_load_activity_enter_amount_edit_text_text_size">14sp</dimen>
-    <dimen name="request_load_activity_user_name_text_view_margin_top">75dp</dimen>
+    <dimen name="request_load_activity_user_name_text_view_margin_top">20dp</dimen>
     <dimen name="request_load_activity_selectdate_button_text_size">12sp</dimen>
     <dimen name="request_load_activity_enter_market_value_constraint_layout_height">27dp</dimen>
     <dimen name="request_load_activity_line1_four_constraint_layout_height">1dp</dimen>
@@ -312,7 +312,7 @@
     <dimen name="request_load_activity_enter_amount_edit_text_height">25dp</dimen>
     <dimen name="request_load_activity_enter_collateral_constraint_layout_width">307dp</dimen>
     <dimen name="request_load_activity_postarequest_button_height">41dp</dimen>
-    <dimen name="request_load_activity_enteramount_constraint_layout_width">307dp</dimen>
+    <dimen name="request_load_activity_enteramount_constraint_layout_width">310dp</dimen>
     <dimen name="request_load_activity_uploadbtn_button_image_padding">10dp</dimen>
     <dimen name="request_load_activity_enter_purpose_constraint_layout_margin_start">24dp</dimen>
     <dimen name="request_load_activity_selectdate_button_width">29dp</dimen>
@@ -322,7 +322,7 @@
     <dimen name="request_load_activity_loan_request_code_text_view_margin_start">24dp</dimen>
     <dimen name="request_load_activity_selectdate_button_height">31dp</dimen>
     <dimen name="request_load_activity_enter_purpose_constraint_layout_height">27dp</dimen>
-    <dimen name="request_load_activity_loan_request_code_text_view_margin_top">21dp</dimen>
+    <dimen name="request_load_activity_loan_request_code_text_view_margin_top">10dp</dimen>
     <dimen name="request_load_activity_text_view_text_view_margin_start">7dp</dimen>
     <dimen name="request_load_activity_enter_purpose_constraint_layout_width">307dp</dimen>
     <dimen name="request_load_activity_line1_constraint_layout_height">1dp</dimen>
