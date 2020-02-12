@@ -64,7 +64,7 @@ public class LoanRequestList extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-
+                System.out.println("i ah error " + response);
                 try {
 
                     JSONArray jsonArray = new JSONArray(response);

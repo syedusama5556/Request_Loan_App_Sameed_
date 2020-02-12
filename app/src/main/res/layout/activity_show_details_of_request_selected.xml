@@ -91,159 +91,215 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
             android:text="Files List"
-            android:textColor="#4B4B4B"
-            android:layout_marginBottom="5dp" />
+            android:textColor="#4B4B4B" />
 
         <ListView
+            android:id="@+id/doclist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/doclist" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linleft"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tempbg"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_above="@id/lin_btn"
 
-        <TextView
+        >
+
+        <LinearLayout
+            android:id="@+id/linleft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_borrower_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_borrower_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
-        <TextView
-            android:id="@+id/borrower_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_borrower_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_purpose_of_loan_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_borrower_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_borrower_text_view_text"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
-        <TextView
-            android:id="@+id/purpose_of_loan_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_purpose_of_loan_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+            <TextView
+                android:id="@+id/borrower_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_borrower_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_purpose_of_loan_text_view_text"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_collateral_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+            <TextView
+                android:id="@+id/purpose_of_loan_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_purpose_of_loan_text_view_margin_start"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_purpose_of_loan_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
 
-        <TextView
-            android:id="@+id/collateral_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_collateral_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+            <TextView
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_collateral_text_view_text"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_market_value_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
-
-        <TextView
-            android:id="@+id/market_value_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_market_value_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="Loan Request ID"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
-
-        <TextView
-            android:id="@+id/loan_request_id_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="Loan Request ID"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+            <TextView
+                android:id="@+id/collateral_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_collateral_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
 
 
-        <TextView
+            <TextView
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_due_date_text_view_text"
-            android:textColor="#4B4B4B"
-            android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_market_value_text_view_text"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
-        <TextView
-            android:id="@+id/due_date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
-            android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
-            android:gravity="start"
-            android:text="@string/lender_review_page_activity_due_date_text_view_text"
-            android:textColor="#BCBCBC"
-            android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+            <TextView
+                android:id="@+id/market_value_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_market_value_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
 
-    </LinearLayout>
+            <TextView
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="Loan Request ID"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+
+            <TextView
+                android:id="@+id/loan_request_id_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="Loan Request ID"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_due_date_text_view_text"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+
+            <TextView
+                android:id="@+id/due_date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_due_date_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="borrowing_rate"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+
+            <TextView
+                android:id="@+id/borrowing_rate_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_due_date_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="Loan Ratio"
+                android:textColor="#4B4B4B"
+                android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
+
+            <TextView
+                android:id="@+id/loan_ratio_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
+                android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
+                android:gravity="start"
+                android:text="@string/lender_review_page_activity_due_date_text_view_text"
+                android:textColor="#BCBCBC"
+                android:textSize="@dimen/lender_review_page_activity_company_private_text_view_text_size" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:id="@+id/lin_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -61,6 +61,8 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     private ImageView btnCancel;
 
     private CatLoadingView catLoadingView;
+    private TextView borrowingRateTextView;
+    private TextView loanRatioTextView;
 
 
     public static boolean hasPermissions(Context context, String... permissions) {
@@ -103,7 +105,8 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         marketValueTextView = findViewById(R.id.market_value_text_view);
         loanRequestIdTextView = findViewById(R.id.loan_request_id_text_view);
         dueDateTextView = findViewById(R.id.due_date_text_view);
-
+        borrowingRateTextView = (TextView) findViewById(R.id.borrowing_rate_text_view);
+        loanRatioTextView = (TextView) findViewById(R.id.loan_ratio_text_view);
         verificationStatusImageView = findViewById(R.id.path_image_view);
 
 
@@ -115,7 +118,8 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         marketValueTextView.setText(requestLoanModeldata.loan_market_value);
         loanRequestIdTextView.setText(requestLoanModeldata.loan_request_code);
         dueDateTextView.setText(requestLoanModeldata.loan_due_date);
-
+        borrowingRateTextView.setText(requestLoanModeldata.loan_borrowing_rate);
+        loanRatioTextView.setText(requestLoanModeldata.loan_loan_ratio);
 
         String[] words = requestLoanModeldata.loan_doc_urls.split(",@,");
 
