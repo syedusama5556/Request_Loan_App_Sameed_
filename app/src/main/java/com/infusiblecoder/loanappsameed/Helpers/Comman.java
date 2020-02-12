@@ -20,6 +20,8 @@ public class Comman {
 
 
     public static String DELETE_SENT_REQUESTS_URL = START_URL + "deletesentrequest.php";
+    public static String getdataforsingleuserwithloanreqcode_REQUESTS_URL = START_URL + "getdataforsingleuserwithloanreqcode.php";
+
 
 
     public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL + "getalldatarequesttable.php";

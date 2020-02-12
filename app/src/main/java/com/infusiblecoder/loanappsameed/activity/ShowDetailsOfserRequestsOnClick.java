@@ -1,11 +1,7 @@
 package com.infusiblecoder.loanappsameed.activity;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -104,22 +100,6 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Intent.ACTION_CALL);
-
-                intent.setData(Uri.parse("tel:" + phoneOnclick.getText().toString()));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    Activity#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for Activity#requestPermissions for more details.
-                        return;
-                    }
-                }
-                startActivity(intent);
 
             }
         });
@@ -127,18 +107,6 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
         btnSendMailUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL, new String[]{emailOnclick.getText().toString()});
-                i.putExtra(Intent.EXTRA_SUBJECT, "Request");
-                i.putExtra(Intent.EXTRA_TEXT, "You Sent Me A Request ");
-                try {
-                    startActivity(Intent.createChooser(i, "Send mail..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(ShowDetailsOfserRequestsOnClick.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                }
 
 
             }
