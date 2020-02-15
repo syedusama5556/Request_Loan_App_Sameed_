@@ -7,7 +7,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 public class Comman {
 
     //public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.0.102/android/loanapp/";
+    public static String START_URL = "http://192.168.10.5/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
@@ -20,6 +20,7 @@ public class Comman {
 
 
     public static String DELETE_SENT_REQUESTS_URL = START_URL + "deletesentrequest.php";
+    public static String DELETE_SENT_REQUESTS_for_reciver_URL = START_URL + "deleterequest_for_reciver.php";
     public static String getdataforsingleuserwithloanreqcode_REQUESTS_URL = START_URL + "getdataforsingleuserwithloanreqcode.php";
 
 
@@ -41,6 +42,7 @@ public class Comman {
 
     public static String UPDATE_PROFILE_URL = START_URL + "updateprofile.php";
     public static String UPDATE_updatenotificationseentotrue_URL = START_URL + "updatenotificationseentotrue.php";
+    public static String UPDATE_updatenotificationstatustoaccepted_URL = START_URL + "updatenotificationstatustoaccepted.php";
     public static String UPDATE_inreview_requests_loanrequest_table_URL = START_URL + "updateinreviewrequestsloanrequesttable.php";
 
 
@@ -65,6 +67,7 @@ public class Comman {
     public static String[] LOAN_TYPES = {"personal loan", "car loan", "commercial loan", "travel loan", "house loan", "tax loan", "other loan"};
 
     public static String[] LOAN_Status = {"pending", "review", "rejected", "approved", "completed"};
+    public static String[] REQUEST_Status = {"pending", "rejected", "accepted", "approved", "completed"};
 
 
     public static void showErrorToast(Context context, String txt) {

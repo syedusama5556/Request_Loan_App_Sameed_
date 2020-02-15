@@ -1,9 +1,11 @@
 package com.infusiblecoder.loanappsameed.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,6 +25,7 @@ import com.google.gson.Gson;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.GetAllMultipleTableDataOnClickRequestMODEL;
+import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserRequestModel;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -55,6 +59,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
     private ImageView btnDeleteRequest;
     private LinearLayout linallbtn;
     private String senderuser_id = "11";
+    private RequestLoanModel requestLoanModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,18 +101,200 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
         catLoadingView = new CatLoadingView();
 
 
-        btnCallUser.setOnClickListener(new View.OnClickListener() {
+        btnSendMailUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                // Create Alert using Builder
+                CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ShowDetailsOfserRequestsOnClick.this)
+                        .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                        .setTitle("Delete Request")
+                        .setMessage("Are You Sure You Want To Reject This Request?")
+                        .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+
+
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.DELETE_SENT_REQUESTS_for_reciver_URL, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+
+                                    try {
+                                        JSONArray jsonArray = new JSONArray(response);
+
+                                        JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                        String code = jsonObject.getString("code");
+
+                                        System.out.println("mysre +" + jsonObject);
+
+                                        if (code.equals("failed")) {
+                                            dialog.dismiss();
+
+                                            Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "Failed " + jsonObject.getString("message"));
+
+
+                                        } else {
+
+                                            dialog.dismiss();
+                                            Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
+
+                                            startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+                                            finish();
+
+
+                                        }
+
+                                    } catch (JSONException e) {
+                                        dialog.dismiss();
+                                        Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + e.getMessage());
+
+                                    }
+
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    dialog.dismiss();
+                                    Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + error);
+
+
+                                }
+                            }) {
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+
+                                    SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                                    String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+                                    if (!id.equals("no value") && !id.equals("")) {
+
+
+                                    } else {
+
+
+                                        Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is getting id");
+
+                                    }
+
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put("request_id", userRequestModel.request_id);
+                                    params.put("user_id", id);
+
+                                    System.out.println("mydatais " + id + userRequestModel.request_id);
+
+                                    return params;
+
+                                }
+                            };
+
+                            VollySingltonClass.getmInstance(ShowDetailsOfserRequestsOnClick.this).addToRequsetque(stringRequest);
+
+
+                        }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                            dialog.dismiss();
+
+                        });
+
+// Show the alert
+                builder.show();
 
 
             }
         });
 
-        btnSendMailUser.setOnClickListener(new View.OnClickListener() {
+        btnCallUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+                Dialog view = new Dialog(ShowDetailsOfserRequestsOnClick.this);
+                view.setContentView(R.layout.dialog_comfirm_loan_with_loanratio);
+
+                TextView dialogLenderTextView = (TextView) view.findViewById(R.id.dialog_lender_text_view);
+                TextView dialogLoanRequestIdTextView = (TextView) view.findViewById(R.id.dialog_loan_request_id_text_view);
+                TextView dialogDueDateTextView = (TextView) view.findViewById(R.id.dialog_due_date_text_view);
+                TextView dialogBorrowingRateTextView = (TextView) view.findViewById(R.id.dialog_borrowing_rate_text_view);
+                TextView dialogLoanRatioTextView = (TextView) view.findViewById(R.id.dialog_loan_ratio_text_view);
+                Button donBtnDialog = (Button) view.findViewById(R.id.don_btn_dialog);
+
+
+                System.out.println("mydatais1 " + requestLoanModel);
+                dialogLenderTextView.setText(reviewRequestRequestSenderUserNameTxt.getText().toString());
+                dialogLoanRequestIdTextView.setText(userRequestModel.loan_request_code);
+
+                dialogDueDateTextView.setText(requestLoanModel.loan_due_date);
+                dialogBorrowingRateTextView.setText(requestLoanModel.loan_borrowing_rate);
+                dialogLoanRatioTextView.setText(requestLoanModel.loan_loan_ratio);
+
+
+                donBtnDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationstatustoaccepted_URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+
+                                try {
+                                    JSONArray jsonArray = new JSONArray(response);
+
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                    String code = jsonObject.getString("code");
+
+                                    System.out.println("mysre +" + jsonObject);
+
+                                    if (code.equals("failed")) {
+
+
+                                        Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "Failed " + jsonObject.getString("message"));
+
+
+                                    } else {
+
+
+                                        Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
+
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + e.getMessage());
+
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + error);
+
+
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("request_id", userRequestModel.request_id);
+
+                                return params;
+
+                            }
+                        };
+
+                        VollySingltonClass.getmInstance(ShowDetailsOfserRequestsOnClick.this).addToRequsetque(stringRequest);
+
+
+                    }
+                });
+
+                view.show();
 
             }
         });
@@ -281,6 +468,8 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
                             catLoadingView.dismiss();
 
+                            getAllData();
+
                             // FancyToast.makeText(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
 
@@ -349,5 +538,75 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
 
     }
+
+
+    private void getAllData() {
+
+        catLoadingView.setText("Please Wait ..");
+        catLoadingView.show(getSupportFragmentManager(), "");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.getdataforsingleuserwithloanreqcode_REQUESTS_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                System.out.println("mydatais " + response);
+
+                try {
+
+                    JSONArray jsonArray = new JSONArray(response);
+
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+
+                        if (jsonObject.getString("code").equals("success")) {
+
+                            Gson gson = new Gson();
+
+                            requestLoanModel = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
+
+                            catLoadingView.dismiss();
+                        } else {
+                            catLoadingView.dismiss();
+
+                            Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "No Data Found ");
+                        }
+                    }
+
+                } catch (Exception e) {
+                    catLoadingView.dismiss();
+                    System.out.println("i ah error " + e.getMessage());
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "Error check your internet connection");
+                catLoadingView.dismiss();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("loan_request_code", userRequestModel.loan_request_code);
+
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VollySingltonClass.getmInstance(ShowDetailsOfserRequestsOnClick.this).addToRequsetque(stringRequest);
+
+
+    }
+
 
 }

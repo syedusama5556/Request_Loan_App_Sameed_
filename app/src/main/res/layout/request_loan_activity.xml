@@ -205,18 +205,40 @@
                 android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/market_loanratio_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/request_load_activity_market_value_edit_text_height"
-                    android:background="@color/request_load_activity_market_value_edit_text_background_color"
-                    android:gravity="start|center_vertical"
-                    android:hint="Loan Ratio %"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:textColor="@color/request_load_activity_market_value_edit_text_text_color"
-                    android:textColorHint="@color/color_hint_text"
-                    android:textSize="@dimen/request_load_activity_market_value_edit_text_text_size" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/request_load_activity_market_value_edit_text_height"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/request_load_activity_market_value_edit_text_background_color"
+                        android:gravity="start|center_vertical"
+                        android:hint="Loan Ratio % "
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@color/request_load_activity_market_value_edit_text_text_color"
+                        android:textColorHint="@color/color_hint_text"
+                        android:textSize="@dimen/request_load_activity_market_value_edit_text_text_size" />
+
+
+                    <TextView
+                        android:id="@+id/market_loanratio_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/request_load_activity_market_value_edit_text_height"
+                        android:background="@color/request_load_activity_market_value_edit_text_background_color"
+                        android:gravity="start|center_vertical"
+
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@color/request_load_activity_market_value_edit_text_text_color"
+                        android:textColorHint="@color/color_hint_text"
+                        android:textSize="@dimen/request_load_activity_market_value_edit_text_text_size" />
+                </LinearLayout>
+
 
                 <View
 

@@ -62,6 +62,7 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
 
         holder.recTimestampNotificationRequests.setText("" + userRequestModelArrayList.get(position).request_time_stamp);
 
+        holder.recBtnShowmoreNotificationRequests.setText("Status: " + userRequestModelArrayList.get(position).req_status);
 
         if (isNotification.equals("true")) {
 

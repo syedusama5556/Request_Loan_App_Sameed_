@@ -298,7 +298,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 //                    request_time_stamp
 //                            request_is_seen
 
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
 
 
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[0], loan_request_code);
@@ -308,6 +308,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[4], request_reciver_user_id);
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
+                    params.put("req_status", Comman.REQUEST_Status[0]);
 
 
                     return params;

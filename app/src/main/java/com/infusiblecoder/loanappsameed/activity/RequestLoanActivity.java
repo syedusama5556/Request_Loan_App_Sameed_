@@ -8,7 +8,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -83,7 +85,7 @@ public class RequestLoanActivity extends AppCompatActivity {
     private String loantypeIntent = "car";
     private ListView listview_request;
     ArrayAdapter<String> listview_request_adapter;
-    private EditText marketLoanratioEditText;
+    private TextView marketLoanratioEditText;
     private TextView marketBorrowingrateText;
 
     public static Intent newIntent(Context context) {
@@ -104,6 +106,38 @@ public class RequestLoanActivity extends AppCompatActivity {
 
         catLoadingView = new CatLoadingView();
         daysradiogroup = findViewById(R.id.days_radio_button_view);
+
+        daysradiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.radio0: {
+                        marketBorrowingrateText.setText("5");
+                        break;
+                    }
+                    case R.id.radio1: {
+
+                        marketBorrowingrateText.setText("10");
+                        break;
+                    }
+                    case R.id.radio2: {
+
+                        marketBorrowingrateText.setText("15");
+                        break;
+                    }
+                    case R.id.radio3: {
+
+                        marketBorrowingrateText.setText("15");
+                        break;
+                    }
+
+                }
+                // RadioButton rb=(RadioButton)findViewById(checkedId);
+
+
+            }
+        });
         listview_request = findViewById(R.id.listview_loan_request);
 
         listview_request_adapter = new ArrayAdapter<>(RequestLoanActivity.this, R.layout.listview_item_black, displayName);
@@ -153,15 +187,33 @@ public class RequestLoanActivity extends AppCompatActivity {
         collateralEditText = findViewById(R.id.collateral_edit_text);
         line1ThreeConstraintLayout = findViewById(R.id.line1_three_constraint_layout);
         marketValueEditText = findViewById(R.id.market_value_edit_text);
+
+
         line1FourConstraintLayout = findViewById(R.id.line1_four_constraint_layout);
 
         line1ImageView = findViewById(R.id.line1_image_view);
 
 
-        marketLoanratioEditText = (EditText) findViewById(R.id.market_loanratio_edit_text);
+        marketLoanratioEditText = (TextView) findViewById(R.id.market_loanratio_edit_text);
 
         marketBorrowingrateText = (TextView) findViewById(R.id.marketBorrowingrate_text);
 
+        marketValueEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                marketLoanratioEditText.setText("150");
+            }
+        });
 
         // Configure UploadBtn component
         uploadbtnButton = this.findViewById(R.id.uploadbtn_button);

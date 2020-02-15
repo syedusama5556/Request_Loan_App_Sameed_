@@ -94,7 +94,7 @@ public class MyAppliedLoans extends Fragment {
                         } else {
                             no_item_layout.setVisibility(View.VISIBLE);
 
-                            Comman.showErrorToast(getActivity(), "No Data Found");
+                            Comman.showErrorToast(getActivity(), "No Data Found for applied loans");
                         }
 
                     }
