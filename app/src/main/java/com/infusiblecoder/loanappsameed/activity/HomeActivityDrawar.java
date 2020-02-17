@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -288,6 +289,9 @@ public class HomeActivityDrawar extends AppCompatActivity {
                                 System.out.println("date cal is " + diffInDays + diffInHours + diffInMin + diffInSec);
 
                                 easyCountDownTextview.setTime((int) diffInDays, (int) diffInHours, (int) diffInMin, (int) diffInSec);
+                                if (diffInDays < 1) {
+                                    easyCountDownTextview.setTextColor(Color.RED);
+                                }
                                 easyCountDownTextview.setVisibility(View.VISIBLE);
                             } catch (ParseException e) {
                                 e.printStackTrace();
