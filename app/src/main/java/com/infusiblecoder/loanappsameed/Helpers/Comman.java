@@ -7,7 +7,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 public class Comman {
 
     //public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.10.5/android/loanapp/";
+    public static String START_URL = "http://192.168.0.102/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
@@ -24,7 +24,7 @@ public class Comman {
     public static String getdataforsingleuserwithloanreqcode_REQUESTS_URL = START_URL + "getdataforsingleuserwithloanreqcode.php";
 
 
-
+    public static String GET_ALL_singlerequestdeudatefortimer_URL = START_URL + "getsinglerequestdeudatefortimer.php";
     public static String GET_ALL_REQUEST_TABLE_DATA_URL = START_URL + "getalldatarequesttable.php";
     public static String GET_ALL_REQUEST_TABLE_Single_User_DATA_URL = START_URL + "getalldatarequesttablesingleuser.php";
     public static String GET_ALL_UNSEEN_REQUESTS_TABLE_DATA_URL = START_URL + "getallunseeenuserrequests.php";

@@ -99,10 +99,8 @@ public class ProfileActivity extends AppCompatActivity {
         privacyButton = this.findViewById(R.id.privacy_button);
 
 
-
         // Configure Change your password component
         changeYourPasswordTextView = this.findViewById(R.id.change_your_password_text_view);
-
 
 
         loadAllData();

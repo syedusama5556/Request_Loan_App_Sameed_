@@ -143,7 +143,6 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
 
 
-
 //                            $firstname = "firstname";
 //                            $lastname = "lastname";
 //                            $address = "address";

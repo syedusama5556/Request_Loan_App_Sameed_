@@ -26,6 +26,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,18 +34,27 @@ import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
 import com.infusiblecoder.loanappsameed.BuildConfig;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
+import com.infusiblecoder.loanappsameed.ModelClasses.UserRequestModelForMultipleTableData;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import ir.samanjafari.easycountdowntimer.EasyCountDownTextview;
 
 public class HomeActivityDrawar extends AppCompatActivity {
 
@@ -58,6 +68,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
             android.Manifest.permission.READ_PHONE_STATE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
+    EasyCountDownTextview easyCountDownTextview;
+    private CatLoadingView catLoadingView;
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
     private ConstraintLayout carloanConstraintLayout;
@@ -209,8 +221,10 @@ public class HomeActivityDrawar extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-
+        easyCountDownTextview = (EasyCountDownTextview) findViewById(R.id.easyCountDownTextview);
+        easyCountDownTextview.setVisibility(View.INVISIBLE);
         this.init();
+
 
         loadAllData();
 
@@ -224,6 +238,104 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
 
         notifications.setText("" + rowsCount);
+
+    }
+
+    private void getAllDataForTimer() {
+        System.out.println("called is my");
+        catLoadingView = new CatLoadingView();
+        catLoadingView.setText("Please Wait ..");
+        catLoadingView.show(getSupportFragmentManager(), "");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_singlerequestdeudatefortimer_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("myrespon is " + response);
+
+                try {
+
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        if (jsonObject.getString("code").equals("data_success")) {
+
+                            Gson gson = new Gson();
+                            UserRequestModelForMultipleTableData userTableData = gson.fromJson(jsonObject.toString(), UserRequestModelForMultipleTableData.class);
+
+                            System.out.println("mydata is " + userTableData.request_time_stamp);
+
+
+                            long diffInMillisec = 0;
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            try {
+                                Date mDate = sdf.parse(userTableData.loan_due_date);
+
+                                System.out.println("date cal is " + mDate);
+                                long timeInMilliseconds = mDate.getTime();
+
+                                diffInMillisec = timeInMilliseconds - System.currentTimeMillis();
+
+
+//TODO
+
+                                long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillisec);
+                                long diffInHours = TimeUnit.MILLISECONDS.toHours(diffInMillisec);
+                                long diffInMin = TimeUnit.MILLISECONDS.toMinutes(diffInMillisec);
+                                long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMillisec);
+
+                                System.out.println("date cal is " + diffInDays + diffInHours + diffInMin + diffInSec);
+
+                                easyCountDownTextview.setTime((int) diffInDays, (int) diffInHours, (int) diffInMin, (int) diffInSec);
+                                easyCountDownTextview.setVisibility(View.VISIBLE);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            catLoadingView.dismiss();
+                        } else {
+
+                            catLoadingView.dismiss();
+                        }
+                    }
+
+
+                } catch (Exception e) {
+                    catLoadingView.dismiss();
+                    System.out.println("i ah error " + e.getMessage());
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                catLoadingView.dismiss();
+                Comman.showErrorToast(HomeActivityDrawar.this, "Error check your internet connection");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                String uid = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", uid);
+
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VollySingltonClass.getmInstance(HomeActivityDrawar.this).addToRequsetque(stringRequest);
+
+
+        // requestListShowAdapter.notifyDataSetChanged();
 
     }
 
@@ -264,6 +376,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
                             rowsCount = Integer.parseInt(jsonObject.getString("message"));
 
                             initializeCountDrawer();
+
 
                         }
                     } catch (JSONException e) {
@@ -337,6 +450,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
             Comman.showErrorToast(HomeActivityDrawar.this, "Error");
         }
 
+        getAllDataForTimer();
+
         getRowsCountRequests();
 
     }
@@ -389,7 +504,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
         // Configure Instant loan for oth component
         instantLoanForOthButton = this.findViewById(R.id.instant_loan_for_oth_button);
-
 
 
         startAnimationOne();

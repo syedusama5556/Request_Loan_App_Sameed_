@@ -32,6 +32,28 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_weight="0.03" />
 
+        <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
+            android:id="@+id/easyCountDownTextview"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            app:colonColor="#000"
+            app:days="1"
+            app:daysLabel="D"
+            app:digitBackground="@android:color/transparent"
+            app:hours="4"
+            app:layout_constraintBottom_toTopOf="@+id/personalloan_constraint_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:minute="1"
+            app:second="10"
+            app:setAnimation="true"
+            app:showDays="true"
+            app:showHours="true"
+            app:textColor="#59F036"
+            app:textSize="10sp" />
+
         <ImageView
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"

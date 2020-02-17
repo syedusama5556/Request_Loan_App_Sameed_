@@ -78,13 +78,13 @@ public class RequestLoanActivity extends AppCompatActivity {
     String url = "https://www.google.com";
     ArrayList<String> displayName = new ArrayList<>();
     ArrayList<Uri> pdffile = new ArrayList<>();
+    ArrayAdapter<String> listview_request_adapter;
     private EditText edtVehicleID;
     private EditText edtOwnerID;
     private EditText edtInsurance;
     private CatLoadingView catLoadingView;
     private String loantypeIntent = "car";
     private ListView listview_request;
-    ArrayAdapter<String> listview_request_adapter;
     private TextView marketLoanratioEditText;
     private TextView marketBorrowingrateText;
 

@@ -132,13 +132,13 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                 @Override
                 public void onClick(View v) {
 
-                    if (!requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])  && requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[1]) ) {
+                    if (!requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]) && requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[1])) {
 
                         Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
                         RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                         i.putExtra("myrequestdata", requestLoanModel);
                         context.startActivity(i);
-                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]) ){
+                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])) {
 
 
                         CFAlertDialog.Builder builder = new CFAlertDialog.Builder(context)
@@ -177,10 +177,10 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                         builder.show();
 
 
-                    }else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])){
+                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])) {
 
                         Comman.showDefaultToast(context, "Please wait Until Your Request Is Processed");
-                    }else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[4])){
+                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[4])) {
                         Comman.showDefaultToast(context, "Your Selected Request Is Completed");
                     }
 

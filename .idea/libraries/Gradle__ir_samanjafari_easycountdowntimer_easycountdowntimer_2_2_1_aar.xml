@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: ir.samanjafari.easycountdowntimer:easycountdowntimer:2.2.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/796af1206abc665a7db4589c3f6b5822/easycountdowntimer-2.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/796af1206abc665a7db4589c3f6b5822/easycountdowntimer-2.2.1/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ir.samanjafari.easycountdowntimer/easycountdowntimer/2.2.1/d69edae06df5fc3b9628f053cd6285893eb8d231/easycountdowntimer-2.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ir.samanjafari.easycountdowntimer/easycountdowntimer/2.2.1/e10c8e521ac7da932431b484118a791ab2963013/easycountdowntimer-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
