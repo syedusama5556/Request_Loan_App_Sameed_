@@ -104,49 +104,163 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
         btnSendMailUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (userRequestModel.req_status.equals("rejected")) {
+                    Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Rejected, Contact The Admin For Further Details");
+                } else {
+                    if (!userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
 
-                if (!userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
-
-                    // Create Alert using Builder
-                    CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ShowDetailsOfserRequestsOnClick.this)
-                            .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
-                            .setTitle("Delete Request")
-                            .setMessage("Are You Sure You Want To Reject This Request?")
-                            .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                        // Create Alert using Builder
+                        CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ShowDetailsOfserRequestsOnClick.this)
+                                .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                                .setTitle("Delete Request")
+                                .setMessage("Are You Sure You Want To Reject This Request?")
+                                .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
 
 
-                                StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.DELETE_SENT_REQUESTS_for_reciver_URL, new Response.Listener<String>() {
+                                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.DELETE_SENT_REQUESTS_for_reciver_URL, new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+
+                                            System.out.println("mysre0 +" + response);
+                                            try {
+                                                JSONArray jsonArray = new JSONArray(response);
+
+                                                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                                String code = jsonObject.getString("code");
+
+                                                System.out.println("mysre1 +" + jsonObject);
+
+                                                if (code.equals("failed")) {
+                                                    dialog.dismiss();
+
+                                                    Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "Failed " + jsonObject.getString("message"));
+
+
+                                                } else {
+
+                                                    dialog.dismiss();
+                                                    Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
+
+//                                                startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+//                                                finish();
+
+
+                                                }
+
+                                            } catch (JSONException e) {
+                                                dialog.dismiss();
+                                                Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + e.getMessage());
+
+                                            }
+
+
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            dialog.dismiss();
+                                            Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + error);
+
+
+                                        }
+                                    }) {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put("request_id", userRequestModel.request_id);
+
+
+                                            System.out.println("mydatais " + userRequestModel.request_id);
+
+                                            return params;
+
+                                        }
+                                    };
+
+                                    VollySingltonClass.getmInstance(ShowDetailsOfserRequestsOnClick.this).addToRequsetque(stringRequest);
+
+
+                                }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                    dialog.dismiss();
+
+                                });
+
+// Show the alert
+                        builder.show();
+
+                    } else {
+                        Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Accepted By The Admin, Contact The Admin For Further Details");
+                    }
+                }
+            }
+        });
+
+        btnCallUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (userRequestModel.req_status.equals("rejected")) {
+                    Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Rejected, Contact The Admin For Further Details");
+
+
+                } else {
+                    if (!userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
+
+                        Dialog view = new Dialog(ShowDetailsOfserRequestsOnClick.this);
+                        view.setContentView(R.layout.dialog_comfirm_loan_with_loanratio);
+
+                        TextView dialogLenderTextView = (TextView) view.findViewById(R.id.dialog_lender_text_view);
+                        TextView dialogLoanRequestIdTextView = (TextView) view.findViewById(R.id.dialog_loan_request_id_text_view);
+                        TextView dialogDueDateTextView = (TextView) view.findViewById(R.id.dialog_due_date_text_view);
+                        TextView dialogBorrowingRateTextView = (TextView) view.findViewById(R.id.dialog_borrowing_rate_text_view);
+                        TextView dialogLoanRatioTextView = (TextView) view.findViewById(R.id.dialog_loan_ratio_text_view);
+                        Button donBtnDialog = (Button) view.findViewById(R.id.don_btn_dialog);
+
+
+                        System.out.println("mydatais1 " + requestLoanModel);
+                        dialogLenderTextView.setText(reviewRequestRequestSenderUserNameTxt.getText().toString());
+                        dialogLoanRequestIdTextView.setText(userRequestModel.loan_request_code);
+
+                        dialogDueDateTextView.setText(requestLoanModel.loan_due_date);
+                        dialogBorrowingRateTextView.setText(requestLoanModel.loan_borrowing_rate);
+                        dialogLoanRatioTextView.setText(requestLoanModel.loan_loan_ratio);
+
+
+                        donBtnDialog.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+
+                                StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationstatustoaccepted_URL, new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
 
-                                        System.out.println("mysre0 +" + response);
+
                                         try {
                                             JSONArray jsonArray = new JSONArray(response);
 
                                             JSONObject jsonObject = jsonArray.getJSONObject(0);
                                             String code = jsonObject.getString("code");
 
-                                            System.out.println("mysre1 +" + jsonObject);
+                                            System.out.println("mysrec +" + jsonObject);
 
                                             if (code.equals("failed")) {
-                                                dialog.dismiss();
+
 
                                                 Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "Failed " + jsonObject.getString("message"));
 
 
                                             } else {
 
-                                                dialog.dismiss();
-                                                Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
 
-//                                                startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
-//                                                finish();
+                                                Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
 
 
                                             }
 
                                         } catch (JSONException e) {
-                                            dialog.dismiss();
                                             Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + e.getMessage());
 
                                         }
@@ -156,7 +270,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                                 }, new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        dialog.dismiss();
+
                                         Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + error);
 
 
@@ -169,9 +283,6 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put("request_id", userRequestModel.request_id);
 
-
-                                        System.out.println("mydatais " + userRequestModel.request_id);
-
                                         return params;
 
                                     }
@@ -180,115 +291,13 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                                 VollySingltonClass.getmInstance(ShowDetailsOfserRequestsOnClick.this).addToRequsetque(stringRequest);
 
 
-                            }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
-                                dialog.dismiss();
+                            }
+                        });
 
-                            });
-
-// Show the alert
-                    builder.show();
-
-                } else {
-                    Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Accepted By The Admin, Contact The Admin For Further Details");
-                }
-
-            }
-        });
-
-        btnCallUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
-
-                    Dialog view = new Dialog(ShowDetailsOfserRequestsOnClick.this);
-                    view.setContentView(R.layout.dialog_comfirm_loan_with_loanratio);
-
-                    TextView dialogLenderTextView = (TextView) view.findViewById(R.id.dialog_lender_text_view);
-                    TextView dialogLoanRequestIdTextView = (TextView) view.findViewById(R.id.dialog_loan_request_id_text_view);
-                    TextView dialogDueDateTextView = (TextView) view.findViewById(R.id.dialog_due_date_text_view);
-                    TextView dialogBorrowingRateTextView = (TextView) view.findViewById(R.id.dialog_borrowing_rate_text_view);
-                    TextView dialogLoanRatioTextView = (TextView) view.findViewById(R.id.dialog_loan_ratio_text_view);
-                    Button donBtnDialog = (Button) view.findViewById(R.id.don_btn_dialog);
-
-
-                    System.out.println("mydatais1 " + requestLoanModel);
-                    dialogLenderTextView.setText(reviewRequestRequestSenderUserNameTxt.getText().toString());
-                    dialogLoanRequestIdTextView.setText(userRequestModel.loan_request_code);
-
-                    dialogDueDateTextView.setText(requestLoanModel.loan_due_date);
-                    dialogBorrowingRateTextView.setText(requestLoanModel.loan_borrowing_rate);
-                    dialogLoanRatioTextView.setText(requestLoanModel.loan_loan_ratio);
-
-
-                    donBtnDialog.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-
-                            StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_updatenotificationstatustoaccepted_URL, new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-
-
-                                    try {
-                                        JSONArray jsonArray = new JSONArray(response);
-
-                                        JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                        String code = jsonObject.getString("code");
-
-                                        System.out.println("mysrec +" + jsonObject);
-
-                                        if (code.equals("failed")) {
-
-
-                                            Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "Failed " + jsonObject.getString("message"));
-
-
-                                        } else {
-
-
-                                            Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
-
-
-                                        }
-
-                                    } catch (JSONException e) {
-                                        Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + e.getMessage());
-
-                                    }
-
-
-                                }
-                            }, new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-
-                                    Comman.showErrorToast(ShowDetailsOfserRequestsOnClick.this, "error is " + error);
-
-
-                                }
-                            }) {
-                                @Override
-                                protected Map<String, String> getParams() throws AuthFailureError {
-
-
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put("request_id", userRequestModel.request_id);
-
-                                    return params;
-
-                                }
-                            };
-
-                            VollySingltonClass.getmInstance(ShowDetailsOfserRequestsOnClick.this).addToRequsetque(stringRequest);
-
-
-                        }
-                    });
-
-                    view.show();
-                } else {
-                    Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Accepted By The Admin, Contact The Admin For Further Details");
+                        view.show();
+                    } else {
+                        Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Accepted By The Admin, Contact The Admin For Further Details");
+                    }
                 }
 
             }

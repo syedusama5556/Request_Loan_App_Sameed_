@@ -166,7 +166,7 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
             holder.recSenderUsername.setText("Name: " + userRequestModelArrayList.get(position).request_reciver_user_name);
 
 
-            holder.rec_img_message.setImageResource(R.drawable.ic_reply_black_24dp);
+            holder.rec_img_message.setImageResource(R.drawable.sendicon);
 
 
             holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
