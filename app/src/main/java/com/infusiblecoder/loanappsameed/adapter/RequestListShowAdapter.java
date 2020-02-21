@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
@@ -96,6 +95,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
         }
 
         if (ismyappliedloan.equals("true")) {
+
             holder.rec_status.setText("Status: " + requestLoanModelArrayList.get(position).loan_status);
 
 
@@ -135,80 +135,90 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                 @Override
                 public void onClick(View v) {
 
-                    if (!requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]) && requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[1])) {
 
-                        Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
-                        RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
-                        i.putExtra("myrequestdata", requestLoanModel);
-                        context.startActivity(i);
+                    //Creating the instance of PopupMenu
+                    PopupMenu popup = new PopupMenu(context, holder.recCardBtn);
+                    //Inflating the Popup using xml file
+                    popup.getMenuInflater()
+                            .inflate(R.menu.popup_menu, popup.getMenu());
 
+                    //registering popup with OnMenuItemClickListener
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
 
-                        //Creating the instance of PopupMenu
-                        PopupMenu popup = new PopupMenu(context, holder.recCardBtn);
-                        //Inflating the Popup using xml file
-                        popup.getMenuInflater()
-                                .inflate(R.menu.popup_menu, popup.getMenu());
+                            if (item.getTitle().equals("Edit")) {
 
-                        //registering popup with OnMenuItemClickListener
-                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            public boolean onMenuItemClick(MenuItem item) {
-                                Toast.makeText(
-                                        context,
-                                        "You Clicked : " + item.getTitle(),
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                                return true;
-                            }
-                        });
-
-                        popup.show(); //showing popup menu
+                                if (!requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]) && requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[1])) {
 
 
-                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])) {
+                                    Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
+                                    RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                                    i.putExtra("myrequestdata", requestLoanModel);
+                                    context.startActivity(i);
 
 
-                        CFAlertDialog.Builder builder = new CFAlertDialog.Builder(context)
-                                .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
-                                .setTitle("Loan Rejected")
-                                .setMessage("Your Loan Has Been Rejected Kindly Contact The admin, click yes to contact the admin?")
-                                .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
-
-                                    Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                    emailIntent.setType("text/plain");
-                                    emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Comman.Admin_Email});
-                                    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Loan Rejection");
-                                    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
+                                } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])) {
 
 
-                                    emailIntent.setType("message/rfc822");
+                                    CFAlertDialog.Builder builder = new CFAlertDialog.Builder(context)
+                                            .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                                            .setTitle("Loan Rejected")
+                                            .setMessage("Your Loan Has Been Rejected Kindly Contact The admin, click yes to contact the admin?")
+                                            .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
 
-                                    try {
-                                        context.startActivity(Intent.createChooser(emailIntent,
-                                                "Send email using..."));
-                                    } catch (android.content.ActivityNotFoundException ex) {
-                                        Comman.showErrorToast(context,
-                                                "No email clients installed.");
-                                    }
+                                                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                emailIntent.setType("text/plain");
+                                                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Comman.Admin_Email});
+                                                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Loan Rejection");
+                                                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
 
 
-                                    dialog.dismiss();
+                                                emailIntent.setType("message/rfc822");
+
+                                                try {
+                                                    context.startActivity(Intent.createChooser(emailIntent,
+                                                            "Send email using..."));
+                                                } catch (android.content.ActivityNotFoundException ex) {
+                                                    Comman.showErrorToast(context,
+                                                            "No email clients installed.");
+                                                }
 
 
-                                }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
-                                    dialog.dismiss();
+                                                dialog.dismiss();
 
-                                });
+
+                                            }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                                dialog.dismiss();
+
+                                            });
 
 // Show the alert
-                        builder.show();
+                                    builder.show();
 
 
-                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])) {
+                                } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])) {
 
-                        Comman.showDefaultToast(context, "Please wait Until Your Request Is Processed");
-                    } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[4])) {
-                        Comman.showDefaultToast(context, "Your Selected Request Is Completed");
-                    }
+                                    Comman.showDefaultToast(context, "Please wait Until Your Request Is Processed");
+                                } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[4])) {
+                                    Comman.showDefaultToast(context, "Your Selected Request Is Completed");
+                                }
+
+
+                            }
+                            if (item.getTitle().equals("View")) {
+                                Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
+                                RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                                i.putExtra("myrequestdata", requestLoanModel);
+                                i.putExtra("ismyloan", "true");
+                                context.startActivity(i);
+
+                            }
+                            return true;
+                        }
+                    });
+
+                    popup.show();
+
 
                 }
             });

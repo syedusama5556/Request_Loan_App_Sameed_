@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mymainlayouttoprint"
     tools:context=".activity.ShowDetailsOfRequestSelected">
 
 
@@ -312,6 +313,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
+            android:visibility="gone"
+            android:id="@+id/linshre1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btn_sharepage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/lender_review_page_activity_accept_button_ripple"
+                android:padding="10dp"
+                android:src="@drawable/ic_menu_share" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Share" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linsendreq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <ImageView
@@ -331,6 +358,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linclose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 

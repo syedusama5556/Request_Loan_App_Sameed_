@@ -5,13 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +31,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
+import com.infusiblecoder.loanappsameed.Helpers.GenericFileProvider;
 import com.infusiblecoder.loanappsameed.Helpers.PDFTools;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
@@ -36,6 +43,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,6 +74,14 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     private TextView loanRatioTextView;
 
 
+    String ismyloan = "";
+    private LinearLayout linlayout;
+    private LinearLayout linshre;
+    private ImageView btnSharepage;
+    private RelativeLayout mymainlayouttoprint;
+    private LinearLayout linclose;
+    private LinearLayout linsendreq;
+
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
@@ -82,6 +100,8 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
         try {
             requestLoanModeldata = (RequestLoanModel) getIntent().getSerializableExtra("myrequestdata");
+
+            ismyloan = getIntent().getStringExtra("ismyloan");
         } catch (Exception e) {
             Toast.makeText(this, "error " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -94,6 +114,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         catLoadingView = new CatLoadingView();
 
         doclist = findViewById(R.id.doclist);
+        linlayout = findViewById(R.id.lin_btn);
         btnSendrequest = findViewById(R.id.btn_sendrequest);
         btnCancel = findViewById(R.id.btn_cancel);
 
@@ -108,6 +129,12 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         loanRatioTextView = (TextView) findViewById(R.id.loan_ratio_text_view);
         verificationStatusImageView = findViewById(R.id.path_image_view);
 
+        linshre = (LinearLayout) findViewById(R.id.linshre1);
+        linsendreq = (LinearLayout) findViewById(R.id.linsendreq);
+        linclose = (LinearLayout) findViewById(R.id.linclose);
+        btnSharepage = (ImageView) findViewById(R.id.btn_sharepage);
+
+        mymainlayouttoprint = (RelativeLayout) findViewById(R.id.mymainlayouttoprint);
 
         borrower_text_view.setText(requestLoanModeldata.user_full_name);
         loanAmountTextView.setText("$" + requestLoanModeldata.loan_amount + " USD");
@@ -201,8 +228,132 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         });
 
 
+        btnSharepage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //  saveImage(getBitmapFromView(linlayout));
+
+
+                takeScreenshot();
+
+//                Dialog settingsDialog = new Dialog(ShowDetailsOfRequestSelected.this);
+//                settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//                settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_fullimg_layout
+//                        , null));
+//
+//                ImageView imageView = settingsDialog.findViewById(R.id.img_dialog_full);
+//imageView.setImageBitmap(getBitmapFromView(mymainlayouttoprint));
+//
+//
+//                settingsDialog.show();
+
+
+                // btnSharepage.setImageBitmap(getBitmapFromView(linclose));
+            }
+        });
+
+        if (ismyloan.equals("true")) {
+
+            linsendreq.setVisibility(View.INVISIBLE);
+            linclose.setVisibility(View.INVISIBLE);
+            linshre.setVisibility(View.VISIBLE);
+
+        }
     }
 
+    private void takeScreenshot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            openScreenshot(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or DOM
+            Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void openScreenshot(File imageFile) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Uri uri = GenericFileProvider.getUriForFile(this, "com.infusiblecoder.loanappsameed.provider", imageFile);
+        intent.setDataAndType(uri, "image/*");
+        startActivity(intent);
+    }
+
+    private Uri saveImage(Bitmap image) {
+
+        if (isExternalStorageWritable()) {
+            //TODO - Should be processed in another thread
+            File imagesFolder = new File(Environment.getExternalStorageDirectory(), "LoanAppImages");
+            Uri uri = null;
+            try {
+                imagesFolder.mkdirs();
+                File file = new File(imagesFolder, "shared_image_" + System.currentTimeMillis() + ".png");
+
+                FileOutputStream stream = new FileOutputStream(file);
+                image.compress(Bitmap.CompressFormat.PNG, 90, stream);
+                stream.flush();
+                stream.close();
+                uri = GenericFileProvider.getUriForFile(this, "com.infusiblecoder.loanappsameed.provider", file);
+
+            } catch (IOException e) {
+                Log.d("h", "IOException while trying to write file for sharing: " + e.getMessage());
+            }
+            return uri;
+        }
+        return null;
+    }
+
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    Bitmap getBitmapFromView(RelativeLayout view) {
+        try {
+
+            view.setDrawingCacheEnabled(true);
+
+            view.measure(View.MeasureSpec.makeMeasureSpec(800, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(600, View.MeasureSpec.UNSPECIFIED));
+            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+
+            view.buildDrawingCache(true);
+            Bitmap returnedBitmap = Bitmap.createBitmap(view.getDrawingCache());
+
+            //Define a bitmap with the same size as the view
+            view.setDrawingCacheEnabled(false);
+
+            return returnedBitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void onbtnSendrequestPressed() {
 
