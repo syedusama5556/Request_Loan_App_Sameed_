@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.GenericFileProvider;
 import com.infusiblecoder.loanappsameed.Helpers.PDFTools;
@@ -190,7 +191,9 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
                     String url1 = Comman.START_URL + words[position];
 
-                    Glide.with(ShowDetailsOfRequestSelected.this).load(url1).placeholder(R.mipmap.ic_launcher).into(imageView);
+                    Glide.with(ShowDetailsOfRequestSelected.this).load(url1)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(imageView);
 
                     settingsDialog.show();
 

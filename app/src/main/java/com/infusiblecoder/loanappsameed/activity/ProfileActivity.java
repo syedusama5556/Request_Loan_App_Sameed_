@@ -4,11 +4,19 @@
 
 package com.infusiblecoder.loanappsameed.activity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,10 +32,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.infusiblecoder.loanappsameed.Helpers.BitmapConversion;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.roger.catloadinglibrary.CatLoadingView;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +50,8 @@ import java.util.Map;
 
 
 public class ProfileActivity extends AppCompatActivity {
-
+    private static final int PICK_FROM_CAMERA = 1000;
+    private static final int PICK_FROM_GALLARY = 1001;
     CircularImageView ricardo_image_view;
     private TextView ricardoJosephTextView;
     private TextView ricardojosephGmailTextView;
@@ -51,7 +64,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Button privacyButton;
     private TextView changeYourNotificaTextView;
     private Button notificationsButton;
-
+    CatLoadingView catLoadingView;
+    private Bitmap user_img_url;
     public static Intent newIntent(Context context) {
 
         // Fill the created intent with the data you want to be passed to this Activity when it's opened.
@@ -67,7 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void init() {
-
+        catLoadingView = new CatLoadingView();
         // Configure Ricardo Joseph component
         ricardoJosephTextView = this.findViewById(R.id.ricardo_joseph_text_view);
         ricardo_image_view = findViewById(R.id.ricardo_image_view);
@@ -135,7 +149,9 @@ public class ProfileActivity extends AppCompatActivity {
             ricardojosephGmailTextView.setText(email);
             ricardoJosephTextView.setText(fullname);
 
-            Glide.with(ProfileActivity.this).load(img_url).placeholder(R.mipmap.ic_launcher).into(ricardo_image_view);
+            Glide.with(ProfileActivity.this).load(img_url)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(ricardo_image_view);
 
 
         } else {
@@ -148,7 +164,168 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void onEditPressed() {
 
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Update Image");
+        builder.setMessage("Are You Sure You want To Update Image ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                get_gallery_image();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
+
+
     }
+
+
+    public void get_gallery_image() {
+        Intent sdintent = new Intent(Intent.ACTION_PICK);
+        sdintent.setType("image/*");
+        startActivityForResult(sdintent, PICK_FROM_GALLARY);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case PICK_FROM_CAMERA: {
+                if (resultCode == Activity.RESULT_OK) {
+                    Bitmap bitmapImage = (Bitmap) data.getExtras().get("data");
+
+
+                }
+                break;
+
+
+            }
+            case PICK_FROM_GALLARY: {
+                if (requestCode == PICK_FROM_GALLARY) {
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(selectedImage,
+                            filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String filePath = cursor.getString(columnIndex);
+
+
+                    user_img_url = BitmapFactory.decodeFile(filePath);
+
+                    cursor.close();
+
+
+                    String image = BitmapConversion.getStringImage(user_img_url);
+
+
+                    catLoadingView.setText("Please Wait ..");
+                    catLoadingView.show(getSupportFragmentManager(), "");
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.UPDATE_PROFILE_image_URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            System.out.println("myresponseisto " + response);
+                            try {
+
+
+                                JSONArray jsonArray = new JSONArray(response);
+                                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                String code = jsonObject.getString("code");
+                                if (code.equals("reg_success")) {
+
+                                    String image_url = jsonObject.getString("image_url");
+
+                                    SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+
+                                    editor.putString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[10], Comman.START_URL + image_url);
+
+
+                                    editor.apply();
+
+
+                                    catLoadingView.dismiss();
+                                    FancyToast.makeText(ProfileActivity.this, "Updated!", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+
+
+                                } else if (code.equals("reg_failed")) {
+                                    catLoadingView.dismiss();
+                                    FancyToast.makeText(ProfileActivity.this, "Failed!!!", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+
+                                catLoadingView.dismiss();
+                            }
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            catLoadingView.dismiss();
+
+                            FancyToast.makeText(ProfileActivity.this, "Error! is " + error, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+
+                            //       user_img_url = tvUrl.getText().toString();
+
+
+                            SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                            String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+                            String email = prefs.getString("email", "no value");
+                            if (!id.equals("no value") && !id.equals("")) {
+
+                                System.out.println("error gettin id");
+                                //  Toast.makeText(ProfileActivity.this, "Error getting id", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("user_id", id);
+                            params.put("email", email);
+                            params.put("user_img_url", image);
+
+
+                            return params;
+                        }
+                    };
+
+                    VollySingltonClass.getmInstance(getApplicationContext()).addToRequsetque(stringRequest);
+
+
+                    break;
+                }
+            }
+
+
+        }
+    }
+
+
+
+
+
 
     public void onProfileSettingsPressed(View view) {
 

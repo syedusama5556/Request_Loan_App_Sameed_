@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.gson.Gson;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
@@ -456,7 +457,9 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
                             System.out.println("mydatais " + getAllMultipleTableDataOnClickRequestMODEL.email);
 
-                            Glide.with(ShowDetailsOfserRequestsOnClick.this).load(Comman.START_URL + getAllMultipleTableDataOnClickRequestMODEL.user_img_url).placeholder(R.mipmap.ic_launcher).into(userImgViewOnclick);
+                            Glide.with(ShowDetailsOfserRequestsOnClick.this).load(Comman.START_URL + getAllMultipleTableDataOnClickRequestMODEL.user_img_url)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(userImgViewOnclick);
 
                             reviewRequestRequestSenderUserNameTxt.setText(userRequestModel.request_sender_user_id);
 

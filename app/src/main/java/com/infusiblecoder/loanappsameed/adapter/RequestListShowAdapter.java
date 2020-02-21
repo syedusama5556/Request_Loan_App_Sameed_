@@ -17,11 +17,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.R;
 import com.infusiblecoder.loanappsameed.activity.ShowDetailsOfRequestSelected;
+import com.infusiblecoder.loanappsameed.activity.ShowLoanDetailsAndShareThem;
 import com.infusiblecoder.loanappsameed.activity.SubmitAReviewForLoanInReview;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -51,7 +53,9 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
     public void onBindViewHolder(@NonNull MyRequestViewHolder holder, int position) {
 
 
-        Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
+        Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
 
         holder.recUsername.setText("User Id: " + requestLoanModelArrayList.get(position).user_id);
 
@@ -206,10 +210,11 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
                             }
                             if (item.getTitle().equals("View")) {
-                                Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
+                                Intent i = new Intent(context, ShowLoanDetailsAndShareThem.class);
                                 RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                                System.out.println("inadapter " + requestLoanModel.loan_borrowing_rate);
                                 i.putExtra("myrequestdata", requestLoanModel);
-                                i.putExtra("ismyloan", "true");
+
                                 context.startActivity(i);
 
                             }

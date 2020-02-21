@@ -41,6 +41,7 @@ public class Comman {
     public static String CHANGE_PASSWORD_URL = START_URL + "changepassword.php";
 
     public static String UPDATE_PROFILE_URL = START_URL + "updateprofile.php";
+    public static String UPDATE_PROFILE_image_URL = START_URL + "updateprofileimage.php";
     public static String UPDATE_updatenotificationseentotrue_URL = START_URL + "updatenotificationseentotrue.php";
     public static String UPDATE_updatenotificationstatustoaccepted_URL = START_URL + "updatenotificationstatustoaccepted.php";
     public static String UPDATE_inreview_requests_loanrequest_table_URL = START_URL + "updateinreviewrequestsloanrequesttable.php";

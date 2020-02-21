@@ -136,7 +136,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:visibility="invisible"
+
         android:id="@+id/edit_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/profile_activity_edit_button_height"

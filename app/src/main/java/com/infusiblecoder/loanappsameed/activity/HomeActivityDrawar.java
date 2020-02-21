@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
@@ -446,7 +447,10 @@ public class HomeActivityDrawar extends AppCompatActivity {
             userEmail.setText(email);
             username.setText(fullname);
 
-            Glide.with(HomeActivityDrawar.this).load(img_url).placeholder(R.mipmap.ic_launcher).into(userprofilePicture);
+            Glide.with(HomeActivityDrawar.this).load(img_url)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .placeholder(R.mipmap.ic_launcher).into(userprofilePicture);
 
 
         } else {
