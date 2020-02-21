@@ -107,7 +107,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                 if (userRequestModel.req_status.equals("rejected")) {
                     Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Rejected, Contact The Admin For Further Details");
                 } else {
-                    if (!userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
+                    if (!userRequestModel.req_status.equals("awaiting money") && !userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
 
                         // Create Alert using Builder
                         CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ShowDetailsOfserRequestsOnClick.this)
@@ -141,9 +141,8 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                                                     dialog.dismiss();
                                                     Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
 
-//                                                startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
-//                                                finish();
-
+                                                    startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+                                                    finish();
 
                                                 }
 
@@ -206,7 +205,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
 
                 } else {
-                    if (!userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
+                    if (!userRequestModel.req_status.equals("awaiting money") && !userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
 
                         Dialog view = new Dialog(ShowDetailsOfserRequestsOnClick.this);
                         view.setContentView(R.layout.dialog_comfirm_loan_with_loanratio);
@@ -257,7 +256,8 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
                                                 Comman.showSucdessToast(ShowDetailsOfserRequestsOnClick.this, "" + jsonObject.getString("message"));
 
-
+                                                startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+                                                finish();
                                             }
 
                                         } catch (JSONException e) {
@@ -458,11 +458,11 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
                             Glide.with(ShowDetailsOfserRequestsOnClick.this).load(Comman.START_URL + getAllMultipleTableDataOnClickRequestMODEL.user_img_url).placeholder(R.mipmap.ic_launcher).into(userImgViewOnclick);
 
-                            reviewRequestRequestSenderUserNameTxt.setText(userRequestModel.request_sender_user_name);
+                            reviewRequestRequestSenderUserNameTxt.setText(userRequestModel.request_sender_user_id);
 
                             if (issented.equals("true")) {
 
-                                reviewRequestRequestSenderUserNameTxt.setText(userRequestModel.request_reciver_user_name);
+                                reviewRequestRequestSenderUserNameTxt.setText(userRequestModel.request_reciver_user_id);
 
                             }
 

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:gravity="center_horizontal"
-        android:text="@string/loan_request_list"
+        android:text="Investments"
         android:textColor="@color/login_activity_forgot_password_button_text_color" />
 
 

@@ -227,7 +227,7 @@
 
                     <TextView
                         android:id="@+id/market_loanratio_edit_text"
-                        android:layout_width="match_parent"
+                        android:layout_width="190dp"
                         android:layout_height="@dimen/request_load_activity_market_value_edit_text_height"
                         android:background="@color/request_load_activity_market_value_edit_text_background_color"
                         android:gravity="start|center_vertical"
@@ -303,7 +303,7 @@
                         android:paddingTop="2dp"
 
                         android:paddingBottom="2dp"
-                        android:text="60 days"
+                        android:text="45 days"
                         android:textColor="@color/radio_flat_text_selector" />
 
                     <RadioButton
@@ -317,7 +317,7 @@
                         android:paddingTop="2dp"
 
                         android:paddingBottom="2dp"
-                        android:text="90 days"
+                        android:text="60 days"
                         android:textColor="@color/radio_flat_text_selector" />
                 </RadioGroup>
 
@@ -354,7 +354,7 @@
 
                     <TextView
                         android:id="@+id/marketBorrowingrate_text"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/request_load_activity_market_value_edit_text_height"
                         android:background="@color/request_load_activity_market_value_edit_text_background_color"
                         android:gravity="start|center_vertical"

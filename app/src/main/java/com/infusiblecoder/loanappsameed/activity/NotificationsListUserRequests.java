@@ -80,12 +80,24 @@ public class NotificationsListUserRequests extends AppCompatActivity {
                             UserRequestModel userTableData = gson.fromJson(jsonObject.toString(), UserRequestModel.class);
 
                             System.out.println("mydata is " + userTableData.request_time_stamp);
+                            if (userTableData.request_is_seen.equals("false")) {
+                                userRequestModelArrayList.add(userTableData);
+                                notificationsRequestListAdapter.notifyDataSetChanged();
 
-                            userRequestModelArrayList.add(userTableData);
-                            notificationsRequestListAdapter.notifyDataSetChanged();
+
+                            } else {
+
+                                if (userRequestModelArrayList.size() > 0) {
+                                    no_item_layout.setVisibility(View.GONE);
 
 
-                            no_item_layout.setVisibility(View.GONE);
+                                } else {
+
+                                    Comman.showErrorToast(NotificationsListUserRequests.this, "No Data Found For Notifications");
+                                    no_item_layout.setVisibility(View.VISIBLE);
+                                }
+                            }
+
 
                         } else {
 

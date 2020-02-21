@@ -102,6 +102,14 @@ public class RequestLoanActivity extends AppCompatActivity {
         this.init();
     }
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
     private void init() {
 
         catLoadingView = new CatLoadingView();
@@ -211,7 +219,22 @@ public class RequestLoanActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                marketLoanratioEditText.setText("150");
+                try {
+
+
+                    if (!enterAmountEditText.getText().toString().equals("")) {
+                        double a = Double.parseDouble(enterAmountEditText.getText().toString());
+                        double b = Double.parseDouble(marketValueEditText.getText().toString());
+
+
+                        double c = (b / a) * 100;
+
+
+                        marketLoanratioEditText.setText(round(c, 2) + "");
+
+                    }
+                } catch (Exception e) {
+                }
             }
         });
 
@@ -501,8 +524,8 @@ public class RequestLoanActivity extends AppCompatActivity {
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
 
-                            params.put("loan_borrowing_rate", marketValueEditText.getText().toString());
-                            params.put("loan_loan_ratio", marketValueEditText.getText().toString());
+                            params.put("loan_borrowing_rate", marketBorrowingrateText.getText().toString());
+                            params.put("loan_loan_ratio", marketLoanratioEditText.getText().toString());
 
 
                             int radioButtonID = daysradiogroup.getCheckedRadioButtonId();
@@ -530,8 +553,8 @@ public class RequestLoanActivity extends AppCompatActivity {
                                     daysmilisec = 5184000000L + System.currentTimeMillis();
                                     break;
                                 }
-                                case 90: {
-                                    daysmilisec = 7776000000L + System.currentTimeMillis();
+                                case 45: {
+                                    daysmilisec = 3888000000L + System.currentTimeMillis();
                                     break;
                                 }
                                 default: {
@@ -547,13 +570,13 @@ public class RequestLoanActivity extends AppCompatActivity {
                             DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
 
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], formatter.format(date));
+                            params.put("loan_due_date", formatter.format(date));
 
 
                             params.put("loan_status", Comman.LOAN_Status[0]);
 
                             params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[7], loantypeIntent);
+                            params.put("loan_type", loantypeIntent);
                             params.put("user_id", userid);
                             params.put("countoffiles", pdffile.size() + "");
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], pdfname.get(0));

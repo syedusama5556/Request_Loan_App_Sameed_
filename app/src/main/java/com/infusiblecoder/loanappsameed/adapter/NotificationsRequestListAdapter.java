@@ -56,7 +56,7 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
     public void onBindViewHolder(@NonNull MyRequestViewHolder holder, int position) {
 
 
-        holder.recSenderUsername.setText("Name: " + userRequestModelArrayList.get(position).request_sender_user_name);
+        holder.recSenderUsername.setText("User Id: " + userRequestModelArrayList.get(position).request_sender_user_id);
 
         holder.recLoanRequestCode.setText("Loan Code: " + userRequestModelArrayList.get(position).loan_request_code);
 
@@ -163,7 +163,7 @@ public class NotificationsRequestListAdapter extends RecyclerView.Adapter<Notifi
 
         } else if (isNotification.equals("sent")) {
 
-            holder.recSenderUsername.setText("Name: " + userRequestModelArrayList.get(position).request_reciver_user_name);
+            holder.recSenderUsername.setText("User Id: " + userRequestModelArrayList.get(position).request_reciver_user_id);
 
 
             holder.rec_img_message.setImageResource(R.drawable.sendicon);

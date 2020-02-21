@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +54,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
         Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
 
-        holder.recUsername.setText("Name: " + requestLoanModelArrayList.get(position).user_full_name);
+        holder.recUsername.setText("User Id: " + requestLoanModelArrayList.get(position).user_id);
 
         holder.recLoanAmount.setText("Loan Amount: $" + requestLoanModelArrayList.get(position).loan_amount);
 
@@ -138,6 +141,29 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                         RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                         i.putExtra("myrequestdata", requestLoanModel);
                         context.startActivity(i);
+
+
+                        //Creating the instance of PopupMenu
+                        PopupMenu popup = new PopupMenu(context, holder.recCardBtn);
+                        //Inflating the Popup using xml file
+                        popup.getMenuInflater()
+                                .inflate(R.menu.popup_menu, popup.getMenu());
+
+                        //registering popup with OnMenuItemClickListener
+                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Toast.makeText(
+                                        context,
+                                        "You Clicked : " + item.getTitle(),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                                return true;
+                            }
+                        });
+
+                        popup.show(); //showing popup menu
+
+
                     } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])) {
 
 
@@ -198,10 +224,14 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
             holder.recCardBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
                     Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
                     RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                     i.putExtra("myrequestdata", requestLoanModel);
                     context.startActivity(i);
+
+
                 }
             });
 

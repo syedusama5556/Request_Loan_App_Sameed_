@@ -105,7 +105,7 @@
                 android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
                 android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
                 android:gravity="start"
-                android:text="borrowing_rate"
+                android:text="Borrowing Rate %"
                 android:textColor="#4B4B4B"
                 android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
@@ -127,7 +127,7 @@
                 android:layout_marginStart="@dimen/lender_review_page_activity_due_date_text_view_margin_start"
                 android:layout_marginTop="@dimen/lender_review_page_activity_due_date_text_view_margin_top"
                 android:gravity="start"
-                android:text="Loan Ratio"
+                android:text="Loan Ratio %"
                 android:textColor="#4B4B4B"
                 android:textSize="@dimen/lender_review_page_activity_market_value_text_view_text_size" />
 
