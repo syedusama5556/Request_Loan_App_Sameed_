@@ -242,6 +242,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onForgotPasswordPressed() {
 
+        Comman.showDefaultToast(this, "If You Have Forgotten Your Password, Kindly Contact The Admin");
+
     }
 
     public void onDonTHaveAAccountSignUpPressed() {
