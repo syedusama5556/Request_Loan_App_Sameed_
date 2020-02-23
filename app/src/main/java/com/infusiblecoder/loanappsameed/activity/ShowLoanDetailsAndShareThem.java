@@ -76,6 +76,8 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 
             System.out.println("intrest is " + a + " " + requestLoanModeldata.loan_amount);
             double b = Double.parseDouble(requestLoanModeldata.loan_amount);
+
+
             double intrest = (a * b) / 100;
 
             System.out.println("intrest is " + intrest);
@@ -84,9 +86,9 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 
             double servicefee = intrest * 0.05;
 
-            recServiceFees.setText("-" + round(servicefee, 2));
+            recServiceFees.setText("" + round(servicefee, 2));
 
-            double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) - servicefee;
+            double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
             recTotalPayable.setText(total1 + "");
 
 

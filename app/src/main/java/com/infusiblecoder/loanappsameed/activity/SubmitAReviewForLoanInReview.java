@@ -1,6 +1,5 @@
 package com.infusiblecoder.loanappsameed.activity;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,20 +8,23 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -45,38 +47,31 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
-
-    static TextView dueDateTextView;
-    ImageButton selectdateButton;
     LinearLayout uploadbtnButton;
     Button postarequestButton;
-    ConstraintLayout constraintLayoutConstraintLayout;
     TextView userNameTextView;
     TextView loanRequestCodeTextView;
     TextView textViewTextView;
-    ConstraintLayout enteramountConstraintLayout;
     EditText enterAmountEditText;
     View line1ConstraintLayout;
-    ConstraintLayout enterPurposeConstraintLayout;
     EditText purposeEditText;
     View line1TwoConstraintLayout;
-    ConstraintLayout enterCollateralConstraintLayout;
     EditText collateralEditText;
     View line1ThreeConstraintLayout;
-    ConstraintLayout enterMarketValueConstraintLayout;
     EditText marketValueEditText;
     View line1FourConstraintLayout;
-    ConstraintLayout deudateviewConstraintLayout;
-    ConstraintLayout duedateConstraintLayout;
     View line1ImageView;
-
+    RadioGroup daysradiogroup;
     TextView loan_type_txt;
 
     RequestQueue rQueue;
@@ -84,11 +79,15 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
     String url = "https://www.google.com";
     ArrayList<String> displayName = new ArrayList<>();
     ArrayList<Uri> pdffile = new ArrayList<>();
+    ArrayAdapter<String> listview_request_adapter;
     private EditText edtVehicleID;
     private EditText edtOwnerID;
     private EditText edtInsurance;
     private CatLoadingView catLoadingView;
     private String loantypeIntent = "car";
+    private ListView listview_request;
+    private TextView marketLoanratioEditText;
+    private TextView marketBorrowingrateText;
     private RequestLoanModel requestLoanModeldata;
 
     public static Intent newIntent(Context context) {
@@ -97,12 +96,11 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
         return new Intent(context, RequestLoanActivity.class);
     }
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit_areview_for_loan_in_review);
-        this.init();
+        this.setContentView(R.layout.activity_submit_areview_for_loan_in_review);
         getIntentData();
         setAllDataInTextView();
     }
@@ -115,7 +113,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
         purposeEditText.setText(requestLoanModeldata.loan_purpose);
         collateralEditText.setText(requestLoanModeldata.loan_collateral);
         marketValueEditText.setText(requestLoanModeldata.loan_market_value);
-        dueDateTextView.setText(requestLoanModeldata.loan_due_date);
+
 
     }
 
@@ -123,6 +121,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
         try {
             requestLoanModeldata = (RequestLoanModel) getIntent().getSerializableExtra("myrequestdata");
 
+            System.out.println("request data is " + requestLoanModeldata.loan_borrowing_rate);
             loan_type_txt.setText(requestLoanModeldata.loan_type);
 
         } catch (Exception e) {
@@ -130,42 +129,140 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
         }
     }
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
 
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
     private void init() {
 
         catLoadingView = new CatLoadingView();
+        daysradiogroup = findViewById(R.id.days_radio_button_view);
 
+        daysradiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.radio0: {
+                        marketBorrowingrateText.setText("5");
+                        break;
+                    }
+                    case R.id.radio1: {
+
+                        marketBorrowingrateText.setText("10");
+                        break;
+                    }
+                    case R.id.radio2: {
+
+                        marketBorrowingrateText.setText("15");
+                        break;
+                    }
+                    case R.id.radio3: {
+
+                        marketBorrowingrateText.setText("15");
+                        break;
+                    }
+
+                }
+                // RadioButton rb=(RadioButton)findViewById(checkedId);
+
+
+            }
+        });
+        listview_request = findViewById(R.id.listview_loan_request);
+
+        listview_request_adapter = new ArrayAdapter<>(SubmitAReviewForLoanInReview.this, R.layout.listview_item_black, displayName);
+
+        listview_request.setAdapter(listview_request_adapter);
+
+        listview_request.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+
+                String value = (String) adapter.getItemAtPosition(position);
+
+
+                Object item = ((ArrayAdapter) listview_request.getAdapter()).getItem(position);
+                ((ArrayAdapter) listview_request.getAdapter()).remove(item);
+
+                System.out.println("myitemposis " + position);
+                try {
+                    if (displayName.size() > 0 && pdffile.size() > 0) {
+
+                        displayName.remove(position);
+                        pdffile.remove(position);
+                    }
+                    listview_request_adapter.notifyDataSetChanged();
+                    System.out.println("myitemposis2 " + position);
+                } catch (Exception e) {
+                    System.out.println("Error removing data " + e.getMessage() + displayName.size());
+                }
+            }
+        });
 
         loan_type_txt = findViewById(R.id.loan_type_txt);
 
+        if (getIntent() != null) {
 
-        constraintLayoutConstraintLayout = findViewById(R.id.constraint_layout_constraint_layout);
+            loantypeIntent = getIntent().getStringExtra("loan_type");
+            loan_type_txt.setText(loantypeIntent);
+        }
+
         userNameTextView = findViewById(R.id.user_name_text_view);
         loanRequestCodeTextView = findViewById(R.id.loan_request_code_text_view);
         textViewTextView = findViewById(R.id.text_view_text_view);
-        enteramountConstraintLayout = findViewById(R.id.enteramount_constraint_layout);
         enterAmountEditText = findViewById(R.id.enter_amount_edit_text);
         line1ConstraintLayout = findViewById(R.id.line1_constraint_layout);
-        enterPurposeConstraintLayout = findViewById(R.id.enter_purpose_constraint_layout);
         purposeEditText = findViewById(R.id.purpose_edit_text);
         line1TwoConstraintLayout = findViewById(R.id.line1_two_constraint_layout);
-        enterCollateralConstraintLayout = findViewById(R.id.enter_collateral_constraint_layout);
         collateralEditText = findViewById(R.id.collateral_edit_text);
         line1ThreeConstraintLayout = findViewById(R.id.line1_three_constraint_layout);
-        enterMarketValueConstraintLayout = findViewById(R.id.enter_market_value_constraint_layout);
         marketValueEditText = findViewById(R.id.market_value_edit_text);
+
+
         line1FourConstraintLayout = findViewById(R.id.line1_four_constraint_layout);
-        deudateviewConstraintLayout = findViewById(R.id.deudateview_constraint_layout);
-        duedateConstraintLayout = findViewById(R.id.duedate_constraint_layout);
-        dueDateTextView = findViewById(R.id.due_date_text_view);
-        line1ImageView = findViewById(R.id.line1_image_view);
+
+        //  line1ImageView = findViewById(R.id.line1_image_view);
 
 
-        // Configure SelectDate component
-        selectdateButton = this.findViewById(R.id.selectdate_button);
+        marketLoanratioEditText = (TextView) findViewById(R.id.market_loanratio_edit_text);
 
-        selectdateButton.setOnClickListener((view) -> {
-            this.onSelectDatePressed();
+        marketBorrowingrateText = (TextView) findViewById(R.id.marketBorrowingrate_text);
+
+        marketValueEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+
+
+                    if (!enterAmountEditText.getText().toString().equals("")) {
+                        double a = Double.parseDouble(enterAmountEditText.getText().toString());
+                        double b = Double.parseDouble(marketValueEditText.getText().toString());
+
+
+                        double c = (b / a) * 100;
+
+
+                        marketLoanratioEditText.setText(round(c, 2) + "");
+
+                    }
+                } catch (Exception e) {
+                }
+            }
         });
 
         // Configure UploadBtn component
@@ -181,19 +278,47 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
         });
 
 
+        String code = String.valueOf(System.currentTimeMillis());
+
+        textViewTextView.setText(code);
+
+
+        SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+        String name1 = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[1], "no value");//"No name defined" is the default value.
+        String name2 = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[2], "no value");//"No name defined" is the default value.
+
+        if (!name1.equals("no value") && !name1.equals("") && !name2.equals("no value") && !name2.equals("")) {
+
+
+            userNameTextView.setText(name1 + " " + name2);
+
+        } else {
+
+            Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Error getting user name");
+
+        }
+
     }
 
     public void onSelectDatePressed() {
 
-        DialogFragment newFragment = new SubmitAReviewForLoanInReview.DatePickerFragmentsubmit();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+//        DialogFragment newFragment = new DatePickerFragment();
+//        newFragment.show(getSupportFragmentManager(), "datePicker");
 
     }
 
     public void onUploadBtnPressed() {
 
 
-        showDialogSelectFiles();
+        //   showDialogSelectFiles();
+
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        // intent.setType("application/pdf");
+        intent.setType("*/*");
+
+        startActivityForResult(intent, 1);
 
     }
 
@@ -230,21 +355,30 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                             cursor = this.getContentResolver().query(uri, null, null, null, null);
                             if (cursor != null && cursor.moveToFirst()) {
                                 System.out.println("mydatais 1 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                                displayName.add(0, "" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                displayName.add("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
-                                edtVehicleID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                //    edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
 
-                                pdffile.add(0, uri);
+                                pdffile.add(uri);
+
+                                System.out.println("errorname" + displayName.get(0));
+
+                                listview_request_adapter.notifyDataSetChanged();
                             }
                         } catch (Exception e) {
 
-                            System.out.println("" + e.getMessage());
+                            System.out.println("error" + e.getMessage());
                         } finally {
                             cursor.close();
                         }
                     } else if (uriString.startsWith("file://")) {
-                        displayName.add(0, myFile.getName());
-                        edtVehicleID.setText("" + myFile.getName());
+
+                        displayName.add(myFile.getName());
+                        //   edtOwnerID.setText("" + myFile.getName());
+                        System.out.println("errorname1" + displayName.get(0));
+
+                        listview_request_adapter.notifyDataSetChanged();
+
                     }
 
                 }
@@ -266,7 +400,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                             if (cursor != null && cursor.moveToFirst()) {
                                 System.out.println("mydatais 2 " + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
                                 displayName.add(1, cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
-                                edtOwnerID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+                                edtVehicleID.setText("" + cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
                                 pdffile.add(1, uri);
                             }
                         } catch (Exception e) {
@@ -277,7 +411,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                         }
                     } else if (uriString.startsWith("file://")) {
                         displayName.add(1, myFile.getName());
-                        edtOwnerID.setText("" + myFile.getName());
+                        edtVehicleID.setText("" + myFile.getName());
                     }
 
                 }
@@ -326,26 +460,15 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
     private void uploadPDF(ArrayList<String> pdfname, ArrayList<Uri> pdffile) {
 
-        if (pdfname != null && pdfname.size() == 3) {
-            if (!TextUtils.isEmpty(marketValueEditText.getText()) && !TextUtils.isEmpty(purposeEditText.getText()) && !TextUtils.isEmpty(enterAmountEditText.getText()) && !TextUtils.isEmpty(dueDateTextView.getText()) && !TextUtils.isEmpty(collateralEditText.getText()) && !TextUtils.isEmpty(userNameTextView.getText()) && !TextUtils.isEmpty(loanRequestCodeTextView.getText())) {
+        if (pdfname != null && pdfname.size() >= 1) {
+            if (!TextUtils.isEmpty(marketValueEditText.getText()) && !TextUtils.isEmpty(purposeEditText.getText()) && !TextUtils.isEmpty(enterAmountEditText.getText()) && !TextUtils.isEmpty(collateralEditText.getText()) && !TextUtils.isEmpty(userNameTextView.getText()) && !TextUtils.isEmpty(loanRequestCodeTextView.getText())) {
 
-                InputStream iStream = null;
-                InputStream iStream1 = null;
-                InputStream iStream2 = null;
+
+                catLoadingView.setText("Please Wait ..");
+                catLoadingView.show(getSupportFragmentManager(), "");
+
                 try {
 
-                    iStream = getContentResolver().openInputStream(pdffile.get(0));
-                    final byte[] inputData = BitmapConversion.getBytes(iStream);
-
-                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
-                    final byte[] inputData1 = BitmapConversion.getBytes(iStream1);
-
-                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
-                    final byte[] inputData2 = BitmapConversion.getBytes(iStream2);
-
-
-                    catLoadingView.setText("Please Wait ..");
-                    catLoadingView.show(getSupportFragmentManager(), "");
 
                     VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Comman.UPDATE_inreview_requests_loanrequest_table_URL,
                             new Response.Listener<NetworkResponse>() {
@@ -353,11 +476,14 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                                 public void onResponse(NetworkResponse response) {
                                     Log.d("ressssssoo", new String(response.data));
 
+                                    System.out.println("done data is error " + response);
+
+
                                     rQueue.getCache().clear();
                                     try {
-                                        JSONObject jsonObject = new JSONObject(new String(response.data));
-                                        Comman.showDefaultToast(SubmitAReviewForLoanInReview.this, jsonObject.getString("message"));
                                         catLoadingView.dismiss();
+
+                                        JSONObject jsonObject = new JSONObject(new String(response.data));
 
                                         jsonObject.toString().replace("\\\\", "");
 
@@ -381,9 +507,13 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "error is 2 " + error.getMessage());
+                                    Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "error is 2 " + error);
+
+                                    System.out.println("done data is error " + "error is 6 " + error.getMessage());
+                                    error.printStackTrace();
                                     catLoadingView.dismiss();
                                 }
+
                             }) {
 
                         /*
@@ -420,12 +550,62 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], purposeEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], dueDateTextView.getText().toString());
+
+                            params.put("loan_borrowing_rate", marketBorrowingrateText.getText().toString());
+                            params.put("loan_loan_ratio", marketLoanratioEditText.getText().toString());
+
+
+                            int radioButtonID = daysradiogroup.getCheckedRadioButtonId();
+                            View radioButton = daysradiogroup.findViewById(radioButtonID);
+                            int idx = daysradiogroup.indexOfChild(radioButton);
+                            RadioButton r = (RadioButton) daysradiogroup.getChildAt(idx);
+                            String selectedtext = r.getText().toString();
+                            selectedtext = selectedtext.replaceAll("\\D+", "");
+
+
+                            int days = Integer.parseInt(selectedtext);
+                            long daysmilisec = 1296000000L;
+                            switch (days) {
+
+                                case 15: {
+                                    daysmilisec = 1296000000L + System.currentTimeMillis();
+
+                                    break;
+                                }
+                                case 30: {
+                                    daysmilisec = 2592000000L + System.currentTimeMillis();
+                                    break;
+                                }
+                                case 60: {
+                                    daysmilisec = 5184000000L + System.currentTimeMillis();
+                                    break;
+                                }
+                                case 45: {
+                                    daysmilisec = 3888000000L + System.currentTimeMillis();
+                                    break;
+                                }
+                                default: {
+                                    daysmilisec = 1296000000L + System.currentTimeMillis();
+
+                                    break;
+                                }
+                            }
+
+                            Date date = new Date(daysmilisec);
+
+
+                            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+
+                            params.put("loan_due_date", formatter.format(date));
+
+
                             params.put("loan_status", Comman.LOAN_Status[0]);
 
                             params.put(Comman.TABLE_USERS_ATTRIBUTES[6], email);
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[7], loan_type_txt.getText().toString());
+                            params.put("loan_type", loantypeIntent);
                             params.put("user_id", userid);
+                            params.put("countoffiles", pdffile.size() + "");
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[8], pdfname.get(0));
 //                    params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[9], pdfname.get(0));
 
@@ -439,10 +619,61 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                         @Override
                         protected Map<String, DataPart> getByteData() {
                             Map<String, DataPart> params = new HashMap<>();
+                            InputStream iStream = null;
+                            //InputStream iStream1 = null;
+                            //InputStream iStream2 = null;
 
-                            params.put("filename", new DataPart(pdfname.get(0), inputData));
-                            params.put("filename1", new DataPart(pdfname.get(1), inputData1));
-                            params.put("filename2", new DataPart(pdfname.get(2), inputData2));
+
+                            byte[] inputData = null;
+
+
+//                            if (loan_type_txt.getText().toString().equals(Comman.LOAN_TYPES[1])) {
+//                                try {
+//                                    iStream = getContentResolver().openInputStream(pdffile.get(0));
+//                                    inputData = BitmapConversion.getBytes(iStream);
+//
+////
+////                                    iStream1 = getContentResolver().openInputStream(pdffile.get(1));
+////                                    inputData1 = BitmapConversion.getBytes(iStream1);
+////
+////                                    iStream2 = getContentResolver().openInputStream(pdffile.get(2));
+////                                    inputData2 = BitmapConversion.getBytes(iStream2);
+//
+//
+//                                    params.put("filename0", new DataPart(pdfname.get(0), inputData));
+//
+//
+////                                    params.put("filename1", new DataPart(pdfname.get(1), inputData1));
+////
+////
+////                                    params.put("filename2", new DataPart(pdfname.get(2), inputData2));
+//
+//
+//                                } catch (Exception e) {
+//
+//                                }
+//                            } else {
+
+
+                            try {
+                                for (int i = 0; i < pdffile.size(); i++) {
+
+                                    iStream = getContentResolver().openInputStream(pdffile.get(i));
+                                    inputData = BitmapConversion.getBytes(iStream);
+
+
+                                    params.put("filename" + i, new DataPart(pdfname.get(i), inputData));
+                                    System.out.println("done data is " + " filename" + i);
+
+                                }
+
+                            } catch (Exception e) {
+
+
+                            }
+//                            }
+
+
                             return params;
                         }
                     };
@@ -457,6 +688,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
 
                 } catch (Exception e) {
+                    System.out.println("error is3 " + e.getMessage());
                     Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "error is3 " + e.getMessage());
                     catLoadingView.dismiss();
                 }
@@ -467,7 +699,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                 Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Enter Missing Fields");
             }
         } else {
-            Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Please Select all 3 Files Again First");
+            Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Select all Files First");
 
         }
     }
@@ -505,11 +737,11 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
-                startActivityForResult(intent, 1);
-
+                startActivityForResult(intent, 2);
             }
         });
 
@@ -520,7 +752,8 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, 1);
+
 
             }
         });
@@ -540,17 +773,29 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
         btn_dialog_update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (loan_type_txt.getText().toString().equals(Comman.LOAN_TYPES[1])) {
+
+                    if (!TextUtils.isEmpty(edtInsurance.getText().toString()) && !TextUtils.isEmpty(edtVehicleID.getText().toString()) && !TextUtils.isEmpty(edtOwnerID.getText().toString())) {
+
+                        dialog.dismiss();
 
 
-                if (!TextUtils.isEmpty(edtInsurance.getText().toString()) && !TextUtils.isEmpty(edtVehicleID.getText().toString()) && !TextUtils.isEmpty(edtOwnerID.getText().toString())) {
-
-                    dialog.dismiss();
+                    } else {
+                        Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Enter Missing Fields");
+                    }
 
 
                 } else {
-                    Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Enter Missing Fields");
-                }
+                    if (!TextUtils.isEmpty(edtOwnerID.getText().toString())) {
 
+                        dialog.dismiss();
+
+
+                    } else {
+                        Comman.showErrorToast(SubmitAReviewForLoanInReview.this, "Enter Missing Fields");
+                    }
+
+                }
             }
         });
 
@@ -560,25 +805,26 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
     }
 
 
-    public static class DatePickerFragmentsubmit extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-            dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-            return dialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-
-            dueDateTextView.setText(day + "-" + (month + 1) + "-" + year);
-
-
-        }
-    }
+//    public static class DatePickerFragment extends DialogFragment
+//            implements DatePickerDialog.OnDateSetListener {
+//
+//        @Override
+//        public Dialog onCreateDialog(Bundle savedInstanceState) {
+//            final Calendar c = Calendar.getInstance();
+//            int year = c.get(Calendar.YEAR);
+//            int month = c.get(Calendar.MONTH);
+//            int day = c.get(Calendar.DAY_OF_MONTH);
+//            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+//            dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+//            return dialog;
+//        }
+//
+//        public void onDateSet(DatePicker view, int year, int month, int day) {
+//
+//
+//            dueDateTextView.setText(day + "-" + (month + 1) + "-" + year);
+//
+//
+//        }
+//    }
 }

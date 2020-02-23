@@ -52,10 +52,12 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
     @Override
     public void onBindViewHolder(@NonNull MyRequestViewHolder holder, int position) {
 
+//TODO
+//        Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request)
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
 
-        Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
+        holder.recImgProfile.setImageResource(R.drawable.ic_user);
 
         holder.recUsername.setText("User Id: " + requestLoanModelArrayList.get(position).user_id);
 
@@ -99,6 +101,12 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
         }
 
         if (ismyappliedloan.equals("true")) {
+
+
+            Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
+
 
             holder.rec_status.setText("Status: " + requestLoanModelArrayList.get(position).loan_status);
 
@@ -199,6 +207,9 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 // Show the alert
                                     builder.show();
 
+                                } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[3])) {
+
+                                    Comman.showDefaultToast(context, "Your Loan Has Been Approved You Cannot Change The contents Now");
 
                                 } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])) {
 
@@ -214,6 +225,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                                 RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                                 System.out.println("inadapter " + requestLoanModel.loan_borrowing_rate);
                                 i.putExtra("myrequestdata", requestLoanModel);
+                                i.putExtra("ismyloan", "true");
 
                                 context.startActivity(i);
 
@@ -244,6 +256,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                     Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
                     RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                     i.putExtra("myrequestdata", requestLoanModel);
+                    i.putExtra("ismyloan", "false");
                     context.startActivity(i);
 
 

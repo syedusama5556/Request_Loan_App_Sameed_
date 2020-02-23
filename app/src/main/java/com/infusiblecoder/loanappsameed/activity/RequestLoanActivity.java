@@ -199,7 +199,7 @@ public class RequestLoanActivity extends AppCompatActivity {
 
         line1FourConstraintLayout = findViewById(R.id.line1_four_constraint_layout);
 
-        line1ImageView = findViewById(R.id.line1_image_view);
+        //  line1ImageView = findViewById(R.id.line1_image_view);
 
 
         marketLoanratioEditText = (TextView) findViewById(R.id.market_loanratio_edit_text);

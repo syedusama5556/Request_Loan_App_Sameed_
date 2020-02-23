@@ -75,7 +75,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
     private TextView loanRatioTextView;
 
 
-    String ismyloan = "";
+    String ismyloan = "false";
     private LinearLayout linlayout;
     private LinearLayout linshre;
     private ImageView btnSharepage;
