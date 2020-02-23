@@ -34,6 +34,7 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
     private TextView recTotalPayable;
     private RequestLoanModel requestLoanModeldata;
     private ImageView btn_share_layout;
+    private TextView txtx_nameplace_holder;
 
 
     @Override
@@ -54,14 +55,18 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         recServiceFees = (TextView) findViewById(R.id.rec_service_fees);
         recTotalPayable = (TextView) findViewById(R.id.rec_total_payable);
         btn_share_layout = (ImageView) findViewById(R.id.btn_share_layout);
-
+        txtx_nameplace_holder = (TextView) findViewById(R.id.txtx_nameplace_holder);
 
         if (getIntent().getSerializableExtra("myrequestdata") != null) {
 
             requestLoanModeldata = (RequestLoanModel) getIntent().getSerializableExtra("myrequestdata");
 
-
-            recName.setText(requestLoanModeldata.user_full_name);
+            if (getIntent().getStringExtra("ismyloan").equals("false")) {
+                txtx_nameplace_holder.setText("User Id");
+                recName.setText(requestLoanModeldata.user_id);
+            } else {
+                recName.setText(requestLoanModeldata.user_full_name);
+            }
             recLoanAmount.setText(requestLoanModeldata.loan_amount);
             recPurpose.setText(requestLoanModeldata.loan_purpose);
             recBorrower.setText(requestLoanModeldata.loan_borrowing_rate);

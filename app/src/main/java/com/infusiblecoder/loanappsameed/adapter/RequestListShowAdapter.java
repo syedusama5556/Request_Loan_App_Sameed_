@@ -253,11 +253,50 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                 public void onClick(View v) {
 
 
-                    Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
-                    RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
-                    i.putExtra("myrequestdata", requestLoanModel);
-                    i.putExtra("ismyloan", "false");
-                    context.startActivity(i);
+                    //Creating the instance of PopupMenu
+                    PopupMenu popup = new PopupMenu(context, holder.recCardBtn);
+                    //Inflating the Popup using xml file
+                    popup.getMenuInflater()
+                            .inflate(R.menu.popup_menu_lender, popup.getMenu());
+
+                    //registering popup with OnMenuItemClickListener
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            if (item.getTitle().equals("View Investment Summary")) {
+
+                                Intent i = new Intent(context, ShowLoanDetailsAndShareThem.class);
+                                RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                                System.out.println("inadapter " + requestLoanModel.loan_borrowing_rate);
+                                i.putExtra("myrequestdata", requestLoanModel);
+                                i.putExtra("ismyloan", "false");
+
+                                context.startActivity(i);
+
+
+                            }
+                            if (item.getTitle().equals("View Full Data")) {
+
+
+                                Intent i = new Intent(context, ShowDetailsOfRequestSelected.class);
+                                RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
+                                i.putExtra("myrequestdata", requestLoanModel);
+                                i.putExtra("ismyloan", "false");
+                                context.startActivity(i);
+
+
+                            }
+                            return true;
+                        }
+                    });
+
+                    popup.show();
+
+
+
+
+
+
 
 
                 }

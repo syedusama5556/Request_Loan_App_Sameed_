@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuedit1"
+        android:title="View Full Data" />
+
+    <item
+        android:id="@+id/menuview1"
+        android:title="View Investment Summary" />
+
+
+</menu>

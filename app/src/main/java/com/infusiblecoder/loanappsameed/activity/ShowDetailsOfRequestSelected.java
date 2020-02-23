@@ -137,7 +137,13 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
         mymainlayouttoprint = (RelativeLayout) findViewById(R.id.mymainlayouttoprint);
 
-        borrower_text_view.setText(requestLoanModeldata.user_full_name);
+        if (ismyloan.equals("false")) {
+
+            borrower_text_view.setText(requestLoanModeldata.user_id);
+        } else {
+            borrower_text_view.setText(requestLoanModeldata.user_full_name);
+        }
+
         loanAmountTextView.setText("$" + requestLoanModeldata.loan_amount + " USD");
         purposeOfLoanTextView.setText(requestLoanModeldata.loan_purpose);
         collateralTextView.setText(requestLoanModeldata.loan_collateral);

@@ -101,6 +101,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_submit_areview_for_loan_in_review);
+        init();
         getIntentData();
         setAllDataInTextView();
     }
