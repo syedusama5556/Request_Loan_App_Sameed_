@@ -1,12 +1,18 @@
 package com.infusiblecoder.loanappsameed.Helpers;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.ParcelFileDescriptor;
 import android.util.Base64;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -74,6 +80,38 @@ public class BitmapConversion {
         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
         return bitmap;
+    }
+
+
+    public static Bitmap uriToBitmap(Uri selectedFileUri, Context context) {
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+
+            try {
+                return ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.getContentResolver(), selectedFileUri));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+
+            try {
+                ParcelFileDescriptor parcelFileDescriptor =
+                        context.getContentResolver().openFileDescriptor(selectedFileUri, "r");
+                FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+                Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+
+
+                parcelFileDescriptor.close();
+
+                return image;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }
 

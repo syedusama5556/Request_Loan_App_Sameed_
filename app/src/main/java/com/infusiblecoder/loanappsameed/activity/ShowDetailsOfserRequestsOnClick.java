@@ -106,7 +106,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                 if (userRequestModel.req_status.equals("rejected")) {
                     Comman.showDefaultToast(ShowDetailsOfserRequestsOnClick.this, "Your Request Has Been Rejected, Contact The Admin For Further Details");
                 } else {
-                    if (!userRequestModel.req_status.equals("awaiting money") && !userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
+                    if (!userRequestModel.req_status.equals("awaiting money") && !userRequestModel.req_status.equals("paid out") && !userRequestModel.req_status.equals("completed")) {
 
                         // Create Alert using Builder
                         CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ShowDetailsOfserRequestsOnClick.this)
@@ -204,7 +204,7 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
 
 
                 } else {
-                    if (!userRequestModel.req_status.equals("awaiting money") && !userRequestModel.req_status.equals("approved") && !userRequestModel.req_status.equals("completed")) {
+                    if (!userRequestModel.req_status.equals("awaiting money") && !userRequestModel.req_status.equals("paid out") && !userRequestModel.req_status.equals("completed")) {
 
                         Dialog view = new Dialog(ShowDetailsOfserRequestsOnClick.this);
                         view.setContentView(R.layout.dialog_comfirm_loan_with_loanratio);

@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.infusiblecoder.loanappsameed.Helpers.BitmapConversion;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
+import com.infusiblecoder.loanappsameed.Helpers.GenericFileProvider;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.R;
 import com.roger.catloadinglibrary.CatLoadingView;
@@ -44,6 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -181,12 +184,16 @@ public class SignupActivity extends AppCompatActivity {
         String status = "true";
         String confirmpassword = confirmPasswordEditText.getText().toString();
 
+        if (user_img_url == null) {
+            FancyToast.makeText(SignupActivity.this, "Select Image First", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
+            return;
+        }
         if (!fname.equals("") && !lname.equals("") && !address.equals("") && !email.equals("") && !whatyoupretend.equals("") && !phone.equals("") && !status.equals("") && !fieldofactivity.equals("")) {
 
 
             if (user_img_url == null) {
-                FancyToast.makeText(SignupActivity.this, "Select Image FirstS", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                FancyToast.makeText(SignupActivity.this, "Select Image First", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                 return;
             }
@@ -315,6 +322,7 @@ public class SignupActivity extends AppCompatActivity {
 
     public void get_gallery_image() {
         Intent sdintent = new Intent(Intent.ACTION_PICK);
+        sdintent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sdintent.setType("image/*");
         startActivityForResult(sdintent, PICK_FROM_GALLARY);
     }
@@ -347,24 +355,61 @@ public class SignupActivity extends AppCompatActivity {
             }
             case PICK_FROM_GALLARY: {
                 if (requestCode == PICK_FROM_GALLARY) {
+
                     Uri selectedImage = data.getData();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
+                    System.out.println("myuri is1 " + selectedImage);
+//                    Cursor cursor = getContentResolver().query(selectedImage,
+//                            filePathColumn, null, null, null);
+
                     Cursor cursor = getContentResolver().query(selectedImage,
                             filePathColumn, null, null, null);
+
+
                     cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-
-
-                    user_img_url = BitmapFactory.decodeFile(filePath);
+                    if (cursor.moveToFirst()) {
+                        //   final ImageView imageView = (ImageView) findViewById(R.id.pictureView);
 
 
-                    image_view_profile.setImageBitmap(user_img_url);
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            // You can replace '0' by 'cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)'
+                            // Note that now, you read the column '_ID' and not the column 'DATA'
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String filePath = cursor.getString(columnIndex);
+                            File imageFile = new File(filePath);
+                            Uri uri = GenericFileProvider.getUriForFile(this, "com.infusiblecoder.loanappsameed.provider", imageFile);
+                            File newuriis = new File(uri.toString());
+                            System.out.println("myuri is2 " + newuriis);
+
+                            //   image_view_profile.setImageBitmap(BitmapConversion.uriToBitmap(uri,SignupActivity.this));
+                            user_img_url = BitmapConversion.uriToBitmap(uri, SignupActivity.this);
+                            image_view_profile.setImageURI(uri);
 
 
-                    cursor.close();
+                            System.out.println("myuri is3 " + user_img_url);
+
+                            cursor.close();
+                        } else {
+
+
+                            cursor.moveToFirst();
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String filePath = cursor.getString(columnIndex);
+
+
+                            user_img_url = BitmapFactory.decodeFile(filePath);
+
+
+                            image_view_profile.setImageBitmap(user_img_url);
+
+
+                            cursor.close();
+                        }
+                    }
+
                     break;
                 }
             }

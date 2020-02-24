@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Comman {
 
     public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
@@ -83,6 +86,15 @@ public class Comman {
 
     }
 
+
+    public static String getFormatedNumber(String number) {
+        if (!number.isEmpty()) {
+            double val = Double.parseDouble(number);
+            return NumberFormat.getNumberInstance(Locale.US).format(val);
+        } else {
+            return "0";
+        }
+    }
 
     public static void showDefaultToast(Context context, String txt) {
 

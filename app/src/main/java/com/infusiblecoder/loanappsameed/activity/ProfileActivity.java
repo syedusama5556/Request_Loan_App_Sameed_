@@ -15,6 +15,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +37,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.infusiblecoder.loanappsameed.Helpers.BitmapConversion;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
+import com.infusiblecoder.loanappsameed.Helpers.GenericFileProvider;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -45,6 +48,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +70,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Button notificationsButton;
     CatLoadingView catLoadingView;
     private Bitmap user_img_url;
+    private String imageinstring;
+
     public static Intent newIntent(Context context) {
 
         // Fill the created intent with the data you want to be passed to this Activity when it's opened.
@@ -190,6 +196,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void get_gallery_image() {
         Intent sdintent = new Intent(Intent.ACTION_PICK);
         sdintent.setType("image/*");
+        sdintent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(sdintent, PICK_FROM_GALLARY);
     }
 
@@ -214,21 +221,58 @@ public class ProfileActivity extends AppCompatActivity {
                     Uri selectedImage = data.getData();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
+//                    Cursor cursor = getContentResolver().query(selectedImage,
+//                            filePathColumn, null, null, null);
+
                     Cursor cursor = getContentResolver().query(selectedImage,
                             filePathColumn, null, null, null);
+
                     cursor.moveToFirst();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
+
+                    if (cursor.moveToFirst()) {
+                        //   final ImageView imageView = (ImageView) findViewById(R.id.pictureView);
 
 
-                    user_img_url = BitmapFactory.decodeFile(filePath);
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            // You can replace '0' by 'cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)'
+                            // Note that now, you read the column '_ID' and not the column 'DATA'
 
-                    cursor.close();
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String filePath = cursor.getString(columnIndex);
+                            File imageFile = new File(filePath);
+                            Uri uri = GenericFileProvider.getUriForFile(this, "com.infusiblecoder.loanappsameed.provider", imageFile);
+                            File newuriis = new File(uri.toString());
+                            System.out.println("myuri is " + newuriis);
+                            ricardo_image_view.setImageURI(uri);
+                            user_img_url = BitmapFactory.decodeFile(newuriis.toString());
+
+                            cursor.close();
+                        } else {
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String filePath = cursor.getString(columnIndex);
 
 
-                    String image = BitmapConversion.getStringImage(user_img_url);
+                            user_img_url = BitmapFactory.decodeFile(filePath);
 
+                            cursor.close();
+
+
+                        }
+
+                    }
+
+                    try {
+
+
+                        imageinstring = BitmapConversion.getStringImage(user_img_url);
+
+                    } catch (Exception e) {
+
+                        imageinstring = "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkz";
+                        Toast.makeText(this, "Android 10 Error ", Toast.LENGTH_SHORT).show();
+                    }
 
                     catLoadingView.setText("Please Wait ..");
                     catLoadingView.show(getSupportFragmentManager(), "");
@@ -304,7 +348,7 @@ public class ProfileActivity extends AppCompatActivity {
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("user_id", id);
                             params.put("email", email);
-                            params.put("user_img_url", image);
+                            params.put("user_img_url", imageinstring);
 
 
                             return params;

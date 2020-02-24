@@ -288,6 +288,7 @@ public class RequestLoanActivity extends AppCompatActivity {
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         // intent.setType("application/pdf");
         intent.setType("*/*");
 

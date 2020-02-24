@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.GenericFileProvider;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.R;
@@ -67,15 +68,15 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
             } else {
                 recName.setText(requestLoanModeldata.user_full_name);
             }
-            recLoanAmount.setText(requestLoanModeldata.loan_amount);
+            recLoanAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
             recPurpose.setText(requestLoanModeldata.loan_purpose);
             recBorrower.setText(requestLoanModeldata.loan_borrowing_rate);
             recCollateral.setText(requestLoanModeldata.loan_collateral);
-            recMarketValue.setText(requestLoanModeldata.loan_market_value);
+            recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
             recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
 
 
-            recAmount.setText(requestLoanModeldata.loan_amount);
+            recAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
 
             double a = Double.parseDouble(requestLoanModeldata.loan_borrowing_rate);
 
@@ -87,15 +88,30 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 
             System.out.println("intrest is " + intrest);
 
-            recInterest.setText(round(intrest, 2) + "");
+            recInterest.setText(Comman.getFormatedNumber(round(intrest, 2) + ""));
 
             double servicefee = intrest * 0.05;
+//Todo
+//            recServiceFees.setText("" + round(servicefee, 2));
+//            double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
+//            recTotalPayable.setText(total1 + "");
 
-            recServiceFees.setText("" + round(servicefee, 2));
 
-            double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
-            recTotalPayable.setText(total1 + "");
+            if (getIntent().getStringExtra("ismyloan").equals("false")) {
 
+
+                recServiceFees.setText("-" + Comman.getFormatedNumber("" + round(servicefee, 2)));
+
+                double total2 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) - servicefee;
+                recTotalPayable.setText(Comman.getFormatedNumber(total2 + ""));
+            } else {
+
+                recServiceFees.setText("" + Comman.getFormatedNumber("" + round(servicefee, 2)));
+
+                double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
+                recTotalPayable.setText(Comman.getFormatedNumber(total1 + ""));
+
+            }
 
         }
 

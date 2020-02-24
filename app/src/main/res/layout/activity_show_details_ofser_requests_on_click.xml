@@ -211,12 +211,12 @@
                 android:background="@drawable/lender_review_page_activity_accept_button_ripple"
                 android:padding="10dp"
                 android:src="@drawable/path_4" />
-
+            <!--javed lineman 03115888070-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Accept Request" />
+                android:text="View Request" />
         </LinearLayout>
 
         <LinearLayout

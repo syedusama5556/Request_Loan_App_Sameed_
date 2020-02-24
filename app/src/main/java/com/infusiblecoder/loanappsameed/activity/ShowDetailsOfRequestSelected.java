@@ -144,11 +144,11 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
             borrower_text_view.setText(requestLoanModeldata.user_full_name);
         }
 
-        loanAmountTextView.setText("$" + requestLoanModeldata.loan_amount + " USD");
+        loanAmountTextView.setText("$" + Comman.getFormatedNumber(requestLoanModeldata.loan_amount + "") + " USD");
         purposeOfLoanTextView.setText(requestLoanModeldata.loan_purpose);
         collateralTextView.setText(requestLoanModeldata.loan_collateral);
 
-        marketValueTextView.setText(requestLoanModeldata.loan_market_value);
+        marketValueTextView.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
         loanRequestIdTextView.setText(requestLoanModeldata.loan_request_code);
         dueDateTextView.setText(requestLoanModeldata.loan_due_date);
         borrowingRateTextView.setText(requestLoanModeldata.loan_borrowing_rate);
@@ -468,6 +468,10 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[4], request_reciver_user_id);
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
+
+                    params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
+                    params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
+
                     params.put("req_status", Comman.REQUEST_Status[0]);
 
 
