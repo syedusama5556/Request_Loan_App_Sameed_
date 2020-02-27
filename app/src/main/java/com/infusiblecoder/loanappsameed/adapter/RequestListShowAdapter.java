@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.R;
@@ -160,7 +159,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
                             if (item.getTitle().equals("Edit")) {
 
-                                if (!requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]) && requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[1])) {
+                                if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])) {
 
 
                                     Intent i = new Intent(context, SubmitAReviewForLoanInReview.class);
@@ -169,45 +168,48 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                                     context.startActivity(i);
 
 
-                                } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2])) {
-
-
-                                    CFAlertDialog.Builder builder = new CFAlertDialog.Builder(context)
-                                            .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
-                                            .setTitle("Loan Rejected")
-                                            .setMessage("Your Loan Has Been Rejected Kindly Contact The admin, click yes to contact the admin?")
-                                            .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
-
-                                                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                                emailIntent.setType("text/plain");
-                                                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Comman.Admin_Email});
-                                                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Loan Rejection");
-                                                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
-
-
-                                                emailIntent.setType("message/rfc822");
-
-                                                try {
-                                                    context.startActivity(Intent.createChooser(emailIntent,
-                                                            "Send email using..."));
-                                                } catch (android.content.ActivityNotFoundException ex) {
-                                                    Comman.showErrorToast(context,
-                                                            "No email clients installed.");
-                                                }
-
-
-                                                dialog.dismiss();
-
-
-                                            }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
-                                                dialog.dismiss();
-
-                                            });
-
-// Show the alert
-                                    builder.show();
-
-                                } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[3])) {
+                                }
+//                                else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[2]))
+//                                {
+//
+//
+//                                    CFAlertDialog.Builder builder = new CFAlertDialog.Builder(context)
+//                                            .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+//                                            .setTitle("Loan Rejected")
+//                                            .setMessage("Your Loan Has Been Rejected Kindly Contact The admin, click yes to contact the admin?")
+//                                            .addButton("Yes", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+//
+//                                                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                                                emailIntent.setType("text/plain");
+//                                                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{Comman.Admin_Email});
+//                                                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Loan Rejection");
+//                                                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
+//
+//
+//                                                emailIntent.setType("message/rfc822");
+//
+//                                                try {
+//                                                    context.startActivity(Intent.createChooser(emailIntent,
+//                                                            "Send email using..."));
+//                                                } catch (android.content.ActivityNotFoundException ex) {
+//                                                    Comman.showErrorToast(context,
+//                                                            "No email clients installed.");
+//                                                }
+//
+//
+//                                                dialog.dismiss();
+//
+//
+//                                            }).addButton("No", -1, -1, CFAlertDialog.CFAlertActionStyle.NEGATIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+//                                                dialog.dismiss();
+//
+//                                            });
+//
+//// Show the alert
+//                                    builder.show();
+//
+//                                }
+                                else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[3])) {
 
                                     Comman.showDefaultToast(context, "Your Loan Has Been Approved You Cannot Change The contents Now");
 

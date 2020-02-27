@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,8 +57,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import ir.samanjafari.easycountdowntimer.EasyCountDownTextview;
-
 public class HomeActivityDrawar extends AppCompatActivity {
 
 
@@ -70,7 +69,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
             android.Manifest.permission.READ_PHONE_STATE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
-    EasyCountDownTextview easyCountDownTextview;
+    TextView easyCountDownTextview;
     private CatLoadingView catLoadingView;
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
@@ -91,6 +90,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private TextView userEmail;
     private CircularImageView userprofilePicture;
     private TextView notifications;
+    private long diffInMillisec = 0;
 
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
@@ -223,12 +223,13 @@ public class HomeActivityDrawar extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-        easyCountDownTextview = (EasyCountDownTextview) findViewById(R.id.easyCountDownTextview);
+        easyCountDownTextview = (TextView) findViewById(R.id.CountDownTextview);
         easyCountDownTextview.setVisibility(View.INVISIBLE);
         this.init();
 
 
         loadAllData();
+
 
     }
 
@@ -269,16 +270,17 @@ public class HomeActivityDrawar extends AppCompatActivity {
                             System.out.println("mydata is " + userTableData.request_time_stamp);
 
 
-                            long diffInMillisec = 0;
+
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             try {
+
                                 Date mDate = sdf.parse(userTableData.loan_due_date);
 
                                 System.out.println("date cal is " + mDate);
                                 long timeInMilliseconds = mDate.getTime();
 
                                 diffInMillisec = timeInMilliseconds - System.currentTimeMillis();
-
+                                System.out.println("mydata is diff " + diffInMillisec);
 
 //TODO
 
@@ -287,9 +289,47 @@ public class HomeActivityDrawar extends AppCompatActivity {
                                 long diffInMin = TimeUnit.MILLISECONDS.toMinutes(diffInMillisec);
                                 long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMillisec);
 
-                                System.out.println("date cal is " + diffInDays + diffInHours + diffInMin + diffInSec);
+                                //  System.out.println("date cal is " + (int) diffInDays +"_"+ (int)(diffInHours/60) +"_"+(int)(diffInMin/60)/60 +"_"+ (int)(((diffInSec/60))/60)/60);
 
-                                easyCountDownTextview.setTime((int) diffInDays, (int) diffInHours, (int) diffInMin, (int) diffInSec);
+                                // easyCountDownTextview.setText((int)diffInDays+"D:"+(int)diffInHours+":"+(int)diffInMin+":"+ ((int)(((diffInSec/60))/60) ));
+
+
+                                CountDownTimer countDownTimer = new CountDownTimer(diffInMillisec, 1000) {
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
+
+
+                                        // diffInMillisec--;
+
+
+                                        long days = millisUntilFinished / (24 * 60 * 60 * 1000);
+                                        millisUntilFinished -= days * (24 * 60 * 60 * 1000);
+                                        long hours = millisUntilFinished / (60 * 60 * 1000);
+                                        millisUntilFinished -= hours * (60 * 60 * 1000);
+                                        long minutes = millisUntilFinished / (60 * 1000);
+                                        millisUntilFinished -= minutes * (60 * 1000);
+                                        long seconds = millisUntilFinished / 1000;
+
+                                        long diffInDays = TimeUnit.MILLISECONDS.toDays(millisUntilFinished);
+                                        long diffInHours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
+                                        long diffInMin = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
+                                        long diffInSec = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished);
+
+                                        System.out.println("date cal is " + (int) days + "_" + (int) hours + "_" + (int) minutes + "_" + (int) seconds);
+
+                                        easyCountDownTextview.setText((int) days + "D:" + (int) hours + "H:" + (int) minutes + "M:" + (int) seconds + "S");
+
+
+                                    }
+
+                                    @Override
+                                    public void onFinish() {
+
+                                    }
+                                };
+                                countDownTimer.start();
+
+
                                 if (diffInDays < 1) {
                                     easyCountDownTextview.setTextColor(Color.RED);
                                 }
