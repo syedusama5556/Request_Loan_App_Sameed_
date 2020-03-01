@@ -165,7 +165,7 @@
 
     <Button
         android:id="@+id/forgot_password_button"
-        android:layout_width="143dp"
+        android:layout_width="wrap_content"
         android:layout_height="22dp"
         android:layout_marginTop="52dp"
         android:layout_marginRight="36dp"
@@ -179,7 +179,7 @@
 
     <Button
         android:id="@+id/don_thave_aaccount_sign_up_button"
-        android:layout_width="@dimen/login_activity_don_thave_aaccount_sign_up_button_width"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/login_activity_don_thave_aaccount_sign_up_button_height"
         android:background="?attr/selectableItemBackground"
         android:gravity="center"
