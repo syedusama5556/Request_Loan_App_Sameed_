@@ -222,19 +222,19 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         paint.setColor(Color.BLACK);
         //  canvas.drawCircle(50, 50, 30, paint);
         //paint.setColor(Color.BLACK);
-        canvas.drawText("" + txtx_nameplace_holder.getText() + "      " + recName.getText(), 20, 20, paint);
-        canvas.drawText("Amount $ :-" + "      " + recLoanAmount.getText(), 20, 40, paint);
-        canvas.drawText("Purpose :-" + "      " + recPurpose.getText(), 20, 60, paint);
+        canvas.drawText("" + txtx_nameplace_holder.getText() + " :-             " + recName.getText(), 20, 20, paint);
+        canvas.drawText("Amount $ :-" + "       " + recLoanAmount.getText(), 20, 40, paint);
+        canvas.drawText("Purpose :-" + "        " + recPurpose.getText(), 20, 60, paint);
         canvas.drawText("Borrowing Rate % :-" + "      " + recBorrower.getText(), 20, 80, paint);
-        canvas.drawText("Collateral :-" + "      " + recCollateral.getText(), 20, 100, paint);
-        canvas.drawText("Market value $ :-" + "      " + recMarketValue.getText(), 20, 120, paint);
+        canvas.drawText("Collateral :-" + "         " + recCollateral.getText(), 20, 100, paint);
+        canvas.drawText("Market value $ :-" + "         " + recMarketValue.getText(), 20, 120, paint);
         canvas.drawText("Asset/loan ratio % :-" + "      " + recLoanRatio.getText(), 20, 140, paint);
 
 
-        canvas.drawText("Amount $ :-" + "      " + recLoanAmount.getText(), 20, 160, paint);
-        canvas.drawText("Interest $ :-" + "      " + recInterest.getText(), 20, 180, paint);
-        canvas.drawText("Service fees (5%) $ :-" + "      " + recServiceFees.getText(), 20, 200, paint);
-        canvas.drawText(tptalpayabletdxt.getText() + "      " + recTotalPayable.getText() + "", 20, 220, paint);
+        canvas.drawText("Amount $ :-" + "         " + recLoanAmount.getText(), 20, 160, paint);
+        canvas.drawText("Interest $ :-" + "          " + recInterest.getText(), 20, 180, paint);
+        canvas.drawText("Service fees (5%) $ :-" + "         " + recServiceFees.getText(), 20, 200, paint);
+        canvas.drawText(tptalpayabletdxt.getText() + "          " + recTotalPayable.getText() + "", 20, 220, paint);
 
 
         //canvas.drawt

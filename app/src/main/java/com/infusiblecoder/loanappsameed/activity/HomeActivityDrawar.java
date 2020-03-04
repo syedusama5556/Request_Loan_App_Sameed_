@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.core.view.animation.PathInterpolatorCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -91,7 +92,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private CircularImageView userprofilePicture;
     private TextView notifications;
     private long diffInMillisec = 0;
-
+    DrawerLayout drawer;
+    NavigationView navigationView;
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
@@ -110,8 +112,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
         setContentView(R.layout.home_activity_drawar);
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
         choose_aloan_type_text_view = findViewById(R.id.choose_aloan_type_text_view);
 
@@ -233,6 +235,15 @@ public class HomeActivityDrawar extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (this.drawer.isDrawerOpen(GravityCompat.START)) {
+            this.drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     private void initializeCountDrawer() {
         //Gravity property aligns the text
         notifications.setGravity(Gravity.CENTER_VERTICAL);
@@ -341,6 +352,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
                         } else {
                             easyCountDownTextview.setVisibility(View.GONE);
                             catLoadingView.dismiss();
+                            System.out.println("i ah error 2323");
                         }
                     }
 

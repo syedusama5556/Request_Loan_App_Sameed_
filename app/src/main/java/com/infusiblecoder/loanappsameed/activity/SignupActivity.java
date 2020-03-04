@@ -237,6 +237,8 @@ public class SignupActivity extends AppCompatActivity {
                             catLoadingView.dismiss();
                             FancyToast.makeText(SignupActivity.this, "Registered!", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
+                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                            finish();
 
                         } else if (code.equals("reg_failed")) {
                             catLoadingView.dismiss();

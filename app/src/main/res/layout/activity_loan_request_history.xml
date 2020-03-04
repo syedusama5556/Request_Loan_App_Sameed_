@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Loan Request History"
+                android:text="Loan"
                 android:textColor="@color/color_white"
                 android:gravity="center"
                 android:textSize="16sp"

@@ -110,6 +110,7 @@ public class RequestLoanActivity extends AppCompatActivity {
         long tmp = Math.round(value);
         return (double) tmp / factor;
     }
+
     private void init() {
 
         catLoadingView = new CatLoadingView();
@@ -223,8 +224,10 @@ public class RequestLoanActivity extends AppCompatActivity {
 
 
                     if (!enterAmountEditText.getText().toString().equals("")) {
-                        double a = Double.parseDouble(enterAmountEditText.getText().toString());
-                        double b = Double.parseDouble(marketValueEditText.getText().toString());
+
+
+                        double a = Double.parseDouble(enterAmountEditText.getText().toString().replaceAll("\\D+", ""));
+                        double b = Double.parseDouble(marketValueEditText.getText().toString().replaceAll("\\D+", ""));
 
 
                         double c = (b / a) * 100;
@@ -237,6 +240,40 @@ public class RequestLoanActivity extends AppCompatActivity {
                 }
             }
         });
+
+        enterAmountEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (!hasFocus) {
+                    try {
+
+                        enterAmountEditText.setText(Comman.getFormatedNumber(enterAmountEditText.getText().toString() + ""));
+
+                    } catch (Exception e) {
+
+
+                    }
+                }
+            }
+        });
+        marketValueEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    try {
+
+                        marketValueEditText.setText(Comman.getFormatedNumber(marketValueEditText.getText().toString() + ""));
+
+
+                    } catch (Exception e) {
+
+
+                    }
+                }
+            }
+        });
+
 
         // Configure UploadBtn component
         uploadbtnButton = this.findViewById(R.id.uploadbtn_button);
@@ -520,10 +557,10 @@ public class RequestLoanActivity extends AppCompatActivity {
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[0], textViewTextView.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[1], userNameTextView.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[2], userimgurl);
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[3], enterAmountEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[3], enterAmountEditText.getText().toString().replaceAll("\\D+", ""));
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[4], purposeEditText.getText().toString());
                             params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[5], collateralEditText.getText().toString());
-                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString());
+                            params.put(Comman.TABLE_LOAN_REQUEST_ATTRIBUTES[6], marketValueEditText.getText().toString().replaceAll("\\D+", ""));
 
                             params.put("loan_borrowing_rate", marketBorrowingrateText.getText().toString());
                             params.put("loan_loan_ratio", marketLoanratioEditText.getText().toString());

@@ -34,6 +34,7 @@ import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserTableData;
 import com.infusiblecoder.loanappsameed.R;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private ConstraintLayout usernameConstraintLayout;
 
     private ConstraintLayout passwordCopy8ConstraintLayout;
+    private CatLoadingView catLoadingView;
 
     public static Intent newIntent(Context context) {
 
@@ -69,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
         this.init();
 
         this.startAnimationOne();
+
+        catLoadingView = new CatLoadingView();
     }
 
     private void init() {
@@ -123,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!pass.equals("") && !email.equals("")) {
 
+            catLoadingView.setText("Please Wait ..");
+            catLoadingView.show(getSupportFragmentManager(), "");
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.LOGIN_URL, new Response.Listener<String>() {
                 @Override
@@ -138,10 +144,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             Comman.showErrorToast(LoginActivity.this, "Login Failed " + jsonObject.getString("message"));
-
+                            catLoadingView.dismiss();
 
                         } else {
-
+                            catLoadingView.dismiss();
 
 //                            $firstname = "firstname";
 //                            $lastname = "lastname";
@@ -206,7 +212,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } catch (JSONException e) {
                         Comman.showErrorToast(LoginActivity.this, "error is  json" + e.getMessage());
-
+                        catLoadingView.dismiss();
                     }
 
 
@@ -214,7 +220,7 @@ public class LoginActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    catLoadingView.dismiss();
                     Comman.showErrorToast(LoginActivity.this, "error is " + error);
 
 
@@ -233,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         } else {
-
+            catLoadingView.dismiss();
             Comman.showErrorToast(LoginActivity.this, "Enter Missing Fields");
         }
 

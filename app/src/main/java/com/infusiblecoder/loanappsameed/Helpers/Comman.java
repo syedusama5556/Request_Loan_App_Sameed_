@@ -88,12 +88,21 @@ public class Comman {
 
 
     public static String getFormatedNumber(String number) {
-        if (!number.isEmpty()) {
-            double val = Double.parseDouble(number);
-            return NumberFormat.getNumberInstance(Locale.US).format(val);
-        } else {
-            return "0";
+        try {
+
+            if (!number.isEmpty()) {
+
+
+                double val = Double.parseDouble(number.replaceAll("\\D+", ""));
+                return NumberFormat.getNumberInstance(Locale.US).format(val);
+            } else {
+                return "0";
+            }
+
+        } catch (Exception e) {
+            return number;
         }
+
     }
 
     public static void showDefaultToast(Context context, String txt) {

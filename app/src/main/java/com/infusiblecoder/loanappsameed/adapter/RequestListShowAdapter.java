@@ -60,7 +60,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
         holder.recUsername.setText("User Id: " + requestLoanModelArrayList.get(position).user_id);
 
-        holder.recLoanAmount.setText("Loan Amount: $" + requestLoanModelArrayList.get(position).loan_amount);
+        holder.recLoanAmount.setText("Loan Amount: $" + Comman.getFormatedNumber(requestLoanModelArrayList.get(position).loan_amount));
 
 
         switch (requestLoanModelArrayList.get(position).loan_type) {
