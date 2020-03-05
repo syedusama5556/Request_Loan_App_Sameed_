@@ -52,6 +52,14 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
     private ImageView btn_share_layout;
     private TextView txtx_nameplace_holder, tptalpayabletdxt;
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,15 +152,6 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 
     }
 
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        long factor = (long) Math.pow(10, places);
-        value = value * factor;
-        long tmp = Math.round(value);
-        return (double) tmp / factor;
-    }
-
     private void takeScreenshot() {
         Date now = new Date();
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
@@ -222,19 +221,39 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         paint.setColor(Color.BLACK);
         //  canvas.drawCircle(50, 50, 30, paint);
         //paint.setColor(Color.BLACK);
-        canvas.drawText("" + txtx_nameplace_holder.getText() + " :-             " + recName.getText(), 20, 20, paint);
-        canvas.drawText("Amount $ :-" + "       " + recLoanAmount.getText(), 20, 40, paint);
-        canvas.drawText("Purpose :-" + "        " + recPurpose.getText(), 20, 60, paint);
-        canvas.drawText("Borrowing Rate % :-" + "      " + recBorrower.getText(), 20, 80, paint);
-        canvas.drawText("Collateral :-" + "         " + recCollateral.getText(), 20, 100, paint);
-        canvas.drawText("Market value $ :-" + "         " + recMarketValue.getText(), 20, 120, paint);
-        canvas.drawText("Asset/loan ratio % :-" + "      " + recLoanRatio.getText(), 20, 140, paint);
+        canvas.drawText(txtx_nameplace_holder.getText() + " :", 20, 20, paint);
+        canvas.drawText("" + recName.getText(), 150, 20, paint);
+
+        canvas.drawText("Amount $ :", 20, 40, paint);
+        canvas.drawText("" + recLoanAmount.getText(), 150, 40, paint);
+
+        canvas.drawText("Purpose :", 20, 60, paint);
+        canvas.drawText("" + recPurpose.getText(), 150, 60, paint);
+
+        canvas.drawText("Borrowing Rate % :", 20, 80, paint);
+        canvas.drawText("" + recBorrower.getText(), 150, 80, paint);
+
+        canvas.drawText("Collateral :", 20, 100, paint);
+        canvas.drawText("" + recCollateral.getText(), 150, 100, paint);
+
+        canvas.drawText("Market value $ :", 20, 120, paint);
+        canvas.drawText("" + recMarketValue.getText(), 150, 120, paint);
+
+        canvas.drawText("Asset/loan ratio % :", 20, 140, paint);
+        canvas.drawText("" + recLoanRatio.getText(), 150, 140, paint);
 
 
-        canvas.drawText("Amount $ :-" + "         " + recLoanAmount.getText(), 20, 160, paint);
-        canvas.drawText("Interest $ :-" + "          " + recInterest.getText(), 20, 180, paint);
-        canvas.drawText("Service fees (5%) $ :-" + "         " + recServiceFees.getText(), 20, 200, paint);
-        canvas.drawText(tptalpayabletdxt.getText() + "          " + recTotalPayable.getText() + "", 20, 220, paint);
+        canvas.drawText("Amount $ :", 20, 160, paint);
+        canvas.drawText("" + recLoanAmount.getText(), 150, 160, paint);
+
+        canvas.drawText("Interest $ :", 20, 180, paint);
+        canvas.drawText("" + recInterest.getText(), 150, 180, paint);
+
+        canvas.drawText("Service fees (5%) $ :", 20, 200, paint);
+        canvas.drawText("" + recServiceFees.getText(), 150, 200, paint);
+
+        canvas.drawText(tptalpayabletdxt.getText() + ":", 20, 220, paint);
+        canvas.drawText("" + recTotalPayable.getText() + "", 150, 220, paint);
 
 
         //canvas.drawt

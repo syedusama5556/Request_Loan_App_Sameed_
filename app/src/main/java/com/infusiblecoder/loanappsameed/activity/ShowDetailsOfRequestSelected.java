@@ -67,15 +67,12 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
             android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
     TextView borrower_text_view, loanAmountTextView, purposeOfLoanTextView, collateralTextView, marketValueTextView, loanRequestIdTextView, dueDateTextView;
+    String ismyloan = "false";
     private ImageView btnSendrequest;
     private ImageView btnCancel;
-
     private CatLoadingView catLoadingView;
     private TextView borrowingRateTextView;
     private TextView loanRatioTextView;
-
-
-    String ismyloan = "false";
     private LinearLayout linlayout;
     private LinearLayout linshre;
     private ImageView btnSharepage;

@@ -46,7 +46,7 @@
             android:theme="@style/loanrequest" />
         <activity
             android:name=".activity.LoanRequestList"
-            android:theme="@style/loanrequest" />
+            android:theme="@style/loanrequesthistory" />
         <activity
             android:name=".activity.HomeActivityDrawar"
             android:label=""

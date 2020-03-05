@@ -91,9 +91,15 @@ public class RecivedLoanRequests extends Fragment {
 
                             System.out.println("mydata is " + userTableData.request_time_stamp);
 
-                            userRequestModelArrayList.add(userTableData);
-                            notificationsRequestListAdapter.notifyDataSetChanged();
-                            no_item_layout.setVisibility(View.GONE);
+                            if (userTableData.req_status.equals("pending")) {
+                                userRequestModelArrayList.add(userTableData);
+                                notificationsRequestListAdapter.notifyDataSetChanged();
+                                no_item_layout.setVisibility(View.GONE);
+
+                            } else {
+
+                                no_item_layout.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             no_item_layout.setVisibility(View.VISIBLE);
                             Comman.showErrorToast(getActivity(), "No Data Found For Recived Requested");

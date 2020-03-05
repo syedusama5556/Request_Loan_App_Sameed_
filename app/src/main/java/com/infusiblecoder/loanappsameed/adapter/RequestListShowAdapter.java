@@ -295,12 +295,6 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
                     popup.show();
 
 
-
-
-
-
-
-
                 }
             });
 

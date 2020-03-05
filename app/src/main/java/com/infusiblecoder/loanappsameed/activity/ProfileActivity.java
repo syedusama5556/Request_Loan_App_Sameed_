@@ -57,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int PICK_FROM_CAMERA = 1000;
     private static final int PICK_FROM_GALLARY = 1001;
     CircularImageView ricardo_image_view;
+    CatLoadingView catLoadingView;
     private TextView ricardoJosephTextView;
     private TextView ricardojosephGmailTextView;
     private ImageButton editButton;
@@ -68,7 +69,6 @@ public class ProfileActivity extends AppCompatActivity {
     private Button privacyButton;
     private TextView changeYourNotificaTextView;
     private Button notificationsButton;
-    CatLoadingView catLoadingView;
     private Bitmap user_img_url;
     private String imageinstring;
 
@@ -187,7 +187,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         builder.show();
-
 
 
     }
@@ -365,10 +364,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         }
     }
-
-
-
-
 
 
     public void onProfileSettingsPressed(View view) {

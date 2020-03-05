@@ -94,14 +94,6 @@ public class RequestLoanActivity extends AppCompatActivity {
         return new Intent(context, RequestLoanActivity.class);
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.request_loan_activity);
-        this.init();
-    }
-
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -109,6 +101,14 @@ public class RequestLoanActivity extends AppCompatActivity {
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.request_loan_activity);
+        this.init();
     }
 
     private void init() {

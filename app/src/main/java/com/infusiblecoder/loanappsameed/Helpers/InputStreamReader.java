@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class InputStreamReader extends Request<byte[]> {
     private final Response.Listener<byte[]> mListener;
-    private Map<String, String> mParams;
     public Map<String, String> responseHeaders;
+    private Map<String, String> mParams;
 
     public InputStreamReader(int method, String mUrl, Response.Listener<byte[]> listener,
                              Response.ErrorListener errorListener, HashMap<String, String> params) {

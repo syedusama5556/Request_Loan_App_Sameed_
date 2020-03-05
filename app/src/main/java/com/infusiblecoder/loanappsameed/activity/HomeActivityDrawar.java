@@ -71,6 +71,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
             android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
     TextView easyCountDownTextview;
+    DrawerLayout drawer;
+    NavigationView navigationView;
     private CatLoadingView catLoadingView;
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
@@ -92,8 +94,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private CircularImageView userprofilePicture;
     private TextView notifications;
     private long diffInMillisec = 0;
-    DrawerLayout drawer;
-    NavigationView navigationView;
+
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
@@ -279,7 +280,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
                             UserRequestModelForMultipleTableData userTableData = gson.fromJson(jsonObject.toString(), UserRequestModelForMultipleTableData.class);
 
                             System.out.println("mydata is " + userTableData.request_time_stamp);
-
 
 
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
