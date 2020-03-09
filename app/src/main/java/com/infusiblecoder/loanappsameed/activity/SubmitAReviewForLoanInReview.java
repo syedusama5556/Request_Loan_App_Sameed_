@@ -571,24 +571,27 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
                                 case 15: {
                                     daysmilisec = 1296000000L + System.currentTimeMillis();
-
+                                    params.put("loan_duration", "15");
                                     break;
                                 }
                                 case 30: {
                                     daysmilisec = 2592000000L + System.currentTimeMillis();
+                                    params.put("loan_duration", "30");
                                     break;
                                 }
                                 case 60: {
                                     daysmilisec = 5184000000L + System.currentTimeMillis();
+                                    params.put("loan_duration", "60");
                                     break;
                                 }
                                 case 45: {
                                     daysmilisec = 3888000000L + System.currentTimeMillis();
+                                    params.put("loan_duration", "45");
                                     break;
                                 }
                                 default: {
                                     daysmilisec = 1296000000L + System.currentTimeMillis();
-
+                                    params.put("loan_duration", "15");
                                     break;
                                 }
                             }
@@ -600,7 +603,7 @@ public class SubmitAReviewForLoanInReview extends AppCompatActivity {
 
 
                             params.put("loan_due_date", formatter.format(date));
-
+                            params.put("loan_paid_out_date", "to be entered later");
 
                             params.put("loan_status", Comman.LOAN_Status[0]);
 
