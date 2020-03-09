@@ -98,7 +98,7 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
             recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
             recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
 
-
+            System.out.println("intrest isccccccc " + requestLoanModeldata.loan_borrowing_rate);
             recAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
 
             double a = Double.parseDouble(requestLoanModeldata.loan_borrowing_rate);

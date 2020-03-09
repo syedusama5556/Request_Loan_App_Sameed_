@@ -70,7 +70,7 @@ public class MyAppliedLoans extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_REQUEST_TABLE_Single_User_DATA_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                System.out.println("rescccccccc " + response);
 
                 try {
 
