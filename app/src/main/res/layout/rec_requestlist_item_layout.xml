@@ -65,6 +65,15 @@
                     android:layout_height="wrap_content"
                     android:text="Loan Amount"
                     android:textColor="@color/color_white" />
+
+                <TextView
+                    android:id="@+id/rec_loan_paidout_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="Loan paid out date
+"
+                    android:textColor="@color/color_white" />
             </LinearLayout>
 
             <TextView

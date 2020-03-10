@@ -102,6 +102,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
         if (ismyappliedloan.equals("true")) {
 
 
+
             Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);
@@ -109,6 +110,12 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
 
             holder.rec_status.setText("Status: " + requestLoanModelArrayList.get(position).loan_status);
 
+            if (!requestLoanModelArrayList.get(position).loan_paid_out_date.equals("to be entered later")) {
+                holder.rec_loan_paidout_date.setVisibility(View.VISIBLE);
+                holder.rec_loan_paidout_date.setText("Loan Paid Out Date: " + requestLoanModelArrayList.get(position).loan_paid_out_date);
+            } else {
+                holder.rec_loan_paidout_date.setVisibility(View.GONE);
+            }
 
             switch (requestLoanModelArrayList.get(position).loan_status) {
 
@@ -309,6 +316,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
     }
 
     class MyRequestViewHolder extends RecyclerView.ViewHolder {
+        TextView rec_loan_paidout_date;
         CardView recCardBtn;
         CircularImageView recImgProfile;
         TextView recUsername;
@@ -330,6 +338,7 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
             recLoanAmount = view.findViewById(R.id.rec_loan_amount);
             recBtnShowmore = view.findViewById(R.id.rec_btn_showmore);
             recImgLoanType = view.findViewById(R.id.rec_img_loan_type);
+            rec_loan_paidout_date = view.findViewById(R.id.rec_loan_paidout_date);
 
         }
     }
