@@ -50,8 +50,10 @@ public class LoanRequestList extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+        Intent intent = new Intent(getApplicationContext(), HomeActivityDrawar.class);
 
+        intent.putExtra("nameofact", "loan");
+        startActivity(intent);
         finish();
     }
 

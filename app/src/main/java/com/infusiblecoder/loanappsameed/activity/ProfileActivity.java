@@ -130,7 +130,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+        Intent intent = new Intent(getApplicationContext(), HomeActivityDrawar.class);
+
+        intent.putExtra("nameofact", "profile");
+        startActivity(intent);
         finish();
     }
 

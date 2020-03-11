@@ -47,8 +47,10 @@ public class LoanRequestHistory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+        Intent intent = new Intent(getApplicationContext(), HomeActivityDrawar.class);
 
+        intent.putExtra("nameofact", "request");
+        startActivity(intent);
         finish();
     }
 

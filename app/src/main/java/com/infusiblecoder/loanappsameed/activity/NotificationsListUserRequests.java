@@ -150,7 +150,10 @@ public class NotificationsListUserRequests extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), HomeActivityDrawar.class));
+        Intent intent = new Intent(getApplicationContext(), HomeActivityDrawar.class);
+
+        intent.putExtra("nameofact", "notification");
+        startActivity(intent);
         finish();
     }
 }

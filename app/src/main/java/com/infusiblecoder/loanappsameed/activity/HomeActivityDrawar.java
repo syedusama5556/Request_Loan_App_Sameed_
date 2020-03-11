@@ -234,6 +234,37 @@ public class HomeActivityDrawar extends AppCompatActivity {
         loadAllData();
 
 
+        if (getIntent().getStringExtra("nameofact") != null) {
+
+
+            String nameofact = getIntent().getStringExtra("nameofact");
+
+            switch (nameofact) {
+                case "profile": {
+                    drawer.openDrawer(GravityCompat.START);
+                    navigationView.setCheckedItem(R.id.nav_profile);
+                    break;
+                }
+                case "notification": {
+                    drawer.openDrawer(GravityCompat.START);
+                    navigationView.setCheckedItem(R.id.nav_notifications_list);
+                    break;
+                }
+                case "loan": {
+                    drawer.openDrawer(GravityCompat.START);
+                    navigationView.setCheckedItem(R.id.nav_loan_request_list);
+                    break;
+                }
+                case "request": {
+                    drawer.openDrawer(GravityCompat.START);
+                    navigationView.setCheckedItem(R.id.nav_loan_request_history);
+                    break;
+                }
+
+            }
+        }
+
+
     }
 
     @Override
