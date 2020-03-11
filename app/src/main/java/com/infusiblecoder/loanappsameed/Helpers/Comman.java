@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Locale;
 
 public class Comman {
 
@@ -92,9 +92,11 @@ public class Comman {
 
             if (!number.isEmpty()) {
 
+                NumberFormat formatter = new DecimalFormat("#0.00");
 
                 double val = Double.parseDouble(number.replaceAll("\\D+", ""));
-                return NumberFormat.getNumberInstance(Locale.US).format(val);
+                //  return NumberFormat.getNumberInstance(Locale.US).format(val);
+                return formatter.format(val) + "";
             } else {
                 return "0";
             }
