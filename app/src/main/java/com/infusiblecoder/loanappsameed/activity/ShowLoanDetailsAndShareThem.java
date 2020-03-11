@@ -47,7 +47,7 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
     private TextView recAmount;
     private TextView recInterest;
     private TextView recServiceFees;
-    private TextView recTotalPayable;
+    private TextView recTotalPayable, rec_loan_duration;
     private RequestLoanModel requestLoanModeldata;
     private ImageView btn_share_layout;
     private TextView txtx_nameplace_holder, tptalpayabletdxt;
@@ -80,7 +80,7 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         recTotalPayable = (TextView) findViewById(R.id.rec_total_payable);
         btn_share_layout = (ImageView) findViewById(R.id.btn_share_layout);
         txtx_nameplace_holder = (TextView) findViewById(R.id.txtx_nameplace_holder);
-
+        rec_loan_duration = (TextView) findViewById(R.id.rec_loan_duration);
         if (getIntent().getSerializableExtra("myrequestdata") != null) {
 
             requestLoanModeldata = (RequestLoanModel) getIntent().getSerializableExtra("myrequestdata");
@@ -97,6 +97,8 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
             recCollateral.setText(requestLoanModeldata.loan_collateral);
             recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
             recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
+
+            rec_loan_duration.setText(requestLoanModeldata.loan_duration + "");
 
             System.out.println("intrest isccccccc " + requestLoanModeldata.loan_borrowing_rate);
             recAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
@@ -232,30 +234,33 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         canvas.drawText("Purpose :", 20, 60, paint);
         canvas.drawText("" + recPurpose.getText(), 150, 60, paint);
 
-        canvas.drawText("Borrowing Rate % :", 20, 80, paint);
-        canvas.drawText("" + recBorrower.getText(), 150, 80, paint);
+        canvas.drawText("Loan Duration (days) :", 20, 80, paint);
+        canvas.drawText("" + rec_loan_duration.getText(), 150, 80, paint);
 
-        canvas.drawText("Collateral :", 20, 100, paint);
-        canvas.drawText("" + recCollateral.getText(), 150, 100, paint);
+        canvas.drawText("Borrowing Rate % :", 20, 100, paint);
+        canvas.drawText("" + recBorrower.getText(), 150, 100, paint);
 
-        canvas.drawText("Market value $ :", 20, 120, paint);
-        canvas.drawText("" + recMarketValue.getText(), 150, 120, paint);
+        canvas.drawText("Collateral :", 20, 120, paint);
+        canvas.drawText("" + recCollateral.getText(), 150, 120, paint);
 
-        canvas.drawText("Asset/loan ratio % :", 20, 140, paint);
-        canvas.drawText("" + recLoanRatio.getText(), 150, 140, paint);
+        canvas.drawText("Market value $ :", 20, 140, paint);
+        canvas.drawText("" + recMarketValue.getText(), 150, 140, paint);
+
+        canvas.drawText("Asset/loan ratio % :", 20, 160, paint);
+        canvas.drawText("" + recLoanRatio.getText(), 150, 160, paint);
 
 
-        canvas.drawText("Amount $ :", 20, 160, paint);
-        canvas.drawText("" + recLoanAmount.getText(), 150, 160, paint);
+        canvas.drawText("Amount $ :", 20, 180, paint);
+        canvas.drawText("" + recLoanAmount.getText(), 150, 180, paint);
 
-        canvas.drawText("Interest $ :", 20, 180, paint);
-        canvas.drawText("" + recInterest.getText(), 150, 180, paint);
+        canvas.drawText("Interest $ :", 20, 200, paint);
+        canvas.drawText("" + recInterest.getText(), 150, 200, paint);
 
-        canvas.drawText("Service fees (5%) $ :", 20, 200, paint);
-        canvas.drawText("" + recServiceFees.getText(), 150, 200, paint);
+        canvas.drawText("Service fees (5%) $ :", 20, 220, paint);
+        canvas.drawText("" + recServiceFees.getText(), 150, 220, paint);
 
-        canvas.drawText(tptalpayabletdxt.getText() + ":", 20, 220, paint);
-        canvas.drawText("" + recTotalPayable.getText() + "", 150, 220, paint);
+        canvas.drawText(tptalpayabletdxt.getText() + ":", 20, 240, paint);
+        canvas.drawText("" + recTotalPayable.getText() + "", 150, 240, paint);
 
 
         //canvas.drawt
