@@ -98,7 +98,16 @@ public class Comman {
                 //  double val = Double.parseDouble(number.replaceAll("\\D+", ""));
                 double val = Double.parseDouble(number);
 
-                return NumberFormat.getNumberInstance(Locale.US).format(val);
+                String numberafterformate = NumberFormat.getNumberInstance(Locale.US).format(val);
+                if (numberafterformate.contains(".")) {
+
+                    return numberafterformate;
+                } else {
+
+                    return numberafterformate + ".00";
+                }
+
+
                 // return formatter.format(val) + "";
             } else {
                 return "0";
