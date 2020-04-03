@@ -37,6 +37,11 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send Feedback" />
+
+            <item
+                android:id="@+id/nav_switch"
+                app:actionLayout="@layout/switch_menu"
+                android:title="Continue As Lender" />
         </menu>
     </item>
 

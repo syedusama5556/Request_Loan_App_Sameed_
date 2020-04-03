@@ -1,6 +1,7 @@
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
+import com.infusiblecoder.loanappsameed.fragment.EmptyFragmentView;
 import com.infusiblecoder.loanappsameed.fragment.InvestmentHistory;
 import com.infusiblecoder.loanappsameed.fragment.LoanRequestListFragment;
 import com.infusiblecoder.loanappsameed.fragment.RecivedLoanRequests;
@@ -22,11 +24,13 @@ public class LoanRequestList extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan_request_list);
+        prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -65,6 +69,12 @@ public class LoanRequestList extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+
+
+            String islender = prefs.getString("islender", "no");
+
+
+
             Fragment fragment = null;
             switch (position) {
                 case 0: {
@@ -72,7 +82,20 @@ public class LoanRequestList extends AppCompatActivity {
                     break;
                 }
                 case 1: {
-                    fragment = new RecivedLoanRequests();
+
+
+                    if (!islender.equals("no") && islender.equals("true")) {
+
+
+                        fragment = new EmptyFragmentView();
+
+                    } else if (!islender.equals("no") && islender.equals("false")) {
+
+                        fragment = new RecivedLoanRequests();
+
+
+                    }
+
                     break;
                 }
                 case 2: {

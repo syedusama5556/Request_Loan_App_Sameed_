@@ -15,11 +15,14 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
@@ -94,6 +97,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
     private CircularImageView userprofilePicture;
     private TextView notifications;
     private long diffInMillisec = 0;
+    private SwitchCompat switch_id;
 
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
@@ -105,6 +109,8 @@ public class HomeActivityDrawar extends AppCompatActivity {
         }
         return true;
     }
+
+    SharedPreferences prefs;
 
 
     @Override
@@ -124,6 +130,41 @@ public class HomeActivityDrawar extends AppCompatActivity {
                 drawer.openDrawer(navigationView);
             }
         });
+
+        prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+
+        MenuItem menuIte12 = navigationView.getMenu().findItem(R.id.nav_switch); // This is the menu item that contains your switch
+        SwitchCompat drawerSwitch = (SwitchCompat) menuIte12.getActionView().findViewById(R.id.switch_id);
+
+
+        String islender = prefs.getString("islender", "no");
+        if (!islender.equals("no") && islender.equals("true")) {
+            drawerSwitch.setChecked(true);
+        } else if (!islender.equals("no") && islender.equals("false")) {
+            drawerSwitch.setChecked(false);
+        }
+
+        drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+                    editor.putString("islender", "true");
+                    editor.apply();
+                    Toast.makeText(getApplicationContext(), "You Are A Lender Now", Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    SharedPreferences.Editor editor = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE).edit();
+                    editor.putString("islender", "false");
+                    editor.apply();
+                    Toast.makeText(getApplicationContext(), "You Are A Borrower Now", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -156,6 +197,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
                         finish();
                         break;
                     }
+
 
                     case R.id.nav_share: {
 
@@ -512,7 +554,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
     public void loadAllData() {
 
 
-        SharedPreferences prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
         String user_id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
 
 

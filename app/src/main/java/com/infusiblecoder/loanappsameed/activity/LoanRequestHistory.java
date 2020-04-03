@@ -1,6 +1,7 @@
 package com.infusiblecoder.loanappsameed.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
+import com.infusiblecoder.loanappsameed.fragment.EmptyFragmentView;
 import com.infusiblecoder.loanappsameed.fragment.MyAppliedLoans;
 import com.infusiblecoder.loanappsameed.fragment.SentedLoanRequests;
 
@@ -20,13 +22,14 @@ public class LoanRequestHistory extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan_request_history);
 
-
+        prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -62,6 +65,8 @@ public class LoanRequestHistory extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+
+            String islender = prefs.getString("islender", "no");
             Fragment fragment = null;
             switch (position) {
                 case 0: {
@@ -69,7 +74,21 @@ public class LoanRequestHistory extends AppCompatActivity {
                     break;
                 }
                 case 1: {
-                    fragment = new MyAppliedLoans();
+
+
+                    if (!islender.equals("no") && islender.equals("true")) {
+
+
+                        fragment = new EmptyFragmentView();
+
+                    } else if (!islender.equals("no") && islender.equals("false")) {
+
+                        fragment = new MyAppliedLoans();
+
+
+                    }
+
+
                     break;
                 }
                 default: {
