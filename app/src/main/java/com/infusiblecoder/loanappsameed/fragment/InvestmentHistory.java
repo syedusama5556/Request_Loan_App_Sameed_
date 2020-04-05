@@ -20,9 +20,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.Helpers.VollySingltonClass;
+import com.infusiblecoder.loanappsameed.ModelClasses.RequestLoanModel;
 import com.infusiblecoder.loanappsameed.ModelClasses.UserRequestModel;
 import com.infusiblecoder.loanappsameed.R;
 import com.infusiblecoder.loanappsameed.adapter.NotificationsRequestListAdapter;
+import com.infusiblecoder.loanappsameed.adapter.RequestListShowAdapter_for_my_investments;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,12 +43,19 @@ public class InvestmentHistory extends Fragment {
     private RecyclerView recyclerView;
     private NotificationsRequestListAdapter notificationsRequestListAdapter;
     private LinearLayout no_item_layout;
+    private LinearLayout linlayoutHide;
+    private RecyclerView recViewRequestListForMyloans;
+    private RequestListShowAdapter_for_my_investments requestListShowAdapter;
+    private ArrayList<RequestLoanModel> requestLoanModelArrayList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_investment_history, container, false);
+
+        linlayoutHide = (LinearLayout) view.findViewById(R.id.linlayout_hide);
+        recViewRequestListForMyloans = (RecyclerView) view.findViewById(R.id.rec_view_request_list_for_myloans);
 
         no_item_layout = view.findViewById(R.id.no_item_layout);
         recyclerView = view.findViewById(R.id.rec_view_request_list);
@@ -57,15 +66,110 @@ public class InvestmentHistory extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(notificationsRequestListAdapter);
+        recyclerView.setNestedScrollingEnabled(false);
 
+
+        requestLoanModelArrayList = new ArrayList<RequestLoanModel>();
+
+        requestListShowAdapter = new RequestListShowAdapter_for_my_investments(getActivity(), requestLoanModelArrayList, "false");
+
+        recViewRequestListForMyloans.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recViewRequestListForMyloans.setAdapter(requestListShowAdapter);
+        recViewRequestListForMyloans.setNestedScrollingEnabled(false);
 
         getAllData();
+        getAllDatamyloan();
 
         return view;
     }
 
 
     private void getAllData() {
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_REQUEST_TABLE_Single_User_DATA_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("rescccccccc " + response);
+
+                try {
+
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        if (jsonObject.getString("code").equals("success")) {
+
+                            Gson gson = new Gson();
+                            RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
+
+
+                            requestLoanModelArrayList.add(userTableData);
+                            requestListShowAdapter.notifyDataSetChanged();
+
+                            no_item_layout.setVisibility(View.GONE);
+
+                        } else {
+                            no_item_layout.setVisibility(View.VISIBLE);
+
+                            Comman.showErrorToast(getActivity(), "No Data Found for applied loans");
+                        }
+
+                    }
+
+
+                } catch (Exception e) {
+                    no_item_layout.setVisibility(View.VISIBLE);
+                    System.out.println("i ah error " + e.getMessage());
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                no_item_layout.setVisibility(View.VISIBLE);
+                Comman.showErrorToast(getActivity(), "Error check your internet connection");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                SharedPreferences prefs = getActivity().getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
+                String id = prefs.getString(Comman.SHAREDPREF_USERDATA_ATTRIBUTES[0], "no value");//"No name defined" is the default value.
+
+                if (!id.equals("no value") && !id.equals("")) {
+
+
+                } else {
+
+
+                    Comman.showErrorToast(getActivity(), "error is getting id");
+
+                }
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", id);
+
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VollySingltonClass.getmInstance(getActivity()).addToRequsetque(stringRequest);
+
+
+        requestListShowAdapter.notifyDataSetChanged();
+
+    }
+
+    private void getAllDatamyloan() {
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_Recived_REQUESTS_TABLE_URL, new Response.Listener<String>() {

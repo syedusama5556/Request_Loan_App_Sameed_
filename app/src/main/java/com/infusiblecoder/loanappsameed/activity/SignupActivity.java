@@ -20,9 +20,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +74,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText firstNameEditText;
     private EditText lastNameEditText;
     private EditText addressEditText;
-    private EditText whatyoupretendEditText;
+    private Spinner whatyoupretendEditText;
     private EditText fieldOfActivityEditText;
     private EditText phoneEditText;
     private EditText emailEditText;
@@ -130,6 +132,9 @@ public class SignupActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_edit_text);
         confirmPasswordEditText = findViewById(R.id.confirm_password_edit_text);
 
+        String[] aa = new String[]{"Borrower", "Investor"};
+        ArrayAdapter arrayAda = new ArrayAdapter(this, R.layout.spinner_custom_layout, aa);
+        whatyoupretendEditText.setAdapter(arrayAda);
 
         // Configure Already a member? Login component
         alreadyAmemberLoginButton = this.findViewById(R.id.already_amember_login_button);
@@ -176,7 +181,7 @@ public class SignupActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString();
 
         String address = addressEditText.getText().toString();
-        String whatyoupretend = whatyoupretendEditText.getText().toString();
+        String whatyoupretend = whatyoupretendEditText.getSelectedItem().toString();
         String fieldofactivity = firstNameEditText.getText().toString();
         String phone = phoneEditText.getText().toString();
 

@@ -88,9 +88,10 @@ public class LoanRequestListFragment extends Fragment {
                             Gson gson = new Gson();
                             RequestLoanModel userTableData = gson.fromJson(jsonObject.toString(), RequestLoanModel.class);
 
-
+                            //     if (userTableData.loan_status.equals("approved")) {
                             requestLoanModelArrayList.add(userTableData);
                             requestListShowAdapter.notifyDataSetChanged();
+                            //   }
 
                             no_item_layout.setVisibility(View.GONE);
 

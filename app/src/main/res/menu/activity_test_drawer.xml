@@ -44,7 +44,9 @@
             </menu>
         </item>
     </group>
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single"
+        android:visible="false">
 
         <item android:title="Mode">
             <menu>

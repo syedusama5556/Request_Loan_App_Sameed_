@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rec_card_btn"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        app:cardElevation="5dp"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rec_relative_color_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary"
+            android:padding="3dp">
+
+
+            <TextView
+                android:id="@+id/rec_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Status: "
+                android:textColor="@color/color_white" />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/rec_img_profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_insert_file_black_24dp"
+                app:civ_border="true"
+                app:civ_border_color="@android:color/darker_gray"
+                app:civ_border_width="1dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_toRightOf="@id/rec_img_profile"
+                android:orientation="vertical"
+
+
+                >
+
+                <TextView
+                    android:id="@+id/rec_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Name"
+                    android:textColor="@color/color_white" />
+
+                <TextView
+                    android:id="@+id/rec_loan_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loan Amount"
+                    android:textColor="@color/color_white" />
+
+                <TextView
+                    android:id="@+id/rec_loan_paidout_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Loan paid out date
+"
+                    android:textColor="@color/color_white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/rec_btn_showmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Click To View More Info"
+                android:textColor="@color/color_white" />
+
+            <ImageView
+                android:id="@+id/rec_img_loan_type"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_car_rec" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

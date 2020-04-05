@@ -43,7 +43,7 @@
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Investment History" />
+                android:text="Investment Market" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabItem2"
@@ -55,7 +55,7 @@
                 android:id="@+id/tabItem3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Investment Market" />
+                android:text="Investment History" />
 
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>

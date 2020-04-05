@@ -14,10 +14,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.infusiblecoder.loanappsameed.Helpers.Comman;
 import com.infusiblecoder.loanappsameed.R;
-import com.infusiblecoder.loanappsameed.fragment.EmptyFragmentView;
 import com.infusiblecoder.loanappsameed.fragment.InvestmentHistory;
 import com.infusiblecoder.loanappsameed.fragment.LoanRequestListFragment;
-import com.infusiblecoder.loanappsameed.fragment.RecivedLoanRequests;
+import com.infusiblecoder.loanappsameed.fragment.SentedLoanRequests;
 
 public class LoanRequestList extends AppCompatActivity {
 
@@ -78,28 +77,31 @@ public class LoanRequestList extends AppCompatActivity {
             Fragment fragment = null;
             switch (position) {
                 case 0: {
-                    fragment = new InvestmentHistory();
+
+                    fragment = new LoanRequestListFragment();
                     break;
                 }
                 case 1: {
 
 
-                    if (!islender.equals("no") && islender.equals("true")) {
-
-
-                        fragment = new EmptyFragmentView();
-
-                    } else if (!islender.equals("no") && islender.equals("false")) {
-
-                        fragment = new RecivedLoanRequests();
-
-
-                    }
-
+//                    if (!islender.equals("no") && islender.equals("true")) {
+//
+//
+//                        fragment = new EmptyFragmentView();
+//
+//                    } else if (!islender.equals("no") && islender.equals("false")) {
+//
+//
+//
+//                    }
+                    fragment = new InvestmentHistory();
                     break;
                 }
                 case 2: {
-                    fragment = new LoanRequestListFragment();
+
+                    fragment = new SentedLoanRequests();
+
+
                     break;
                 }
                 default: {
