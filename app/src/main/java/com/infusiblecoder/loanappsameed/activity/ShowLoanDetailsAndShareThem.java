@@ -66,21 +66,21 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_loan_details_and_share_them);
 
-        tptalpayabletdxt = (TextView) findViewById(R.id.tptalpayabletdxt);
-        recName = (TextView) findViewById(R.id.rec_name);
-        recLoanAmount = (TextView) findViewById(R.id.rec_loan_amount);
-        recPurpose = (TextView) findViewById(R.id.rec_purpose);
-        recBorrower = (TextView) findViewById(R.id.rec_borrower);
-        recCollateral = (TextView) findViewById(R.id.rec_collateral);
-        recMarketValue = (TextView) findViewById(R.id.rec_market_value);
-        recLoanRatio = (TextView) findViewById(R.id.rec_loan_ratio);
-        recAmount = (TextView) findViewById(R.id.rec_amount);
-        recInterest = (TextView) findViewById(R.id.rec_interest);
-        recServiceFees = (TextView) findViewById(R.id.rec_service_fees);
-        recTotalPayable = (TextView) findViewById(R.id.rec_total_payable);
-        btn_share_layout = (ImageView) findViewById(R.id.btn_share_layout);
-        txtx_nameplace_holder = (TextView) findViewById(R.id.txtx_nameplace_holder);
-        rec_loan_duration = (TextView) findViewById(R.id.rec_loan_duration);
+        tptalpayabletdxt = findViewById(R.id.tptalpayabletdxt);
+        recName = findViewById(R.id.rec_name);
+        recLoanAmount = findViewById(R.id.rec_loan_amount);
+        recPurpose = findViewById(R.id.rec_purpose);
+        recBorrower = findViewById(R.id.rec_borrower);
+        recCollateral = findViewById(R.id.rec_collateral);
+        recMarketValue = findViewById(R.id.rec_market_value);
+        recLoanRatio = findViewById(R.id.rec_loan_ratio);
+        recAmount = findViewById(R.id.rec_amount);
+        recInterest = findViewById(R.id.rec_interest);
+        recServiceFees = findViewById(R.id.rec_service_fees);
+        recTotalPayable = findViewById(R.id.rec_total_payable);
+        btn_share_layout = findViewById(R.id.btn_share_layout);
+        txtx_nameplace_holder = findViewById(R.id.txtx_nameplace_holder);
+        rec_loan_duration = findViewById(R.id.rec_loan_duration);
         if (getIntent().getSerializableExtra("myrequestdata") != null) {
 
             requestLoanModeldata = (RequestLoanModel) getIntent().getSerializableExtra("myrequestdata");

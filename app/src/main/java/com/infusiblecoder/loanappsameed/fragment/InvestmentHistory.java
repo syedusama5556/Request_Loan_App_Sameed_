@@ -54,8 +54,8 @@ public class InvestmentHistory extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_investment_history, container, false);
 
-        linlayoutHide = (LinearLayout) view.findViewById(R.id.linlayout_hide);
-        recViewRequestListForMyloans = (RecyclerView) view.findViewById(R.id.rec_view_request_list_for_myloans);
+        linlayoutHide = view.findViewById(R.id.linlayout_hide);
+        recViewRequestListForMyloans = view.findViewById(R.id.rec_view_request_list_for_myloans);
 
         no_item_layout = view.findViewById(R.id.no_item_layout);
         recyclerView = view.findViewById(R.id.rec_view_request_list);

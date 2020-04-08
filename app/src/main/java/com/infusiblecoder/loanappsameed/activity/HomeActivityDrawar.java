@@ -76,6 +76,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
     TextView easyCountDownTextview;
     DrawerLayout drawer;
     NavigationView navigationView;
+    SharedPreferences prefs;
     private CatLoadingView catLoadingView;
     private ConstraintLayout personalloanConstraintLayout;
     private Button instantLoanForPerButton;
@@ -110,9 +111,6 @@ public class HomeActivityDrawar extends AppCompatActivity {
         return true;
     }
 
-    SharedPreferences prefs;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +132,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
         prefs = getSharedPreferences(Comman.SHAREDPREF_USERDATA, MODE_PRIVATE);
 
         MenuItem menuIte12 = navigationView.getMenu().findItem(R.id.nav_switch); // This is the menu item that contains your switch
-        SwitchCompat drawerSwitch = (SwitchCompat) menuIte12.getActionView().findViewById(R.id.switch_id);
+        SwitchCompat drawerSwitch = menuIte12.getActionView().findViewById(R.id.switch_id);
 
 
         String islender = prefs.getString("islender", "no");
@@ -268,7 +266,7 @@ public class HomeActivityDrawar extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-        easyCountDownTextview = (TextView) findViewById(R.id.CountDownTextview);
+        easyCountDownTextview = findViewById(R.id.CountDownTextview);
         easyCountDownTextview.setVisibility(View.INVISIBLE);
         this.init();
 

@@ -203,9 +203,9 @@ public class RequestLoanActivity extends AppCompatActivity {
         //  line1ImageView = findViewById(R.id.line1_image_view);
 
 
-        marketLoanratioEditText = (TextView) findViewById(R.id.market_loanratio_edit_text);
+        marketLoanratioEditText = findViewById(R.id.market_loanratio_edit_text);
 
-        marketBorrowingrateText = (TextView) findViewById(R.id.marketBorrowingrate_text);
+        marketBorrowingrateText = findViewById(R.id.marketBorrowingrate_text);
 
         marketValueEditText.addTextChangedListener(new TextWatcher() {
             @Override

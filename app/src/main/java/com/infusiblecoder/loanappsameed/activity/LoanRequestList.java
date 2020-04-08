@@ -73,7 +73,6 @@ public class LoanRequestList extends AppCompatActivity {
             String islender = prefs.getString("islender", "no");
 
 
-
             Fragment fragment = null;
             switch (position) {
                 case 0: {

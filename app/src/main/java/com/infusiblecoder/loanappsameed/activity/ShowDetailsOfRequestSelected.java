@@ -123,16 +123,16 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
         marketValueTextView = findViewById(R.id.market_value_text_view);
         loanRequestIdTextView = findViewById(R.id.loan_request_id_text_view);
         dueDateTextView = findViewById(R.id.due_date_text_view);
-        borrowingRateTextView = (TextView) findViewById(R.id.borrowing_rate_text_view);
-        loanRatioTextView = (TextView) findViewById(R.id.loan_ratio_text_view);
+        borrowingRateTextView = findViewById(R.id.borrowing_rate_text_view);
+        loanRatioTextView = findViewById(R.id.loan_ratio_text_view);
         verificationStatusImageView = findViewById(R.id.path_image_view);
 
-        linshre = (LinearLayout) findViewById(R.id.linshre1);
-        linsendreq = (LinearLayout) findViewById(R.id.linsendreq);
-        linclose = (LinearLayout) findViewById(R.id.linclose);
-        btnSharepage = (ImageView) findViewById(R.id.btn_sharepage);
+        linshre = findViewById(R.id.linshre1);
+        linsendreq = findViewById(R.id.linsendreq);
+        linclose = findViewById(R.id.linclose);
+        btnSharepage = findViewById(R.id.btn_sharepage);
 
-        mymainlayouttoprint = (RelativeLayout) findViewById(R.id.mymainlayouttoprint);
+        mymainlayouttoprint = findViewById(R.id.mymainlayouttoprint);
 
         if (ismyloan.equals("false")) {
 
@@ -333,10 +333,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     Bitmap getBitmapFromView(RelativeLayout view) {

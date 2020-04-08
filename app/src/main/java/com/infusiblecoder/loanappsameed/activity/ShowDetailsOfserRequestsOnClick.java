@@ -209,12 +209,12 @@ public class ShowDetailsOfserRequestsOnClick extends AppCompatActivity {
                         Dialog view = new Dialog(ShowDetailsOfserRequestsOnClick.this);
                         view.setContentView(R.layout.dialog_comfirm_loan_with_loanratio);
 
-                        TextView dialogLenderTextView = (TextView) view.findViewById(R.id.dialog_lender_text_view);
-                        TextView dialogLoanRequestIdTextView = (TextView) view.findViewById(R.id.dialog_loan_request_id_text_view);
-                        TextView dialogDueDateTextView = (TextView) view.findViewById(R.id.dialog_due_date_text_view);
-                        TextView dialogBorrowingRateTextView = (TextView) view.findViewById(R.id.dialog_borrowing_rate_text_view);
-                        TextView dialogLoanRatioTextView = (TextView) view.findViewById(R.id.dialog_loan_ratio_text_view);
-                        Button donBtnDialog = (Button) view.findViewById(R.id.don_btn_dialog);
+                        TextView dialogLenderTextView = view.findViewById(R.id.dialog_lender_text_view);
+                        TextView dialogLoanRequestIdTextView = view.findViewById(R.id.dialog_loan_request_id_text_view);
+                        TextView dialogDueDateTextView = view.findViewById(R.id.dialog_due_date_text_view);
+                        TextView dialogBorrowingRateTextView = view.findViewById(R.id.dialog_borrowing_rate_text_view);
+                        TextView dialogLoanRatioTextView = view.findViewById(R.id.dialog_loan_ratio_text_view);
+                        Button donBtnDialog = view.findViewById(R.id.don_btn_dialog);
 
 
                         System.out.println("mydatais1 " + requestLoanModel);

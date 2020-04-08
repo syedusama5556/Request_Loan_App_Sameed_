@@ -102,7 +102,6 @@ public class RequestListShowAdapter extends RecyclerView.Adapter<RequestListShow
         if (ismyappliedloan.equals("true")) {
 
 
-
             Glide.with(context).load(Comman.START_URL + requestLoanModelArrayList.get(position).user_img_url_request)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(holder.recImgProfile);

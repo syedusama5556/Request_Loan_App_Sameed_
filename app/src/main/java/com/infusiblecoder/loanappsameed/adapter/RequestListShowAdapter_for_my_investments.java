@@ -277,7 +277,7 @@ public class RequestListShowAdapter_for_my_investments extends RecyclerView.Adap
                                 RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                                 System.out.println("inadapter " + requestLoanModel.loan_borrowing_rate);
                                 i.putExtra("myrequestdata", requestLoanModel);
-                                i.putExtra("ismyloan", "true");
+                                i.putExtra("ismyloan", "false");
 
                                 context.startActivity(i);
 
