@@ -217,13 +217,13 @@ public class RequestListShowAdapter_for_my_investments extends RecyclerView.Adap
 //                                }
                                 else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[3])) {
 
-                                    Comman.showDefaultToast(context, "Your Loan Has Been Approved You Cannot Change The contents Now");
+                                    Comman.showDefaultToast(context, "Loan Has Been Approved You Cannot Change The contents Now");
 
                                 } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[0])) {
 
                                     Comman.showDefaultToast(context, "Please wait Until Your Request Is Processed");
                                 } else if (requestLoanModelArrayList.get(position).loan_status.equals(Comman.LOAN_Status[4])) {
-                                    Comman.showDefaultToast(context, "Your Selected Request Is Completed");
+                                    Comman.showDefaultToast(context, "Selected Request Is Completed");
                                 }
 
 
@@ -277,7 +277,7 @@ public class RequestListShowAdapter_for_my_investments extends RecyclerView.Adap
                                 RequestLoanModel requestLoanModel = requestLoanModelArrayList.get(position);
                                 System.out.println("inadapter " + requestLoanModel.loan_borrowing_rate);
                                 i.putExtra("myrequestdata", requestLoanModel);
-                                i.putExtra("ismyloan", "false");
+                                i.putExtra("ismyloan", "third");
 
                                 context.startActivity(i);
 

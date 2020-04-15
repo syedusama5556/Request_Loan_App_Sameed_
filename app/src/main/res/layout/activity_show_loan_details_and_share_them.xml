@@ -41,6 +41,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Amountplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -48,6 +49,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Purposeplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -55,6 +57,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Loan_Durationplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -62,6 +65,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Borrowing_Rateplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -69,6 +73,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Collateralplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -76,6 +81,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Market_valueplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -83,6 +89,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Asset_loan_ratioplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -182,6 +189,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtx_Amount2ndplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -189,6 +197,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Interestplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -196,6 +205,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtx_Service_feesplace_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

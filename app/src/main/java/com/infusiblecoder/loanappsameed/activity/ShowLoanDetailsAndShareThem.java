@@ -51,6 +51,7 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
     private RequestLoanModel requestLoanModeldata;
     private ImageView btn_share_layout;
     private TextView txtx_nameplace_holder, tptalpayabletdxt;
+    private TextView txtxNameplaceHolder, txtxServiceFeesplaceHolder, txtxInterestplaceHolder, txtxAmount2ndplaceHolder, txtxAssetLoanRatioplaceHolder, txtxMarketValueplaceHolder, txtxCollateralplaceHolder, txtxBorrowingRateplaceHolder, txtxAmountplaceHolder, txtxPurposeplaceHolder, txtxLoanDurationplaceHolder;
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
@@ -67,6 +68,20 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
         setContentView(R.layout.activity_show_loan_details_and_share_them);
 
         tptalpayabletdxt = findViewById(R.id.tptalpayabletdxt);
+
+        txtxNameplaceHolder = (TextView) findViewById(R.id.txtx_nameplace_holder);
+        txtxAmountplaceHolder = (TextView) findViewById(R.id.txtx_Amountplace_holder);
+        txtxPurposeplaceHolder = (TextView) findViewById(R.id.txtx_Purposeplace_holder);
+        txtxLoanDurationplaceHolder = (TextView) findViewById(R.id.txtx_Loan_Durationplace_holder);
+        txtxBorrowingRateplaceHolder = (TextView) findViewById(R.id.txtx_Borrowing_Rateplace_holder);
+        txtxCollateralplaceHolder = (TextView) findViewById(R.id.txtx_Collateralplace_holder);
+        txtxMarketValueplaceHolder = (TextView) findViewById(R.id.txtx_Market_valueplace_holder);
+        txtxAssetLoanRatioplaceHolder = (TextView) findViewById(R.id.txtx_Asset_loan_ratioplace_holder);
+        txtxAmount2ndplaceHolder = (TextView) findViewById(R.id.txtx_Amount2ndplace_holder);
+        txtxInterestplaceHolder = (TextView) findViewById(R.id.txtx_Interestplace_holder);
+        txtxServiceFeesplaceHolder = (TextView) findViewById(R.id.txtx_Service_feesplace_holder);
+
+
         recName = findViewById(R.id.rec_name);
         recLoanAmount = findViewById(R.id.rec_loan_amount);
         recPurpose = findViewById(R.id.rec_purpose);
@@ -85,38 +100,48 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 
             requestLoanModeldata = (RequestLoanModel) getIntent().getSerializableExtra("myrequestdata");
 
-            if (getIntent().getStringExtra("ismyloan").equals("false")) {
-                txtx_nameplace_holder.setText("User Id");
-                recName.setText(requestLoanModeldata.user_id);
-            } else {
-                recName.setText(requestLoanModeldata.user_full_name);
-            }
-            recLoanAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
-            recPurpose.setText(requestLoanModeldata.loan_purpose);
-            recBorrower.setText(requestLoanModeldata.loan_borrowing_rate);
-            recCollateral.setText(requestLoanModeldata.loan_collateral);
-            recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
-            recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
-
-            rec_loan_duration.setText(requestLoanModeldata.loan_duration + "");
-
-            System.out.println("intrest isccccccc " + requestLoanModeldata.loan_borrowing_rate);
-            recAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
-
-            double a = Double.parseDouble(requestLoanModeldata.loan_borrowing_rate);
-
-            System.out.println("intrest is " + a + " " + requestLoanModeldata.loan_amount);
-            double b = Double.parseDouble(requestLoanModeldata.loan_amount);
-
-            double intrest = (a * b) / 100;
-
-            System.out.println("intrest is " + intrest);
+            if (getIntent().getStringExtra("ismyloan").equals("third")) {
 
 
-            double servicefee = intrest * 0.05;
+                txtx_nameplace_holder.setVisibility(View.GONE);
+                recName.setVisibility(View.GONE);
+
+                rec_loan_duration.setVisibility(View.GONE);
+                txtxLoanDurationplaceHolder.setVisibility(View.GONE);
 
 
-            recInterest.setText("" + Comman.getFormatedNumber("" + round(intrest, 1) + ""));
+                recLoanAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
+
+                recPurpose.setText(requestLoanModeldata.loan_purpose);
+
+                recBorrower.setVisibility(View.GONE);
+                txtxBorrowingRateplaceHolder.setVisibility(View.GONE);
+
+                recCollateral.setText(requestLoanModeldata.loan_collateral);
+                recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
+                recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
+
+
+                System.out.println("intrest isccccccc " + requestLoanModeldata.loan_borrowing_rate);
+                recAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
+
+                double a = Double.parseDouble(requestLoanModeldata.loan_borrowing_rate);
+
+                System.out.println("intrest is " + a + " " + requestLoanModeldata.loan_amount);
+                double b = Double.parseDouble(requestLoanModeldata.loan_amount);
+
+                double intrest = (a * b) / 100;
+
+                System.out.println("intrest is " + intrest);
+
+
+                double servicefee = intrest * 0.05;
+
+
+                recInterest.setText("" + Comman.getFormatedNumber("" + round(intrest, 1) + ""));
+
+                recInterest.setVisibility(View.GONE);
+                txtxInterestplaceHolder.setVisibility(View.GONE);
 
 //Todo
 //            recServiceFees.setText("" + round(servicefee, 2));
@@ -124,22 +149,73 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 //            recTotalPayable.setText(total1 + "");
 
 
-            if (getIntent().getStringExtra("ismyloan").equals("false")) {
-
-
                 recServiceFees.setText("-" + Comman.getFormatedNumber("" + round(servicefee, 2)));
 
                 double total2 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) - servicefee;
                 recTotalPayable.setText(Comman.getFormatedNumber(total2 + ""));
                 tptalpayabletdxt.setText("Total receivable $");
+
+                recTotalPayable.setVisibility(View.GONE);
+                tptalpayabletdxt.setVisibility(View.GONE);
+
+
             } else {
+                if (getIntent().getStringExtra("ismyloan").equals("false")) {
+                    txtx_nameplace_holder.setText("User Id");
+                    recName.setText(requestLoanModeldata.user_id);
+                } else {
+                    recName.setText(requestLoanModeldata.user_full_name);
+                }
+                recLoanAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
+                recPurpose.setText(requestLoanModeldata.loan_purpose);
+                recBorrower.setText(requestLoanModeldata.loan_borrowing_rate);
+                recCollateral.setText(requestLoanModeldata.loan_collateral);
+                recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
+                recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
 
-                recServiceFees.setText("" + Comman.getFormatedNumber("" + round(servicefee, 2)));
+                rec_loan_duration.setText(requestLoanModeldata.loan_duration + "");
 
-                double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
-                recTotalPayable.setText(Comman.getFormatedNumber(total1 + ""));
+                System.out.println("intrest isccccccc " + requestLoanModeldata.loan_borrowing_rate);
+                recAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
+
+                double a = Double.parseDouble(requestLoanModeldata.loan_borrowing_rate);
+
+                System.out.println("intrest is " + a + " " + requestLoanModeldata.loan_amount);
+                double b = Double.parseDouble(requestLoanModeldata.loan_amount);
+
+                double intrest = (a * b) / 100;
+
+                System.out.println("intrest is " + intrest);
 
 
+                double servicefee = intrest * 0.05;
+
+
+                recInterest.setText("" + Comman.getFormatedNumber("" + round(intrest, 1) + ""));
+
+//Todo
+//            recServiceFees.setText("" + round(servicefee, 2));
+//            double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
+//            recTotalPayable.setText(total1 + "");
+
+
+                if (getIntent().getStringExtra("ismyloan").equals("false")) {
+
+
+                    recServiceFees.setText("-" + Comman.getFormatedNumber("" + round(servicefee, 2)));
+
+                    double total2 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) - servicefee;
+                    recTotalPayable.setText(Comman.getFormatedNumber(total2 + ""));
+                    tptalpayabletdxt.setText("Total receivable $");
+                } else {
+
+                    recServiceFees.setText("" + Comman.getFormatedNumber("" + round(servicefee, 2)));
+
+                    double total1 = (Double.parseDouble(requestLoanModeldata.loan_amount) + intrest) + servicefee;
+                    recTotalPayable.setText(Comman.getFormatedNumber(total1 + ""));
+
+
+                }
             }
 
         }
@@ -149,7 +225,12 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //  takeScreenshot();
-                createPdf();
+
+                if (getIntent().getStringExtra("ismyloan").equals("third")) {
+                    createPdfthird();
+                } else {
+                    createPdf();
+                }
             }
         });
 
@@ -294,6 +375,97 @@ public class ShowLoanDetailsAndShareThem extends AppCompatActivity {
 
     }
 
+    private void createPdfthird() {
+        recLoanAmount.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_amount));
+        recPurpose.setText(requestLoanModeldata.loan_purpose);
+        recBorrower.setText(requestLoanModeldata.loan_borrowing_rate);
+        recCollateral.setText(requestLoanModeldata.loan_collateral);
+        recMarketValue.setText(Comman.getFormatedNumber(requestLoanModeldata.loan_market_value));
+        recLoanRatio.setText(requestLoanModeldata.loan_loan_ratio);
+
+
+        String sometext = "Amount $ :-" + "      " + recLoanAmount.getText() + "\n"
+                + "Purpose :-" + "      " + recPurpose.getText() + "\n"
+                + "Collateral :-" + "      " + recCollateral.getText() + "\n"
+                + "Market value $ :-" + "      " + recMarketValue.getText() + "\n"
+                + "Asset/loan ratio % :-" + "      " + recLoanRatio.getText() + "\n\n\n"
+
+                + "Amount $ :-" + "      " + recLoanAmount.getText() + "\n"
+                + "Service fees (5%) $ :-" + "      " + recServiceFees.getText();
+
+        System.out.println("prtdatais " + sometext);
+
+//String textis = "fhjdsjkfjksfhsdhfk jksdfhdjksfhjkds<br> fdjksfhdjkshfk fjkdshfjkdsh <br>fjkdshfjkds fkdshfkdsn<br> fkjdshfkds fdksfhkdjsf <br>djksfhjksdf fdjshfjkds ";
+        //    System.out.println("prtdatais "+ Html.toHtml(textis.,Html.FROM_HTML_MODE_LEGACY));
+
+
+        // create a new document
+        PdfDocument document = new PdfDocument();
+        // crate a page description
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
+        // start a page
+        PdfDocument.Page page = document.startPage(pageInfo);
+        Canvas canvas = page.getCanvas();
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+        //  canvas.drawCircle(50, 50, 30, paint);
+        //paint.setColor(Color.BLACK);
+
+        canvas.drawText("Amount $ :", 20, 20, paint);
+        canvas.drawText("" + recLoanAmount.getText(), 150, 20, paint);
+
+        canvas.drawText("Purpose :", 20, 40, paint);
+        canvas.drawText("" + recPurpose.getText(), 150, 40, paint);
+
+
+        canvas.drawText("Collateral :", 20, 60, paint);
+        canvas.drawText("" + recCollateral.getText(), 150, 60, paint);
+
+        canvas.drawText("Market value $ :", 20, 80, paint);
+        canvas.drawText("" + recMarketValue.getText(), 150, 80, paint);
+
+        canvas.drawText("Asset/loan ratio % :", 20, 100, paint);
+        canvas.drawText("" + recLoanRatio.getText(), 150, 100, paint);
+
+
+        canvas.drawText("Amount $ :", 20, 120, paint);
+        canvas.drawText("" + recLoanAmount.getText(), 150, 120, paint);
+
+
+        canvas.drawText("Service fees (5%) $ :", 20, 140, paint);
+        canvas.drawText("" + recServiceFees.getText(), 150, 140, paint);
+
+
+        //canvas.drawt
+        // finish the page
+        document.finishPage(page);
+// draw text on the graphics object of the page
+
+        // write the document content
+        String directory_path = Environment.getExternalStorageDirectory().getPath() + "/loanapp/";
+        File file = new File(directory_path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+        String targetPdf = directory_path + now + ".pdf";
+        File filePath = new File(targetPdf);
+        try {
+            document.writeTo(new FileOutputStream(filePath));
+            Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
+
+            viewPdf(filePath.toString());
+        } catch (IOException e) {
+            Log.e("main", "error " + e.toString());
+            Toast.makeText(this, "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
+        }
+        // close the document
+        document.close();
+
+
+    }
 
     public void ConvertHTMLStringToPDF() {
         // note: be sure to copy the helper function ConvertHTMLStringToPDF() from this webpage
