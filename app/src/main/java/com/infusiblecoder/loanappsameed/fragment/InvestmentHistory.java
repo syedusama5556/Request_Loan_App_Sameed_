@@ -87,7 +87,7 @@ public class InvestmentHistory extends Fragment {
     private void getAllData() {
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_REQUEST_TABLE_Single_User_DATA_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.GET_ALL_REQUEST_TABLE_Single_User_DATA_URL_lender, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 System.out.println("rescccccccc " + response);

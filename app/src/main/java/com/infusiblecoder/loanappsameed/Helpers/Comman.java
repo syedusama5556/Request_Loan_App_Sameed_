@@ -10,8 +10,8 @@ import java.util.Locale;
 
 public class Comman {
 
-    public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
-    //public static String START_URL = "http://192.168.10.8/android/loanapp/";
+    //public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
+    public static String START_URL = "http://192.168.10.50/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
@@ -36,6 +36,8 @@ public class Comman {
     public static String GET_ALL_DATA_FROM_MULTIPLE_TABLE_REQUESTS_TABLE_URL = START_URL + "getdatafrommultipletableforonclickrequest.php";
     public static String GET_ALL_Sented_REQUEST_TABLE_DATA_URL = START_URL + "getallsentedrequestshistory.php";
     public static String GET_ALL_Recived_REQUESTS_TABLE_URL = START_URL + "getallallnotificationsfromrequeststable.php";
+    public static String GET_ALL_REQUEST_TABLE_Single_User_DATA_URL_lender = START_URL + "getalldatarequesttablesingleuser_lender.php";
+
 
 
     public static String SEND_REQUEST_URL = START_URL + "sendrequesttoperson.php";
