@@ -10,8 +10,8 @@ import java.util.Locale;
 
 public class Comman {
 
-    //public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
-    public static String START_URL = "http://192.168.10.50/android/loanapp/";
+    public static String START_URL = "https://peer.infusiblecoder.com/android/loanapp/";
+    //public static String START_URL = "http://192.168.10.50/android/loanapp/";
 
 
     public static String DB_URL = START_URL + "db.php";
