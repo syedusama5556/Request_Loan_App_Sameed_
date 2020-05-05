@@ -382,7 +382,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
 
         String request_time_stamp = String.valueOf(currentTime);
 
-        System.out.println("error is 12" + fullname + senderuser_id + request_reciver_user_id + loan_request_code);
+        System.out.println("error is 12 _" + fullname + "__" + senderuser_id + "__" + request_reciver_user_id + "__" + loan_request_code + "__");
         String request_is_seen = "false";
 
 
@@ -397,6 +397,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
 
+                    Log.e("dfhsajkhfhsd", "" + response);
 
                     try {
 
@@ -463,10 +464,13 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
                     params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
 
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
+//                    params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
+//                    params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
 
                     params.put("req_status", Comman.REQUEST_Status[0]);
+
+                    System.out.println("error is 121 _" + request_time_stamp + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[1]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[2]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[3]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[4]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[5]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[6]) + "__" + params.get("req_status") + "__");
+
 
 
                     return params;
