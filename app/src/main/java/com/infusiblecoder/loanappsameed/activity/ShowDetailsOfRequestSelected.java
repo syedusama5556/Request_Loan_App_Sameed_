@@ -393,7 +393,7 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
             catLoadingView.show(getSupportFragmentManager(), "");
 
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Comman.SEND_REQUEST_URL, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://peer.infusiblecoder.com/android/loanapp/sendrequesttoperson.php", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 
@@ -456,21 +456,21 @@ public class ShowDetailsOfRequestSelected extends AppCompatActivity {
                     Map<String, String> params = new HashMap<>();
 
 
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[0], loan_request_code);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[1], request_sender_user_name);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[2], request_reciver_user_name);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[3], request_sender_user_id);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[4], request_reciver_user_id);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
-                    params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
+                    params.put("loan_request_code", "gbhjjhjhgh");
+                    params.put("request_sender_user_name", request_sender_user_name);
+                    params.put("request_reciver_user_name", request_reciver_user_name);
+                    params.put("request_sender_user_id", request_sender_user_id);
+                    params.put("request_reciver_user_id", request_reciver_user_id);
+                    params.put("request_time_stamp", request_time_stamp);
+                    params.put("request_is_seen", request_is_seen);
 
 //                    params.put(Comman.TABLE_Requests_ATTRIBUTES[5], request_time_stamp);
 //                    params.put(Comman.TABLE_Requests_ATTRIBUTES[6], request_is_seen);
 
                     params.put("req_status", Comman.REQUEST_Status[0]);
 
-                    System.out.println("error is 121 _" + request_time_stamp + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[1]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[2]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[3]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[4]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[5]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[6]) + "__" + params.get("req_status") + "__");
 
+                    System.out.println("error is1213_" + request_time_stamp + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[1]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[2]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[3]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[4]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[5]) + "__" + params.get(Comman.TABLE_Requests_ATTRIBUTES[6]) + "__" + params.get("req_status") + "__");
 
 
                     return params;
